@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Remittance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.unclaimed.org/NAUPA-3 Remittance.xsd"
+            xmlns="http://www.unclaimed.org/NAUPA-3">
+    <Payment>
+    	<ConfirmationNumber>12345678</ConfirmationNumber>
+    	<Type>ACH Debit</Type>
+    </Payment>
+    <Remitter>
+        <CompanyName>TEST BANK</CompanyName>
+        <USCompanyInfo>
+            <FEIN>999999999</FEIN>
+            <USAddress>
+                <Address1>1234 MAIN ST</Address1>
+                <Address2>SUITE 400</Address2>                  
+                <Address3>MAILSTOP 5</Address3>
+                <City>BOULDER</City>
+                <StateCode>CO</StateCode>
+                <ZIPCode>80302-1234</ZIPCode>
+            </USAddress>
+        </USCompanyInfo>
+        <TelephoneNumber>
+            <USTelephoneNumber>3035551234</USTelephoneNumber>
+        </TelephoneNumber>
+        <EMailAddress>TEST@TESTBANK.COM</EMailAddress>
+    </Remitter>
+    <HolderParent>
+        <CompanyName>HSBC Bank</CompanyName>
+        <ForeignCompanyInfo>
+            <ForeignTaxID>999999999</ForeignTaxID>
+            <ForeignAddress>
+                <Address1>8 Canada Square</Address1> 
+                <City>London</City>
+                <ForeignPostalCode>E14 5HQ</ForeignPostalCode>
+                <CountryCode>GBR</CountryCode>
+            </ForeignAddress>
+        </ForeignCompanyInfo>
+        <Contact>
+            <Type>Report</Type>
+            <Name>
+				<PersonName>
+            	    <FirstName>JOHN</FirstName>
+            	    <LastName>SMITH</LastName>
+				</PersonName>
+            </Name>
+            <USAddress>
+                <Address1>1234 MAIN ST</Address1>
+                <Address2>SUITE 200</Address2>
+                <Address3>MAILSTOP 7</Address3>
+                <City>BOULDER</City>
+                <StateCode>CO</StateCode>
+                <ZIPCode>80302-1234</ZIPCode>
+            </USAddress>
+            <TelephoneNumber>
+                <USTelephoneNumber>3035551234</USTelephoneNumber>
+                <TelephoneExtension>2801</TelephoneExtension>
+            </TelephoneNumber>
+            <EMailAddress>JOHN.SMITH@TESTBANK.COM</EMailAddress>
+        </Contact>
+        <IncorporatedState>CO</IncorporatedState>
+        <IncorporatedDate>10-10-1978</IncorporatedDate>
+        <NAICSCode>123456</NAICSCode>
+        <HolderParentID>1234567899</HolderParentID>
+    </HolderParent>
+    <Holder parentID="1234567890">
+        <CompanyName>TEST BANK</CompanyName>
+        <USCompanyInfo>
+            <FEIN>999999999</FEIN>
+            <USAddress>
+                <Address1>1234 MAIN ST</Address1>
+                <Address2>SUITE 100</Address2>
+                <Address3>MAILSTOP 5</Address3>
+                <City>BOULDER</City>
+                <StateCode>CO</StateCode>
+                <ZIPCode>80302-1234</ZIPCode>
+            </USAddress>
+        </USCompanyInfo>
+        <Contact>
+            <Type>Report</Type>
+            <Name>
+				<PersonName>
+            	    <FirstName>FRED</FirstName>
+            	    <LastName>SMITH</LastName>
+				</PersonName>
+            </Name>
+            <USAddress>
+                <Address1>1234 MAIN ST</Address1>
+                <Address2>SUITE 200</Address2>
+                <Address3>MAILSTOP 8</Address3>
+                <City>BOULDER</City>
+                <StateCode>CO</StateCode>
+                <ZIPCode>80302-1234</ZIPCode>
+            </USAddress>
+            <TelephoneNumber>
+                <USTelephoneNumber>3035551235</USTelephoneNumber>
+            </TelephoneNumber>
+            <EMailAddress>FRED.SMITH@TESTBANK.COM</EMailAddress>
+        </Contact>
+        <TaxIDExtension>1</TaxIDExtension>
+        <DBAName>BOULDER TEST BANK</DBAName>
+        <IncorporatedState>CO</IncorporatedState>
+        <IncorporatedDate>12-24-1975</IncorporatedDate>
+        <NAICSCode>123456</NAICSCode>
+        <SalesAmount>1000000</SalesAmount>
+        <NumberOfEmployees>75</NumberOfEmployees>
+        <AssetsAmount>2000000</AssetsAmount>
+        <NumberOfInsurancePolicies>0</NumberOfInsurancePolicies>
+        <HolderID>1234567890</HolderID>
+        <Report>
+            <Year>2020</Year>
+            <AsOfDate>07-01-2019</AsOfDate>
+            <HIPAAIndicator>X</HIPAAIndicator>
+            <ProductionReport>X</ProductionReport>
+            <Type>REMITTANCE</Type>
+            <Contact>
+                <Type>Report</Type>
+                <Name>
+					<PersonName>
+                	    <FirstName>JOHN</FirstName>
+                	    <LastName>SMITH</LastName>
+					</PersonName>
+                </Name>
+                <USAddress>
+                    <Address1>1234 MAIN ST</Address1>
+                    <Address2>SUITE 200</Address2>
+                    <Address3>MAILSTOP 7</Address3>
+                    <City>BOULDER</City>
+                    <StateCode>CO</StateCode>
+                    <ZIPCode>80302-1234</ZIPCode>
+                </USAddress>
+                <TelephoneNumber>
+                    <USTelephoneNumber>3035551234</USTelephoneNumber>
+                </TelephoneNumber>
+                <EMailAddress>JOHN.SMITH@TESTBANK.COM</EMailAddress>
+            </Contact>
+            <Property>    
+                <HIPAAIndicator>X</HIPAAIndicator>
+                <AccountNumber>123-4567-001</AccountNumber>
+                <TypeCode>AC001</TypeCode>
+                <DormancyPeriod>12</DormancyPeriod>
+				<PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+				<DueDiligence>
+					<Date1>09-01-2019</Date1>
+					<Date2>09-02-2019</Date2>
+				</DueDiligence>
+				<ReturnedByPostOffice>
+					<MailDate>09-01-2019</MailDate>
+					<ReturnCount>1</ReturnCount>
+					<DateAccountCodedRPO>09-01-2019</DateAccountCodedRPO>
+				</ReturnedByPostOffice>
+				<LastActivityDate>01-15-2015</LastActivityDate>
+				<PayableOrDistributableDate>01-15-2015</PayableOrDistributableDate>
+                <StartingTransactionDate>01-15-2015</StartingTransactionDate>
+                <EndingTransactionDate>01-15-2015</EndingTransactionDate>
+                <NonRemitIndicator>X</NonRemitIndicator>
+                <Taxable>X</Taxable>
+                <Ten99IssuedDate>09-01-2019</Ten99IssuedDate>
+                <Description>This is a property description.</Description>
+                <BondName>Bond name</BondName>
+                <BondNumber>Bond number</BondNumber>
+				<CouponNumber>Coupon number</CouponNumber>
+                <PayingAgent>Paying agent</PayingAgent>
+                <LocationIdentifier>Office #2-201</LocationIdentifier>
+                <LocationAddress>
+                    <USAddress>
+                        <Address1>1234 MAIN ST</Address1>
+                        <Address2>SUITE 100</Address2>
+                        <Address3>MAILSTOP 5</Address3>
+                        <City>BOULDER</City>
+                        <StateCode>CO</StateCode>
+                        <ZIPCode>80302-1234</ZIPCode>
+                    </USAddress>
+                </LocationAddress>
+                <Adjustment>
+                    <Type>Income Tax Withheld</Type>
+                    <Amount>125.00</Amount>
+                </Adjustment>
+                <Adjustment>
+                    <Type>Service Charge</Type>
+                    <Amount>25.00</Amount>
+                </Adjustment>
+                <Cash>
+                    <ReportedAmount>100.00</ReportedAmount>
+                    <InterestPaidThroughDate>12-31-2020</InterestPaidThroughDate>
+                    <InterestRate>4.50</InterestRate>
+                    <RemittedAmount>100.00</RemittedAmount>
+                    <CheckNumber>1234567</CheckNumber>
+                    <ItemIssueState>CO</ItemIssueState>
+                </Cash>
+                <Securities>
+                    <TransferAgent>COMPUTERSHARE</TransferAgent>
+                    <SecurityName>FORD MOTOR CO</SecurityName>
+                    <SecuritySymbol>F</SecuritySymbol>
+                    <CUSIP>A12345678</CUSIP>
+                    <AlternativeSecurityIDType>SEDOL</AlternativeSecurityIDType>
+                    <AlternativeSecurityIdentifier>1234567</AlternativeSecurityIdentifier>
+                    <ReportedShares>1234.123</ReportedShares>
+                    <RemittedShares>1234.123</RemittedShares>
+                    <NameOfOriginalSharesHeld>FORD MOTOR CO</NameOfOriginalSharesHeld>
+                    <NumberOfOriginalSharesHeld>1000.001</NumberOfOriginalSharesHeld>
+                    <CUSIPOfOriginalSharesHeld>A12345678</CUSIPOfOriginalSharesHeld>
+                    <Type>Common Stock</Type>
+                    <DividendHandling>Cash</DividendHandling>
+                    <DeliveryMethod>DTC</DeliveryMethod>
+                    <StateAccountNumber>123456</StateAccountNumber>
+                    <DTCDeliveryReferenceNumber>0005</DTCDeliveryReferenceNumber>
+                    <Market>TBD</Market>
+                    <DividendsPaidThroughDate>07-01-2019</DividendsPaidThroughDate>
+                    <SECSearch1date>03-15-2019</SECSearch1date>
+                    <SECSearch2date>06-15-2019</SECSearch2date>
+                    <Adjustment>
+                        <Type>TBD</Type>
+                        <Amount>12.50</Amount>
+                    </Adjustment>
+                    <CostBasis>
+                        <SecurityName>FORD MOTOR CO</SecurityName>
+                        <SecuritySymbol>F</SecuritySymbol>
+                        <CUSIP>A12345678</CUSIP>
+                        <AlternativeSecurityIDType>SEDOL</AlternativeSecurityIDType>
+                        <AlternativeSecurityIdentifier>1234567</AlternativeSecurityIdentifier>
+                        <Amount>12000.00</Amount>
+                        <NumberofSharesPurchased>1000.001</NumberofSharesPurchased>
+                        <PurchaseDate>01-01-1980</PurchaseDate>
+                        <LongTermShortTerm>LT</LongTermShortTerm>
+                    </CostBasis>
+                </Securities>
+                <Safekeeping>
+                    <BoxCaseNumber>1234</BoxCaseNumber>
+                    <BoxOpenDate>01-15-2019</BoxOpenDate>
+                    <LeaseExpiredDate>08-15-2015</LeaseExpiredDate>
+                    <Fee>
+                        <Type>Drilling Fee</Type>
+                        <Amount>125.24</Amount>
+                    </Fee>
+                    <Inventory>
+                        <InventoryItemCode>Savings Bonds</InventoryItemCode> 
+                        <InventoryItemDescription>Savings bond</InventoryItemDescription>
+                        <SavingsBond>
+                            <BondNumber>C999999999EE</BondNumber>
+                            <FaceValue>100.00</FaceValue>
+                            <Owner>
+                                <Name>Fred</Name>
+                                <Address>
+                                    <USAddress>
+                                        <Address1>1234 Main St.</Address1>
+                                        <City>Anywhere</City>
+                                        <StateCode>CO</StateCode>
+                                        <ZIPCode>80001</ZIPCode>
+                                    </USAddress>
+                                </Address>
+                                <SocialSecurityNumber>123456789</SocialSecurityNumber>
+                                <Relationship>Owner</Relationship>
+                            </Owner>
+                        </SavingsBond>
+                    </Inventory>
+                    <Inventory>
+                        <InventoryItemCode>Coins</InventoryItemCode> 
+                        <InventoryItemDescription>Gold colored dollar dated 1976</InventoryItemDescription>
+                    </Inventory>
+                </Safekeeping>
+                <MineralInterests>
+                    <StateCode>OK</StateCode>
+                    <StateFormatNumber>01</StateFormatNumber>
+                    <CountyName>WASHINGTON</CountyName>
+                    <Section>22</Section>
+                    <Township>12N</Township>
+                    <Range>11W</Range>
+                    <SupplementalDescription>NE 1/4 S 1/2 1/8TH</SupplementalDescription>
+                    <PoolingOrder>660667</PoolingOrder>
+                    <PoolingDate>12-24-2002</PoolingDate>
+                    <WellName>CIMARRON H2</WellName>
+                    <WellNumber>21165620010090</WellNumber>
+                    <LeaseName>CIMMARRON</LeaseName>
+                    <LeaseNumber>891006793A</LeaseNumber>
+                    <OwnershipPercentage>1.025</OwnershipPercentage>
+                </MineralInterests>
+				<OFACInformation>
+					<Description>Description goes here...</Description>
+					<DateOfBlocking>02-15-2015</DateOfBlocking>
+					<LegalAuthority>31 C.F.R. Part 515</LegalAuthority>
+					<SanctionsTarget>Cuba</SanctionsTarget>
+					<OwnerType>Non-U.S. Bank</OwnerType>
+				</OFACInformation>
+                <Owner>
+					<PrimaryContactInformation>
+						<Type>Owner</Type>
+						<Name>
+							<PersonName>
+								<!--
+							<Prefix>Mr.</Prefix>
+							-->
+								<Title>Dr.</Title>
+								<FirstName>Josef</FirstName>
+								<MiddleName>Hermann</MiddleName>
+								<LastName>Besitzer</LastName>
+								<Suffix>III</Suffix>
+							</PersonName>
+						</Name>
+						<USAddress>
+							<Address1>234 Broadway</Address1>
+							<Address2>Suite 300</Address2>
+							<Address3>Office L20</Address3>
+							<City>Boulder</City>
+							<StateCode>CO</StateCode>
+							<ZIPCode>80304</ZIPCode>
+						</USAddress>
+						<TelephoneNumber>
+							<USTelephoneNumber>3035551234</USTelephoneNumber>
+							<TelephoneExtension>2801</TelephoneExtension>
+						</TelephoneNumber>
+						<EMailAddress>jbesitzer999@gmail.com</EMailAddress>
+					</PrimaryContactInformation>
+					<AlternateAddress>
+						<Type>Seasonal</Type>
+						<ForeignAddress>
+							<Address1>Bahrenfelder Chaussee 55</Address1>
+							<City>Hamburg</City>
+							<ForeignPostalCode>22761</ForeignPostalCode>
+							<CountryCode>DEU</CountryCode>
+						</ForeignAddress>
+					</AlternateAddress>
+					<AlternateTelephoneNumber>
+					    <Type>Home</Type>
+						<ForeignTelephoneNumber>498004353666</ForeignTelephoneNumber>
+					</AlternateTelephoneNumber>
+					<AlternateEMailAddress>jbesitzer999@somecompay.com</AlternateEMailAddress>
+					<IdentityInformation>
+						<USTaxID>
+							<Type>SSN</Type>
+							<Number>555551234</Number>
+						</USTaxID>
+						<!--
+						<AlienID>999999999</AlienID>
+						-->
+						<DriversLicense>
+							<State>CO</State>
+							<Identifier>24-457-1234</Identifier>
+						</DriversLicense>
+					</IdentityInformation>
+					<Description>Snooty</Description>
+                    <DateOfBirth>06-08-1954</DateOfBirth>
+                    <RelationshipCode>TBD</RelationshipCode>
+                    <TypeCode>Aggregate</TypeCode>
+                    <CompleteAccountRegistrationName>ROBERT JAMES ANDERSON</CompleteAccountRegistrationName>
+                    <DateOfTrust>01-01-2000</DateOfTrust>
+                    <MinorDateOfMajority>01-01-2010</MinorDateOfMajority>
+                    <DeceasedOwnerInformation>
+                        <DateOfDeathSource>Claim</DateOfDeathSource>
+						<DateOfDeath>01-01-2010</DateOfDeath>
+                        <DateOfDeathIdentifiedDate>01-10-2010</DateOfDeathIdentifiedDate>
+                    </DeceasedOwnerInformation>
+                    <Beneficiary>
+						<Type>Primary</Type>
+						<ContactInformation>
+							<Type>Beneficiary</Type>
+							<Name>
+								<PersonName>
+									<FirstName>Helga</FirstName>
+									<LastName>Besitzer</LastName>
+								</PersonName>
+							</Name>
+							<USAddress>
+								<Address1>234 BROADWAY</Address1>
+								<Address2>SUITE 300</Address2>
+								<Address3>Office L20</Address3>
+								<City>BOULDER</City>
+								<StateCode>CO</StateCode>
+								<ZIPCode>80304</ZIPCode>
+							</USAddress>
+							<TelephoneNumber>
+								<USTelephoneNumber>3035551234</USTelephoneNumber>
+							</TelephoneNumber>
+							<EMailAddress>rjanderson@somecompany.com</EMailAddress>
+						</ContactInformation>
+						<Spouse>X</Spouse>
+						<SSN>111111111</SSN>
+						<DateOfBirth>04-27-1975</DateOfBirth>
+						<Percentage>100.00</Percentage>
+                    </Beneficiary>
+                </Owner>
+            </Property>
+            <Adjustment>
+                <Type>Audit Fees</Type>
+                <Amount>125.00</Amount>
+            </Adjustment>
+            <ReportSummary>
+                <DatePrepared>04-15-2020</DatePrepared>
+                <NumberOfProperties>1</NumberOfProperties>
+                <TotalAmountReported>100.00</TotalAmountReported>
+                <TotalAdjustments>0.00</TotalAdjustments>
+                <TotalAmountRemitted>100.00</TotalAmountRemitted>
+                <TotalSharesReported>1234.1234</TotalSharesReported>
+                <TotalSharesRemitted>1234.1234</TotalSharesRemitted>
+            </ReportSummary>
+            <NegativeReport>X</NegativeReport>
+        </Report>
+    </Holder>
+    <Summary>
+        <DatePrepared>05-11-2020</DatePrepared>
+        <NumberOfProperties>1</NumberOfProperties>
+        <TotalAmountReported>100.00</TotalAmountReported>
+        <TotalAdjustments>0.00</TotalAdjustments>
+        <TotalAmountRemitted>100.00</TotalAmountRemitted>
+        <TotalSharesReported>1234.1234</TotalSharesReported>
+        <TotalSharesRemitted>1234.1234</TotalSharesRemitted>
+        <NumberOfReports>1</NumberOfReports>
+    </Summary>
+    <SoftwareInformation>
+    	<Version>0.1</Version>
+    	<Developer>The Software Application Folks</Developer>
+        <Contact>
+            <Type>Software</Type>
+            <USAddress>
+                <Address1>1234 Kelmar Avenu</Address1>
+                <City>Boulder</City>
+                <StateCode>CO</StateCode>
+                <ZIPCode>80302-1234</ZIPCode>
+            </USAddress>
+            <TelephoneNumber>
+                <USTelephoneNumber>3035551111</USTelephoneNumber>
+            </TelephoneNumber>
+            <EMailAddress>support@softwareapp.com</EMailAddress>
+        </Contact>
+    </SoftwareInformation>
+</Remittance>
