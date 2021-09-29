@@ -4,9 +4,9 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
            
-	<xs:include schemaLocation="Common.xsd" />
-	<xs:include schemaLocation="Owner.xsd" />
-	
+    <xs:include schemaLocation="Common.xsd" />
+    <xs:include schemaLocation="Owner.xsd" />
+    
     <!--
     Named simple types section _NSTS
     -->
@@ -18,7 +18,7 @@
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-        	<!-- Based on Avenu -->
+            <!-- Based on Avenu -->
             <xs:maxLength value="50" />
         </xs:restriction>
     </xs:simpleType>
@@ -30,7 +30,7 @@
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-        	<!-- Based on Avenu -->
+            <!-- Based on Avenu -->
             <xs:maxLength value="6" />
         </xs:restriction>
     </xs:simpleType>
@@ -117,7 +117,7 @@
                 <xs:annotation>
                     <xs:documentation>
                         Cite the legal authority or authorities under which the property is blocked(e.g., 31 C.F.R.
-						Part 515).
+                        Part 515).
                     </xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
@@ -148,7 +148,7 @@
                 <xs:annotation>
                     <xs:documentation>
                         Indicate owner type, selecting from one of the following categories: individual; U.S. bank;
-						non-U.S. bank; U.S. non-bank entity; non-U.S. non-bank entity; or other.
+                        non-U.S. bank; U.S. non-bank entity; non-U.S. non-bank entity; or other.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -189,7 +189,7 @@
                 <xs:annotation>
                     <xs:documentation>
                         Provide the check number if reporting cashier's or traveler's checks, money orders, or any
-						other remittance instrument.
+                        other remittance instrument.
                     </xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
@@ -868,8 +868,8 @@
                 <xs:annotation>
                     <xs:documentation>
                         Property information contains information subject to HIPAA regulations.  Presence of element
-						containing the value "X" indicates the presence of HIPPA information, absence of such an
-						elements indicates no HIPPA information.
+                        containing the value "X" indicates the presence of HIPPA information, absence of such an
+                        elements indicates no HIPPA information.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -905,86 +905,86 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-			<xs:element name="PresumedAbandonedDate" type="DateType">
-				<xs:annotation>
-					<xs:documentation>
-						Date on which the holder determined the property to be unclaimed (as contrasted with the
-						date on which the property became reportable).
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="DueDiligence" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-						<!-- TODO:  description -->
-					</xs:documentation>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="Date1" type="DateType" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>
-									Date that statutorily required owner notification initially performed.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="Date2" type="DateType" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>
-									Date(s) that supplemental owner notification(s) performed, if needed.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="ReturnedByPostOffice" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-						<!-- TODO -->
-					</xs:documentation>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="MailDate" type="DateType">
-							<xs:annotation>
-								<xs:documentation>
-									Date that statutorily required owner notification initially performed.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="ReturnCount" type="xs:integer">
-							<xs:annotation>
-								<xs:documentation>
-									<!-- TODO -->
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="DateAccountCodedRPO" type="DateType">
-							<xs:annotation>
-								<xs:documentation>
-									Date that statutorily required owner notification initially performed.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="LastActivityDate" type="DateType">
-				<xs:annotation>
-					<xs:documentation>
-						The date on which the last (i.e., most recent) owner-generated actity or action occurred.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="PayableOrDistributableDate" type="DateType" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-						For retirement accounts, the date on which distribution of property is required, regardless
-						of whether a penalty will be incurred for non-distribution.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
+            <xs:element name="PresumedAbandonedDate" type="DateType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Date on which the holder determined the property to be unclaimed (as contrasted with the
+                        date on which the property became reportable).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DueDiligence" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <!-- TODO:  description -->
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Date1" type="DateType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Date that statutorily required owner notification initially performed.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Date2" type="DateType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Date(s) that supplemental owner notification(s) performed, if needed.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ReturnedByPostOffice" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <!-- TODO -->
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="MailDate" type="DateType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Date that statutorily required owner notification initially performed.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReturnCount" type="xs:integer">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    <!-- TODO -->
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="DateAccountCodedRPO" type="DateType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Date that statutorily required owner notification initially performed.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="LastActivityDate" type="DateType">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date on which the last (i.e., most recent) owner-generated actity or action occurred.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PayableOrDistributableDate" type="DateType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        For retirement accounts, the date on which distribution of property is required, regardless
+                        of whether a penalty will be incurred for non-distribution.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="StartingTransactionDate" type="DateType">
                 <xs:annotation>
                     <xs:documentation>
@@ -1073,20 +1073,20 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-			<xs:element name="CouponNumber" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-						<!-- TODO:  description -->
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- TODO: set length
+            <xs:element name="CouponNumber" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <!-- TODO:  description -->
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- TODO: set length
                         <xs:maxLength value="???" />
                         -->
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="PayingAgent" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -1123,25 +1123,25 @@
                 </xs:annotation>
             </xs:element>
             <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
-				<xs:complexType >
-					<xs:sequence>
-						<xs:element name="Type" type="PropertyAdjustmentType">
-							<xs:annotation>
-								<xs:documentation>
-									Utilize the two character adjustment code as set forth in the appendix which most closely
-									describes the nature of the adjustment.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="Amount" type="CurrencyType">
-							<xs:annotation>
-								<xs:documentation>
-									Dollar amount of the adjustment resulting in net amount reported.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
+                <xs:complexType >
+                    <xs:sequence>
+                        <xs:element name="Type" type="PropertyAdjustmentType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Utilize the two character adjustment code as set forth in the appendix which most closely
+                                    describes the nature of the adjustment.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Amount" type="CurrencyType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Dollar amount of the adjustment resulting in net amount reported.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
             </xs:element>
             <!-- TODO:  is this correct? -->
             <xs:choice minOccurs="1" maxOccurs="unbounded">
@@ -1174,13 +1174,13 @@
                     </xs:annotation>
                 </xs:element>
             </xs:choice>
-			<xs:element name="OFACInformation" type="OFACInformationType" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-						<!-- TODO: description -->
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
+            <xs:element name="OFACInformation" type="OFACInformationType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <!-- TODO: description -->
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="Owner" type="OwnerType" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
@@ -1228,10 +1228,10 @@
     <xs:simpleType name="DormancyPeriodType">
         <xs:annotation>
             <xs:documentation>
-				<!-- TODO -->
+                <!-- TODO -->
             </xs:documentation>
         </xs:annotation>
-		<!-- TODO:  Is this used for calculations?  Should it be an integer with a restricted range? -->
+        <!-- TODO:  Is this used for calculations?  Should it be an integer with a restricted range? -->
         <xs:restriction base="xs:string">
             <xs:enumeration value="1">
                 <xs:annotation>
@@ -1421,7 +1421,7 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="DTC">
                 <xs:annotation>
-					<!-- TODO:  What does DTC stand for?-->
+                    <!-- TODO:  What does DTC stand for?-->
                     <xs:documentation>DTC</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
@@ -1442,7 +1442,7 @@
             </xs:enumeration>
             <xs:enumeration value="DWAC">
                 <xs:annotation>
-					<!-- TODO:  What does DTC stand for?-->
+                    <!-- TODO:  What does DTC stand for?-->
                     <xs:documentation>DWAC</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>

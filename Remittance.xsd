@@ -4,18 +4,18 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 
-	<xs:include schemaLocation="Common.xsd" />
-	<xs:include schemaLocation="Holder.xsd" />
-	
-	<!-- TODO:  Global Issues
-	
-	    1) Dates
-		   1a) Should we base date formats on XML schema date format, or the more familiar NAUPA-II format?
-		   1b) Are there any dates that need to be date-times?
-		2) Domestic vs. Foreign information, e.g. addresses, telephone numbers, tax IDs, drivers licenses, etc.  Some
-		   places in the spreadsheet assume domestic information, but should they?
-	-->
-	
+    <xs:include schemaLocation="Common.xsd" />
+    <xs:include schemaLocation="Holder.xsd" />
+    
+    <!-- TODO:  Global Issues
+    
+        1) Dates
+           1a) Should we base date formats on XML schema date format, or the more familiar NAUPA-II format?
+           1b) Are there any dates that need to be date-times?
+        2) Domestic vs. Foreign information, e.g. addresses, telephone numbers, tax IDs, drivers licenses, etc.  Some
+           places in the spreadsheet assume domestic information, but should they?
+    -->
+    
     <!--
     Root element definition
     -->
@@ -26,10 +26,10 @@
                 A complete unclaimed property remittance document.
             </xs:documentation>
         </xs:annotation>
-		<!--
-		    NOTE:  Although the Microsoft and Eclipse XML parsers accept this reference constraint, they do not appear to
-			enforce it on the XML document.
-		-->
+        <!--
+            NOTE:  Although the Microsoft and Eclipse XML parsers accept this reference constraint, they do not appear to
+            enforce it on the XML document.
+        -->
         <xs:key name="holderParentKey">
             <xs:selector xpath="HolderParent" />
             <xs:field xpath="HolderParentID" />
@@ -54,7 +54,7 @@
                 </xs:annotation>
             </xs:element>
             <!-- TODO:
-            	Can there be more than one remitter in a report?  I don't think so, but need to confirm.
+                Can there be more than one remitter in a report?  I don't think so, but need to confirm.
             -->
             <xs:element name="Remitter" type="RemitterType">
                 <xs:annotation>
@@ -62,7 +62,7 @@
                         <!-- TODO:
                             We should probably add descriptions for container elements like Remitter, but
                             the spreadsheet does not currently have this.
-							
+                            
                             Question:  Is the remitter usually the same as the holder?  If so, should Remitter
                             be optional, and present only if different from the holder?
                         -->
@@ -70,8 +70,8 @@
                 </xs:annotation>
             </xs:element>
             <!-- TODO:
-			    Can there be more than one HolderParent in a report?
-		    -->
+                Can there be more than one HolderParent in a report?
+            -->
             <xs:element name="HolderParent" type="HolderParentType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -87,11 +87,11 @@
                 </xs:annotation>
             </xs:element>
             <!-- TODO:
-            	If a report-level summary does not agree with the report data, should the remittance be rejected?  If
-				not, is the remittance-level summary really of any use?  This was discussed in one of the general
-				committee meetings, but no conclusion was reached.
+                If a report-level summary does not agree with the report data, should the remittance be rejected?  If
+                not, is the remittance-level summary really of any use?  This was discussed in one of the general
+                committee meetings, but no conclusion was reached.
                 
-            	If we do keep this, see TODOs on SummaryType.
+                If we do keep this, see TODOs on SummaryType.
             -->
             <xs:element name="Summary" type="RemittanceSummaryType">
                 <xs:annotation>
@@ -101,8 +101,8 @@
                 </xs:annotation>
             </xs:element>
             <!-- TODO:
-            	Made this optional since it is possible that the XML could be generated without any
-            	special-purpose software.
+                Made this optional since it is possible that the XML could be generated without any
+                special-purpose software.
             -->
             <xs:element name="SoftwareInformation" type="SoftwareInformationType" minOccurs="0">
                 <xs:annotation>
@@ -114,63 +114,67 @@
         </xs:sequence>
     </xs:complexType>
 
-	<xs:complexType name="PaymentType">
-		<xs:sequence>
-			<xs:element name="ConfirmationNumber">
-				<xs:annotation>
-					<xs:documentation>
-						This field should contain Check #, Wire ID#, any identifying number for the remittance.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- TODO: define length <xs:maxLength value="???"/> -->
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="Type" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-					    The type of payment used for this remittance.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Check">
-							<xs:annotation>
-								<xs:documentation>Check</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="Wire">
-							<xs:annotation>
-								<xs:documentation>Wire</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="ACH Credit">
-							<xs:annotation>
-								<xs:documentation>ACH Credit</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="ACH Debit">
-							<xs:annotation>
-								<xs:documentation>ACH Debit</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="Internal Transfer">
-							<xs:annotation>
-								<xs:documentation>Internal Transfer</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="ECheck">
-							<xs:annotation>
-								<xs:documentation>ECheck</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
+    <xs:complexType name="PaymentType">
+        <xs:sequence>
+            <xs:element name="ConfirmationNumber">
+                <xs:annotation>
+                    <xs:documentation>
+                        This field should contain Check #, Wire ID#, any identifying number for the remittance.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- TODO: define length <xs:maxLength value="???"/> -->
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Type" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        The type of payment used for this remittance.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+						<!-- TODO:  set maxLength -->
+						<!--
+						<xs:maxLength value="3" />
+						-->
+                        <xs:enumeration value="Check">
+                            <xs:annotation>
+                                <xs:documentation>Check</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Wire">
+                            <xs:annotation>
+                                <xs:documentation>Wire</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="ACH Credit">
+                            <xs:annotation>
+                                <xs:documentation>ACH Credit</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="ACH Debit">
+                            <xs:annotation>
+                                <xs:documentation>ACH Debit</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Internal Transfer">
+                            <xs:annotation>
+                                <xs:documentation>Internal Transfer</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="ECheck">
+                            <xs:annotation>
+                                <xs:documentation>ECheck</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
     
     <xs:complexType name="RemitterType">
         <xs:sequence>
@@ -209,7 +213,7 @@
     </xs:complexType>
     
     <!-- TODO:
-    	Do we really need this?  See notes on ReportSummaryType.
+        Do we really need this?  See notes on ReportSummaryType.
      -->
     <xs:complexType name="RemittanceSummaryType">
         <xs:annotation>
@@ -220,25 +224,25 @@
             </xs:documentation>
         </xs:annotation>
         <xs:complexContent>
-        	<xs:extension base="ReportSummaryType">
-		        <xs:sequence>
-		            <xs:element name="NumberOfReports" minOccurs="0">
-		                <xs:annotation>
-		                    <xs:documentation>
-		                        This field should contain the total number of ALL Reports included in this NAUPA file.
-		                        The number of property records is a X-digit field. The quantity recorded is always a
-		                        whole number, i.e., no decimal positions.
-		                </xs:documentation>
-		                </xs:annotation>
-		                <xs:simpleType>
-		                    <xs:restriction base="xs:integer">
-		                    	<!-- TODO:  review this -->
-		                          <xs:totalDigits value="12"/>
-		                    </xs:restriction>
-		                  </xs:simpleType>
-		            </xs:element>
-		        </xs:sequence>
-        	</xs:extension>
+            <xs:extension base="ReportSummaryType">
+                <xs:sequence>
+                    <xs:element name="NumberOfReports" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                This field should contain the total number of ALL Reports included in this NAUPA file.
+                                The number of property records is a X-digit field. The quantity recorded is always a
+                                whole number, i.e., no decimal positions.
+                        </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:integer">
+                                <!-- TODO:  review this -->
+                                  <xs:totalDigits value="12"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
         </xs:complexContent>
     </xs:complexType>
     
@@ -248,8 +252,8 @@
                 Information about the software that generated this report.
             </xs:documentation>
         </xs:annotation>
-    	<xs:sequence>
-    		<xs:element name="Version">
+        <xs:sequence>
+            <xs:element name="Version">
                 <xs:annotation>
                     <xs:documentation>
                         The version of the software that generated this report.
@@ -257,22 +261,22 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                    	<!-- TODO:  Do we need more?-->
-                    	<xs:maxLength value="20" />
+                        <!-- TODO:  Do we need more?-->
+                        <xs:maxLength value="20" />
                     </xs:restriction>
                 </xs:simpleType>
-    		</xs:element>
-    		<xs:element name="Developer" type="CompanyNameType">
+            </xs:element>
+            <xs:element name="Developer" type="CompanyNameType">
                 <xs:annotation>
                     <xs:documentation>
                         The name of the company that developed the software that generated this report.
                     </xs:documentation>
                 </xs:annotation>
-    		</xs:element>
-    		<!-- TODO:
-    			Is a single contact sufficient here?
-    		 -->
-    		<xs:element name="Contact" type="ContactType">
+            </xs:element>
+            <!-- TODO:
+                Is a single contact sufficient here?
+             -->
+            <xs:element name="Contact" type="ContactType">
                 <xs:annotation>
                     <xs:documentation>
                         Contact information for a person within the company that developed the software
@@ -280,7 +284,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-    	</xs:sequence>
+        </xs:sequence>
     </xs:complexType>
 
 </xs:schema>

@@ -4,9 +4,9 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
            
-	<xs:include schemaLocation="Common.xsd" />
-	<xs:include schemaLocation="Property.xsd" />
-	
+    <xs:include schemaLocation="Common.xsd" />
+    <xs:include schemaLocation="Property.xsd" />
+    
     <!--
     Named simple types section _NSTS
     -->
@@ -47,10 +47,10 @@
     </xs:complexType>
         
     <!-- TODO:
-    	Is the report summary really a good idea?  It basically amounts to a sanity check on the rest of the data,
-    	which would seem to be of marginal if any value.  If the numbers herein disagree with those derived from the
-    	report data, should the report be rejected?  If not, what purpose does this data serve?  If so, I suspect
-    	many users will be unhappy on both the sending and receiving side.
+        Is the report summary really a good idea?  It basically amounts to a sanity check on the rest of the data,
+        which would seem to be of marginal if any value.  If the numbers herein disagree with those derived from the
+        report data, should the report be rejected?  If not, what purpose does this data serve?  If so, I suspect
+        many users will be unhappy on both the sending and receiving side.
     -->
     <xs:complexType name="ReportSummaryType">
         <xs:annotation>
@@ -60,30 +60,30 @@
             </xs:documentation>
         </xs:annotation>
         <!-- TODO:
-        	If we do keep the summaries, these descriptions from the spreadsheet don't sound right for the report-level
-        	summary.
+            If we do keep the summaries, these descriptions from the spreadsheet don't sound right for the report-level
+            summary.
         -->
         <xs:sequence>
-		            <xs:element name="DatePrepared" type="DateType">
-		                <xs:annotation>
-		                    <xs:documentation>
-		                        <!-- TODO:
-		                        	How would these dates actually be recorded?  If they are to be recorded
-		                        	automatically when the file is saved/generated, then report and remittance dates
-		                        	would be the same.  If they must be set manually, it seems very likely that they
-		                        	would be inaccurate.
-									
-									Do we really need this at the report level, or would the remittance-level
-									DatePrepared suffice?
-		                        -->
-		                        Report:  This field should contain the date this NAUPA file was created. The date should be
-		                        recorded in MM-DD-YYYY format.
-		                            
-		                        Remittance: This field should contain the date the NAUPA file was remitted to the state.
-		                        The date should be recorded in MM-DD-YYYY format.
-		                    </xs:documentation>
-		                </xs:annotation>
-		            </xs:element>
+                    <xs:element name="DatePrepared" type="DateType">
+                        <xs:annotation>
+                            <xs:documentation>
+                                <!-- TODO:
+                                    How would these dates actually be recorded?  If they are to be recorded
+                                    automatically when the file is saved/generated, then report and remittance dates
+                                    would be the same.  If they must be set manually, it seems very likely that they
+                                    would be inaccurate.
+                                    
+                                    Do we really need this at the report level, or would the remittance-level
+                                    DatePrepared suffice?
+                                -->
+                                Report:  This field should contain the date this NAUPA file was created. The date should be
+                                recorded in MM-DD-YYYY format.
+                                    
+                                Remittance: This field should contain the date the NAUPA file was remitted to the state.
+                                The date should be recorded in MM-DD-YYYY format.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
             <xs:element name="NumberOfProperties">
                 <xs:annotation>
                     <xs:documentation>
@@ -99,8 +99,8 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:integer">
-		                 <!-- TODO:  Increase this for NAUPA-III? -->
-		                 <xs:totalDigits value="6"/>
+                         <!-- TODO:  Increase this for NAUPA-III? -->
+                         <xs:totalDigits value="6"/>
                     </xs:restriction>
                   </xs:simpleType>
             </xs:element>
@@ -116,11 +116,11 @@
                         file. The amount reported is a X-digit field with two decimal places assumed.
                     </xs:documentation>
                 </xs:annotation>
-				<!-- TODO:  Use CurrencyType? -->
+                <!-- TODO:  Use CurrencyType? -->
                 <xs:simpleType>
                     <xs:restriction base="xs:decimal">
-		                 <!-- TODO:  review this -->
-		                 <xs:totalDigits value="12"/>
+                         <!-- TODO:  review this -->
+                         <xs:totalDigits value="12"/>
                           <xs:fractionDigits value="2" />
                     </xs:restriction>
                   </xs:simpleType>
@@ -131,11 +131,11 @@
                         <!-- TODO:  No descriptions in current version of spreadsheet. -->
                     </xs:documentation>
                 </xs:annotation>
-				<!-- TODO:  Use CurrencyType? -->
+                <!-- TODO:  Use CurrencyType? -->
                 <xs:simpleType>
                     <xs:restriction base="xs:decimal">
-		                 <!-- TODO:  review this -->
-		                 <xs:totalDigits value="12"/>
+                         <!-- TODO:  review this -->
+                         <xs:totalDigits value="12"/>
                           <xs:fractionDigits value="2" />
                     </xs:restriction>
                   </xs:simpleType>
@@ -153,11 +153,11 @@
                         is a X-digit field with two decimal places.
                     </xs:documentation>
                 </xs:annotation>
-				<!-- TODO:  Use CurrencyType? -->
+                <!-- TODO:  Use CurrencyType? -->
                 <xs:simpleType>
                     <xs:restriction base="xs:decimal">
-		                 <!-- TODO:  review this -->
-		                 <xs:totalDigits value="12"/>
+                         <!-- TODO:  review this -->
+                         <xs:totalDigits value="12"/>
                           <xs:fractionDigits value="2" />
                     </xs:restriction>
                   </xs:simpleType>
@@ -177,8 +177,8 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:decimal">
-		                 <!-- TODO:  review this -->
-		                 <xs:totalDigits value="12"/>
+                         <!-- TODO:  review this -->
+                         <xs:totalDigits value="12"/>
                           <xs:fractionDigits value="4" />
                     </xs:restriction>
                   </xs:simpleType>
@@ -197,8 +197,8 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:decimal">
-		                 <!-- TODO:  review this -->
-		                 <xs:totalDigits value="12"/>
+                         <!-- TODO:  review this -->
+                         <xs:totalDigits value="12"/>
                           <xs:fractionDigits value="4" />
                     </xs:restriction>
                   </xs:simpleType>
@@ -279,11 +279,11 @@
                 </xs:annotation>
             </xs:element>
             <!-- TODO:
-            	If the remittance-level summary does not agree with the report-level summaries (and the raw data),
+                If the remittance-level summary does not agree with the report-level summaries (and the raw data),
                 should the remittance be rejected?  If not, is the remittance-level summary really of any use?
                 This was discussed in one of the general committee meetings, but no conclusion was reached.
                 
-            	If we do keep this, see TODOs on ReportSummaryType.
+                If we do keep this, see TODOs on ReportSummaryType.
             -->
             <xs:element name="ReportSummary" type="ReportSummaryType">
                 <xs:annotation>
@@ -313,7 +313,7 @@
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-			<!-- TODO:  Where should we use ALL CAPS vs. not?-->
+            <!-- TODO:  Where should we use ALL CAPS vs. not?-->
             <xs:enumeration value="ADVERTISING">
                 <xs:annotation>
                     <xs:documentation>Advertising</xs:documentation>

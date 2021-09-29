@@ -1,379 +1,379 @@
-								Codes	Mandatory (M) If Known (K)	Avenu Data Type	Avenu Field Length	Avenu Notes	FAST Data Type	FAST Field Length	FAST Notes	Kelmar Data Type	Kelmar Field Length	Kelmar Notes	Notes
-Remittance																			
-	PaymentConfirmationNumber								K										
-	PaymentType							Payment Type	K										
-	Remitter																		
-		RemitterName							M	varchar	30		varchar	40	Types and lengths based upon our current Holder records.  We allow two sets of contact info per holder, not sure yet how this is handled.  May be site-specific.	Varchar	200		
-		RemitterFEIN							E/M	varchar	15		varchar	9	Tax Id = varchar(9), TaxIdExt = varchar(4)	Varchar	11	Assuming masks of xx-xxxxxxx or xxx-xx-xxxx	Suggest 'RemitterFEIN' as name
-		RemitterForeignTaxID							E/M	varchar	15		varchar	9	Treated same as US tax ID	Varchar	15		Suggest 'Remitter Foreign Tax ID' as Name
-		RemitterAddress1							M	varchar	40		varchar	255		Varchar	100		
-		RemitterAddress2							K	varchar	40		varchar	255		Varchar	100		
-		RemitterAddress3							K	varchar	40		varchar	50	Unit type = varchar(50), Unit = varchar(30)	Varchar	100		
-		RemitterCity							M	varchar	30		varchar	30		Varchar	100		
-		RemitterState						State Code	M				varchar	6		Varchar	50	Allows for foreign states	
-		RemitterZip							M				varchar	9		Varchar	10	Assume 'xxxxx' or 'xxxxx-xxxx'	
-		RemitterCountryCode						Country Code	M				varchar	3		Varchar	3	ISO three digit country code	
-		RemitterForeignPostalCode							K				varchar	9	We overload Zip	Varchar	10		
-		RemitterUSTelephone							E/M				varchar	15	We have many additional fields devoted to this.	Varchar	15	If US, (xxx)xxx-xxxx	
-		RemitterNonUSTelephone							E/M							Varchar	15		
-		RemitterTelephoneExtension							K							Varchar	10		
-		RemitterEmail							M				varchar	50		Varchar	255		
-	Remitter																		
-	HolderParent														Types and lengths based upon our current Holder records.  See comments on Remitter element above.				
-		ParentID							M				int			Int			Unique identifier for referencing Holder XML Elements
-		CompanyName							M				varchar	40		Varchar	200		
-		CompanyFEIN							E/M				varchar	9		Varchar	11		
-		CompanyForeignTaxID							E/M				varchar	9		Varchar	15		
-		CompanyAddress1							M				varchar	255		Varchar	100		
-		CompanyAddress2							K				varchar	255		Varchar	100		
-		CompanyAddress3							K				varchar	50		Varchar	100		
-		CompanyCity							M				varchar	30		Varchar	100		
-		CompanyState						State Code	M				varchar	6		Varchar	50		
-		CompanyZip							M				varchar	9		Varchar	10		
-		CompanyCountryCode						Country Code	M				varchar	3		Varchar	3		
-		CompanyforeignPostalCode							K				varchar	9		Varchar	10		
-		Contact																	
-			ContactNameFirst						M				N/A			Varchar	100	New Field	
-			ContactNameLast						M				N/A			Varchar	100		
-			ContactAddress1						M				N/A			Varchar	100		
-			ContactAddress2						K				N/A			Varchar	100		
-			ContactAddress3						K				N/A			Varchar	100		
-			ContactCity						M				N/A			Varchar	100		
-			ContactState					State Code	M				N/A			Varchar	50		
-			ContactZip						M				N/A			Varchar	10		
-			ContactCountry					Country Code	M				N/A			Varchar	3		
-			ContactUSTelephoneNumber						E/M				N/A			Varchar	15		
-			ContactNonUSTelephoneNumber						E/M				N/A			Varchar	15		
-			ContactTelephoneExtension						K				N/A			Varchar	10		
-			ContactEmail						M				N/A			Varchar	255		
-			ContactType					Contact Type	M				N/A					Defined by NAUPA	
-		Contact																	
-		CompanyIncorporatedState						State Code	M				varchar	6		Varchar	50		
-		CompanyIncorporatedDate							M				datetime			DateTime			
-		CompanyNAICSCode						NAICS	M				varchar	6		Varchar	6		
-		CompanyHolderID							K				N/A			Int			
-	HolderParent																		
-	Holder																		
-		ParentID							M				int			Int			Unique identifier identified defined in the Holder Parent
-		HolderTaxID							E/M	uniqueidentifier	15		varchar	9		varchar	11		
-		HolderTaxExt							K				varchar	4		varchar	11		
-		HolderForeignTaxID							E/M	nvarchar	15		varchar	9	Treated same as US tax ID	varchar	15		
-		HolderName							M	nvarchar	30		varchar	40		Varchar	200		
-		HolderDBA							K				N/A			Varchar	200		
-		Address1							M	nvarchar	40		varchar	255		Varchar	100		
-		Address2							K	nvarchar	40		varchar	255		Varchar	100		
-		Address3							K	nvarchar	40		varchar	50	Unit type = varchar(50), Unit = varchar(30)	Varchar	100		
-		City							M	nvarchar	30		varchar	30		Varchar	100		
-		State						State Code	M	uniqueidentifier			varchar	6		Varchar	50		
-		ZipCode							M	nvarchar	10		varchar	9		Varchar	10		
-		HolderCountryCode						Country Code	M	nvarchar	max		varchar	3		Varchar	3		
-		HolderIncorporatedState						State Code	M	uniqueidentifier			varchar	6		Varchar	50		
-		HolderIncorporatedDate							M	datetime2	7		datetime			DateTime			
-		NAICSCode						NAICS	M	nvarchar	5		varchar	4		Varchar	6		
-		Sales							K	int			N/A			Money			
-		NumEmployees							K	decimal	18, 2		N/A			Int			
-		AssetsAmount							K	money			N/A			Money			
-		InsurancePolicyCount							K	money			N/A			Money			
-		HolderNameHolderID							K	uniqueidentifier			N/A			Int			
-		Contact																	
-			ContactNameFirst						M	nvarchar	40		N/A						
-			ContactNameLast						M	nvarchar	40		N/A			Varchar	100		
-			ContactAddress1						M	nvarchar	40		N/A			Varchar	100		
-			ContactAddress2						K	nvarchar	40		N/A			Varchar	100		
-			ContactAddress3						K	nvarchar	40		N/A			Varchar	100		
-			ContactCity						M	nvarchar	40		N/A			Varchar	100		
-			ContactState					State Code	M	uniqueidentifier			N/A			Varchar	50		
-			ContactZip						M	nvarchar	10		N/A			Varchar	10		
-			ContactCountry					Country Code	M	nvarchar	max		N/A			Varchar	3		
-			ContactUSTelephoneNumber						E/M	nvarchar	15		N/A			Varchar	15		
-			ContactNonUSTelephoneNumber						E/M				N/A			Varchar	15		
-			ContactTelephoneExtension						K				N/A			Varchar	10		
-			ContactEmail						M	nvarchar	50		N/A			Varchar	255		
-			ContactType					Contact Type	M	uniqueidentifier			N/A					Defined by NAUPA	
-		Contact																	
-		Report																	
-			ReportYear						M	int						Int			
-			ReportAsOfDate						K	datetime						DateTIme			
-			ReportHIPAAIndicator						M	bit						bit			
-			ProductionReport						M	bit								Defined by NAUPA	
-			ReportType					Report Type	M	numeric	12								
-				ReportAdjustment															
-					ReportAdjustmentType			Report Adjustment Type	K									Defined by NAUPA	box drill fees, other fees (Reference Table needed)
-					ReportAdjustmentAmount				K							Money			
-				ReportAdjustment															
-			Contact																
-				ContactNameFirst					M	nvarchar	40					Varchar	100		
-				ContactNameLast					M	nvarchar	40					Varchar	100		
-				ContactAddress1					M	nvarchar	40					Varchar	100		
-				ContactAddress2					K	nvarchar	40					Varchar	100		
-				ContactAddress3					K	nvarchar	40					Varchar	100		
-				ContactCity					M	nvarchar	40					Varchar	100		
-				ContactState				State Code	M	uniqueidentifier						Varchar	50		
-				ContactZip					M	nvarchar	10					Varchar	10		
-				ContactCountry				Country Code	M	nvarchar	max					Varchar	3		
-				ContactUSTelephoneNumber					E/M	nvarchar	15					Varchar	15		
-				ContactNonUSTelephoneNumber					E/M							Varchar	15		
-				ContactTelephoneExtension					K							Varchar	10		
-				ContactEmail					M	nvarchar	50					Varchar	255		
-				ContactType				Contact Type	M	uniqueidentifier									
-			Contact																
-			Property																Include Virtual Currency ?
-				HIPAAFlag					M							bit			
-				PropertyAccountNumber					K	char	25					Varchar	100		
-				PropertyTypeCode				Property Type Code	M	uniqueidentifier						Varchar	4		
-				Dormancy				Dormancy Period	M										
-				PresumedAbandonedDate					M	datetime						DateTime			
-				DueDiligenceperformed					M	bit						bit			
-				DueDiligenceDate1					K							DateTime			
-				DueDiligenceDate2					K							DateTime			
-				RPOMailDate					K	datetime						DateTime			
-				NumberofRPO					K	int						int			
-				DateAccountCodedRPO					K	datetime						dateTime			
-				LastActivityDate					K	datetime						DateTime			
-				Payable or Distributable Date					K										
-				StartingTransactionDate					K	datetime						DateTime			
-				EndingTransactionDate					K	datetime						DateTime			
-				NonRemitIndicator					M	bit						bit			
-				Taxable					M	bit						bit			
-				1099IssuedDate					K	datetime						dateTime			
-				Description					K	varchar	50					varchar	250		
-				BondName					K										
-				BondNumber					K										
-				CouponNumber					K										
-				PayingAgent					K										
-				LocationIdentifier					K	varchar	20							Defined by NAUPA	
-				LocationStreetAddress1					K	varchar	40					Varchar	100		
-				LocationStreetAddress2					K	varchar	40					Varchar	100		
-				LocationStreetAddress3					K	varchar	40					Varchar	100		
-				LocationCity					K	varchar	40					Varchar	100		
-				LocationState				State Code	K	uniqueidentifier						Varchar	50		
-				LocationZip					K	char	10					Varchar	10		
-				LocationCountry				Country Code	K							Varchar	3		
-				PropertyAdjustment															
-					PropertyAdjustmentType			Property Adjustment Type	M	uniqueidentifier								Defined by NAUPA	box drill fees, other fees (Reference Table needed)
-					PropertyAdjustmentAmount				M	money						Money			
-				PropertyAdjustment															
-				Cash															
-					CashReporterAmount				M	money						Money			
-					InterestPaidThroughDate				K							DateTime			
-					InterestRate				K							Decimal	6,6		Will not capture variable rate info from Holder.  Let bank industry provide recommendations
-					CashRemittedAmount				M							Money			
-					CheckNumber				K							Varchar	100		
-					ItemIssueState				K										
-				Cash															How do we deal with Cost Basis?
-				Securities															Follow up with Vilka (Types/ High Transfer Fee)
-					TransferAgent				M	varchar	35								
-					SecurityName				M	varchar	50					Varchar	100		
-					SecuritySymbol				M	char	6					Varchar	10		
-					SecurityCUSIP				M	char	12					Varchar	20		
-					AlternativeSecurityIDType			Alternative Security ID	K	varchar	20							Defined by NAUPA	ISIN, SEDOL
-					AlternativeSecurityIdentifier				K	varchar	20					Varchar	20		
-					ReportedShares				M	numeric	14, 4					decimal	18,6		
-					RemittedShares				M	numeric	14, 4					decimal	18,6		
-					NameOriginalSecurityHeld				K	varchar	20					Varchar	100		
-					NumberOriginalSecurityHeld				K	numeric	14, 4					decimal	18,6		
-					CUSIPOriginalSecurityHeld				K							Varchar	20		
-					SecurityType			Security Type	M	Remove								Defined by NAUPA	define - Stock, Mutual Fund?
-					DividendsHowHandledType			Dividends How Handled Type	M	varchar	20							Defined by NAUPA	
-					SecurityDeliveryMethodType			Security Delivery Method Type	M	varchar	20							Defined by NAUPA	DTC, DWAC, Statement, Physical
-					StateAccountNumber				K	varchar	25					Varchar	50		
-					DTCDeliveryReferenceNumber				K	varchar	20								
-					SecurityMarket			Security Market	M	varchar	20								
-					SecurityStatus			Security Status	M										
-					DividendsPaidThroughDate				K	datetime						DateTime			talk to a holder
-					SECSearch1Date				K	datetime						DateTime			do we need to know the nature of the search?
-					SECSearch2Date				K	datetime						DateTime			
-					SecurityAdjustment														
-						SecurityAdjustmentType		Security Adjustment Type	M									Defined by NAUPA	box drill fees, other fees (Reference Table needed)
-						SecurityAdjustmentAmountOrShares			M							Decimal	18,6		
-					SecurityAdjustment														
-					CostBasis														
-						SecurityName			M							Varchar	100		
-						SecuritySymbol			M							Varchar	10		
-						SecurityCUSIP			M							Varchar	20		
-						AlternativeSecurityIDType		Alternative Security ID	K									Defined by NAUPA	
-						AlternativeSecurityIdentifier			K							Varchar	20		
-						DollarAmount			M							Money			
-						NumberofSharesPurchased			M							decimal	18,6		
-						PurchaseDate			M							DateTime			
-						LongTermOrShortTerm			M							bit			Ask Lynden Due to dormancy would not always be Long Term?
-					CostBasis														
-				Securities															
-				Safekeeping															
-					BoxCaseNumber				M							Varchar	25		
-					BoxOpenDate				M	datetime						DateTime			
-					LeaseExpiredDate				M	datetime						DateTime			
-					Fees														
-						FeeTypeCode		Safekeeping Fee Type	M									Defined by NAUPA	
-						FeeAmount			M							Money			
-					Fees														
-					Inventory														
-						InventoryItemCode		Inventory Item Code	M									Defined by NAUPA	
-						InventoryItemDescription			K							Varchar	2000		
-						InventoryAppraisedValue			K										
-						SavingsBondNumber			K							Varchar	250		
-						SavingsBondFaceValue			K							Money			
-						BondOwner													
-							BondOwnerName		M							Varchar	250		
-							BondOwnerRelationship	Relationship Code	M										
-							BondOwnerSocialSecurityNumber		K										
-							Street1		K										
-							Street2		K										
-							Street3		K										
-							City		K							Varchar	250		
-							State	State Code	K							Varchar	250		
-							Zip		K							Varchar	250		
-						BondOwner													
-					Inventory														
-				Safekeeping															
-				MineralInterests															
-					MineralStateCode				?							Varchar	50		
-					MineralStateFormatNumber				?										
-					MineralCountyName				?										
-					MineralSection				?										
-					MineralTownship				?										
-					MineralRange				?										
-					MineralSupplementDescription				?										
-					MineralPoolingOrder				?										
-					MineralPoolingDate				?							DateTime			
-					MineralWellName				?										
-					MineralWellNumber				?										
-					MineralLeaseName				?										
-					MineralLeaseNumber				?										
-					MineralOwnershipPercentage				?										
-				MineralInterests															
-				CryptoCurrency															
-					CryptoName				M										
-					CryptoSymbol				M										
-					AccountNumber				M										
-					AlternativeCryptoIDType				K										
-					AlernativeCryptoIdentifier				K										
-					ReportedUnits				M										
-					RemittedUnits				M										
-					ProceedsReported				M										
-					ProceedsRemitted				M										
-					DateSold				K										
-					UnitsSold				K										
-					DateAcquired	Do we need to add Cost Basis			K										
-					DeliveryDestination				K										
-					StateAccountNumber				K										
-					ReportNotRemit				M										
-				CryptoCurrency															
-				OFAC															
-					OFACProperty				K										
-					OFACDateofBlocking				K										
-					OFACLegalAuthority				K										
-					OFACSanctionsTarget				M										
-					OFACOwnerType			OFAC Owner Type Code	K										
-				OFAC															
-				PropertyOwner															
-					OwnerLastNameorBusinessName				M	nvarchar	40					Varchar	100		
-					OwnerFirstName				K	nvarchar	30					Varchar	50		
-					OwnerMiddleName				K	nvarchar	10					Varchar	50		
-					OwnerPrefix				K							Varchar	10		
-					OwnerSuffix				K	nvarchar	10					Varchar	50		
-					OwnerTitle				K							Varchar	50		
-					IndividualOrBusiness				K							char	1		
-					LNAOwnerAddress1				K	nvarchar	40					Varchar	100		
-					LNAOwnerAddress2				K	nvarchar	40					Varchar	100		
-					LNAOwnerAddress3				K	nvarchar	40					Varchar	100		
-					LNAOwnerCity				K	nvarchar	40					Varchar	100		
-					LNAOwnerState			State Code	K	uniqueidentifier						Varchar	50		
-					LNAOwnerZip				K	nvarchar	10					Varchar	10		
-					OwnerCountry			Country Code	K	nvarchar	60					Varchar	3		
-					OwnerForeignPostalCode				K							Varchar	10		
-					OwnerDescription				K										
-					AlternateAddress														
-						Type		Alternate Address Type	M	uniqueidentifier								Defined by NAUPA	
-						Street1			K	nvarchar	40					Varchar	100		
-						Street2			K	nvarchar	40					Varchar	100		
-						Street3			K	nvarchar	40					Varchar	100		
-						City			K	nvarchar	40					Varchar	100		
-						State		State Code	K	uniqueidentifier						Varchar	50		
-						Zip			K	nvarchar	10					Varchar	10		
-						CountryCode		Country Code	K	nvarchar	60					Varchar	3		
-						ForeignPostalCode			K							Varchar	10		
-					AlternateAddress														
-					USTaxIDType			Tax ID Type	M									Defined by NAUPA	
-					USTaxIDNumber				K							Varchar	11		
-					OwnerAlienID				K										
-					OwnerDOB				K							DateTime			
-					OwnerDLNumber				K							Varchar	50		
-					OwnerDLState			State Code	K							Varchar	10		
-					OwnerEmailAddress				K	nvarchar	50					Varchar	255		
-					AlternateOwnerEmailAddress														
-						OwnerEmailAddress			M							Varchar	255		
-					AlternateOwnerEmailAddress														
-					OwnerUSTelephoneNumber				K	nvarchar	15					Varchar	15		
-					OwnerTelephoneNumberExtension				K										
-					OwnerNonUSTelephoneNumber				K							Varchar	15		
-					AlternateOwnerTelephoneNumber														
-						OwnerPhoneType		FreeForm	K									Defined by NAUPA	
-						OwnerPhoneNumber			K							Varchar	15		
-						OwnerPhoneNumberExtension			K										
-						OwnerNonUSPhoneNumber			K							Varchar	15		
-					AlternateOwnerTelephoneNumber														
-					OwnerRelationshipCode			Relationship Code	M							Varchar	2		
-					OwnerTypeCode			Owner Type Code	M							Varchar	2		
-					CompleteAccountRegistrationName				K										
-					DateOfTrust				K							DateTIme			
-					MinorDateOfMajority			???	K							DateTIme			
-					OwnerDODIndicator			Yes or No	K							bit			
-					OwnerDOD				K							DateTime			
-					OwnerDODSource			FreeForm	K										
-					OwnerDateDODIdentified				K										
-					OwnerBeneficiary														
-						BeneficiaryType		Beneficiary Type	M									Defined by NAUPA	
-						BeneficiaryIsSpouseYN			K										
-						BeneficiaryPercentage			K										
-						BeneficiaryLastName			K							Varchar	100		Should Beneficiary be a separate owner or indent
-						BeneficiaryFirstName			K							Varchar	50		Bring in someone from insurance industry/Lynden
-						BeneficiaryMiddleName			K							Varchar	50		
-						BeneficiaryAddress1			K							Varchar	100		
-						BeneficiaryAddress2			K							Varchar	100		
-						BeneficiaryAddress3			K							Varchar	100		
-						BeneficiaryCity			K							Varchar	100		
-						BeneficiaryState		State Code	K							Varchar	50		
-						BeneficiaryZip			K							Varchar	10		
-						BeneficiaryCountryCode		Country Code	K							Varchar	3		
-						BeneficiaryForeignPostalCode			K							Varchar	10		
-						BeneficiaryDOB			K							DateTime			
-						BeneficiarySSN			K							Varchar	11		
-						BeneficiaryPhoneNumber			K							Varchar	15		
-						BeneficiaryEmail			K							Varchar	255		
-					OwnerBeneficiary														
-				PropertyOwner															
-			Property																
-			ReportLevelDatePrepared						M							Datetime			
-			ReportLevelNumberOfProperties						M							int			
-			ReportLevelTotalAmountReported						M							Money			
-			ReportLevelReportAdjustments						M							Money			
-			ReportLevelPropertyAdjustments						M							Money			
-			ReportLevelTotalAmountRemitted						M							Money			
-			ReportLevelTotalSharesReported						M							Decimal	18,6		
-			ReportLevelTotalSharesRemitted						M							Decimal	18,6		
-			ReportLevelNegativeReport						M							Char	1		
-		Report																	
-	Holder																		
-	RemittanceDatePrepared								M							Datetime			
-	RemittanceNumberOfReports								M							Int			
-	RemittanceNumberOfProperties								M							Int			
-	RemittanceTotalAmountReported								M							Money			
-	RemittanceTotalReportAdjustments								M							Money			
-	RemittanceTotalPropertyAdjustments								M							Money			
-	RemittanceTotalAmountRemitted								M							Money			
-	RemittanceTotalSharesReported								M										
-	RemittanceTotalSharesRemitted								M							Decimal	18,6		
-	RemittanceSoftwareVersion								M							Varchar	255		
-	RemittanceSoftwareDeveloper								M							Varchar	255		
-	RemittanceSoftwareDeveloperContact								M							Varchar	255		
-Remittance																			
-																			
-																			
-																			
-																			
-																			
-																			
-																			
-																			
-																Decimal	18,6		
+                                Codes    Mandatory (M) If Known (K)    Avenu Data Type    Avenu Field Length    Avenu Notes    FAST Data Type    FAST Field Length    FAST Notes    Kelmar Data Type    Kelmar Field Length    Kelmar Notes    Notes
+Remittance                                                                            
+    PaymentConfirmationNumber                                K                                        
+    PaymentType                            Payment Type    K                                        
+    Remitter                                                                        
+        RemitterName                            M    varchar    30        varchar    40    Types and lengths based upon our current Holder records.  We allow two sets of contact info per holder, not sure yet how this is handled.  May be site-specific.    Varchar    200        
+        RemitterFEIN                            E/M    varchar    15        varchar    9    Tax Id = varchar(9), TaxIdExt = varchar(4)    Varchar    11    Assuming masks of xx-xxxxxxx or xxx-xx-xxxx    Suggest 'RemitterFEIN' as name
+        RemitterForeignTaxID                            E/M    varchar    15        varchar    9    Treated same as US tax ID    Varchar    15        Suggest 'Remitter Foreign Tax ID' as Name
+        RemitterAddress1                            M    varchar    40        varchar    255        Varchar    100        
+        RemitterAddress2                            K    varchar    40        varchar    255        Varchar    100        
+        RemitterAddress3                            K    varchar    40        varchar    50    Unit type = varchar(50), Unit = varchar(30)    Varchar    100        
+        RemitterCity                            M    varchar    30        varchar    30        Varchar    100        
+        RemitterState                        State Code    M                varchar    6        Varchar    50    Allows for foreign states    
+        RemitterZip                            M                varchar    9        Varchar    10    Assume 'xxxxx' or 'xxxxx-xxxx'    
+        RemitterCountryCode                        Country Code    M                varchar    3        Varchar    3    ISO three digit country code    
+        RemitterForeignPostalCode                            K                varchar    9    We overload Zip    Varchar    10        
+        RemitterUSTelephone                            E/M                varchar    15    We have many additional fields devoted to this.    Varchar    15    If US, (xxx)xxx-xxxx    
+        RemitterNonUSTelephone                            E/M                            Varchar    15        
+        RemitterTelephoneExtension                            K                            Varchar    10        
+        RemitterEmail                            M                varchar    50        Varchar    255        
+    Remitter                                                                        
+    HolderParent                                                        Types and lengths based upon our current Holder records.  See comments on Remitter element above.                
+        ParentID                            M                int            Int            Unique identifier for referencing Holder XML Elements
+        CompanyName                            M                varchar    40        Varchar    200        
+        CompanyFEIN                            E/M                varchar    9        Varchar    11        
+        CompanyForeignTaxID                            E/M                varchar    9        Varchar    15        
+        CompanyAddress1                            M                varchar    255        Varchar    100        
+        CompanyAddress2                            K                varchar    255        Varchar    100        
+        CompanyAddress3                            K                varchar    50        Varchar    100        
+        CompanyCity                            M                varchar    30        Varchar    100        
+        CompanyState                        State Code    M                varchar    6        Varchar    50        
+        CompanyZip                            M                varchar    9        Varchar    10        
+        CompanyCountryCode                        Country Code    M                varchar    3        Varchar    3        
+        CompanyforeignPostalCode                            K                varchar    9        Varchar    10        
+        Contact                                                                    
+            ContactNameFirst                        M                N/A            Varchar    100    New Field    
+            ContactNameLast                        M                N/A            Varchar    100        
+            ContactAddress1                        M                N/A            Varchar    100        
+            ContactAddress2                        K                N/A            Varchar    100        
+            ContactAddress3                        K                N/A            Varchar    100        
+            ContactCity                        M                N/A            Varchar    100        
+            ContactState                    State Code    M                N/A            Varchar    50        
+            ContactZip                        M                N/A            Varchar    10        
+            ContactCountry                    Country Code    M                N/A            Varchar    3        
+            ContactUSTelephoneNumber                        E/M                N/A            Varchar    15        
+            ContactNonUSTelephoneNumber                        E/M                N/A            Varchar    15        
+            ContactTelephoneExtension                        K                N/A            Varchar    10        
+            ContactEmail                        M                N/A            Varchar    255        
+            ContactType                    Contact Type    M                N/A                    Defined by NAUPA    
+        Contact                                                                    
+        CompanyIncorporatedState                        State Code    M                varchar    6        Varchar    50        
+        CompanyIncorporatedDate                            M                datetime            DateTime            
+        CompanyNAICSCode                        NAICS    M                varchar    6        Varchar    6        
+        CompanyHolderID                            K                N/A            Int            
+    HolderParent                                                                        
+    Holder                                                                        
+        ParentID                            M                int            Int            Unique identifier identified defined in the Holder Parent
+        HolderTaxID                            E/M    uniqueidentifier    15        varchar    9        varchar    11        
+        HolderTaxExt                            K                varchar    4        varchar    11        
+        HolderForeignTaxID                            E/M    nvarchar    15        varchar    9    Treated same as US tax ID    varchar    15        
+        HolderName                            M    nvarchar    30        varchar    40        Varchar    200        
+        HolderDBA                            K                N/A            Varchar    200        
+        Address1                            M    nvarchar    40        varchar    255        Varchar    100        
+        Address2                            K    nvarchar    40        varchar    255        Varchar    100        
+        Address3                            K    nvarchar    40        varchar    50    Unit type = varchar(50), Unit = varchar(30)    Varchar    100        
+        City                            M    nvarchar    30        varchar    30        Varchar    100        
+        State                        State Code    M    uniqueidentifier            varchar    6        Varchar    50        
+        ZipCode                            M    nvarchar    10        varchar    9        Varchar    10        
+        HolderCountryCode                        Country Code    M    nvarchar    max        varchar    3        Varchar    3        
+        HolderIncorporatedState                        State Code    M    uniqueidentifier            varchar    6        Varchar    50        
+        HolderIncorporatedDate                            M    datetime2    7        datetime            DateTime            
+        NAICSCode                        NAICS    M    nvarchar    5        varchar    4        Varchar    6        
+        Sales                            K    int            N/A            Money            
+        NumEmployees                            K    decimal    18, 2        N/A            Int            
+        AssetsAmount                            K    money            N/A            Money            
+        InsurancePolicyCount                            K    money            N/A            Money            
+        HolderNameHolderID                            K    uniqueidentifier            N/A            Int            
+        Contact                                                                    
+            ContactNameFirst                        M    nvarchar    40        N/A                        
+            ContactNameLast                        M    nvarchar    40        N/A            Varchar    100        
+            ContactAddress1                        M    nvarchar    40        N/A            Varchar    100        
+            ContactAddress2                        K    nvarchar    40        N/A            Varchar    100        
+            ContactAddress3                        K    nvarchar    40        N/A            Varchar    100        
+            ContactCity                        M    nvarchar    40        N/A            Varchar    100        
+            ContactState                    State Code    M    uniqueidentifier            N/A            Varchar    50        
+            ContactZip                        M    nvarchar    10        N/A            Varchar    10        
+            ContactCountry                    Country Code    M    nvarchar    max        N/A            Varchar    3        
+            ContactUSTelephoneNumber                        E/M    nvarchar    15        N/A            Varchar    15        
+            ContactNonUSTelephoneNumber                        E/M                N/A            Varchar    15        
+            ContactTelephoneExtension                        K                N/A            Varchar    10        
+            ContactEmail                        M    nvarchar    50        N/A            Varchar    255        
+            ContactType                    Contact Type    M    uniqueidentifier            N/A                    Defined by NAUPA    
+        Contact                                                                    
+        Report                                                                    
+            ReportYear                        M    int                        Int            
+            ReportAsOfDate                        K    datetime                        DateTIme            
+            ReportHIPAAIndicator                        M    bit                        bit            
+            ProductionReport                        M    bit                                Defined by NAUPA    
+            ReportType                    Report Type    M    numeric    12                                
+                ReportAdjustment                                                            
+                    ReportAdjustmentType            Report Adjustment Type    K                                    Defined by NAUPA    box drill fees, other fees (Reference Table needed)
+                    ReportAdjustmentAmount                K                            Money            
+                ReportAdjustment                                                            
+            Contact                                                                
+                ContactNameFirst                    M    nvarchar    40                    Varchar    100        
+                ContactNameLast                    M    nvarchar    40                    Varchar    100        
+                ContactAddress1                    M    nvarchar    40                    Varchar    100        
+                ContactAddress2                    K    nvarchar    40                    Varchar    100        
+                ContactAddress3                    K    nvarchar    40                    Varchar    100        
+                ContactCity                    M    nvarchar    40                    Varchar    100        
+                ContactState                State Code    M    uniqueidentifier                        Varchar    50        
+                ContactZip                    M    nvarchar    10                    Varchar    10        
+                ContactCountry                Country Code    M    nvarchar    max                    Varchar    3        
+                ContactUSTelephoneNumber                    E/M    nvarchar    15                    Varchar    15        
+                ContactNonUSTelephoneNumber                    E/M                            Varchar    15        
+                ContactTelephoneExtension                    K                            Varchar    10        
+                ContactEmail                    M    nvarchar    50                    Varchar    255        
+                ContactType                Contact Type    M    uniqueidentifier                                    
+            Contact                                                                
+            Property                                                                Include Virtual Currency ?
+                HIPAAFlag                    M                            bit            
+                PropertyAccountNumber                    K    char    25                    Varchar    100        
+                PropertyTypeCode                Property Type Code    M    uniqueidentifier                        Varchar    4        
+                Dormancy                Dormancy Period    M                                        
+                PresumedAbandonedDate                    M    datetime                        DateTime            
+                DueDiligenceperformed                    M    bit                        bit            
+                DueDiligenceDate1                    K                            DateTime            
+                DueDiligenceDate2                    K                            DateTime            
+                RPOMailDate                    K    datetime                        DateTime            
+                NumberofRPO                    K    int                        int            
+                DateAccountCodedRPO                    K    datetime                        dateTime            
+                LastActivityDate                    K    datetime                        DateTime            
+                Payable or Distributable Date                    K                                        
+                StartingTransactionDate                    K    datetime                        DateTime            
+                EndingTransactionDate                    K    datetime                        DateTime            
+                NonRemitIndicator                    M    bit                        bit            
+                Taxable                    M    bit                        bit            
+                1099IssuedDate                    K    datetime                        dateTime            
+                Description                    K    varchar    50                    varchar    250        
+                BondName                    K                                        
+                BondNumber                    K                                        
+                CouponNumber                    K                                        
+                PayingAgent                    K                                        
+                LocationIdentifier                    K    varchar    20                            Defined by NAUPA    
+                LocationStreetAddress1                    K    varchar    40                    Varchar    100        
+                LocationStreetAddress2                    K    varchar    40                    Varchar    100        
+                LocationStreetAddress3                    K    varchar    40                    Varchar    100        
+                LocationCity                    K    varchar    40                    Varchar    100        
+                LocationState                State Code    K    uniqueidentifier                        Varchar    50        
+                LocationZip                    K    char    10                    Varchar    10        
+                LocationCountry                Country Code    K                            Varchar    3        
+                PropertyAdjustment                                                            
+                    PropertyAdjustmentType            Property Adjustment Type    M    uniqueidentifier                                Defined by NAUPA    box drill fees, other fees (Reference Table needed)
+                    PropertyAdjustmentAmount                M    money                        Money            
+                PropertyAdjustment                                                            
+                Cash                                                            
+                    CashReporterAmount                M    money                        Money            
+                    InterestPaidThroughDate                K                            DateTime            
+                    InterestRate                K                            Decimal    6,6        Will not capture variable rate info from Holder.  Let bank industry provide recommendations
+                    CashRemittedAmount                M                            Money            
+                    CheckNumber                K                            Varchar    100        
+                    ItemIssueState                K                                        
+                Cash                                                            How do we deal with Cost Basis?
+                Securities                                                            Follow up with Vilka (Types/ High Transfer Fee)
+                    TransferAgent                M    varchar    35                                
+                    SecurityName                M    varchar    50                    Varchar    100        
+                    SecuritySymbol                M    char    6                    Varchar    10        
+                    SecurityCUSIP                M    char    12                    Varchar    20        
+                    AlternativeSecurityIDType            Alternative Security ID    K    varchar    20                            Defined by NAUPA    ISIN, SEDOL
+                    AlternativeSecurityIdentifier                K    varchar    20                    Varchar    20        
+                    ReportedShares                M    numeric    14, 4                    decimal    18,6        
+                    RemittedShares                M    numeric    14, 4                    decimal    18,6        
+                    NameOriginalSecurityHeld                K    varchar    20                    Varchar    100        
+                    NumberOriginalSecurityHeld                K    numeric    14, 4                    decimal    18,6        
+                    CUSIPOriginalSecurityHeld                K                            Varchar    20        
+                    SecurityType            Security Type    M    Remove                                Defined by NAUPA    define - Stock, Mutual Fund?
+                    DividendsHowHandledType            Dividends How Handled Type    M    varchar    20                            Defined by NAUPA    
+                    SecurityDeliveryMethodType            Security Delivery Method Type    M    varchar    20                            Defined by NAUPA    DTC, DWAC, Statement, Physical
+                    StateAccountNumber                K    varchar    25                    Varchar    50        
+                    DTCDeliveryReferenceNumber                K    varchar    20                                
+                    SecurityMarket            Security Market    M    varchar    20                                
+                    SecurityStatus            Security Status    M                                        
+                    DividendsPaidThroughDate                K    datetime                        DateTime            talk to a holder
+                    SECSearch1Date                K    datetime                        DateTime            do we need to know the nature of the search?
+                    SECSearch2Date                K    datetime                        DateTime            
+                    SecurityAdjustment                                                        
+                        SecurityAdjustmentType        Security Adjustment Type    M                                    Defined by NAUPA    box drill fees, other fees (Reference Table needed)
+                        SecurityAdjustmentAmountOrShares            M                            Decimal    18,6        
+                    SecurityAdjustment                                                        
+                    CostBasis                                                        
+                        SecurityName            M                            Varchar    100        
+                        SecuritySymbol            M                            Varchar    10        
+                        SecurityCUSIP            M                            Varchar    20        
+                        AlternativeSecurityIDType        Alternative Security ID    K                                    Defined by NAUPA    
+                        AlternativeSecurityIdentifier            K                            Varchar    20        
+                        DollarAmount            M                            Money            
+                        NumberofSharesPurchased            M                            decimal    18,6        
+                        PurchaseDate            M                            DateTime            
+                        LongTermOrShortTerm            M                            bit            Ask Lynden Due to dormancy would not always be Long Term?
+                    CostBasis                                                        
+                Securities                                                            
+                Safekeeping                                                            
+                    BoxCaseNumber                M                            Varchar    25        
+                    BoxOpenDate                M    datetime                        DateTime            
+                    LeaseExpiredDate                M    datetime                        DateTime            
+                    Fees                                                        
+                        FeeTypeCode        Safekeeping Fee Type    M                                    Defined by NAUPA    
+                        FeeAmount            M                            Money            
+                    Fees                                                        
+                    Inventory                                                        
+                        InventoryItemCode        Inventory Item Code    M                                    Defined by NAUPA    
+                        InventoryItemDescription            K                            Varchar    2000        
+                        InventoryAppraisedValue            K                                        
+                        SavingsBondNumber            K                            Varchar    250        
+                        SavingsBondFaceValue            K                            Money            
+                        BondOwner                                                    
+                            BondOwnerName        M                            Varchar    250        
+                            BondOwnerRelationship    Relationship Code    M                                        
+                            BondOwnerSocialSecurityNumber        K                                        
+                            Street1        K                                        
+                            Street2        K                                        
+                            Street3        K                                        
+                            City        K                            Varchar    250        
+                            State    State Code    K                            Varchar    250        
+                            Zip        K                            Varchar    250        
+                        BondOwner                                                    
+                    Inventory                                                        
+                Safekeeping                                                            
+                MineralInterests                                                            
+                    MineralStateCode                ?                            Varchar    50        
+                    MineralStateFormatNumber                ?                                        
+                    MineralCountyName                ?                                        
+                    MineralSection                ?                                        
+                    MineralTownship                ?                                        
+                    MineralRange                ?                                        
+                    MineralSupplementDescription                ?                                        
+                    MineralPoolingOrder                ?                                        
+                    MineralPoolingDate                ?                            DateTime            
+                    MineralWellName                ?                                        
+                    MineralWellNumber                ?                                        
+                    MineralLeaseName                ?                                        
+                    MineralLeaseNumber                ?                                        
+                    MineralOwnershipPercentage                ?                                        
+                MineralInterests                                                            
+                CryptoCurrency                                                            
+                    CryptoName                M                                        
+                    CryptoSymbol                M                                        
+                    AccountNumber                M                                        
+                    AlternativeCryptoIDType                K                                        
+                    AlernativeCryptoIdentifier                K                                        
+                    ReportedUnits                M                                        
+                    RemittedUnits                M                                        
+                    ProceedsReported                M                                        
+                    ProceedsRemitted                M                                        
+                    DateSold                K                                        
+                    UnitsSold                K                                        
+                    DateAcquired    Do we need to add Cost Basis            K                                        
+                    DeliveryDestination                K                                        
+                    StateAccountNumber                K                                        
+                    ReportNotRemit                M                                        
+                CryptoCurrency                                                            
+                OFAC                                                            
+                    OFACProperty                K                                        
+                    OFACDateofBlocking                K                                        
+                    OFACLegalAuthority                K                                        
+                    OFACSanctionsTarget                M                                        
+                    OFACOwnerType            OFAC Owner Type Code    K                                        
+                OFAC                                                            
+                PropertyOwner                                                            
+                    OwnerLastNameorBusinessName                M    nvarchar    40                    Varchar    100        
+                    OwnerFirstName                K    nvarchar    30                    Varchar    50        
+                    OwnerMiddleName                K    nvarchar    10                    Varchar    50        
+                    OwnerPrefix                K                            Varchar    10        
+                    OwnerSuffix                K    nvarchar    10                    Varchar    50        
+                    OwnerTitle                K                            Varchar    50        
+                    IndividualOrBusiness                K                            char    1        
+                    LNAOwnerAddress1                K    nvarchar    40                    Varchar    100        
+                    LNAOwnerAddress2                K    nvarchar    40                    Varchar    100        
+                    LNAOwnerAddress3                K    nvarchar    40                    Varchar    100        
+                    LNAOwnerCity                K    nvarchar    40                    Varchar    100        
+                    LNAOwnerState            State Code    K    uniqueidentifier                        Varchar    50        
+                    LNAOwnerZip                K    nvarchar    10                    Varchar    10        
+                    OwnerCountry            Country Code    K    nvarchar    60                    Varchar    3        
+                    OwnerForeignPostalCode                K                            Varchar    10        
+                    OwnerDescription                K                                        
+                    AlternateAddress                                                        
+                        Type        Alternate Address Type    M    uniqueidentifier                                Defined by NAUPA    
+                        Street1            K    nvarchar    40                    Varchar    100        
+                        Street2            K    nvarchar    40                    Varchar    100        
+                        Street3            K    nvarchar    40                    Varchar    100        
+                        City            K    nvarchar    40                    Varchar    100        
+                        State        State Code    K    uniqueidentifier                        Varchar    50        
+                        Zip            K    nvarchar    10                    Varchar    10        
+                        CountryCode        Country Code    K    nvarchar    60                    Varchar    3        
+                        ForeignPostalCode            K                            Varchar    10        
+                    AlternateAddress                                                        
+                    USTaxIDType            Tax ID Type    M                                    Defined by NAUPA    
+                    USTaxIDNumber                K                            Varchar    11        
+                    OwnerAlienID                K                                        
+                    OwnerDOB                K                            DateTime            
+                    OwnerDLNumber                K                            Varchar    50        
+                    OwnerDLState            State Code    K                            Varchar    10        
+                    OwnerEmailAddress                K    nvarchar    50                    Varchar    255        
+                    AlternateOwnerEmailAddress                                                        
+                        OwnerEmailAddress            M                            Varchar    255        
+                    AlternateOwnerEmailAddress                                                        
+                    OwnerUSTelephoneNumber                K    nvarchar    15                    Varchar    15        
+                    OwnerTelephoneNumberExtension                K                                        
+                    OwnerNonUSTelephoneNumber                K                            Varchar    15        
+                    AlternateOwnerTelephoneNumber                                                        
+                        OwnerPhoneType        FreeForm    K                                    Defined by NAUPA    
+                        OwnerPhoneNumber            K                            Varchar    15        
+                        OwnerPhoneNumberExtension            K                                        
+                        OwnerNonUSPhoneNumber            K                            Varchar    15        
+                    AlternateOwnerTelephoneNumber                                                        
+                    OwnerRelationshipCode            Relationship Code    M                            Varchar    2        
+                    OwnerTypeCode            Owner Type Code    M                            Varchar    2        
+                    CompleteAccountRegistrationName                K                                        
+                    DateOfTrust                K                            DateTIme            
+                    MinorDateOfMajority            ???    K                            DateTIme            
+                    OwnerDODIndicator            Yes or No    K                            bit            
+                    OwnerDOD                K                            DateTime            
+                    OwnerDODSource            FreeForm    K                                        
+                    OwnerDateDODIdentified                K                                        
+                    OwnerBeneficiary                                                        
+                        BeneficiaryType        Beneficiary Type    M                                    Defined by NAUPA    
+                        BeneficiaryIsSpouseYN            K                                        
+                        BeneficiaryPercentage            K                                        
+                        BeneficiaryLastName            K                            Varchar    100        Should Beneficiary be a separate owner or indent
+                        BeneficiaryFirstName            K                            Varchar    50        Bring in someone from insurance industry/Lynden
+                        BeneficiaryMiddleName            K                            Varchar    50        
+                        BeneficiaryAddress1            K                            Varchar    100        
+                        BeneficiaryAddress2            K                            Varchar    100        
+                        BeneficiaryAddress3            K                            Varchar    100        
+                        BeneficiaryCity            K                            Varchar    100        
+                        BeneficiaryState        State Code    K                            Varchar    50        
+                        BeneficiaryZip            K                            Varchar    10        
+                        BeneficiaryCountryCode        Country Code    K                            Varchar    3        
+                        BeneficiaryForeignPostalCode            K                            Varchar    10        
+                        BeneficiaryDOB            K                            DateTime            
+                        BeneficiarySSN            K                            Varchar    11        
+                        BeneficiaryPhoneNumber            K                            Varchar    15        
+                        BeneficiaryEmail            K                            Varchar    255        
+                    OwnerBeneficiary                                                        
+                PropertyOwner                                                            
+            Property                                                                
+            ReportLevelDatePrepared                        M                            Datetime            
+            ReportLevelNumberOfProperties                        M                            int            
+            ReportLevelTotalAmountReported                        M                            Money            
+            ReportLevelReportAdjustments                        M                            Money            
+            ReportLevelPropertyAdjustments                        M                            Money            
+            ReportLevelTotalAmountRemitted                        M                            Money            
+            ReportLevelTotalSharesReported                        M                            Decimal    18,6        
+            ReportLevelTotalSharesRemitted                        M                            Decimal    18,6        
+            ReportLevelNegativeReport                        M                            Char    1        
+        Report                                                                    
+    Holder                                                                        
+    RemittanceDatePrepared                                M                            Datetime            
+    RemittanceNumberOfReports                                M                            Int            
+    RemittanceNumberOfProperties                                M                            Int            
+    RemittanceTotalAmountReported                                M                            Money            
+    RemittanceTotalReportAdjustments                                M                            Money            
+    RemittanceTotalPropertyAdjustments                                M                            Money            
+    RemittanceTotalAmountRemitted                                M                            Money            
+    RemittanceTotalSharesReported                                M                                        
+    RemittanceTotalSharesRemitted                                M                            Decimal    18,6        
+    RemittanceSoftwareVersion                                M                            Varchar    255        
+    RemittanceSoftwareDeveloper                                M                            Varchar    255        
+    RemittanceSoftwareDeveloperContact                                M                            Varchar    255        
+Remittance                                                                            
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+                                                                Decimal    18,6        

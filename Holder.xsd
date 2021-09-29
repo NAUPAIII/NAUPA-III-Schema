@@ -4,9 +4,9 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 
-	<xs:include schemaLocation="Common.xsd" />
-	<xs:include schemaLocation="Report.xsd" />
-	
+    <xs:include schemaLocation="Common.xsd" />
+    <xs:include schemaLocation="Report.xsd" />
+    
     <!--
     Named simple types section _NSTS
     -->
@@ -65,7 +65,7 @@
                 <xs:element name="ForeignCompanyInfo" type="ForeignCompanyInfoType" />
             </xs:choice>
             <!-- TODO:
-            	Assuming multiple contacts allowed per holder parent, since NAUPA-II allowed two contacts for per holder.
+                Assuming multiple contacts allowed per holder parent, since NAUPA-II allowed two contacts for per holder.
              -->
             <xs:element name="Contact" type="ContactType" maxOccurs="unbounded">
                 <xs:annotation>
@@ -74,9 +74,9 @@
                 </xs:annotation>
             </xs:element>
             <!-- TODO:
-            	Defining an incorporated state with a state code for a holder parent and making it mandatory implies
-            	that a holder's parent company must be domestic.  Is that true?  If not, should IncorporatedState
-            	and IncorporatedDate be optional?
+                Defining an incorporated state with a state code for a holder parent and making it mandatory implies
+                that a holder's parent company must be domestic.  Is that true?  If not, should IncorporatedState
+                and IncorporatedDate be optional?
              -->
             <xs:element name="IncorporatedState" type="StateCodeType">
                 <xs:annotation>
@@ -89,7 +89,7 @@
             </xs:element>
             <xs:element name="IncorporatedDate" type="DateType">
                 <xs:annotation>
-					<!-- TODO:  update this -->
+                    <!-- TODO:  update this -->
                     <xs:documentation>
                         This field should contain the date on which the company was incorporated or licensed to
                         do business. Savings and loan associations, banks, and credit unions should enter the
@@ -133,18 +133,18 @@
                 </xs:annotation>
             </xs:element>
             <!-- TODO:
-            	The spreadsheet implies that holders can be foreign, but we have a bunch of required information
-            	that would not apply to a foreign holder.
-				
-            	In NAUPA-II, the holder's city, county, and state are contained in the holder record.  In NAUPA-III,
-            	this has been changed to be a full address, but that full address does not contain county information.
+                The spreadsheet implies that holders can be foreign, but we have a bunch of required information
+                that would not apply to a foreign holder.
+                
+                In NAUPA-II, the holder's city, county, and state are contained in the holder record.  In NAUPA-III,
+                this has been changed to be a full address, but that full address does not contain county information.
              -->
             <xs:choice>
                 <xs:element name="USCompanyInfo" type="USCompanyInfoType" />
                 <xs:element name="ForeignCompanyInfo" type="ForeignCompanyInfoType" />
             </xs:choice>
             <!-- TODO:
-            	Assuming multiple contacts allowed per holder parent, since NAUPA-II allowed two contacts for per holder.
+                Assuming multiple contacts allowed per holder parent, since NAUPA-II allowed two contacts for per holder.
              -->
             <xs:element name="Contact" type="ContactType" maxOccurs="unbounded">
                 <xs:annotation>
@@ -154,7 +154,7 @@
                 </xs:annotation>
             </xs:element>
             <!-- TODO:
-            	Assuming NAUPA-II TaxID becomes USCompanyInfo/FEIN.
+                Assuming NAUPA-II TaxID becomes USCompanyInfo/FEIN.
              -->
             <xs:element name="TaxIDExtension">
                 <xs:annotation>
@@ -173,11 +173,11 @@
                 </xs:simpleType>
             </xs:element>
             <!-- TODO:
-            	No equivalent to the NAUPA-II HOLDER-RPT-NUMBER appears in the spreadsheet.  Is this correct?  Is this
-            	something that was just not needed and therefore dropped?
+                No equivalent to the NAUPA-II HOLDER-RPT-NUMBER appears in the spreadsheet.  Is this correct?  Is this
+                something that was just not needed and therefore dropped?
              -->
             <!-- TODO:
-            	HOLDER-RPT-FORMAT was not needed/used in NAUPA-II, and therefore dropped in NAUPA-III, correct?
+                HOLDER-RPT-FORMAT was not needed/used in NAUPA-II, and therefore dropped in NAUPA-III, correct?
              -->
             <xs:element name="DBAName">
                 <xs:annotation>
@@ -195,9 +195,9 @@
                 </xs:simpleType>
             </xs:element>
             <!-- TODO:
-            	Defining an incorporated state with a state code for a holder and making it mandatory implies
-            	that a holder company must be domestic.  Is that true?  If not, should IncorporatedState and
-            	IncorporatedDate be optional?
+                Defining an incorporated state with a state code for a holder and making it mandatory implies
+                that a holder company must be domestic.  Is that true?  If not, should IncorporatedState and
+                IncorporatedDate be optional?
              -->
             <xs:element name="IncorporatedState" type="StateCodeType">
                 <xs:annotation>
@@ -240,8 +240,8 @@
                 </xs:annotation>
                 <xs:simpleType>
                 <xs:restriction base="xs:integer">
-					<!-- TODO: review-->
-                	<xs:totalDigits value="12" />
+                    <!-- TODO: review-->
+                    <xs:totalDigits value="12" />
                 </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -256,12 +256,12 @@
                 <xs:annotation>
                     <xs:documentation>
                         This field should contain the number of insurance policies written from most current year-end
-						totals.
+                        totals.
                     </xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
                 <xs:restriction base="xs:integer">
-                	<xs:totalDigits value="12" />
+                    <xs:totalDigits value="12" />
                 </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -284,7 +284,7 @@
             <xs:annotation>
                 <xs:documentation>
                     If the holder has a parent, the parentId attribute should be present and should match the parentId
-					attribute of the HolderParent element.
+                    attribute of the HolderParent element.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>

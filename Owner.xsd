@@ -4,8 +4,8 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 
-	<xs:include schemaLocation="Common.xsd" />
-	
+    <xs:include schemaLocation="Common.xsd" />
+    
     <!--
     Complex types section _CTS
     -->
@@ -17,26 +17,26 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-			<!-- TODO:
-			    Proposal:  If we know the owner is dead but we have no date of death or other details,
-				the only DateOfDeathSource would need to be filled in.  Since it is free-form, we can
-				put just about anything here.
-			-->
-			<xs:element name="DateOfDeathSource">
-				<xs:annotation>
-					<xs:documentation>
-						Source of owner date of death information (DMF, beneficiary, claim).
-					</xs:documentation>
-				</xs:annotation>
-				<!-- TODO:  enumerated type? -->
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- TODO:  determine length
+            <!-- TODO:
+                Proposal:  If we know the owner is dead but we have no date of death or other details,
+                the only DateOfDeathSource would need to be filled in.  Since it is free-form, we can
+                put just about anything here.
+            -->
+            <xs:element name="DateOfDeathSource">
+                <xs:annotation>
+                    <xs:documentation>
+                        Source of owner date of death information (DMF, beneficiary, claim).
+                    </xs:documentation>
+                </xs:annotation>
+                <!-- TODO:  enumerated type? -->
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- TODO:  determine length
                         <xs:maxLength value="?" />
                         -->
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="DateOfDeath" type="DateType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -55,124 +55,124 @@
     </xs:complexType>
     
     <xs:complexType name="OwnerType">
-		<!-- TODO:  Review how this differs from the spreadsheet. -->
+        <!-- TODO:  Review how this differs from the spreadsheet. -->
         <xs:sequence>
-			<xs:element name="PrimaryContactInformation" type="ContactType">
-			</xs:element>
-			<xs:element name="AlternateAddress" minOccurs="0" maxOccurs="unbounded" >
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="Type" type="AlternateAddressType">
-							<xs:annotation>
-								<xs:documentation>
-									Type of additional address
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:choice>
-							<xs:element name="USAddress" type="USAddressType" />
-							<xs:element name="ForeignAddress" type="ForeignAddressType" />
-						</xs:choice>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="AlternateTelephoneNumber" minOccurs="0" maxOccurs="unbounded">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="Type">
-							<xs:annotation>
-								<xs:documentation>
-									Free-form.
-								</xs:documentation>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<!-- TODO:  determine length
+            <xs:element name="PrimaryContactInformation" type="ContactType">
+            </xs:element>
+            <xs:element name="AlternateAddress" minOccurs="0" maxOccurs="unbounded" >
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Type" type="AlternateAddressType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Type of additional address
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:choice>
+                            <xs:element name="USAddress" type="USAddressType" />
+                            <xs:element name="ForeignAddress" type="ForeignAddressType" />
+                        </xs:choice>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="AlternateTelephoneNumber" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Type">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Free-form.
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <!-- TODO:  determine length
                                     <xs:maxLength value="?" />
                                     -->
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-						<xs:choice>
-							<xs:element name="USTelephoneNumber" type="USTelephoneNumberType" />
-							<xs:element name="ForeignTelephoneNumber" type="ForeignTelephoneNumberType" />
-						</xs:choice>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name ="AlternateEMailAddress" type="EMailAddressType" minOccurs="0" maxOccurs="unbounded">
-			</xs:element>
-			<xs:element name="IdentityInformation">
-				<xs:complexType>
-					<xs:sequence>
-						<!-- TODO:
-						    Is xs:choice correct here?  Do we always have one or the other?  Or is AlienID just
-							another tax ID type?  Or does this whole thing need to be optional?
-						-->
-						<xs:choice>
-							<xs:element name="USTaxID">
-								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="Type" type="USTaxIDType">
-										</xs:element>
-										<xs:element name="Number">
-											<xs:simpleType>
-												<xs:restriction base="xs:string">
-													<xs:pattern value="[0-9]{9}" />
-												</xs:restriction>
-											</xs:simpleType>
-										</xs:element>
-									</xs:sequence>
-								</xs:complexType>
-							</xs:element>
-							<xs:element name="AlienID">
-								<xs:annotation>
-									<xs:documentation>
-										Enter owner identification number/alien id.
-									</xs:documentation>
-								</xs:annotation>
-								<xs:simpleType>
-									<xs:restriction base="xs:string">
-										<!-- TODO:  same form as USTaxID?-->
-										<xs:pattern value="[0-9]{9}" />
-									</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-						</xs:choice>
-						<!-- TODO:  Domestic driver's license is assumed.  Is this a valid assumption? -->
-						<xs:element name="DriversLicense" minOccurs="0">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="State" type="StateCodeType" />
-									<xs:element name="Identifier">
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<!-- TODO: define length
-									            <xs:maxLength value="15" />
-									            -->
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="Description" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-						Help explain relationship or other owner info
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- TODO:  set max length
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:choice>
+                            <xs:element name="USTelephoneNumber" type="USTelephoneNumberType" />
+                            <xs:element name="ForeignTelephoneNumber" type="ForeignTelephoneNumberType" />
+                        </xs:choice>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name ="AlternateEMailAddress" type="EMailAddressType" minOccurs="0" maxOccurs="unbounded">
+            </xs:element>
+            <xs:element name="IdentityInformation">
+                <xs:complexType>
+                    <xs:sequence>
+                        <!-- TODO:
+                            Is xs:choice correct here?  Do we always have one or the other?  Or is AlienID just
+                            another tax ID type?  Or does this whole thing need to be optional?
+                        -->
+                        <xs:choice>
+                            <xs:element name="USTaxID">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Type" type="USTaxIDType">
+                                        </xs:element>
+                                        <xs:element name="Number">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:pattern value="[0-9]{9}" />
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="AlienID">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Enter owner identification number/alien id.
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <!-- TODO:  same form as USTaxID?-->
+                                        <xs:pattern value="[0-9]{9}" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:choice>
+                        <!-- TODO:  Domestic driver's license is assumed.  Is this a valid assumption? -->
+                        <xs:element name="DriversLicense" minOccurs="0">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="State" type="StateCodeType" />
+                                    <xs:element name="Identifier">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <!-- TODO: define length
+                                                <xs:maxLength value="15" />
+                                                -->
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Description" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Help explain relationship or other owner info
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- TODO:  set max length
                         <xs:maxLength value="???" />
                         -->
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="DateOfBirth" type="DateType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -234,54 +234,54 @@
                 </xs:annotation>
             </xs:element>
             <xs:element name="Beneficiary">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="Type" type="BeneficiaryType">
-							<xs:annotation>
-								<xs:documentation>
-									Enter the type of beneficiary - see appendix.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="ContactInformation" type="ContactType">
-							<xs:annotation>
-								<xs:documentation>
-									Contact information for beneficiary.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="Spouse" type="IndicatorType" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>
-									Indicates that the beneficiary is a the spouse of the owner.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="SSN" type="SSNType">
-							<xs:annotation>
-								<xs:documentation>
-									If owner is a beneficiary of a policy or account for which the owner of the policy or
-									account is listed as the owner above, list social security number.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="DateOfBirth" type="DateType">
-							<xs:annotation>
-								<xs:documentation>
-									If owner is a beneficiary of a policy or account for which the owner of the policy or
-									account is listed as the owner above, list date of birth.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="Percentage" type="PercentageType" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>
-									Enter the beneficiary's percentage of the funds.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Type" type="BeneficiaryType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Enter the type of beneficiary - see appendix.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ContactInformation" type="ContactType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Contact information for beneficiary.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Spouse" type="IndicatorType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Indicates that the beneficiary is a the spouse of the owner.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="SSN" type="SSNType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    If owner is a beneficiary of a policy or account for which the owner of the policy or
+                                    account is listed as the owner above, list social security number.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="DateOfBirth" type="DateType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    If owner is a beneficiary of a policy or account for which the owner of the policy or
+                                    account is listed as the owner above, list date of birth.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Percentage" type="PercentageType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Enter the beneficiary's percentage of the funds.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
@@ -394,7 +394,7 @@
     <xs:simpleType name="TypeCodeType">
         <xs:annotation>
             <xs:documentation>
-				Enter the owner type code, see appendix.
+                Enter the owner type code, see appendix.
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">

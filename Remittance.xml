@@ -3,8 +3,8 @@
             xsi:schemaLocation="http://www.unclaimed.org/NAUPA-3 Remittance.xsd"
             xmlns="http://www.unclaimed.org/NAUPA-3">
     <Payment>
-    	<ConfirmationNumber>12345678</ConfirmationNumber>
-    	<Type>ACH Debit</Type>
+        <ConfirmationNumber>12345678</ConfirmationNumber>
+        <Type>ACH Debit</Type>
     </Payment>
     <Remitter>
         <CompanyName>TEST BANK</CompanyName>
@@ -38,10 +38,10 @@
         <Contact>
             <Type>Report</Type>
             <Name>
-				<PersonName>
-            	    <FirstName>JOHN</FirstName>
-            	    <LastName>SMITH</LastName>
-				</PersonName>
+                <PersonName>
+                    <FirstName>JOHN</FirstName>
+                    <LastName>SMITH</LastName>
+                </PersonName>
             </Name>
             <USAddress>
                 <Address1>1234 MAIN ST</Address1>
@@ -78,10 +78,10 @@
         <Contact>
             <Type>Report</Type>
             <Name>
-				<PersonName>
-            	    <FirstName>FRED</FirstName>
-            	    <LastName>SMITH</LastName>
-				</PersonName>
+                <PersonName>
+                    <FirstName>FRED</FirstName>
+                    <LastName>SMITH</LastName>
+                </PersonName>
             </Name>
             <USAddress>
                 <Address1>1234 MAIN ST</Address1>
@@ -115,10 +115,10 @@
             <Contact>
                 <Type>Report</Type>
                 <Name>
-					<PersonName>
-                	    <FirstName>JOHN</FirstName>
-                	    <LastName>SMITH</LastName>
-					</PersonName>
+                    <PersonName>
+                        <FirstName>JOHN</FirstName>
+                        <LastName>SMITH</LastName>
+                    </PersonName>
                 </Name>
                 <USAddress>
                     <Address1>1234 MAIN ST</Address1>
@@ -138,18 +138,18 @@
                 <AccountNumber>123-4567-001</AccountNumber>
                 <TypeCode>AC001</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
-				<PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
-				<DueDiligence>
-					<Date1>09-01-2019</Date1>
-					<Date2>09-02-2019</Date2>
-				</DueDiligence>
-				<ReturnedByPostOffice>
-					<MailDate>09-01-2019</MailDate>
-					<ReturnCount>1</ReturnCount>
-					<DateAccountCodedRPO>09-01-2019</DateAccountCodedRPO>
-				</ReturnedByPostOffice>
-				<LastActivityDate>01-15-2015</LastActivityDate>
-				<PayableOrDistributableDate>01-15-2015</PayableOrDistributableDate>
+                <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <DueDiligence>
+                    <Date1>09-01-2019</Date1>
+                    <Date2>09-02-2019</Date2>
+                </DueDiligence>
+                <ReturnedByPostOffice>
+                    <MailDate>09-01-2019</MailDate>
+                    <ReturnCount>1</ReturnCount>
+                    <DateAccountCodedRPO>09-01-2019</DateAccountCodedRPO>
+                </ReturnedByPostOffice>
+                <LastActivityDate>01-15-2015</LastActivityDate>
+                <PayableOrDistributableDate>01-15-2015</PayableOrDistributableDate>
                 <StartingTransactionDate>01-15-2015</StartingTransactionDate>
                 <EndingTransactionDate>01-15-2015</EndingTransactionDate>
                 <NonRemitIndicator>X</NonRemitIndicator>
@@ -158,7 +158,7 @@
                 <Description>This is a property description.</Description>
                 <BondName>Bond name</BondName>
                 <BondNumber>Bond number</BondNumber>
-				<CouponNumber>Coupon number</CouponNumber>
+                <CouponNumber>Coupon number</CouponNumber>
                 <PayingAgent>Paying agent</PayingAgent>
                 <LocationIdentifier>Office #2-201</LocationIdentifier>
                 <LocationAddress>
@@ -274,70 +274,70 @@
                     <LeaseNumber>891006793A</LeaseNumber>
                     <OwnershipPercentage>1.025</OwnershipPercentage>
                 </MineralInterests>
-				<OFACInformation>
-					<Description>Description goes here...</Description>
-					<DateOfBlocking>02-15-2015</DateOfBlocking>
-					<LegalAuthority>31 C.F.R. Part 515</LegalAuthority>
-					<SanctionsTarget>Cuba</SanctionsTarget>
-					<OwnerType>Non-U.S. Bank</OwnerType>
-				</OFACInformation>
+                <OFACInformation>
+                    <Description>Description goes here...</Description>
+                    <DateOfBlocking>02-15-2015</DateOfBlocking>
+                    <LegalAuthority>31 C.F.R. Part 515</LegalAuthority>
+                    <SanctionsTarget>Cuba</SanctionsTarget>
+                    <OwnerType>Non-U.S. Bank</OwnerType>
+                </OFACInformation>
                 <Owner>
-					<PrimaryContactInformation>
-						<Type>Owner</Type>
-						<Name>
-							<PersonName>
-								<!--
-							<Prefix>Mr.</Prefix>
-							-->
-								<Title>Dr.</Title>
-								<FirstName>Josef</FirstName>
-								<MiddleName>Hermann</MiddleName>
-								<LastName>Besitzer</LastName>
-								<Suffix>III</Suffix>
-							</PersonName>
-						</Name>
-						<USAddress>
-							<Address1>234 Broadway</Address1>
-							<Address2>Suite 300</Address2>
-							<Address3>Office L20</Address3>
-							<City>Boulder</City>
-							<StateCode>CO</StateCode>
-							<ZIPCode>80304</ZIPCode>
-						</USAddress>
-						<TelephoneNumber>
-							<USTelephoneNumber>3035551234</USTelephoneNumber>
-							<TelephoneExtension>2801</TelephoneExtension>
-						</TelephoneNumber>
-						<EMailAddress>jbesitzer999@gmail.com</EMailAddress>
-					</PrimaryContactInformation>
-					<AlternateAddress>
-						<Type>Seasonal</Type>
-						<ForeignAddress>
-							<Address1>Bahrenfelder Chaussee 55</Address1>
-							<City>Hamburg</City>
-							<ForeignPostalCode>22761</ForeignPostalCode>
-							<CountryCode>DEU</CountryCode>
-						</ForeignAddress>
-					</AlternateAddress>
-					<AlternateTelephoneNumber>
-					    <Type>Home</Type>
-						<ForeignTelephoneNumber>498004353666</ForeignTelephoneNumber>
-					</AlternateTelephoneNumber>
-					<AlternateEMailAddress>jbesitzer999@somecompay.com</AlternateEMailAddress>
-					<IdentityInformation>
-						<USTaxID>
-							<Type>SSN</Type>
-							<Number>555551234</Number>
-						</USTaxID>
-						<!--
-						<AlienID>999999999</AlienID>
-						-->
-						<DriversLicense>
-							<State>CO</State>
-							<Identifier>24-457-1234</Identifier>
-						</DriversLicense>
-					</IdentityInformation>
-					<Description>Snooty</Description>
+                    <PrimaryContactInformation>
+                        <Type>Owner</Type>
+                        <Name>
+                            <PersonName>
+                                <!--
+                                <Prefix>Mr.</Prefix>
+                                -->
+                                <Title>Dr.</Title>
+                                <FirstName>Josef</FirstName>
+                                <MiddleName>Hermann</MiddleName>
+                                <LastName>Besitzer</LastName>
+                                <Suffix>III</Suffix>
+                            </PersonName>
+                        </Name>
+                        <USAddress>
+                            <Address1>234 Broadway</Address1>
+                            <Address2>Suite 300</Address2>
+                            <Address3>Office L20</Address3>
+                            <City>Boulder</City>
+                            <StateCode>CO</StateCode>
+                            <ZIPCode>80304</ZIPCode>
+                        </USAddress>
+                        <TelephoneNumber>
+                            <USTelephoneNumber>3035551234</USTelephoneNumber>
+                            <TelephoneExtension>2801</TelephoneExtension>
+                        </TelephoneNumber>
+                        <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
+                    </PrimaryContactInformation>
+                    <AlternateAddress>
+                        <Type>Seasonal</Type>
+                        <ForeignAddress>
+                            <Address1>Bahrenfelder Chaussee 55</Address1>
+                            <City>Hamburg</City>
+                            <ForeignPostalCode>22761</ForeignPostalCode>
+                            <CountryCode>DEU</CountryCode>
+                        </ForeignAddress>
+                    </AlternateAddress>
+                    <AlternateTelephoneNumber>
+                        <Type>Home</Type>
+                        <ForeignTelephoneNumber>498004353666</ForeignTelephoneNumber>
+                    </AlternateTelephoneNumber>
+                    <AlternateEMailAddress>jbesitzer999@somecompay.com</AlternateEMailAddress>
+                    <IdentityInformation>
+                        <USTaxID>
+                            <Type>SSN</Type>
+                            <Number>555551234</Number>
+                        </USTaxID>
+                        <!--
+                        <AlienID>999999999</AlienID>
+                        -->
+                        <DriversLicense>
+                            <State>CO</State>
+                            <Identifier>24-457-1234</Identifier>
+                        </DriversLicense>
+                    </IdentityInformation>
+                    <Description>Snooty</Description>
                     <DateOfBirth>06-08-1954</DateOfBirth>
                     <RelationshipCode>TBD</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
@@ -346,36 +346,36 @@
                     <MinorDateOfMajority>01-01-2010</MinorDateOfMajority>
                     <DeceasedOwnerInformation>
                         <DateOfDeathSource>Claim</DateOfDeathSource>
-						<DateOfDeath>01-01-2010</DateOfDeath>
+                        <DateOfDeath>01-01-2010</DateOfDeath>
                         <DateOfDeathIdentifiedDate>01-10-2010</DateOfDeathIdentifiedDate>
                     </DeceasedOwnerInformation>
                     <Beneficiary>
-						<Type>Primary</Type>
-						<ContactInformation>
-							<Type>Beneficiary</Type>
-							<Name>
-								<PersonName>
-									<FirstName>Helga</FirstName>
-									<LastName>Besitzer</LastName>
-								</PersonName>
-							</Name>
-							<USAddress>
-								<Address1>234 BROADWAY</Address1>
-								<Address2>SUITE 300</Address2>
-								<Address3>Office L20</Address3>
-								<City>BOULDER</City>
-								<StateCode>CO</StateCode>
-								<ZIPCode>80304</ZIPCode>
-							</USAddress>
-							<TelephoneNumber>
-								<USTelephoneNumber>3035551234</USTelephoneNumber>
-							</TelephoneNumber>
-							<EMailAddress>rjanderson@somecompany.com</EMailAddress>
-						</ContactInformation>
-						<Spouse>X</Spouse>
-						<SSN>111111111</SSN>
-						<DateOfBirth>04-27-1975</DateOfBirth>
-						<Percentage>100.00</Percentage>
+                        <Type>Primary</Type>
+                        <ContactInformation>
+                            <Type>Beneficiary</Type>
+                            <Name>
+                                <PersonName>
+                                    <FirstName>Helga</FirstName>
+                                    <LastName>Besitzer</LastName>
+                                </PersonName>
+                            </Name>
+                            <USAddress>
+                                <Address1>234 BROADWAY</Address1>
+                                <Address2>SUITE 300</Address2>
+                                <Address3>Office L20</Address3>
+                                <City>BOULDER</City>
+                                <StateCode>CO</StateCode>
+                                <ZIPCode>80304</ZIPCode>
+                            </USAddress>
+                            <TelephoneNumber>
+                                <USTelephoneNumber>3035551234</USTelephoneNumber>
+                            </TelephoneNumber>
+                            <EMailAddress>rjanderson@somecompany.com</EMailAddress>
+                        </ContactInformation>
+                        <Spouse>X</Spouse>
+                        <SSN>111111111</SSN>
+                        <DateOfBirth>04-27-1975</DateOfBirth>
+                        <Percentage>100.00</Percentage>
                     </Beneficiary>
                 </Owner>
             </Property>
@@ -406,8 +406,8 @@
         <NumberOfReports>1</NumberOfReports>
     </Summary>
     <SoftwareInformation>
-    	<Version>0.1</Version>
-    	<Developer>The Software Application Folks</Developer>
+        <Version>0.1</Version>
+        <Developer>The Software Application Folks</Developer>
         <Contact>
             <Type>Software</Type>
             <USAddress>

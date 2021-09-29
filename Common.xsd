@@ -11,17 +11,17 @@
     <xs:simpleType name="DateType">
         <xs:restriction base="xs:string">
             <!-- TODO:
-			    This could probably use some refinement to disallow invalid month/day/year values/combinations, or
-				we could just use xs:date.
-			-->
+                This could probably use some refinement to disallow invalid month/day/year values/combinations, or
+                we could just use xs:date.
+            -->
             <xs:pattern value="\d{2}[-]\d{2}[-]\d{4}" />
         </xs:restriction>
     </xs:simpleType>
     
     <xs:simpleType name="CurrencyType">
         <xs:restriction base="xs:decimal">
-			<!-- TODO:  Discuss default for totalDigits. -->
-        	<xs:totalDigits value="12"></xs:totalDigits>
+            <!-- TODO:  Discuss default for totalDigits. -->
+            <xs:totalDigits value="12"></xs:totalDigits>
             <xs:fractionDigits value="2" />
         </xs:restriction>
     </xs:simpleType>
@@ -57,7 +57,7 @@
     <xs:simpleType name="CompanyNameType">
         <xs:restriction base="xs:string">
             <!-- Based on Avenu property owner names -->
-			<!-- TODO:  Should this be longer?-->
+            <!-- TODO:  Should this be longer?-->
             <xs:maxLength value="30"/>
         </xs:restriction>
     </xs:simpleType>
@@ -96,51 +96,51 @@
         </xs:restriction>
     </xs:simpleType>
 
-	<xs:simpleType name="USTelephoneNumberType">
-		<xs:annotation>
-			<xs:documentation>
-				A US 10-digit telephone number without any formatting.
-			</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9]{10}" />
-		</xs:restriction>
-	</xs:simpleType>
+    <xs:simpleType name="USTelephoneNumberType">
+        <xs:annotation>
+            <xs:documentation>
+                A US 10-digit telephone number without any formatting.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{10}" />
+        </xs:restriction>
+    </xs:simpleType>
 
-	<xs:simpleType name="ForeignTelephoneNumberType">
-		<xs:annotation>
-			<xs:documentation>
-				A foreign telephone number without any formatting.
-			</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9]{7,15}" />
-		</xs:restriction>
-	</xs:simpleType>
+    <xs:simpleType name="ForeignTelephoneNumberType">
+        <xs:annotation>
+            <xs:documentation>
+                A foreign telephone number without any formatting.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{7,15}" />
+        </xs:restriction>
+    </xs:simpleType>
 
-	<xs:simpleType name="TelephoneExtensionType">
-		<xs:annotation>
-			<!-- TODO:
-        	Spreadsheet still shows things the old way, with US telephone numbers using this for and extension
-        	only, and foreign telephone numbers being held entirely in this fields.
+    <xs:simpleType name="TelephoneExtensionType">
+        <xs:annotation>
+            <!-- TODO:
+            Spreadsheet still shows things the old way, with US telephone numbers using this for and extension
+            only, and foreign telephone numbers being held entirely in this fields.
          -->
-			<xs:documentation>
-				Used for an extension of a US or foreign telephone number (e.g. "2502").
-			</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:maxLength value="4" />
-		</xs:restriction>
-	</xs:simpleType>
+            <xs:documentation>
+                Used for an extension of a US or foreign telephone number (e.g. "2502").
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="4" />
+        </xs:restriction>
+    </xs:simpleType>
     
     <!--
     Complex types section _CTS
     -->
     
-	<!-- TODO:
-		Review all address fields lengths and figure out what to do w/ NAUPA-III common address type for all
-		addresses.
-	 -->
+    <!-- TODO:
+        Review all address fields lengths and figure out what to do w/ NAUPA-III common address type for all
+        addresses.
+     -->
     <xs:complexType name="USAddressType">
         <xs:sequence>
             <xs:element name="Address1">
@@ -175,15 +175,15 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-			<!-- TODO:  This is needed for Holders only.  -->
-			<xs:element name="County" minOccurs="0">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- Based on Avenu remitter -->
-						<xs:maxLength value="30" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
+            <!-- TODO:  This is needed for Holders only.  -->
+            <xs:element name="County" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- Based on Avenu remitter -->
+                        <xs:maxLength value="30" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="StateCode" type="StateCodeType" />
             <xs:element name="ZIPCode">
                 <xs:annotation>
@@ -234,15 +234,15 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-			<!-- TODO:  This is needed for Holders only.  -->
-			<xs:element name="County" minOccurs="0">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- Based on Avenu remitter -->
-						<xs:maxLength value="30" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
+            <!-- TODO:  This is needed for Holders only.  -->
+            <xs:element name="County" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- Based on Avenu remitter -->
+                        <xs:maxLength value="30" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="ProvinceOrState" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -260,8 +260,8 @@
                 </xs:simpleType>
             </xs:element>
             <!-- TODO:
-			    In some cases, these country codes do not line up with what is actually used, e.g. "UK" is much more
-				commonly used than "GBR" in actual correspondence.  Not sure if that matters here.
+                In some cases, these country codes do not line up with what is actually used, e.g. "UK" is much more
+                commonly used than "GBR" in actual correspondence.  Not sure if that matters here.
              -->
             <xs:element name="CountryCode" type="CountryCodeType" />
         </xs:sequence>
@@ -273,7 +273,7 @@
                 The company's foreign postal address.
             </xs:documentation>
         </xs:annotation>
-        <xs:choice>	
+        <xs:choice>    
             <xs:element name="USAddress" type="USAddressType" />
             <xs:element name="ForeignAddress" type="ForeignAddressType" />
         </xs:choice>
@@ -319,38 +319,38 @@
     </xs:complexType>
     
     <xs:complexType name="PersonNameType">
-    	<xs:sequence>
-			<!-- TODO:
-			    Do we really need to distinguish Prefix from Title?  We could use a xs:choice here if necessary,
-				but the current form, based on NAUPA-II, can lead to silly-looking names like "Mr. Dr. John Doe".
-				But since both fields are free-form, you could really end up with just about anything.
-			-->
-			<xs:element name="Prefix" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-						Mr., Mrs., Ms.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- Based on FAST -->
-						<xs:maxLength value="10" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="Title" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-						Dr., Sen., Del., etc.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- Based on FAST -->
-						<xs:maxLength value="10" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
+        <xs:sequence>
+            <!-- TODO:
+                Do we really need to distinguish Prefix from Title?  We could use a xs:choice here if necessary,
+                but the current form, based on NAUPA-II, can lead to silly-looking names like "Mr. Dr. John Doe".
+                But since both fields are free-form, you could really end up with just about anything.
+            -->
+            <xs:element name="Prefix" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Mr., Mrs., Ms.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- Based on FAST -->
+                        <xs:maxLength value="10" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Title" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Dr., Sen., Del., etc.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- Based on FAST -->
+                        <xs:maxLength value="10" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="FirstName">
                 <xs:annotation>
                     <xs:documentation>
@@ -359,8 +359,8 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-						<!-- Based on Avenu property owner names -->
-						<!-- TODO:  Should this be longer?-->
+                        <!-- Based on Avenu property owner names -->
+                        <!-- TODO:  Should this be longer?-->
                         <xs:maxLength value="30" />
                     </xs:restriction>
                 </xs:simpleType>
@@ -373,8 +373,8 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-						<!-- Based on Avenu property owner names -->
-						<!-- TODO:  Should this be longer?-->
+                        <!-- Based on Avenu property owner names -->
+                        <!-- TODO:  Should this be longer?-->
                         <xs:maxLength value="10" />
                     </xs:restriction>
                 </xs:simpleType>
@@ -387,47 +387,47 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-						<!-- Based on Avenu property owner names -->
-						<!-- TODO:  Should this be longer?-->
+                        <!-- Based on Avenu property owner names -->
+                        <!-- TODO:  Should this be longer?-->
                         <xs:maxLength value="40" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-			<xs:element name="Suffix" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-						Sr., Jr., III, IV, etc
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- Based on Avenu -->
-						<xs:maxLength value="10" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
+            <xs:element name="Suffix" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Sr., Jr., III, IV, etc
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- Based on Avenu -->
+                        <xs:maxLength value="10" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 
-	<xs:complexType name="TelephoneNumberType">
-		<xs:sequence>
-			<xs:choice>
-				<xs:element name="USTelephoneNumber" type="USTelephoneNumberType" />
-				<xs:element name="ForeignTelephoneNumber" type="ForeignTelephoneNumberType" />
-			</xs:choice>
-			<xs:element name="TelephoneExtension" type="TelephoneExtensionType" minOccurs="0" />
-		</xs:sequence>
-	</xs:complexType>
+    <xs:complexType name="TelephoneNumberType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="USTelephoneNumber" type="USTelephoneNumberType" />
+                <xs:element name="ForeignTelephoneNumber" type="ForeignTelephoneNumberType" />
+            </xs:choice>
+            <xs:element name="TelephoneExtension" type="TelephoneExtensionType" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
 
-	<xs:simpleType name="EMailAddressType">
-		<xs:restriction base="xs:string">
-			<!-- Cribbed from StackOverflow. -->
-			<xs:pattern value="[^@]+@[^\.]+\..+"/>
-			<!-- TODO:  specify max length, since pattern does not restrict it.
+    <xs:simpleType name="EMailAddressType">
+        <xs:restriction base="xs:string">
+            <!-- Cribbed from StackOverflow. -->
+            <xs:pattern value="[^@]+@[^\.]+\..+"/>
+            <!-- TODO:  specify max length, since pattern does not restrict it.
                         <xs:length value="255"></xs:length>
                         -->
-		</xs:restriction>
-	</xs:simpleType>
+        </xs:restriction>
+    </xs:simpleType>
     
     <xs:complexType name="ContactType">
         <xs:sequence>
@@ -438,18 +438,18 @@
                 </xs:annotation>
             </xs:element>
             <xs:element name="Name" minOccurs="0">
-				<!-- TOOD:  Seemed like a good idea to make this either a person or a company, need to review. -->
-				<xs:complexType>
-					<xs:choice>
-						<xs:element name="CompanyName" type="CompanyNameType" />
-						<xs:element name="PersonName" type="PersonNameType" />
-					</xs:choice>
-				</xs:complexType>
+                <!-- TOOD:  Seemed like a good idea to make this either a person or a company, need to review. -->
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:element name="CompanyName" type="CompanyNameType" />
+                        <xs:element name="PersonName" type="PersonNameType" />
+                    </xs:choice>
+                </xs:complexType>
             </xs:element>
-			<xs:choice>
-				<xs:element name="USAddress" type="USAddressType" />
-				<xs:element name="ForeignAddress" type="ForeignAddressType" />
-			</xs:choice>
+            <xs:choice>
+                <xs:element name="USAddress" type="USAddressType" />
+                <xs:element name="ForeignAddress" type="ForeignAddressType" />
+            </xs:choice>
             <xs:element name="TelephoneNumber" type="TelephoneNumberType" />
             <xs:element name="EMailAddress" type="EMailAddressType">
                 <xs:annotation>
@@ -502,16 +502,16 @@
                     <xs:documentation>Securities</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
-			<xs:enumeration value="Owner">
-				<xs:annotation>
-					<xs:documentation>Securities</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Beneficiary">
-				<xs:annotation>
-					<xs:documentation>Securities</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
+            <xs:enumeration value="Owner">
+                <xs:annotation>
+                    <xs:documentation>Securities</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Beneficiary">
+                <xs:annotation>
+                    <xs:documentation>Securities</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
     
@@ -832,11 +832,11 @@
                     <xs:documentation>Aland Islands</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
-			<xs:enumeration value="DEU">
-				<xs:annotation>
-					<xs:documentation>Germany</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
+            <xs:enumeration value="DEU">
+                <xs:annotation>
+                    <xs:documentation>Germany</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
             <!-- TODO:  finish formatting these
             ALB
             DZA
