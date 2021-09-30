@@ -7,10 +7,6 @@
     <xs:include schemaLocation="Common.xsd" />
     <xs:include schemaLocation="Report.xsd" />
     
-    <!--
-    Named simple types section _NSTS
-    -->
-    
     <xs:simpleType name="HolderIDType">
         <xs:annotation>
             <xs:documentation>
@@ -33,10 +29,6 @@
             <xs:pattern value="[1-9][1-9][0-9]{4}" />
         </xs:restriction>
     </xs:simpleType>
-    
-    <!--
-    Complex types section _CTS
-    -->
     
     <xs:complexType name="HolderParentType">
         <xs:sequence>

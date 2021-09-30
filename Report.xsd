@@ -11,40 +11,11 @@
     Named simple types section _NSTS
     -->
     
-    <xs:simpleType name="YearType">
-        <xs:annotation>
-            <xs:documentation>
-                Four-digit year.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9]{4}" />
-        </xs:restriction>
-    </xs:simpleType>
     
     <!--
     Complex types section _CTS
     -->
     
-    <xs:complexType name="ReportAdjustmentType">
-        <xs:sequence>
-            <xs:element name="Type" type="ReportAdjustmentTypeType">
-                <xs:annotation>
-                    <xs:documentation>
-                        Utilize the two character adjustment code as set forth in the appendix which most closely
-                        describes the nature of the adjustment.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="Amount" type="CurrencyType">
-                <xs:annotation>
-                    <xs:documentation>
-                        Dollar amount of the adjustment resulting in net amount reported.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
         
     <!-- TODO:
         Is the report summary really a good idea?  It basically amounts to a sanity check on the rest of the data,
@@ -179,6 +150,7 @@
                     <xs:restriction base="xs:decimal">
                          <!-- TODO:  review this -->
                          <xs:totalDigits value="12"/>
+						<!-- TODO:  discuss diffence vs. NumberOfShares, which specified 3 fraction digits. -->
                           <xs:fractionDigits value="4" />
                     </xs:restriction>
                   </xs:simpleType>
@@ -208,13 +180,17 @@
     
     <xs:complexType name="ReportType">
         <xs:sequence>
-            <xs:element name="Year" type="YearType">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter the four-digit year for which the property is being reported. To determine the
-                        correct year, consult the state's unclaimed property reporting instructions.
-                    </xs:documentation>
-                </xs:annotation>
+            <xs:element name="Year">
+				<xs:simpleType>
+					<xs:annotation>
+						<xs:documentation>
+							Four-digit year.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{4}" />
+					</xs:restriction>
+				</xs:simpleType>
             </xs:element>
             <xs:element name="AsOfDate" type="DateType">
                 <xs:annotation>
@@ -239,23 +215,31 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="Type" type="ReportTypeType">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO: description needs to be updated: "A", "R" and "T" are no longer used. -->
-                        a) Advertising Report: This field should be populated with "A" to denote that this is an
-                        advertising report meaning no money or property is being remitted at this time. This is
-                        for states on a two-cycle reporting schedule. Please contact your reporting state before
-                        submitting an advertising report. b) Remittance Report: This field should be populated
-                        with "R" to denote that this is an remittance report, i.e., money and/or property are
-                        being remitted at this time. c) Test Report: This field should be populated with "T" to
-                        denote that this is a test file. By indicating that this is a test file, the data should
-                        not be considered an actual report. This permits the submission of files to be tested by
-                        the states before actual submission by the holder of an actual report. Could be expanded
-                        to include indicators that report is a result of reciprocity, bankruptcy, audit. Need to
-                        address holders reporting on behalf of subsidiaries?
-                    </xs:documentation>
-                </xs:annotation>
+            <xs:element name="Type">
+				<xs:simpleType>
+					<xs:annotation>
+						<xs:documentation>
+							Types of reports.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Advertising">
+							<xs:annotation>
+								<xs:documentation>Advertising</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Remittance">
+							<xs:annotation>
+								<xs:documentation>Remittance</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Test">
+							<xs:annotation>
+								<xs:documentation>Test</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
             </xs:element>
             <xs:element name="Contact" type="ContactType" maxOccurs="unbounded">
                 <xs:annotation>
@@ -271,12 +255,49 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="Adjustment" type="ReportAdjustmentType" minOccurs="0" maxOccurs="unbounded">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO:  description -->
-                    </xs:documentation>
-                </xs:annotation>
+            <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Type">
+							<xs:simpleType>
+								<xs:annotation>
+									<xs:documentation>
+										<!-- TODO:  description -->
+									</xs:documentation>
+								</xs:annotation>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Audit Fees">
+										<xs:annotation>
+											<xs:documentation>Audit Fees</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Estimate or Prepayment">
+										<xs:annotation>
+											<xs:documentation>Estimate or Prepayment</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Out of Proof Cash">
+										<xs:annotation>
+											<xs:documentation>Out of Proof Cash</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Out of Proof Shares">
+										<xs:annotation>
+											<xs:documentation>Out of Proof Shares</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="Amount" type="CurrencyType">
+							<xs:annotation>
+								<xs:documentation>
+									Dollar amount of the adjustment resulting in net amount reported.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
             </xs:element>
             <!-- TODO:
                 If the remittance-level summary does not agree with the report-level summaries (and the raw data),
@@ -306,60 +327,6 @@
     Enumerated types section _ETS
     -->
     
-    <xs:simpleType name="ReportTypeType">
-        <xs:annotation>
-            <xs:documentation>
-                Types of reports.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <!-- TODO:  Where should we use ALL CAPS vs. not?-->
-            <xs:enumeration value="ADVERTISING">
-                <xs:annotation>
-                    <xs:documentation>Advertising</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="REMITTANCE">
-                <xs:annotation>
-                    <xs:documentation>Remittance</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="TEST">
-                <xs:annotation>
-                    <xs:documentation>Test</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-        </xs:restriction>
-    </xs:simpleType>
     
-    <xs:simpleType name="ReportAdjustmentTypeType">
-        <xs:annotation>
-            <xs:documentation>
-            <!-- TODO:  description -->
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Audit Fees">
-                <xs:annotation>
-                    <xs:documentation>Audit Fees</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="Estimate or Prepayment">
-                <xs:annotation>
-                    <xs:documentation>Estimate or Prepayment</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="Out of Proof Cash">
-                <xs:annotation>
-                    <xs:documentation>Out of Proof Cash</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="Out of Proof Shares">
-                <xs:annotation>
-                    <xs:documentation>Out of Proof Shares</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-        </xs:restriction>
-    </xs:simpleType>
     
 </xs:schema>

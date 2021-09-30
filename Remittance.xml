@@ -111,7 +111,7 @@
             <AsOfDate>07-01-2019</AsOfDate>
             <HIPAAIndicator>X</HIPAAIndicator>
             <ProductionReport>X</ProductionReport>
-            <Type>REMITTANCE</Type>
+            <Type>Remittance</Type>
             <Contact>
                 <Type>Report</Type>
                 <Name>
@@ -189,16 +189,20 @@
                 </Cash>
                 <Securities>
                     <TransferAgent>COMPUTERSHARE</TransferAgent>
-                    <SecurityName>FORD MOTOR CO</SecurityName>
-                    <SecuritySymbol>F</SecuritySymbol>
+                    <Name>FORD MOTOR CO</Name>
+                    <Symbol>F</Symbol>
                     <CUSIP>A12345678</CUSIP>
-                    <AlternativeSecurityIDType>SEDOL</AlternativeSecurityIDType>
-                    <AlternativeSecurityIdentifier>1234567</AlternativeSecurityIdentifier>
+                    <AlternativeID>
+						<Type>SEDOL</Type>
+                        <Identifier>1234567</Identifier>
+					</AlternativeID>
                     <ReportedShares>1234.123</ReportedShares>
                     <RemittedShares>1234.123</RemittedShares>
-                    <NameOfOriginalSharesHeld>FORD MOTOR CO</NameOfOriginalSharesHeld>
-                    <NumberOfOriginalSharesHeld>1000.001</NumberOfOriginalSharesHeld>
-                    <CUSIPOfOriginalSharesHeld>A12345678</CUSIPOfOriginalSharesHeld>
+					<OriginalSharesHeld>
+                        <Name>FORD MOTOR CO</Name>
+                        <CUSIP>A12345678</CUSIP>
+                        <Shares>1000.001</Shares>
+					</OriginalSharesHeld>
                     <Type>Common Stock</Type>
                     <DividendHandling>Cash</DividendHandling>
                     <DeliveryMethod>DTC</DeliveryMethod>
@@ -206,22 +210,26 @@
                     <DTCDeliveryReferenceNumber>0005</DTCDeliveryReferenceNumber>
                     <Market>TBD</Market>
                     <DividendsPaidThroughDate>07-01-2019</DividendsPaidThroughDate>
-                    <SECSearch1date>03-15-2019</SECSearch1date>
-                    <SECSearch2date>06-15-2019</SECSearch2date>
+					<SECSearch>
+                        <Date1>03-15-2019</Date1>
+                        <Date2>06-15-2019</Date2>
+					</SECSearch>
                     <Adjustment>
                         <Type>TBD</Type>
                         <Amount>12.50</Amount>
                     </Adjustment>
                     <CostBasis>
-                        <SecurityName>FORD MOTOR CO</SecurityName>
-                        <SecuritySymbol>F</SecuritySymbol>
+                        <Name>FORD MOTOR CO</Name>
+                        <Symbol>F</Symbol>
                         <CUSIP>A12345678</CUSIP>
-                        <AlternativeSecurityIDType>SEDOL</AlternativeSecurityIDType>
-                        <AlternativeSecurityIdentifier>1234567</AlternativeSecurityIdentifier>
+						<AlternativeID>
+                            <Type>SEDOL</Type>
+                            <Identifier>1234567</Identifier>
+						</AlternativeID>
                         <Amount>12000.00</Amount>
-                        <NumberofSharesPurchased>1000.001</NumberofSharesPurchased>
+                        <SharesPurchased>1000.001</SharesPurchased>
                         <PurchaseDate>01-01-1980</PurchaseDate>
-                        <LongTermShortTerm>LT</LongTermShortTerm>
+                        <LongTerm>X</LongTerm>
                     </CostBasis>
                 </Securities>
                 <Safekeeping>
@@ -232,30 +240,32 @@
                         <Type>Drilling Fee</Type>
                         <Amount>125.24</Amount>
                     </Fee>
+                    <Fee>
+                        <Type>Unpaid Rent</Type>
+                        <Amount>50.00</Amount>
+                    </Fee>
                     <Inventory>
-                        <InventoryItemCode>Savings Bonds</InventoryItemCode> 
-                        <InventoryItemDescription>Savings bond</InventoryItemDescription>
+                        <ItemCode>Savings Bonds</ItemCode> 
+                        <Description>Savings bond</Description>
                         <SavingsBond>
                             <BondNumber>C999999999EE</BondNumber>
                             <FaceValue>100.00</FaceValue>
                             <Owner>
                                 <Name>Fred</Name>
-                                <Address>
-                                    <USAddress>
-                                        <Address1>1234 Main St.</Address1>
-                                        <City>Anywhere</City>
-                                        <StateCode>CO</StateCode>
-                                        <ZIPCode>80001</ZIPCode>
-                                    </USAddress>
-                                </Address>
+                                <USAddress>
+                                    <Address1>1234 Main St.</Address1>
+                                    <City>Anywhere</City>
+                                    <StateCode>CO</StateCode>
+                                    <ZIPCode>80001</ZIPCode>
+                                </USAddress>
                                 <SocialSecurityNumber>123456789</SocialSecurityNumber>
                                 <Relationship>Owner</Relationship>
                             </Owner>
                         </SavingsBond>
                     </Inventory>
                     <Inventory>
-                        <InventoryItemCode>Coins</InventoryItemCode> 
-                        <InventoryItemDescription>Gold colored dollar dated 1976</InventoryItemDescription>
+                        <ItemCode>Coins</ItemCode> 
+                        <Description>Gold colored dollar dated 1976</Description>
                     </Inventory>
                 </Safekeeping>
                 <MineralInterests>
@@ -274,6 +284,16 @@
                     <LeaseNumber>891006793A</LeaseNumber>
                     <OwnershipPercentage>1.025</OwnershipPercentage>
                 </MineralInterests>
+				<Cryptocurrency>
+					<Name>Bitcoin</Name>
+				    <Symbol>BTC</Symbol>
+			        <AccountNumber>1234567890</AccountNumber>
+				    <ReportedUnits>100</ReportedUnits>
+				    <RemittedUnits>0</RemittedUnits>
+				    <ProceedsReported>4154020</ProceedsReported>
+				    <ProceedsRemitted>0</ProceedsRemitted>
+				    <ReportOnly>X</ReportOnly>
+				</Cryptocurrency>
                 <OFACInformation>
                     <Description>Description goes here...</Description>
                     <DateOfBlocking>02-15-2015</DateOfBlocking>

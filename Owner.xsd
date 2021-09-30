@@ -62,12 +62,46 @@
             <xs:element name="AlternateAddress" minOccurs="0" maxOccurs="unbounded" >
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="Type" type="AlternateAddressType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Type of additional address
-                                </xs:documentation>
-                            </xs:annotation>
+                        <xs:element name="Type">
+							<xs:simpleType>
+								<xs:annotation>
+									<xs:documentation>
+										Distinguishes different types of alternate addresses.
+									</xs:documentation>
+								</xs:annotation>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Seasonal">
+										<xs:annotation>
+											<xs:documentation>Seasonal</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Obsolete/Prior">
+										<xs:annotation>
+											<xs:documentation>Obsolete/Prior</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Forwarding/Non-Permanent">
+										<xs:annotation>
+											<xs:documentation>Forwarding / non-permanent</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Billing">
+										<xs:annotation>
+											<xs:documentation>Billing</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Service">
+										<xs:annotation>
+											<xs:documentation>Service</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Owned but not occupied">
+										<xs:annotation>
+											<xs:documentation>Owned but not occupied</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
                         </xs:element>
                         <xs:choice>
                             <xs:element name="USAddress" type="USAddressType" />
@@ -305,46 +339,6 @@
             <xs:enumeration value="Business">
                 <xs:annotation>
                     <xs:documentation>Property is owned by a business.</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-        </xs:restriction>
-    </xs:simpleType>
-   
-    <xs:simpleType name="AlternateAddressType">
-        <xs:annotation>
-            <xs:documentation>
-                Distinguishes different types of alternate addresses.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Seasonal">
-                <xs:annotation>
-                    <xs:documentation>Seasonal</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="Obsolete/Prior">
-                <xs:annotation>
-                    <xs:documentation>Obsolete/Prior</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="Forwarding/Non-Permanent">
-                <xs:annotation>
-                    <xs:documentation>Forwarding / non-permanent</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="Billing">
-                <xs:annotation>
-                    <xs:documentation>Billing</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="Service">
-                <xs:annotation>
-                    <xs:documentation>Service</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="Owned but not occupied">
-                <xs:annotation>
-                    <xs:documentation>Owned but not occupied</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
         </xs:restriction>
