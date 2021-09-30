@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.unclaimed.org/NAUPA-3"
+           xmlns="http://www.unclaimed.org/NAUPA-3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+	<xs:include schemaLocation="Common.xsd" />
+
+	<xs:simpleType name="CryptocurrencyUnits">
+		<xs:restriction base="xs:decimal">
+			<!-- TODO -->
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="CryptocurrencyType">
+		<xs:sequence>
+			<xs:element name="Name">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<!-- TODO -->
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Symbol">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<!-- TODO -->
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="AccountNumber">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<!-- TODO -->
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="AlternativeID" minOccurs="0">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>
+							<!-- TODO:  description -->
+						</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="Type">
+							<xs:simpleType>
+								<xs:annotation>
+									<xs:documentation>
+										<!-- TODO:  description -->
+									</xs:documentation>
+								</xs:annotation>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="TBD">
+										<xs:annotation>
+											<xs:documentation>TBD</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="Identifier">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<!-- TODO -->
+									<!--
+									<xs:maxLength value="?" />
+									-->
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReportedUnits" type="CryptocurrencyUnits">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RemittedUnits" type="CryptocurrencyUnits">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProceedsReported" type="CurrencyType">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProceedsRemitted" type="CurrencyType">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateSold" type="DateType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnitsSold" type="CryptocurrencyUnits" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateAcquired" type="DateType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeliveryDestination" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<!-- TODO -->
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="StateAccountNumber" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<!-- TODO -->
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ReportOnly" type="IndicatorType">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
