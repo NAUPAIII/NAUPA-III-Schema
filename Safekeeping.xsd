@@ -35,6 +35,7 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<!-- TODO:  Might want to revert to specific fields for these fees, since there are only two -->
 			<xs:element name="Fee" maxOccurs="unbounded">
 				<xs:complexType>
 					<xs:sequence>

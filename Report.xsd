@@ -69,9 +69,11 @@
                     </xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
+					<!-- TODO:
+					    Discuss this restriction, which was carried over from NAUPA-II.
+					-->
                     <xs:restriction base="xs:integer">
-                         <!-- TODO:  Increase this for NAUPA-III? -->
-                         <xs:totalDigits value="6"/>
+						<xs:totalDigits value="6" />
                     </xs:restriction>
                   </xs:simpleType>
             </xs:element>

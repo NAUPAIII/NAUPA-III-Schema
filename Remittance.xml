@@ -150,16 +150,14 @@
                 </ReturnedByPostOffice>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PayableOrDistributableDate>01-15-2015</PayableOrDistributableDate>
-                <StartingTransactionDate>01-15-2015</StartingTransactionDate>
-                <EndingTransactionDate>01-15-2015</EndingTransactionDate>
+				<Transaction>
+                    <StartDate>01-15-2015</StartDate>
+                    <EndDate>01-15-2015</EndDate>
+				</Transaction>
                 <NonRemitIndicator>X</NonRemitIndicator>
                 <Taxable>X</Taxable>
                 <Ten99IssuedDate>09-01-2019</Ten99IssuedDate>
                 <Description>This is a property description.</Description>
-                <BondName>Bond name</BondName>
-                <BondNumber>Bond number</BondNumber>
-                <CouponNumber>Coupon number</CouponNumber>
-                <PayingAgent>Paying agent</PayingAgent>
                 <LocationIdentifier>Office #2-201</LocationIdentifier>
                 <LocationAddress>
                     <USAddress>
@@ -171,136 +169,13 @@
                         <ZIPCode>80302-1234</ZIPCode>
                     </USAddress>
                 </LocationAddress>
-                <Adjustment>
-                    <Type>Income Tax Withheld</Type>
-                    <Amount>125.00</Amount>
-                </Adjustment>
-                <Adjustment>
-                    <Type>Service Charge</Type>
-                    <Amount>25.00</Amount>
-                </Adjustment>
-                <Cash>
-                    <ReportedAmount>100.00</ReportedAmount>
-                    <InterestPaidThroughDate>12-31-2020</InterestPaidThroughDate>
-                    <InterestRate>4.50</InterestRate>
-                    <RemittedAmount>100.00</RemittedAmount>
-                    <CheckNumber>1234567</CheckNumber>
-                    <ItemIssueState>CO</ItemIssueState>
-                </Cash>
-                <Securities>
-                    <TransferAgent>COMPUTERSHARE</TransferAgent>
-                    <Name>FORD MOTOR CO</Name>
-                    <Symbol>F</Symbol>
-                    <CUSIP>A12345678</CUSIP>
-                    <AlternativeID>
-						<Type>SEDOL</Type>
-                        <Identifier>1234567</Identifier>
-					</AlternativeID>
-                    <ReportedShares>1234.123</ReportedShares>
-                    <RemittedShares>1234.123</RemittedShares>
-					<OriginalSharesHeld>
-                        <Name>FORD MOTOR CO</Name>
-                        <CUSIP>A12345678</CUSIP>
-                        <Shares>1000.001</Shares>
-					</OriginalSharesHeld>
-                    <Type>Common Stock</Type>
-                    <DividendHandling>Cash</DividendHandling>
-                    <DeliveryMethod>DTC</DeliveryMethod>
-                    <StateAccountNumber>123456</StateAccountNumber>
-                    <DTCDeliveryReferenceNumber>0005</DTCDeliveryReferenceNumber>
-                    <Market>TBD</Market>
-                    <DividendsPaidThroughDate>07-01-2019</DividendsPaidThroughDate>
-					<SECSearch>
-                        <Date1>03-15-2019</Date1>
-                        <Date2>06-15-2019</Date2>
-					</SECSearch>
-                    <Adjustment>
-                        <Type>TBD</Type>
-                        <Amount>12.50</Amount>
-                    </Adjustment>
-                    <CostBasis>
-                        <Name>FORD MOTOR CO</Name>
-                        <Symbol>F</Symbol>
-                        <CUSIP>A12345678</CUSIP>
-						<AlternativeID>
-                            <Type>SEDOL</Type>
-                            <Identifier>1234567</Identifier>
-						</AlternativeID>
-                        <Amount>12000.00</Amount>
-                        <SharesPurchased>1000.001</SharesPurchased>
-                        <PurchaseDate>01-01-1980</PurchaseDate>
-                        <LongTerm>X</LongTerm>
-                    </CostBasis>
-                </Securities>
-                <Safekeeping>
-                    <BoxCaseNumber>1234</BoxCaseNumber>
-                    <BoxOpenDate>01-15-2019</BoxOpenDate>
-                    <LeaseExpiredDate>08-15-2015</LeaseExpiredDate>
-                    <Fee>
-                        <Type>Drilling Fee</Type>
-                        <Amount>125.24</Amount>
-                    </Fee>
-                    <Fee>
-                        <Type>Unpaid Rent</Type>
-                        <Amount>50.00</Amount>
-                    </Fee>
-                    <Inventory>
-                        <ItemCode>Savings Bonds</ItemCode> 
-                        <Description>Savings bond</Description>
-                        <SavingsBond>
-                            <BondNumber>C999999999EE</BondNumber>
-                            <FaceValue>100.00</FaceValue>
-                            <Owner>
-                                <Name>Fred</Name>
-                                <USAddress>
-                                    <Address1>1234 Main St.</Address1>
-                                    <City>Anywhere</City>
-                                    <StateCode>CO</StateCode>
-                                    <ZIPCode>80001</ZIPCode>
-                                </USAddress>
-                                <SocialSecurityNumber>123456789</SocialSecurityNumber>
-                                <Relationship>Owner</Relationship>
-                            </Owner>
-                        </SavingsBond>
-                    </Inventory>
-                    <Inventory>
-                        <ItemCode>Coins</ItemCode> 
-                        <Description>Gold colored dollar dated 1976</Description>
-                    </Inventory>
-                </Safekeeping>
-                <MineralInterests>
-                    <StateCode>OK</StateCode>
-                    <StateFormatNumber>01</StateFormatNumber>
-                    <CountyName>WASHINGTON</CountyName>
-                    <Section>22</Section>
-                    <Township>12N</Township>
-                    <Range>11W</Range>
-                    <SupplementalDescription>NE 1/4 S 1/2 1/8TH</SupplementalDescription>
-                    <PoolingOrder>660667</PoolingOrder>
-                    <PoolingDate>12-24-2002</PoolingDate>
-                    <WellName>CIMARRON H2</WellName>
-                    <WellNumber>21165620010090</WellNumber>
-                    <LeaseName>CIMMARRON</LeaseName>
-                    <LeaseNumber>891006793A</LeaseNumber>
-                    <OwnershipPercentage>1.025</OwnershipPercentage>
-                </MineralInterests>
-				<Cryptocurrency>
-					<Name>Bitcoin</Name>
-				    <Symbol>BTC</Symbol>
-			        <AccountNumber>1234567890</AccountNumber>
-				    <ReportedUnits>100</ReportedUnits>
-				    <RemittedUnits>0</RemittedUnits>
-				    <ProceedsReported>4154020</ProceedsReported>
-				    <ProceedsRemitted>0</ProceedsRemitted>
-				    <ReportOnly>X</ReportOnly>
-				</Cryptocurrency>
-                <OFACInformation>
+                <OFAC>
                     <Description>Description goes here...</Description>
                     <DateOfBlocking>02-15-2015</DateOfBlocking>
                     <LegalAuthority>31 C.F.R. Part 515</LegalAuthority>
                     <SanctionsTarget>Cuba</SanctionsTarget>
                     <OwnerType>Non-U.S. Bank</OwnerType>
-                </OFACInformation>
+                </OFAC>
                 <Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
@@ -398,6 +273,137 @@
                         <Percentage>100.00</Percentage>
                     </Beneficiary>
                 </Owner>
+                <Adjustment>
+                    <Type>Income Tax Withheld</Type>
+                    <Amount>-125.00</Amount>
+                </Adjustment>
+                <Adjustment>
+                    <Type>Service Charge</Type>
+                    <Amount>-25.00</Amount>
+                </Adjustment>
+                <Cash>
+                    <ReportedAmount>100.00</ReportedAmount>
+					<Interest>
+                        <Rate>4.50</Rate>
+                        <PaidThroughDate>12-31-2020</PaidThroughDate>
+					</Interest>
+                    <RemittedAmount>100.00</RemittedAmount>
+                    <CheckNumber>1234567</CheckNumber>
+                    <ItemIssueState>CO</ItemIssueState>
+                </Cash>
+				<Bond>
+                    <Name>Bond name</Name>
+                    <Number>Bond number</Number>
+                    <CouponNumber>Coupon number</CouponNumber>
+                    <PayingAgent>Paying agent</PayingAgent>
+				</Bond>
+                <Security>
+                    <TransferAgent>COMPUTERSHARE</TransferAgent>
+                    <Name>FORD MOTOR CO</Name>
+                    <Symbol>F</Symbol>
+                    <CUSIP>A12345678</CUSIP>
+                    <AlternativeID>
+						<Type>SEDOL</Type>
+                        <Identifier>1234567</Identifier>
+					</AlternativeID>
+                    <ReportedShares>1234.123</ReportedShares>
+                    <RemittedShares>1234.123</RemittedShares>
+					<OriginalSharesHeld>
+                        <Name>FORD MOTOR CO</Name>
+                        <CUSIP>A12345678</CUSIP>
+                        <Shares>1000.001</Shares>
+					</OriginalSharesHeld>
+                    <Type>Common Stock</Type>
+                    <DividendHandling>Cash</DividendHandling>
+                    <DeliveryMethod>DTC</DeliveryMethod>
+                    <StateAccountNumber>123456</StateAccountNumber>
+                    <DTCDeliveryReferenceNumber>0005</DTCDeliveryReferenceNumber>
+                    <Market>TBD</Market>
+                    <DividendsPaidThroughDate>07-01-2019</DividendsPaidThroughDate>
+					<SECSearch>
+                        <Date1>03-15-2019</Date1>
+                        <Date2>06-15-2019</Date2>
+					</SECSearch>
+                    <Adjustment>
+                        <Type>TBD</Type>
+                        <Amount>12.50</Amount>
+                    </Adjustment>
+                    <CostBasis>
+                        <Name>FORD MOTOR CO</Name>
+                        <Symbol>F</Symbol>
+                        <CUSIP>A12345678</CUSIP>
+						<AlternativeID>
+                            <Type>SEDOL</Type>
+                            <Identifier>1234567</Identifier>
+						</AlternativeID>
+                        <Amount>12000.00</Amount>
+                        <SharesPurchased>1000.001</SharesPurchased>
+                        <PurchaseDate>01-01-1980</PurchaseDate>
+                        <LongTerm>X</LongTerm>
+                    </CostBasis>
+                </Security>
+                <Safekeeping>
+                    <BoxCaseNumber>1234</BoxCaseNumber>
+                    <BoxOpenDate>01-15-2019</BoxOpenDate>
+                    <LeaseExpiredDate>08-15-2015</LeaseExpiredDate>
+                    <Fee>
+                        <Type>Drilling Fee</Type>
+                        <Amount>125.24</Amount>
+                    </Fee>
+                    <Fee>
+                        <Type>Unpaid Rent</Type>
+                        <Amount>50.00</Amount>
+                    </Fee>
+                    <Inventory>
+                        <ItemCode>Savings Bonds</ItemCode> 
+                        <Description>Savings bond</Description>
+                        <SavingsBond>
+                            <BondNumber>C999999999EE</BondNumber>
+                            <FaceValue>100.00</FaceValue>
+                            <Owner>
+                                <Name>Fred</Name>
+                                <USAddress>
+                                    <Address1>1234 Main St.</Address1>
+                                    <City>Anywhere</City>
+                                    <StateCode>CO</StateCode>
+                                    <ZIPCode>80001</ZIPCode>
+                                </USAddress>
+                                <SocialSecurityNumber>123456789</SocialSecurityNumber>
+                                <Relationship>Owner</Relationship>
+                            </Owner>
+                        </SavingsBond>
+                    </Inventory>
+                    <Inventory>
+                        <ItemCode>Coins</ItemCode> 
+                        <Description>Gold colored dollar dated 1976</Description>
+                    </Inventory>
+                </Safekeeping>
+                <MineralInterests>
+                    <StateCode>OK</StateCode>
+                    <StateFormatNumber>01</StateFormatNumber>
+                    <CountyName>WASHINGTON</CountyName>
+                    <Section>22</Section>
+                    <Township>12N</Township>
+                    <Range>11W</Range>
+                    <SupplementalDescription>NE 1/4 S 1/2 1/8TH</SupplementalDescription>
+                    <PoolingOrder>660667</PoolingOrder>
+                    <PoolingDate>12-24-2002</PoolingDate>
+                    <WellName>CIMARRON H2</WellName>
+                    <WellNumber>21165620010090</WellNumber>
+                    <LeaseName>CIMMARRON</LeaseName>
+                    <LeaseNumber>891006793A</LeaseNumber>
+                    <OwnershipPercentage>1.025</OwnershipPercentage>
+                </MineralInterests>
+				<Cryptocurrency>
+					<Name>Bitcoin</Name>
+				    <Symbol>BTC</Symbol>
+			        <AccountNumber>1234567890</AccountNumber>
+				    <ReportedUnits>100</ReportedUnits>
+				    <RemittedUnits>0</RemittedUnits>
+				    <ProceedsReported>4154020</ProceedsReported>
+				    <ProceedsRemitted>0</ProceedsRemitted>
+				    <ReportOnly>X</ReportOnly>
+				</Cryptocurrency>
             </Property>
             <Adjustment>
                 <Type>Audit Fees</Type>

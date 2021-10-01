@@ -101,7 +101,7 @@
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="SecuritiesType">
+	<xs:complexType name="SecurityType">
 		<xs:sequence>
 			<xs:element name="TransferAgent">
 				<xs:annotation>
@@ -397,6 +397,7 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
+			<!-- TODO:  Do we really need this in addition to the Adjustment element at the Property level? -->
 			<xs:element name="Adjustment">
 				<xs:complexType>
 					<xs:sequence>
