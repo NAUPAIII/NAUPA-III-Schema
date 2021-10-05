@@ -267,7 +267,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="Beneficiary">
+            <xs:element name="Beneficiary" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="Type" type="BeneficiaryType">

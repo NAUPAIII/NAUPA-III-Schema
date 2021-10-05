@@ -493,7 +493,7 @@
 							</xs:annotation>
 						</xs:element>
 						<!-- TODO:  review change to IndicatorType -->
-						<xs:element name="LongTerm" type="IndicatorType">
+						<xs:element name="LongTerm" type="IndicatorType" minOccurs="0">
 							<xs:annotation>
 								<xs:documentation>
 									Provide this information as defined by Internal Revenue Code of United States - Need

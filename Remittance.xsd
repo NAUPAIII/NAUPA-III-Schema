@@ -224,6 +224,12 @@
 				</xs:complexType>
             </xs:element>
         </xs:sequence>
+		
+		<xs:attribute name="version" type="xs:string" use="required" fixed="0.1" >
+			<xs:annotation>
+				<xs:documentation>Remittance version</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
     </xs:complexType>
 
 	<!--

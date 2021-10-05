@@ -201,6 +201,10 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+			<!-- TODO:
+			    If this is just a summary indicator (i.e. True if any Property elements have it set to True),
+				we should consider removing it.
+			-->
             <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -250,7 +254,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="Property" type="PropertyType">
+            <xs:element name="Property" type="PropertyType" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>
                         <!--  TODO: description -->

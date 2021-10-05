@@ -5,26 +5,14 @@
            elementFormDefault="qualified">
            
     <xs:include schemaLocation="Common.xsd" />
-	<xs:include schemaLocation="Cash.xsd" />
 	<xs:include schemaLocation="Security.xsd" />
 	<xs:include schemaLocation="Safekeeping.xsd" />
 	<xs:include schemaLocation="MineralInterests.xsd" />
 	<xs:include schemaLocation="Cryptocurrency.xsd" />
     <xs:include schemaLocation="Owner.xsd" />
-
-    <!-- TODO:  add CryptoCurrency here -->
     
     <xs:complexType name="PropertyType">
         <xs:sequence>
-            <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Property information contains information subject to HIPAA regulations.  Presence of element
-                        containing the value "X" indicates the presence of HIPPA information, absence of such an
-                        elements indicates no HIPPA information.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
             <xs:element name="AccountNumber">
                 <xs:annotation>
                     <xs:documentation>
@@ -41,30 +29,50 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <!-- TODO:  see TODOs in PropertyTypeCodeType -->
             <xs:element name="TypeCode">
 				<xs:simpleType>
 					<xs:annotation>
 						<xs:documentation>
 							Utilize the five-character type code as set forth in the appendix which most closely
 							describes the nature of the asset/account relationship.
+							
+							Type code groupings:
+							
+							    AC - Account
+								CK - Check
+								VC - Virtual Currency
+								CS - College Savings
+								CT - Court-Related (?)
+								HS - Health Savings Accounts
+								IN - Insurance
+								IR - Individual Retirement Accounts
+								MI - Mineral Interests
+								MS - Salary-Related (?)
+								SC - Securities
+								SD - Safe Deposit Box
+								TR - Trust-Related
+								UT - Utilities-Related
+								
 						</xs:documentation>
 					</xs:annotation>
 					<xs:restriction base="xs:string">
-						<!-- TODO:  What parts of this should appear in the XML? -->
+						<!-- TODO:  Discuss the fact that only the "value" property of the "enumeration" element appears in the XML. -->
 						<!-- TODO:  Discuss the handling of state-specific extenstions -->
-						<xs:enumeration value="AC001">
+						<xs:enumeration value="AC001 - Checking Accounts">
 							<xs:annotation>
-								<xs:documentation>Checking Accounts</xs:documentation>
+								<xs:documentation>
+									A demand deposit account with unrestricted transactions.
+								</xs:documentation>
 							</xs:annotation>
 						</xs:enumeration>
-						<xs:enumeration value="AC002">
+						<xs:enumeration value="AC002 - Savings Accounts">
 							<xs:annotation>
-								<xs:documentation>Savings Accounts</xs:documentation>
+								<xs:documentation>
+									A demand deposit account with restricted transactions.
+								</xs:documentation>
 							</xs:annotation>
 						</xs:enumeration>
 						<!-- 
-            AC002    Savings Accounts
             AC003    Mature CD or Save Cert
             AC004    IOLTA / Attorney Trust Fund
             AC005    Failed Electronic Payments
@@ -76,7 +84,6 @@
             AC011    Reloadable Non-Retail Card
             AC012    Reloadable Government Card
                 
-                
             CK001    Cashier's, Certified and other instrument which the bank is direclty liable.
             CK002    Payment to Vendor
             CK003    Payment to Nonretail Customer
@@ -86,12 +93,23 @@
             CK007    Money Orders
             CK008    Traveler's Checks
             CK009    CD Interest Checks
-                
-                
-            VC001    Virtual Currency in Native Currency Units
-            VC002    Virtual Currency Liquidated
-                
-                
+-->
+			<!-- TODO: should we make these descriptions shorter since they will typically be used in drop-downs? -->
+			<xs:enumeration value="VC001 - Virtual Currency in Native Currency Units">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VC002 - Virtual Currency Liquidated">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+<!-- 
             CS001    Educational Savings Account - Cash
             CS002    Educational Savings Account - Mutual Fund
             CS003    Educational Savings Account - Securities
@@ -102,8 +120,7 @@
             CS008    529 Plan Educational Savings Account - Mutual Fund
             CS009    529 Plan Educational Savings Account - Securities
             CS010    College Savings Distribution
-                
-                
+                   
             CT001    Escrow Funds
             CT002    Condemnation Awards
             CT003    Estate / Missing Heir's Funds
@@ -116,10 +133,8 @@
             CT010    Abandoned Vehicle Proceeds
             CT011    Real Estate sold
                 
-                
             HS001    Health Savings Account (HSA)
             HS002    Health Savings Account Investment
-                
                 
             IN001    Policy Benefits or Claim Payments Including Claims Paid on Auto, Home, P&C, Rental, or Health Policies
             IN002    Retained Asset Accounts including account balances and distributions
@@ -129,8 +144,7 @@
             IN006    Unidentified Remittances
             IN007    Other Amounts Due Under Policy Terms
             IN008    Agent Credit Balances
-                
-                
+               
             IR001    Traditional IRA - Cash
             IR002    Traditional IRA - Mutual Funds
             IR003    Traditional IRA - Securities
@@ -140,8 +154,15 @@
             IR007    Roth IRA - Securities
             IR008    Roth IRA - Other
             IR009    Pension & Profit Sharing
-                
-                
+-->
+			<xs:enumeration value="MI001 - Working Interest Payment">
+				<xs:annotation>
+					<xs:documentation>
+						<!-- TODO -->
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+<!--
             MI001    Working Interest Payment
             MI002    Mineral Interest Royalties
             MI003    Overriding Royalties
@@ -151,7 +172,6 @@
             MI007    Delay Rentals
             MI008    Shut-in Royalties
             MI009    Miscellaneous Production Payment
-                
                 
             MS001    Wages, Payroll, Salary - Check or Direct Deposit
             MS002    Commissions
@@ -166,15 +186,55 @@
             MS011    Loyalty, Award or Promotional Card
             MS012    Telephone or other Telecommunications Card
             MS013    Game Related Digital Content Card
-                
-                
-                
-            SC001    Dividends on Shares
-            SC002    Interest on Bonds
-            SC003    Return of Principal on Bonds
-            SC004    Cash for Fractional Shares
-            SC005    Unexchanged Stock Certificates
-            SC006    Shares of Equities
+-->
+						<xs:enumeration value="SC001 - Dividends on Shares">
+							<xs:annotation>
+								<xs:documentation>
+									Distribution of earnings to shareholders, prorated by class of security. Any
+									security distributions must be reported under SC006.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC002 - Interest on Bonds">
+							<xs:annotation>
+								<xs:documentation>
+									Interest earned on Bonds (all types of Bonds) prior to the redemption date.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC003 - Return of Principal on Bonds">
+							<xs:annotation>
+								<xs:documentation>
+									Principal is the amount of money the issuer of a bond is borrowing and will repay
+									to the bondholder in full upon the bond’s redemption or maturity.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC004 - Cash for Fractional Shares">
+							<xs:annotation>
+								<xs:documentation>
+									Proceeds from the sale of fractional shares required to be liquidated prior to
+									remittance. An owner's fractional shares must be cashed out prior to remitting
+									(cannot remit partial shares). (Cash in lieu).
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC005 - Unexchanged Stock Certificates">
+							<xs:annotation>
+								<xs:documentation>
+									Incomplete exchange of old shares to new successor corporate shares (shares drawn
+									on prior company name). Certificates remitted in the original owner name.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC006 - Shares of Equities">
+							<xs:annotation>
+								<xs:documentation>
+									All types of Equity Securities, including: Certificated shares, book entry shares,
+									dividends paid in shares. (For Dividend Reinvestment Plan Shares use SC012.)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+<!--
             SC007    Funds for Liquidation / Redemption of Unsurrendered Stock or Bonds
             SC008    Debentures
             SC009    US Government Debt Securities
@@ -186,12 +246,17 @@
             SC015    Restricted Securities -Broker Held
             SC016    Unexchanged Shares
             SC017    Dissolution or Liquidation
-                
-                
-            SD001    SD Box Contents
+-->
+			<xs:enumeration value="SD001 - SD Box Contents">
+				<xs:annotation>
+					<xs:documentation>
+						Valuables, coins, jewelry, important documents, and sentimental keepsakes.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+<!--
             SD002    Other Safekeeping
             SD003    Other Tangible Property
-                
                 
             TR001    Pre Need Funeral Expenses 
             TR002    Undelivered or Uncashed Dividends
@@ -201,21 +266,20 @@
             TR006    Escrow Earnest Money Disputed
             TR007    Burial Expenses
                 
-                
             UT001    Utility Deposits
             UT002    Refunds or Rebates
-             -->
+-->
 					</xs:restriction>
 				</xs:simpleType>
             </xs:element>
             <xs:element name="DormancyPeriod">
+				<!-- TODO:  Consider using xs:duration here. -->
 				<xs:simpleType>
 					<xs:annotation>
 						<xs:documentation>
 							<!-- TODO -->
 						</xs:documentation>
 					</xs:annotation>
-					<!-- TODO:  Is this used for calculations?  Should it be an integer with a restricted range? -->
 					<xs:restriction base="xs:string">
 						<xs:enumeration value="1">
 							<xs:annotation>
@@ -295,6 +359,13 @@
 					</xs:restriction>
 				</xs:simpleType>
             </xs:element>
+            <xs:element name="LastActivityDate" type="DateType">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date on which the last (i.e., most recent) owner-generated actity or action occurred.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="PresumedAbandonedDate" type="DateType">
                 <xs:annotation>
                     <xs:documentation>
@@ -360,13 +431,6 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="LastActivityDate" type="DateType">
-                <xs:annotation>
-                    <xs:documentation>
-                        The date on which the last (i.e., most recent) owner-generated actity or action occurred.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
             <xs:element name="PayableOrDistributableDate" type="DateType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -413,7 +477,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="Taxable" type="xs:string">
+            <xs:element name="Taxable" type="IndicatorType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
                     <!-- TODO:  description -->
@@ -429,7 +493,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="Description">
+            <xs:element name="Description" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
                         In the instance that the Holder has additional information that will be helpful
@@ -446,7 +510,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="LocationIdentifier">
+            <xs:element name="LocationIdentifier" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
                         Indicate whether location of reporting company is a branch, franchise office,
@@ -464,7 +528,7 @@
                 </xs:simpleType>
             </xs:element>
             <!-- TODO:  can these be foreign addresses? -->
-            <xs:element name="LocationAddress">
+            <xs:element name="LocationAddress" minOccurs="0">
 				<xs:complexType>
 					<xs:choice>
 						<xs:element name="USAddress" type="USAddressType" />
@@ -567,10 +631,22 @@
 					</xs:sequence>
 				</xs:complexType>
             </xs:element>
+            <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Property information contains information subject to HIPAA regulations.  Presence of element
+                        containing the value "X" indicates the presence of HIPPA information, absence of such an
+                        elements indicates no HIPPA information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<!-- TODO:
+				Should we consider making owners independent of Property elements and using references?  That might
+				make sense if there are typically a lot of properties reported for the same owner.
+			-->
             <xs:element name="Owner" type="OwnerType" maxOccurs="unbounded"/>
 			<!-- TODO:
-			    How do we deal with the property deletion capability from NAUPA-II
-				(PROP-DELETION-TYPE/PROP-DELETION-AMOUNT)?
+			    Is there an equivalent for NAUPA-II PROP-DELETION-TYPE/PROP-DELETION-AMOUNT?
 			-->
             <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType >
@@ -623,22 +699,74 @@
                 </xs:complexType>
             </xs:element>
             <!-- TODO:
-			    Is this correct?  Should each property element enclose just one of the following, or can it contain
-				one or more of each?  The original XML example was set up to have one example of each, but that may
-				be an artifact of using the spreadsheet format to define these property types.
-				
-				Should a Cash element always be optionally present alongside each Bond, Security, Safekeeping,
-				MineralInterest, or Cryptocurrency element?  Things seem to line up better with NAUPA-II if that
-				structure is allowed.
+			    Is this correct?  Should there always be a Cash element, optionally followed by ONE Bond, Security,
+				Safekeeping, MineralInterest, or CryptoCurrency element?
 			-->
-            <xs:element name="Cash" type="CashType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO:  description -->
-                    </xs:documentation>
-                </xs:annotation>
+            <xs:element name="Cash">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ReportedAmount" type="CurrencyType">
+							<xs:annotation>
+								<xs:documentation>
+									Enter the amount due the owner before any deductions, such as taxes, were subtracted.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="RemittedAmount" type="CurrencyType">
+							<xs:annotation>
+								<xs:documentation>
+									Amount due to owner (Reported Amount +/- Adjustments).
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Interest" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Rate">
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:minInclusive value="0" />
+												<xs:maxInclusive value="100" />
+												<xs:fractionDigits value="3" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="PaidThroughDate" type="DateType">
+										<xs:annotation>
+											<xs:documentation>
+												Date through which Interest is included in the Reported Amount.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="CheckNumber" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>
+									Provide the check number if reporting cashier's or traveler's checks, money orders, or any
+									other remittance instrument.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<!-- Based on Kelmar -->
+									<xs:maxLength value="100" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="ItemIssueState" type="StateCodeType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>
+									For traveler's checks, money orders, cashier's checks, and other remittance instruments,
+									enter the two character state code for the location where the instrument was purchased.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
             </xs:element>
-            <xs:choice maxOccurs="unbounded">
+            <xs:choice minOccurs="0">
 			    <xs:element name="Bond">
 				    <xs:complexType >
 					    <xs:sequence>
