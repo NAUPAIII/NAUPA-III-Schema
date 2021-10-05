@@ -4,190 +4,190 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 
-	<xs:include schemaLocation="Common.xsd" />
+    <xs:include schemaLocation="Common.xsd" />
 
-	<!--  TODO:  all of this looks very Oklahoma-specific.  Do we need to generalize? -->
-	<xs:complexType name="MineralInterestsType">
-		<xs:sequence>
-			<xs:element name="StateCode" type="StateCodeType">
-				<xs:annotation>
-					<xs:documentation>
-						STATE-CODE - State abbreviation of the state where the mineral interest property is located.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="StateFormatNumber" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>
-						<!-- TODO:  do we really need this? -->
-						STATE-FORMAT-NUM - This is not used in the application. 01 can be used in this field.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="CountyName">
-				<xs:annotation>
-					<xs:documentation>
-						COUNTY-NAME - Geographical region of a state used for administrative or other purposes.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- From FieldDescriptions in spreadsheet -->
-						<xs:maxLength value="20" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="Section">
-				<xs:annotation>
-					<xs:documentation>
-						SECTION - An area nominally one square mile, containing 640 acres, with 36 sections
-						making up one survey township on a rectangular grid.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- From FieldDescriptions in spreadsheet -->
-						<xs:maxLength value="2" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="Township">
-				<xs:annotation>
-					<xs:documentation>
-						TOWNSHIP - The Township is a division of a county. Township grid lines run North and South.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- From FieldDescriptions in spreadsheet -->
-						<xs:maxLength value="3" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="Range">
-				<xs:annotation>
-					<xs:documentation>
-						RANGE - The range number identifies how many cells the property is to the East or West of
-						a starting point. Range grid lines run East and West.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- From FieldDescriptions in spreadsheet -->
-						<xs:maxLength value="3" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="SupplementalDescription">
-				<xs:annotation>
-					<xs:documentation>
-						SUPP-DESC - Description of the quarter (NE Quarter, South Quarter), probate number,
-						deed information (county book and page reference, fractional share or co-ownership
-						(1/8th), etc.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- From FieldDescriptions in spreadsheet -->
-						<xs:maxLength value="20" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="PoolingOrder">
-				<xs:annotation>
-					<xs:documentation>
-						POOLING-ORDER - A specific number assigned to a Pooling action. A Pooling is the
-						consolidation and combining of leased land with adjoining leased tracts. The area is
-						called a pool or a unit. Pooling has the benefit to the production company of uniting
-						all landowners' leases into a common pool under one drilling production company and
-						utilizing one common underground geological reservoir. The pooling action may be
-						voluntary or forced (unlocated owners).
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- From FieldDescriptions in spreadsheet -->
-						<xs:maxLength value="6" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="PoolingDate" type="DateType">
-				<xs:annotation>
-					<xs:documentation>
-						POOLING-DATE - Date signed by the Corporation Commission.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="WellName">
-				<xs:annotation>
-					<xs:documentation>
-						WELL-NAME -Wells are traditionally named for the mineral owner(s) in the drilling unit.
-						[e.g. Smith or Smith and Jones].If the State owns minerals in the drilling unit, the well
-						name shall be "State" followed by the name of the township where the well is located [e.g.
-						State Chester]. If the Federal government owns minerals, the well name shall include "USA"
-						followed by the name of the township where the well is located [e.g. USA Hillman].
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- From FieldDescriptions in spreadsheet -->
-						<xs:maxLength value="30" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="WellNumber">
-				<xs:annotation>
-					<xs:documentation>
-						WELL-NUMBER - An American Petroleum Institute (API) well number or API number is a "unique,
-						permanent, numeric identifier" assigned to each well drilled for oil and gas in the United
-						States.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- From FieldDescriptions in spreadsheet -->
-						<xs:maxLength value="20" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="LeaseName">
-				<xs:annotation>
-					<xs:documentation>
-						LEASE- NAME - An oil lease is an agreement between parties to allow a Lessee to have access
-						to the property and minerals on the property of the Lessor. The agreement contains the
-						decided upon lease name.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- From FieldDescriptions in spreadsheet -->
-						<xs:maxLength value="30" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="LeaseNumber">
-				<xs:annotation>
-					<xs:documentation>
-						LEASE-NUMBER - The lease number serves as identification keys for well bores (actual hole
-						that forms a well) and completions.
-					</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<!-- From FieldDescriptions in spreadsheet -->
-						<xs:maxLength value="20" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="OwnershipPercentage" type="PercentageType">
-				<xs:annotation>
-					<xs:documentation>
-						OWNERSHIP-PCT - The owner's proportional ownership in the minerals (reflected as a decimal
-						interest).
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
+    <!--  TODO:  all of this looks very Oklahoma-specific.  Do we need to generalize? -->
+    <xs:complexType name="MineralInterestsType">
+        <xs:sequence>
+            <xs:element name="StateCode" type="StateCodeType">
+                <xs:annotation>
+                    <xs:documentation>
+                        STATE-CODE - State abbreviation of the state where the mineral interest property is located.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="StateFormatNumber" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        <!-- TODO:  do we really need this? -->
+                        STATE-FORMAT-NUM - This is not used in the application. 01 can be used in this field.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CountyName">
+                <xs:annotation>
+                    <xs:documentation>
+                        COUNTY-NAME - Geographical region of a state used for administrative or other purposes.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- From FieldDescriptions in spreadsheet -->
+                        <xs:maxLength value="20" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Section">
+                <xs:annotation>
+                    <xs:documentation>
+                        SECTION - An area nominally one square mile, containing 640 acres, with 36 sections
+                        making up one survey township on a rectangular grid.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- From FieldDescriptions in spreadsheet -->
+                        <xs:maxLength value="2" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Township">
+                <xs:annotation>
+                    <xs:documentation>
+                        TOWNSHIP - The Township is a division of a county. Township grid lines run North and South.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- From FieldDescriptions in spreadsheet -->
+                        <xs:maxLength value="3" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Range">
+                <xs:annotation>
+                    <xs:documentation>
+                        RANGE - The range number identifies how many cells the property is to the East or West of
+                        a starting point. Range grid lines run East and West.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- From FieldDescriptions in spreadsheet -->
+                        <xs:maxLength value="3" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="SupplementalDescription">
+                <xs:annotation>
+                    <xs:documentation>
+                        SUPP-DESC - Description of the quarter (NE Quarter, South Quarter), probate number,
+                        deed information (county book and page reference, fractional share or co-ownership
+                        (1/8th), etc.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- From FieldDescriptions in spreadsheet -->
+                        <xs:maxLength value="20" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="PoolingOrder">
+                <xs:annotation>
+                    <xs:documentation>
+                        POOLING-ORDER - A specific number assigned to a Pooling action. A Pooling is the
+                        consolidation and combining of leased land with adjoining leased tracts. The area is
+                        called a pool or a unit. Pooling has the benefit to the production company of uniting
+                        all landowners' leases into a common pool under one drilling production company and
+                        utilizing one common underground geological reservoir. The pooling action may be
+                        voluntary or forced (unlocated owners).
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- From FieldDescriptions in spreadsheet -->
+                        <xs:maxLength value="6" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="PoolingDate" type="DateType">
+                <xs:annotation>
+                    <xs:documentation>
+                        POOLING-DATE - Date signed by the Corporation Commission.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="WellName">
+                <xs:annotation>
+                    <xs:documentation>
+                        WELL-NAME -Wells are traditionally named for the mineral owner(s) in the drilling unit.
+                        [e.g. Smith or Smith and Jones].If the State owns minerals in the drilling unit, the well
+                        name shall be "State" followed by the name of the township where the well is located [e.g.
+                        State Chester]. If the Federal government owns minerals, the well name shall include "USA"
+                        followed by the name of the township where the well is located [e.g. USA Hillman].
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- From FieldDescriptions in spreadsheet -->
+                        <xs:maxLength value="30" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="WellNumber">
+                <xs:annotation>
+                    <xs:documentation>
+                        WELL-NUMBER - An American Petroleum Institute (API) well number or API number is a "unique,
+                        permanent, numeric identifier" assigned to each well drilled for oil and gas in the United
+                        States.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- From FieldDescriptions in spreadsheet -->
+                        <xs:maxLength value="20" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="LeaseName">
+                <xs:annotation>
+                    <xs:documentation>
+                        LEASE- NAME - An oil lease is an agreement between parties to allow a Lessee to have access
+                        to the property and minerals on the property of the Lessor. The agreement contains the
+                        decided upon lease name.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- From FieldDescriptions in spreadsheet -->
+                        <xs:maxLength value="30" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="LeaseNumber">
+                <xs:annotation>
+                    <xs:documentation>
+                        LEASE-NUMBER - The lease number serves as identification keys for well bores (actual hole
+                        that forms a well) and completions.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- From FieldDescriptions in spreadsheet -->
+                        <xs:maxLength value="20" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="OwnershipPercentage" type="PercentageType">
+                <xs:annotation>
+                    <xs:documentation>
+                        OWNERSHIP-PCT - The owner's proportional ownership in the minerals (reflected as a decimal
+                        interest).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 
 </xs:schema>

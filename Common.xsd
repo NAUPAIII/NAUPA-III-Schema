@@ -30,13 +30,13 @@
         </xs:restriction>
     </xs:simpleType>
 
-	<xs:simpleType name="PercentageType">
-		<xs:restriction base="xs:decimal">
-			<xs:minInclusive value="0" />
-			<xs:maxInclusive value="100" />
-			<xs:fractionDigits value="3" />
-		</xs:restriction>
-	</xs:simpleType>
+    <xs:simpleType name="PercentageType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0" />
+            <xs:maxInclusive value="100" />
+            <xs:fractionDigits value="3" />
+        </xs:restriction>
+    </xs:simpleType>
     
     <xs:simpleType name="CompanyNameType">
         <xs:restriction base="xs:string">
@@ -979,82 +979,82 @@
         </xs:restriction>
     </xs:simpleType>
 
-	<xs:complexType name="ContactType">
-		<xs:sequence>
-			<xs:element name="Type">
-				<xs:simpleType>
-					<xs:annotation>
-						<xs:documentation>
-							Table: report, claims, cfo, safe deposit box, securities
-						</xs:documentation>
-					</xs:annotation>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Claims">
-							<xs:annotation>
-								<xs:documentation>Claims</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="Report">
-							<xs:annotation>
-								<xs:documentation>Report</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="CFO">
-							<xs:annotation>
-								<xs:documentation>CFO</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="SDB">
-							<xs:annotation>
-								<xs:documentation>Safe Deposit Box</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="Securities">
-							<xs:annotation>
-								<xs:documentation>Securities</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="Software">
-							<xs:annotation>
-								<xs:documentation>Securities</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<!-- TODO:  added for property owner contact -->
-						<xs:enumeration value="Owner">
-							<xs:annotation>
-								<xs:documentation>Securities</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<!-- TODO:  added for property owner beneficiary contact -->
-						<xs:enumeration value="Beneficiary">
-							<xs:annotation>
-								<xs:documentation>Securities</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="Name" minOccurs="0">
-				<!-- TOOD:  Seemed like a good idea to make this either a person or a company, need to review. -->
-				<xs:complexType>
-					<xs:choice>
-						<xs:element name="CompanyName" type="CompanyNameType" />
-						<xs:element name="PersonName" type="PersonNameType" />
-					</xs:choice>
-				</xs:complexType>
-			</xs:element>
-			<xs:choice>
-				<xs:element name="USAddress" type="USAddressType" />
-				<xs:element name="ForeignAddress" type="ForeignAddressType" />
-			</xs:choice>
-			<xs:element name="TelephoneNumber" type="TelephoneNumberType" />
-			<xs:element name="EMailAddress" type="EMailAddressType">
-				<xs:annotation>
-					<xs:documentation>
-					</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
+    <xs:complexType name="ContactType">
+        <xs:sequence>
+            <xs:element name="Type">
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>
+                            Table: report, claims, cfo, safe deposit box, securities
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Claims">
+                            <xs:annotation>
+                                <xs:documentation>Claims</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Report">
+                            <xs:annotation>
+                                <xs:documentation>Report</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="CFO">
+                            <xs:annotation>
+                                <xs:documentation>CFO</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="SDB">
+                            <xs:annotation>
+                                <xs:documentation>Safe Deposit Box</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Securities">
+                            <xs:annotation>
+                                <xs:documentation>Securities</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Software">
+                            <xs:annotation>
+                                <xs:documentation>Securities</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <!-- TODO:  added for property owner contact -->
+                        <xs:enumeration value="Owner">
+                            <xs:annotation>
+                                <xs:documentation>Securities</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <!-- TODO:  added for property owner beneficiary contact -->
+                        <xs:enumeration value="Beneficiary">
+                            <xs:annotation>
+                                <xs:documentation>Securities</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Name" minOccurs="0">
+                <!-- TOOD:  Seemed like a good idea to make this either a person or a company, need to review. -->
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:element name="CompanyName" type="CompanyNameType" />
+                        <xs:element name="PersonName" type="PersonNameType" />
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+            <xs:choice>
+                <xs:element name="USAddress" type="USAddressType" />
+                <xs:element name="ForeignAddress" type="ForeignAddressType" />
+            </xs:choice>
+            <xs:element name="TelephoneNumber" type="TelephoneNumberType" />
+            <xs:element name="EMailAddress" type="EMailAddressType">
+                <xs:annotation>
+                    <xs:documentation>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
     
 </xs:schema>

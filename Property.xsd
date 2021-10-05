@@ -5,10 +5,10 @@
            elementFormDefault="qualified">
            
     <xs:include schemaLocation="Common.xsd" />
-	<xs:include schemaLocation="Security.xsd" />
-	<xs:include schemaLocation="Safekeeping.xsd" />
-	<xs:include schemaLocation="MineralInterests.xsd" />
-	<xs:include schemaLocation="Cryptocurrency.xsd" />
+    <xs:include schemaLocation="Security.xsd" />
+    <xs:include schemaLocation="Safekeeping.xsd" />
+    <xs:include schemaLocation="MineralInterests.xsd" />
+    <xs:include schemaLocation="Cryptocurrency.xsd" />
     <xs:include schemaLocation="Owner.xsd" />
     
     <xs:complexType name="PropertyType">
@@ -30,49 +30,49 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="TypeCode">
-				<xs:simpleType>
-					<xs:annotation>
-						<xs:documentation>
-							Utilize the five-character type code as set forth in the appendix which most closely
-							describes the nature of the asset/account relationship.
-							
-							Type code groupings:
-							
-							    AC - Account
-								CK - Check
-								VC - Virtual Currency
-								CS - College Savings
-								CT - Court-Related (?)
-								HS - Health Savings Accounts
-								IN - Insurance
-								IR - Individual Retirement Accounts
-								MI - Mineral Interests
-								MS - Salary-Related (?)
-								SC - Securities
-								SD - Safe Deposit Box
-								TR - Trust-Related
-								UT - Utilities-Related
-								
-						</xs:documentation>
-					</xs:annotation>
-					<xs:restriction base="xs:string">
-						<!-- TODO:  Discuss the fact that only the "value" property of the "enumeration" element appears in the XML. -->
-						<!-- TODO:  Discuss the handling of state-specific extenstions -->
-						<xs:enumeration value="AC001 - Checking Accounts">
-							<xs:annotation>
-								<xs:documentation>
-									A demand deposit account with unrestricted transactions.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="AC002 - Savings Accounts">
-							<xs:annotation>
-								<xs:documentation>
-									A demand deposit account with restricted transactions.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<!-- 
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>
+                            Utilize the five-character type code as set forth in the appendix which most closely
+                            describes the nature of the asset/account relationship.
+                            
+                            Type code groupings:
+                            
+                                AC - Account
+                                CK - Check
+                                VC - Virtual Currency
+                                CS - College Savings
+                                CT - Court-Related (?)
+                                HS - Health Savings Accounts
+                                IN - Insurance
+                                IR - Individual Retirement Accounts
+                                MI - Mineral Interests
+                                MS - Salary-Related (?)
+                                SC - Securities
+                                SD - Safe Deposit Box
+                                TR - Trust-Related
+                                UT - Utilities-Related
+                                
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <!-- TODO:  Discuss the fact that only the "value" property of the "enumeration" element appears in the XML. -->
+                        <!-- TODO:  Discuss the handling of state-specific extenstions -->
+                        <xs:enumeration value="AC001 - Checking Accounts">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    A demand deposit account with unrestricted transactions.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="AC002 - Savings Accounts">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    A demand deposit account with restricted transactions.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <!-- 
             AC003    Mature CD or Save Cert
             AC004    IOLTA / Attorney Trust Fund
             AC005    Failed Electronic Payments
@@ -94,21 +94,21 @@
             CK008    Traveler's Checks
             CK009    CD Interest Checks
 -->
-			<!-- TODO: should we make these descriptions shorter since they will typically be used in drop-downs? -->
-			<xs:enumeration value="VC001 - Virtual Currency in Native Currency Units">
-				<xs:annotation>
-					<xs:documentation>
-						<!-- TODO -->
-					</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="VC002 - Virtual Currency Liquidated">
-				<xs:annotation>
-					<xs:documentation>
-						<!-- TODO -->
-					</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
+            <!-- TODO: should we make these descriptions shorter since they will typically be used in drop-downs? -->
+            <xs:enumeration value="VC001 - Virtual Currency in Native Currency Units">
+                <xs:annotation>
+                    <xs:documentation>
+                        <!-- TODO -->
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="VC002 - Virtual Currency Liquidated">
+                <xs:annotation>
+                    <xs:documentation>
+                        <!-- TODO -->
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
 <!-- 
             CS001    Educational Savings Account - Cash
             CS002    Educational Savings Account - Mutual Fund
@@ -155,13 +155,13 @@
             IR008    Roth IRA - Other
             IR009    Pension & Profit Sharing
 -->
-			<xs:enumeration value="MI001 - Working Interest Payment">
-				<xs:annotation>
-					<xs:documentation>
-						<!-- TODO -->
-					</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
+            <xs:enumeration value="MI001 - Working Interest Payment">
+                <xs:annotation>
+                    <xs:documentation>
+                        <!-- TODO -->
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
 <!--
             MI001    Working Interest Payment
             MI002    Mineral Interest Royalties
@@ -187,53 +187,53 @@
             MS012    Telephone or other Telecommunications Card
             MS013    Game Related Digital Content Card
 -->
-						<xs:enumeration value="SC001 - Dividends on Shares">
-							<xs:annotation>
-								<xs:documentation>
-									Distribution of earnings to shareholders, prorated by class of security. Any
-									security distributions must be reported under SC006.</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="SC002 - Interest on Bonds">
-							<xs:annotation>
-								<xs:documentation>
-									Interest earned on Bonds (all types of Bonds) prior to the redemption date.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="SC003 - Return of Principal on Bonds">
-							<xs:annotation>
-								<xs:documentation>
-									Principal is the amount of money the issuer of a bond is borrowing and will repay
-									to the bondholder in full upon the bond’s redemption or maturity.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="SC004 - Cash for Fractional Shares">
-							<xs:annotation>
-								<xs:documentation>
-									Proceeds from the sale of fractional shares required to be liquidated prior to
-									remittance. An owner's fractional shares must be cashed out prior to remitting
-									(cannot remit partial shares). (Cash in lieu).
-								</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="SC005 - Unexchanged Stock Certificates">
-							<xs:annotation>
-								<xs:documentation>
-									Incomplete exchange of old shares to new successor corporate shares (shares drawn
-									on prior company name). Certificates remitted in the original owner name.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="SC006 - Shares of Equities">
-							<xs:annotation>
-								<xs:documentation>
-									All types of Equity Securities, including: Certificated shares, book entry shares,
-									dividends paid in shares. (For Dividend Reinvestment Plan Shares use SC012.)
-								</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
+                        <xs:enumeration value="SC001 - Dividends on Shares">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Distribution of earnings to shareholders, prorated by class of security. Any
+                                    security distributions must be reported under SC006.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="SC002 - Interest on Bonds">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Interest earned on Bonds (all types of Bonds) prior to the redemption date.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="SC003 - Return of Principal on Bonds">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Principal is the amount of money the issuer of a bond is borrowing and will repay
+                                    to the bondholder in full upon the bond’s redemption or maturity.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="SC004 - Cash for Fractional Shares">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Proceeds from the sale of fractional shares required to be liquidated prior to
+                                    remittance. An owner's fractional shares must be cashed out prior to remitting
+                                    (cannot remit partial shares). (Cash in lieu).
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="SC005 - Unexchanged Stock Certificates">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Incomplete exchange of old shares to new successor corporate shares (shares drawn
+                                    on prior company name). Certificates remitted in the original owner name.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="SC006 - Shares of Equities">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    All types of Equity Securities, including: Certificated shares, book entry shares,
+                                    dividends paid in shares. (For Dividend Reinvestment Plan Shares use SC012.)
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
 <!--
             SC007    Funds for Liquidation / Redemption of Unsurrendered Stock or Bonds
             SC008    Debentures
@@ -247,13 +247,13 @@
             SC016    Unexchanged Shares
             SC017    Dissolution or Liquidation
 -->
-			<xs:enumeration value="SD001 - SD Box Contents">
-				<xs:annotation>
-					<xs:documentation>
-						Valuables, coins, jewelry, important documents, and sentimental keepsakes.
-					</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
+            <xs:enumeration value="SD001 - SD Box Contents">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valuables, coins, jewelry, important documents, and sentimental keepsakes.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
 <!--
             SD002    Other Safekeeping
             SD003    Other Tangible Property
@@ -269,95 +269,95 @@
             UT001    Utility Deposits
             UT002    Refunds or Rebates
 -->
-					</xs:restriction>
-				</xs:simpleType>
+                    </xs:restriction>
+                </xs:simpleType>
             </xs:element>
             <xs:element name="DormancyPeriod">
-				<!-- TODO:  Consider using xs:duration here. -->
-				<xs:simpleType>
-					<xs:annotation>
-						<xs:documentation>
-							<!-- TODO -->
-						</xs:documentation>
-					</xs:annotation>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="1">
-							<xs:annotation>
-								<xs:documentation>1 Year</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="2">
-							<xs:annotation>
-								<xs:documentation>2 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="3">
-							<xs:annotation>
-								<xs:documentation>3 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="4">
-							<xs:annotation>
-								<xs:documentation>4 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="5">
-							<xs:annotation>
-								<xs:documentation>5 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="6">
-							<xs:annotation>
-								<xs:documentation>6 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="7">
-							<xs:annotation>
-								<xs:documentation>7 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="8">
-							<xs:annotation>
-								<xs:documentation>8 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="9">
-							<xs:annotation>
-								<xs:documentation>9 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="10">
-							<xs:annotation>
-								<xs:documentation>10 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="11">
-							<xs:annotation>
-								<xs:documentation>11 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="12">
-							<xs:annotation>
-								<xs:documentation>12 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="13">
-							<xs:annotation>
-								<xs:documentation>13 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="14">
-							<xs:annotation>
-								<xs:documentation>14 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="15">
-							<xs:annotation>
-								<xs:documentation>15 Years</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-					</xs:restriction>
-				</xs:simpleType>
+                <!-- TODO:  Consider using xs:duration here. -->
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>
+                            <!-- TODO -->
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1">
+                            <xs:annotation>
+                                <xs:documentation>1 Year</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="2">
+                            <xs:annotation>
+                                <xs:documentation>2 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="3">
+                            <xs:annotation>
+                                <xs:documentation>3 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="4">
+                            <xs:annotation>
+                                <xs:documentation>4 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="5">
+                            <xs:annotation>
+                                <xs:documentation>5 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="6">
+                            <xs:annotation>
+                                <xs:documentation>6 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="7">
+                            <xs:annotation>
+                                <xs:documentation>7 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="8">
+                            <xs:annotation>
+                                <xs:documentation>8 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="9">
+                            <xs:annotation>
+                                <xs:documentation>9 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="10">
+                            <xs:annotation>
+                                <xs:documentation>10 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="11">
+                            <xs:annotation>
+                                <xs:documentation>11 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="12">
+                            <xs:annotation>
+                                <xs:documentation>12 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="13">
+                            <xs:annotation>
+                                <xs:documentation>13 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="14">
+                            <xs:annotation>
+                                <xs:documentation>14 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="15">
+                            <xs:annotation>
+                                <xs:documentation>15 Years</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
             </xs:element>
             <xs:element name="LastActivityDate" type="DateType">
                 <xs:annotation>
@@ -439,37 +439,37 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-			<xs:element name="Transaction" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>
-						<!-- TODO -->
-					</xs:documentation>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="StartDate" type="DateType">
-							<xs:annotation>
-								<xs:documentation>
-									If you are reporting property with periodic payments such as dividends, oil and gas
-									royalties, or commission checks, enter the beginning date on which the amounts were
-									payable. Total all amounts due the owner during the applicable time period and list
-									the payments as one amount on the owner record.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="EndDate" type="DateType">
-							<xs:annotation>
-								<xs:documentation>
-									If you are reporting property with periodic payments such as dividends, oil and gas
-									royalties, or commission checks, enter the ending date on which the amounts were
-									payable. Total all amounts due the owner during the applicable time period and list
-									the payments as one amount on the owner record.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
+            <xs:element name="Transaction" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <!-- TODO -->
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="StartDate" type="DateType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    If you are reporting property with periodic payments such as dividends, oil and gas
+                                    royalties, or commission checks, enter the beginning date on which the amounts were
+                                    payable. Total all amounts due the owner during the applicable time period and list
+                                    the payments as one amount on the owner record.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EndDate" type="DateType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    If you are reporting property with periodic payments such as dividends, oil and gas
+                                    royalties, or commission checks, enter the ending date on which the amounts were
+                                    payable. Total all amounts due the owner during the applicable time period and list
+                                    the payments as one amount on the owner record.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="NonRemitIndicator" type="IndicatorType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -519,117 +519,117 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-						<!-- TODO:
-						    This is shown in the spreadsheet as an Avenu-defined number, with a Kelmar comment that
-							says "Defined by NAUPA".  Where did this number come from?
-						-->
+                        <!-- TODO:
+                            This is shown in the spreadsheet as an Avenu-defined number, with a Kelmar comment that
+                            says "Defined by NAUPA".  Where did this number come from?
+                        -->
                         <xs:maxLength value="20" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <!-- TODO:  can these be foreign addresses? -->
             <xs:element name="LocationAddress" minOccurs="0">
-				<xs:complexType>
-					<xs:choice>
-						<xs:element name="USAddress" type="USAddressType" />
-						<xs:element name="ForeignAddress" type="ForeignAddressType" />
-					</xs:choice>
-				</xs:complexType>
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:element name="USAddress" type="USAddressType" />
+                        <xs:element name="ForeignAddress" type="ForeignAddressType" />
+                    </xs:choice>
+                </xs:complexType>
             </xs:element>
             <xs:element name="OFAC" minOccurs="0">
-				<xs:complexType>
-					<!-- TODO:
-					    If this information is present, are all elements required? If not, which ones are?  As
-						currently defined here, they would all be required or the XML would fail validation.
-					-->
-					<xs:sequence>
-						<xs:element name="Description">
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<!-- TODO:  define max length
+                <xs:complexType>
+                    <!-- TODO:
+                        If this information is present, are all elements required? If not, which ones are?  As
+                        currently defined here, they would all be required or the XML would fail validation.
+                    -->
+                    <xs:sequence>
+                        <xs:element name="Description">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <!-- TODO:  define max length
                                     <xs:maxLength value="?" />
                                     -->
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-						<xs:element name="DateOfBlocking" type="DateType">
-							<xs:annotation>
-								<xs:documentation>
-									<!-- TODO:  do we really need yet another date format? -->
-									The date (YYYY-MM-DD) the property was blocked, if available.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="LegalAuthority">
-							<xs:annotation>
-								<xs:documentation>
-									Cite the legal authority or authorities under which the property is blocked(e.g., 31 C.F.R.
-									Part 515).
-								</xs:documentation>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<!-- TODO:  define max length
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="DateOfBlocking" type="DateType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    <!-- TODO:  do we really need yet another date format? -->
+                                    The date (YYYY-MM-DD) the property was blocked, if available.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="LegalAuthority">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Cite the legal authority or authorities under which the property is blocked(e.g., 31 C.F.R.
+                                    Part 515).
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <!-- TODO:  define max length
                                     <xs:maxLength value="?" />
                                     -->
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-						<xs:element name="SanctionsTarget">
-							<xs:annotation>
-								<xs:documentation>
-									The associated sanctions target whose property is blocked, or a reference to the
-									relevant communication from OFAC instructing a party to block this property if that
-									target is unknown (e.g. "Cuba").
-								</xs:documentation>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<!-- TODO:  define max length
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="SanctionsTarget">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    The associated sanctions target whose property is blocked, or a reference to the
+                                    relevant communication from OFAC instructing a party to block this property if that
+                                    target is unknown (e.g. "Cuba").
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <!-- TODO:  define max length
                                     <xs:maxLength value="?" />
                                     -->
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-						<xs:element name="OwnerType">
-							<xs:simpleType>
-								<xs:annotation>
-									<xs:documentation>
-										Indicate owner type, selecting from one of the following categories: individual; U.S. bank;
-										non-U.S. bank; U.S. non-bank entity; non-U.S. non-bank entity; or other.
-									</xs:documentation>
-								</xs:annotation>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Individal">
-										<xs:annotation>
-											<xs:documentation>Individal</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<xs:enumeration value="U.S. Bank">
-										<xs:annotation>
-											<xs:documentation>U.S. Bank</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<xs:enumeration value="Non-U.S. Bank">
-										<xs:annotation>
-											<xs:documentation>Non-U.S. Bank</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<xs:enumeration value="U.S. Non-Bank">
-										<xs:annotation>
-											<xs:documentation>U.S. Non-Bank</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<xs:enumeration value="Non-U.S. Non-Bank">
-										<xs:annotation>
-											<xs:documentation>Non-U.S. Non-Bank</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="OwnerType">
+                            <xs:simpleType>
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Indicate owner type, selecting from one of the following categories: individual; U.S. bank;
+                                        non-U.S. bank; U.S. non-bank entity; non-U.S. non-bank entity; or other.
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="Individal">
+                                        <xs:annotation>
+                                            <xs:documentation>Individal</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="U.S. Bank">
+                                        <xs:annotation>
+                                            <xs:documentation>U.S. Bank</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="Non-U.S. Bank">
+                                        <xs:annotation>
+                                            <xs:documentation>Non-U.S. Bank</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="U.S. Non-Bank">
+                                        <xs:annotation>
+                                            <xs:documentation>U.S. Non-Bank</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="Non-U.S. Non-Bank">
+                                        <xs:annotation>
+                                            <xs:documentation>Non-U.S. Non-Bank</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
             </xs:element>
             <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0">
                 <xs:annotation>
@@ -640,53 +640,53 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-			<!-- TODO:
-				Should we consider making owners independent of Property elements and using references?  That might
-				make sense if there are typically a lot of properties reported for the same owner.
-			-->
+            <!-- TODO:
+                Should we consider making owners independent of Property elements and using references?  That might
+                make sense if there are typically a lot of properties reported for the same owner.
+            -->
             <xs:element name="Owner" type="OwnerType" maxOccurs="unbounded"/>
-			<!-- TODO:
-			    Is there an equivalent for NAUPA-II PROP-DELETION-TYPE/PROP-DELETION-AMOUNT?
-			-->
+            <!-- TODO:
+                Is there an equivalent for NAUPA-II PROP-DELETION-TYPE/PROP-DELETION-AMOUNT?
+            -->
             <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType >
                     <xs:sequence>
                         <xs:element name="Type">
-							<xs:simpleType>
-								<xs:annotation>
-									<xs:documentation>
-										<!-- TODO:  description -->
-									</xs:documentation>
-								</xs:annotation>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Due Diligence Cost">
-										<xs:annotation>
-											<xs:documentation>Due Diligence Cost</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<xs:enumeration value="Service Charge">
-										<xs:annotation>
-											<xs:documentation>Service Charge</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<xs:enumeration value="Income Tax Withheld">
-										<xs:annotation>
-											<xs:documentation>Income Tax Withheld</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<xs:enumeration value="IRS Penalty withheld">
-										<xs:annotation>
-											<xs:documentation>IRS Penalty withheld</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<xs:enumeration value="IRS Back-Up Withholding">
-										<xs:annotation>
-											<xs:documentation>Due Diligence Cost</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<!-- TODO:  others? -->
-								</xs:restriction>
-							</xs:simpleType>
+                            <xs:simpleType>
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        <!-- TODO:  description -->
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="Due Diligence Cost">
+                                        <xs:annotation>
+                                            <xs:documentation>Due Diligence Cost</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="Service Charge">
+                                        <xs:annotation>
+                                            <xs:documentation>Service Charge</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="Income Tax Withheld">
+                                        <xs:annotation>
+                                            <xs:documentation>Income Tax Withheld</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="IRS Penalty withheld">
+                                        <xs:annotation>
+                                            <xs:documentation>IRS Penalty withheld</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="IRS Back-Up Withholding">
+                                        <xs:annotation>
+                                            <xs:documentation>Due Diligence Cost</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <!-- TODO:  others? -->
+                                </xs:restriction>
+                            </xs:simpleType>
                         </xs:element>
                         <xs:element name="Amount" type="CurrencyType">
                             <xs:annotation>
@@ -699,77 +699,77 @@
                 </xs:complexType>
             </xs:element>
             <!-- TODO:
-			    Is this correct?  Should there always be a Cash element, optionally followed by ONE Bond, Security,
-				Safekeeping, MineralInterest, or CryptoCurrency element?
-			-->
+                Is this correct?  Should there always be a Cash element, optionally followed by ONE Bond, Security,
+                Safekeeping, MineralInterest, or CryptoCurrency element?
+            -->
             <xs:element name="Cash">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="ReportedAmount" type="CurrencyType">
-							<xs:annotation>
-								<xs:documentation>
-									Enter the amount due the owner before any deductions, such as taxes, were subtracted.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="RemittedAmount" type="CurrencyType">
-							<xs:annotation>
-								<xs:documentation>
-									Amount due to owner (Reported Amount +/- Adjustments).
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="Interest" minOccurs="0">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="Rate">
-										<xs:simpleType>
-											<xs:restriction base="xs:decimal">
-												<xs:minInclusive value="0" />
-												<xs:maxInclusive value="100" />
-												<xs:fractionDigits value="3" />
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-									<xs:element name="PaidThroughDate" type="DateType">
-										<xs:annotation>
-											<xs:documentation>
-												Date through which Interest is included in the Reported Amount.
-											</xs:documentation>
-										</xs:annotation>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-						<xs:element name="CheckNumber" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>
-									Provide the check number if reporting cashier's or traveler's checks, money orders, or any
-									other remittance instrument.
-								</xs:documentation>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<!-- Based on Kelmar -->
-									<xs:maxLength value="100" />
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-						<xs:element name="ItemIssueState" type="StateCodeType" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>
-									For traveler's checks, money orders, cashier's checks, and other remittance instruments,
-									enter the two character state code for the location where the instrument was purchased.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ReportedAmount" type="CurrencyType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Enter the amount due the owner before any deductions, such as taxes, were subtracted.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RemittedAmount" type="CurrencyType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Amount due to owner (Reported Amount +/- Adjustments).
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Interest" minOccurs="0">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Rate">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:decimal">
+                                                <xs:minInclusive value="0" />
+                                                <xs:maxInclusive value="100" />
+                                                <xs:fractionDigits value="3" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="PaidThroughDate" type="DateType">
+                                        <xs:annotation>
+                                            <xs:documentation>
+                                                Date through which Interest is included in the Reported Amount.
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="CheckNumber" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Provide the check number if reporting cashier's or traveler's checks, money orders, or any
+                                    other remittance instrument.
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <!-- Based on Kelmar -->
+                                    <xs:maxLength value="100" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="ItemIssueState" type="StateCodeType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    For traveler's checks, money orders, cashier's checks, and other remittance instruments,
+                                    enter the two character state code for the location where the instrument was purchased.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
             </xs:element>
             <xs:choice minOccurs="0">
-			    <xs:element name="Bond">
-				    <xs:complexType >
-					    <xs:sequence>
+                <xs:element name="Bond">
+                    <xs:complexType >
+                        <xs:sequence>
                             <xs:element name="Name">
                                 <xs:annotation>
                                     <xs:documentation>
@@ -826,9 +826,9 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-					    </xs:sequence>
-				    </xs:complexType>
-			    </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="Security" type="SecurityType">
                     <xs:annotation>
                         <xs:documentation>
@@ -850,13 +850,13 @@
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
-				<xs:element name="Cryptocurrency" type="CryptocurrencyType">
-					<xs:annotation>
-						<xs:documentation>
-							<!-- TODO:  description -->
-						</xs:documentation>
-					</xs:annotation>
-				</xs:element>
+                <xs:element name="Cryptocurrency" type="CryptocurrencyType">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <!-- TODO:  description -->
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>

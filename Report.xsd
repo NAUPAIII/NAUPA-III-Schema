@@ -69,11 +69,11 @@
                     </xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
-					<!-- TODO:
-					    Discuss this restriction, which was carried over from NAUPA-II.
-					-->
+                    <!-- TODO:
+                        Discuss this restriction, which was carried over from NAUPA-II.
+                    -->
                     <xs:restriction base="xs:integer">
-						<xs:totalDigits value="6" />
+                        <xs:totalDigits value="6" />
                     </xs:restriction>
                   </xs:simpleType>
             </xs:element>
@@ -152,7 +152,7 @@
                     <xs:restriction base="xs:decimal">
                          <!-- TODO:  review this -->
                          <xs:totalDigits value="12"/>
-						<!-- TODO:  discuss diffence vs. NumberOfShares, which specified 3 fraction digits. -->
+                        <!-- TODO:  discuss diffence vs. NumberOfShares, which specified 3 fraction digits. -->
                           <xs:fractionDigits value="4" />
                     </xs:restriction>
                   </xs:simpleType>
@@ -183,16 +183,16 @@
     <xs:complexType name="ReportType">
         <xs:sequence>
             <xs:element name="Year">
-				<xs:simpleType>
-					<xs:annotation>
-						<xs:documentation>
-							Four-digit year.
-						</xs:documentation>
-					</xs:annotation>
-					<xs:restriction base="xs:string">
-						<xs:pattern value="[0-9]{4}" />
-					</xs:restriction>
-				</xs:simpleType>
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>
+                            Four-digit year.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{4}" />
+                    </xs:restriction>
+                </xs:simpleType>
             </xs:element>
             <xs:element name="AsOfDate" type="DateType">
                 <xs:annotation>
@@ -201,10 +201,10 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-			<!-- TODO:
-			    If this is just a summary indicator (i.e. True if any Property elements have it set to True),
-				we should consider removing it.
-			-->
+            <!-- TODO:
+                If this is just a summary indicator (i.e. True if any Property elements have it set to True),
+                we should consider removing it.
+            -->
             <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -222,30 +222,30 @@
                 </xs:annotation>
             </xs:element>
             <xs:element name="Type">
-				<xs:simpleType>
-					<xs:annotation>
-						<xs:documentation>
-							Types of reports.
-						</xs:documentation>
-					</xs:annotation>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Advertising">
-							<xs:annotation>
-								<xs:documentation>Advertising</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="Remittance">
-							<xs:annotation>
-								<xs:documentation>Remittance</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="Test">
-							<xs:annotation>
-								<xs:documentation>Test</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-					</xs:restriction>
-				</xs:simpleType>
+                <xs:simpleType>
+                    <xs:annotation>
+                        <xs:documentation>
+                            Types of reports.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Advertising">
+                            <xs:annotation>
+                                <xs:documentation>Advertising</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Remittance">
+                            <xs:annotation>
+                                <xs:documentation>Remittance</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Test">
+                            <xs:annotation>
+                                <xs:documentation>Test</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
             </xs:element>
             <xs:element name="Contact" type="ContactType" maxOccurs="unbounded">
                 <xs:annotation>
@@ -262,48 +262,48 @@
                 </xs:annotation>
             </xs:element>
             <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="Type">
-							<xs:simpleType>
-								<xs:annotation>
-									<xs:documentation>
-										<!-- TODO:  description -->
-									</xs:documentation>
-								</xs:annotation>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="Audit Fees">
-										<xs:annotation>
-											<xs:documentation>Audit Fees</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<xs:enumeration value="Estimate or Prepayment">
-										<xs:annotation>
-											<xs:documentation>Estimate or Prepayment</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<xs:enumeration value="Out of Proof Cash">
-										<xs:annotation>
-											<xs:documentation>Out of Proof Cash</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-									<xs:enumeration value="Out of Proof Shares">
-										<xs:annotation>
-											<xs:documentation>Out of Proof Shares</xs:documentation>
-										</xs:annotation>
-									</xs:enumeration>
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-						<xs:element name="Amount" type="CurrencyType">
-							<xs:annotation>
-								<xs:documentation>
-									Dollar amount of the adjustment resulting in net amount reported.
-								</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Type">
+                            <xs:simpleType>
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        <!-- TODO:  description -->
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="Audit Fees">
+                                        <xs:annotation>
+                                            <xs:documentation>Audit Fees</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="Estimate or Prepayment">
+                                        <xs:annotation>
+                                            <xs:documentation>Estimate or Prepayment</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="Out of Proof Cash">
+                                        <xs:annotation>
+                                            <xs:documentation>Out of Proof Cash</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                    <xs:enumeration value="Out of Proof Shares">
+                                        <xs:annotation>
+                                            <xs:documentation>Out of Proof Shares</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:enumeration>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="Amount" type="CurrencyType">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Dollar amount of the adjustment resulting in net amount reported.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
             </xs:element>
             <!-- TODO:
                 If the remittance-level summary does not agree with the report-level summaries (and the raw data),
