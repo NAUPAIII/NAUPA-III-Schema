@@ -17,6 +17,11 @@
     -->
 
     <xs:complexType name="RemittanceType">
+        <xs:annotation>
+            <xs:documentation>
+                Documentation.
+            </xs:documentation>
+        </xs:annotation>
         <xs:sequence>
             <xs:element name="Payment" minOccurs="0">
                 <xs:complexType>
@@ -29,7 +34,7 @@
                             </xs:annotation>
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
-                                    <!-- TODO: define length <xs:maxLength value="???"/> -->
+                                    <xs:maxLength value="50"/>
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
@@ -41,10 +46,7 @@
                             </xs:annotation>
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
-                                    <!-- TODO:  set maxLength -->
-                                    <!--
-                                    <xs:maxLength value="3" />
-                                    -->
+                                    <xs:maxLength value="40" />
                                     <xs:enumeration value="Check">
                                         <xs:annotation>
                                             <xs:documentation>Check</xs:documentation>
@@ -81,9 +83,6 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <!-- TODO:
-                Can there be more than one remitter in a report?  I don't think so, but need to confirm.
-            -->
             <xs:element name="Remitter">
                 <xs:complexType>
                     <xs:sequence>
@@ -124,7 +123,7 @@
             <!-- TODO:
                 Can there be more than one HolderParent in a report?
             -->
-            <xs:element name="HolderParent" type="HolderParentType" minOccurs="0">
+            <xs:element name="HolderParent" type="HolderParentType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>
                             <!-- TODO -->

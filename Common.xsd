@@ -40,9 +40,7 @@
     
     <xs:simpleType name="CompanyNameType">
         <xs:restriction base="xs:string">
-            <!-- Based on Avenu property owner names -->
-            <!-- TODO:  Should this be longer?-->
-            <xs:maxLength value="30"/>
+            <xs:maxLength value="100"/>
         </xs:restriction>
     </xs:simpleType>
     

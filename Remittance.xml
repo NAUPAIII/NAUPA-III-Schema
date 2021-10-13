@@ -4,7 +4,7 @@
             xmlns="http://www.unclaimed.org/NAUPA-3"
             version="0.1">
     <Payment>
-        <ConfirmationNumber>12345678</ConfirmationNumber>
+        <ConfirmationNumber>1234567890123456789012345678901234567890</ConfirmationNumber>
         <Type>ACH Debit</Type>
     </Payment>
     <Remitter>
