@@ -6,7 +6,8 @@
 
     <xs:include schemaLocation="Common.xsd" />
     <xs:include schemaLocation="Report.xsd" />
-    
+
+    <!-- TODO:  If HolderParent goes away, HolderIDType can become anonymous -->
     <xs:simpleType name="HolderIDType">
         <xs:annotation>
             <xs:documentation>
@@ -14,11 +15,12 @@
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-            <!-- TODO:  Is this sufficient? -->
-            <xs:pattern value="[0-9]{10}" />
+            <!-- TODO:  do any states need alphanumeric? -->
+            <xs:pattern value="[0-9]{15}" />
         </xs:restriction>
     </xs:simpleType>
-    
+
+    <!-- TODO:  If HolderParent goes away, NAICSCodeType can become anonymous -->
     <xs:simpleType name="NAICSCodeType">
         <xs:annotation>
             <xs:documentation>
@@ -110,19 +112,6 @@
     <xs:complexType name="HolderType">
         <xs:sequence>
             <xs:element name="CompanyName" type="CompanyNameType">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter the name of the company or institution for which you are reporting. Punctuation
-                        should never be used under any circumstances (periods, commas, apostrophes, etc.) If the
-                        name of the company starts with the word "the," place "the" at the end. For example: "The
-                        Smith Company" should read "Smith Company The". Do not abbreviate the first word of the
-                        company name, e.g., American vs. Amer. National vs. Natl. Also, do not use numeric values
-                        in the holder name field unless absolutely necessary. The word "first" should never be
-                        abbreviated as "1st." Exceptions can be made when a number is a part of a company logo or
-                        registered trademark such as A1 Inc or 84 Lumber.Company names containing initials should
-                        have spaces between them, e.g., J J Reynolds vs. JJ Reynolds.
-                    </xs:documentation>
-                </xs:annotation>
             </xs:element>
             <!-- TODO:
                 The spreadsheet implies that holders can be foreign, but we have a bunch of required information
@@ -135,28 +124,9 @@
                 <xs:element name="USCompanyInfo" type="USCompanyInfoType" />
                 <xs:element name="ForeignCompanyInfo" type="ForeignCompanyInfoType" />
             </xs:choice>
-            <!-- TODO:
-                Assuming multiple contacts allowed per holder parent, since NAUPA-II allowed two contacts for per holder.
-             -->
             <xs:element name="Contact" type="ContactType" maxOccurs="unbounded">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO -->
-                    </xs:documentation>
-                </xs:annotation>
             </xs:element>
-            <!-- TODO:
-                Assuming NAUPA-II TaxID becomes USCompanyInfo/FEIN.
-             -->
-            <xs:element name="TaxIDExtension">
-                <xs:annotation>
-                    <xs:documentation>
-                        If any other departments or branches of your organization file unclaimed property reports
-                        using the same tax ID number listed on your report, please contact the state to receive a
-                        FEIN Suffix Number. The suffix will be used to direct questions to the correct reporting
-                        department/branch. If your business files only one report, the default is "0001".
-                    </xs:documentation>
-                </xs:annotation>
+            <xs:element name="TaxIDExtension" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <!-- Based on Fast -->
@@ -186,12 +156,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <!-- TODO:
-                Defining an incorporated state with a state code for a holder and making it mandatory implies
-                that a holder company must be domestic.  Is that true?  If not, should IncorporatedState and
-                IncorporatedDate be optional?
-             -->
-            <xs:element name="IncorporatedState" type="StateCodeType">
+            <xs:element name="IncorporatedState" type="StateCodeType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
                         This field should contain the two-character postal abbreviation of the state in which
@@ -200,7 +165,7 @@
                 </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="IncorporatedDate" type="DateType">
+            <xs:element name="IncorporatedDate" type="DateType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
                         This field should contain the date on which the company was incorporated or licensed to
@@ -258,7 +223,7 @@
                 </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="HolderID" type="HolderIDType">
+            <xs:element name="HolderID" type="HolderIDType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
                         This field should contain the state specific holder ID.

@@ -120,9 +120,7 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <!-- TODO:
-                Can there be more than one HolderParent in a report?
-            -->
+            <!-- TODO:  Consider removing HolderParent -->
             <xs:element name="HolderParent" type="HolderParentType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>
@@ -137,50 +135,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <!-- TODO:
-                If a report-level summary does not agree with the report data, should the remittance be rejected?  If
-                not, is the remittance-level summary really of any use?  This was discussed in one of the general
-                committee meetings, but no conclusion was reached.
-                
-                If we do keep this, see TODOs on SummaryType.
-            -->
-            <xs:element name="Summary">
-                <xs:complexType>
-                    <xs:annotation>
-                        <xs:documentation>
-                            Summary information for a an entire remittance.  Includes an aggregation of all numbers
-                            from each report summary, plus the date that the report was generated and the number of
-                            reports within the remittance.
-                        </xs:documentation>
-                    </xs:annotation>
-                    <xs:complexContent>
-                        <xs:extension base="ReportSummaryType">
-                            <xs:sequence>
-                                <xs:element name="NumberOfReports" minOccurs="0">
-                                    <xs:annotation>
-                                        <xs:documentation>
-                                            This field should contain the total number of ALL Reports included in this NAUPA file.
-                                            The number of property records is a X-digit field. The quantity recorded is always a
-                                            whole number, i.e., no decimal positions.
-                                        </xs:documentation>
-                                    </xs:annotation>
-                                    <xs:simpleType>
-                                        <xs:restriction base="xs:integer">
-                                            <!-- TODO:  review this -->
-                                            <xs:totalDigits value="12"/>
-                                        </xs:restriction>
-                                    </xs:simpleType>
-                                </xs:element>
-                            </xs:sequence>
-                        </xs:extension>
-                    </xs:complexContent>
-                </xs:complexType>
-            </xs:element>
-            <!-- TODO:
-                Made this optional since it is possible that the XML could be generated without any
-                special-purpose software.
-            -->
-            <xs:element name="SoftwareInformation" minOccurs="0">
+            <xs:element name="SoftwareInformation">
                 <xs:complexType>
                     <xs:annotation>
                         <xs:documentation>
@@ -196,21 +151,17 @@
                             </xs:annotation>
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
-                                    <!-- TODO:  Do we need more?-->
-                                    <xs:maxLength value="20" />
+                                    <xs:maxLength value="50" />
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
-                        <xs:element name="Developer" type="CompanyNameType">
+                        <xs:element name="SoftwareCompany" type="CompanyNameType">
                             <xs:annotation>
                                 <xs:documentation>
                                     The name of the company that developed the software that generated this report.
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
-                        <!-- TODO:
-                            Is a single contact sufficient here?
-                        -->
                         <xs:element name="Contact" type="ContactType">
                             <xs:annotation>
                                 <xs:documentation>
