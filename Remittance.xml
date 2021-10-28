@@ -637,19 +637,9 @@
             <NegativeReport>X</NegativeReport>
         </Report>
     </Holder>
-    <Summary>
-        <DatePrepared>05-11-2020</DatePrepared>
-        <NumberOfProperties>1</NumberOfProperties>
-        <TotalAmountReported>100.00</TotalAmountReported>
-        <TotalAdjustments>0.00</TotalAdjustments>
-        <TotalAmountRemitted>100.00</TotalAmountRemitted>
-        <TotalSharesReported>1234.1234</TotalSharesReported>
-        <TotalSharesRemitted>1234.1234</TotalSharesRemitted>
-        <NumberOfReports>1</NumberOfReports>
-    </Summary>
     <SoftwareInformation>
         <Version>0.1</Version>
-        <Developer>The Software Application Folks</Developer>
+        <SoftwareCompany>The Software Application Folks</SoftwareCompany>
         <Contact>
             <Type>Software</Type>
             <USAddress>

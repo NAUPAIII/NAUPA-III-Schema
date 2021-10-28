@@ -16,7 +16,7 @@
         </xs:annotation>
         <xs:restriction base="xs:string">
             <!-- TODO:  do any states need alphanumeric? -->
-            <xs:pattern value="[0-9]{15}" />
+            <xs:pattern value="[0-9]{1,15}" />
         </xs:restriction>
     </xs:simpleType>
 
