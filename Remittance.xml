@@ -3,6 +3,23 @@
             xsi:schemaLocation="http://www.unclaimed.org/NAUPA-3 Remittance.xsd"
             xmlns="http://www.unclaimed.org/NAUPA-3"
             version="0.1">
+    <SoftwareInformation>
+        <Version>0.1</Version>
+        <SoftwareCompany>The Software Application Folks</SoftwareCompany>
+        <Contact>
+            <Type>Software</Type>
+            <USAddress>
+                <Address1>1234 Kelmar Avenu</Address1>
+                <City>Boulder</City>
+                <StateCode>CO</StateCode>
+                <ZIPCode>80302-1234</ZIPCode>
+            </USAddress>
+            <TelephoneNumber>
+                <USTelephoneNumber>3035551111</USTelephoneNumber>
+            </TelephoneNumber>
+            <EMailAddress>support@softwareapp.com</EMailAddress>
+        </Contact>
+    </SoftwareInformation>
     <Payment>
         <ConfirmationNumber>1234567890123456789012345678901234567890</ConfirmationNumber>
         <Type>ACH Debit</Type>
@@ -13,7 +30,7 @@
             <FEIN>999999999</FEIN>
             <USAddress>
                 <Address1>1234 MAIN ST</Address1>
-                <Address2>SUITE 400</Address2>                  
+                <Address2>SUITE 400</Address2>
                 <Address3>MAILSTOP 5</Address3>
                 <City>BOULDER</City>
                 <StateCode>CO</StateCode>
@@ -25,83 +42,51 @@
         </TelephoneNumber>
         <EMailAddress>TEST@TESTBANK.COM</EMailAddress>
     </Remitter>
-    <HolderParent>
-        <CompanyName>HSBC Bank</CompanyName>
-        <ForeignCompanyInfo>
-            <ForeignTaxID>999999999</ForeignTaxID>
-            <ForeignAddress>
-                <Address1>8 Canada Square</Address1> 
-                <City>London</City>
-                <ForeignPostalCode>E14 5HQ</ForeignPostalCode>
-                <CountryCode>GBR</CountryCode>
-            </ForeignAddress>
-        </ForeignCompanyInfo>
-        <Contact>
-            <Type>Report</Type>
-            <Name>
-                <PersonName>
-                    <FirstName>JOHN</FirstName>
-                    <LastName>SMITH</LastName>
-                </PersonName>
-            </Name>
-            <USAddress>
-                <Address1>1234 MAIN ST</Address1>
-                <Address2>SUITE 200</Address2>
-                <Address3>MAILSTOP 7</Address3>
-                <City>BOULDER</City>
-                <StateCode>CO</StateCode>
-                <ZIPCode>80302-1234</ZIPCode>
-            </USAddress>
-            <TelephoneNumber>
-                <USTelephoneNumber>3035551234</USTelephoneNumber>
-                <TelephoneExtension>2801</TelephoneExtension>
-            </TelephoneNumber>
-            <EMailAddress>JOHN.SMITH@TESTBANK.COM</EMailAddress>
-        </Contact>
-        <IncorporatedState>CO</IncorporatedState>
-        <IncorporatedDate>10-10-1978</IncorporatedDate>
-        <NAICSCode>123456</NAICSCode>
-        <HolderParentID>1234567899</HolderParentID>
-    </HolderParent>
-    <Holder parentID="1234567890">
-        <CompanyName>TEST BANK</CompanyName>
+    <Holder>
+        <CompanyName>Test Bank</CompanyName>
         <USCompanyInfo>
             <FEIN>999999999</FEIN>
             <USAddress>
-                <Address1>1234 MAIN ST</Address1>
-                <Address2>SUITE 100</Address2>
-                <Address3>MAILSTOP 5</Address3>
-                <City>BOULDER</City>
+                <Address1>1234 Main St</Address1>
+                <Address2>Suite 100</Address2>
+                <Address3>Mailstop 5</Address3>
+                <City>Boulder</City>
                 <StateCode>CO</StateCode>
                 <ZIPCode>80302-1234</ZIPCode>
             </USAddress>
         </USCompanyInfo>
+        <ParentCompany>
+            <CompanyName>Test Parent</CompanyName>
+            <ForeignTaxID>999999999</ForeignTaxID>
+        </ParentCompany>
         <Contact>
             <Type>Report</Type>
             <Name>
                 <PersonName>
-                    <FirstName>FRED</FirstName>
-                    <LastName>SMITH</LastName>
+                    <FirstName>Fred</FirstName>
+                    <LastName>Smith</LastName>
                 </PersonName>
             </Name>
             <USAddress>
-                <Address1>1234 MAIN ST</Address1>
-                <Address2>SUITE 200</Address2>
-                <Address3>MAILSTOP 8</Address3>
-                <City>BOULDER</City>
+                <Address1>1234 Main St</Address1>
+                <Address2>Suite 100</Address2>
+                <Address3>Mailstop 5</Address3>
+                <City>Boulder</City>
                 <StateCode>CO</StateCode>
                 <ZIPCode>80302-1234</ZIPCode>
             </USAddress>
             <TelephoneNumber>
                 <USTelephoneNumber>3035551235</USTelephoneNumber>
             </TelephoneNumber>
-            <EMailAddress>FRED.SMITH@TESTBANK.COM</EMailAddress>
+            <EMailAddress>fred.smith@testbank.com</EMailAddress>
         </Contact>
-        <TaxIDExtension>1</TaxIDExtension>
-        <DBAName>BOULDER TEST BANK</DBAName>
-        <IncorporatedState>CO</IncorporatedState>
-        <IncorporatedDate>12-24-1975</IncorporatedDate>
         <NAICSCode>123456</NAICSCode>
+        <TaxIDExtension>1</TaxIDExtension>
+        <DBAName>Boulder Test Bank</DBAName>
+        <Incorporated>
+            <State>CO</State>
+            <Date>12-24-1975</Date>
+        </Incorporated>
         <SalesAmount>1000000</SalesAmount>
         <NumberOfEmployees>75</NumberOfEmployees>
         <AssetsAmount>2000000</AssetsAmount>
@@ -135,11 +120,11 @@
                 <EMailAddress>JOHN.SMITH@TESTBANK.COM</EMailAddress>
             </Contact>
             <Property>
-                <AccountNumber>1234567890</AccountNumber>
                 <TypeCode>AC001 - Checking Accounts</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <AccountNumber>1234567890</AccountNumber>
                 <DueDiligence>
                     <Date1>09-01-2019</Date1>
                     <Date2>09-02-2019</Date2>
@@ -293,11 +278,11 @@
                 </Cash>
             </Property>
             <Property>
-                <AccountNumber>123-4567-001</AccountNumber>
                 <TypeCode>SC002 - Interest on Bonds</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <AccountNumber>123-4567-001</AccountNumber>
                 <Taxable>X</Taxable>
                 <Owner>
                     <PrimaryContactInformation>
@@ -343,11 +328,11 @@
                 </Bond>
             </Property>
             <Property>
-                <AccountNumber>1234567890</AccountNumber>
                 <TypeCode>SC006 - Shares of Equities</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <AccountNumber>1234567890</AccountNumber>
                 <Taxable>X</Taxable>
                 <Owner>
                     <PrimaryContactInformation>
@@ -433,11 +418,11 @@
                 </Security>
             </Property>
             <Property>
-                <AccountNumber>1234567890</AccountNumber>
                 <TypeCode>SD001 - SD Box Contents</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <AccountNumber>1234567890</AccountNumber>
                 <Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
@@ -509,11 +494,11 @@
                 </Safekeeping>
             </Property>
             <Property>
-                <AccountNumber>1234567890</AccountNumber>
                 <TypeCode>MI001 - Working Interest Payment</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <AccountNumber>1234567890</AccountNumber>
                 <Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
@@ -569,11 +554,11 @@
                 </MineralInterests>
             </Property>
             <Property>
-                <AccountNumber>1234567890</AccountNumber>
                 <TypeCode>VC002 - Virtual Currency Liquidated</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <AccountNumber>1234567890</AccountNumber>
                 <Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
@@ -625,33 +610,225 @@
                 <Type>Audit Fees</Type>
                 <Amount>-125.00</Amount>
             </Adjustment>
-            <ReportSummary>
-                <DatePrepared>04-15-2020</DatePrepared>
-                <NumberOfProperties>1</NumberOfProperties>
-                <TotalAmountReported>100.00</TotalAmountReported>
-                <TotalAdjustments>0.00</TotalAdjustments>
-                <TotalAmountRemitted>100.00</TotalAmountRemitted>
-                <TotalSharesReported>1234.1234</TotalSharesReported>
-                <TotalSharesRemitted>1234.1234</TotalSharesRemitted>
-            </ReportSummary>
-            <NegativeReport>X</NegativeReport>
         </Report>
     </Holder>
-    <SoftwareInformation>
-        <Version>0.1</Version>
-        <SoftwareCompany>The Software Application Folks</SoftwareCompany>
-        <Contact>
-            <Type>Software</Type>
+    <Holder>
+        <CompanyName>Test Company</CompanyName>
+        <USCompanyInfo>
+            <FEIN>888888888</FEIN>
             <USAddress>
-                <Address1>1234 Kelmar Avenu</Address1>
+                <Address1>1235 Main St</Address1>
+                <City>Boulder</City>
+                <StateCode>CO</StateCode>
+                <ZIPCode>80302-1234</ZIPCode>
+            </USAddress>
+        </USCompanyInfo>
+        <Contact>
+            <Type>Report</Type>
+            <Name>
+                <PersonName>
+                    <FirstName>Joe</FirstName>
+                    <LastName>Johnson</LastName>
+                </PersonName>
+            </Name>
+            <USAddress>
+                <Address1>1234 Pearl St</Address1>
                 <City>Boulder</City>
                 <StateCode>CO</StateCode>
                 <ZIPCode>80302-1234</ZIPCode>
             </USAddress>
             <TelephoneNumber>
-                <USTelephoneNumber>3035551111</USTelephoneNumber>
+                <USTelephoneNumber>3035551235</USTelephoneNumber>
             </TelephoneNumber>
-            <EMailAddress>support@softwareapp.com</EMailAddress>
+            <EMailAddress>joe.johnson@testcompany.com</EMailAddress>
         </Contact>
-    </SoftwareInformation>
+        <NAICSCode>123456</NAICSCode>
+        <Report>
+            <Year>2020</Year>
+            <ProductionReport>X</ProductionReport>
+            <Type>Remittance</Type>
+            <Contact>
+                <Type>Report</Type>
+                <Name>
+                    <PersonName>
+                        <FirstName>Joe</FirstName>
+                        <LastName>Johnson</LastName>
+                    </PersonName>
+                </Name>
+                <USAddress>
+                    <Address1>1234 Pearl St</Address1>
+                    <City>Boulder</City>
+                    <StateCode>CO</StateCode>
+                    <ZIPCode>80302-1234</ZIPCode>
+                </USAddress>
+                <TelephoneNumber>
+                    <USTelephoneNumber>3035551235</USTelephoneNumber>
+                </TelephoneNumber>
+                <EMailAddress>joe.johnson@testcompany.com</EMailAddress>
+            </Contact>
+            <Property>
+                <TypeCode>AC001 - Checking Accounts</TypeCode>
+                <DormancyPeriod>12</DormancyPeriod>
+                <LastActivityDate>01-15-2015</LastActivityDate>
+                <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <AccountNumber>1234567890</AccountNumber>
+                <DueDiligence>
+                    <Date1>09-01-2019</Date1>
+                    <Date2>09-02-2019</Date2>
+                </DueDiligence>
+                <ReturnedByPostOffice>
+                    <MailDate>09-01-2019</MailDate>
+                    <ReturnCount>1</ReturnCount>
+                    <DateAccountCodedRPO>09-01-2019</DateAccountCodedRPO>
+                </ReturnedByPostOffice>
+                <PayableOrDistributableDate>01-15-2015</PayableOrDistributableDate>
+                <Transaction>
+                    <StartDate>01-15-2015</StartDate>
+                    <EndDate>01-15-2015</EndDate>
+                </Transaction>
+                <NonRemitIndicator>X</NonRemitIndicator>
+                <Taxable>X</Taxable>
+                <Ten99IssuedDate>09-01-2019</Ten99IssuedDate>
+                <Description>This is a property description.</Description>
+                <LocationIdentifier>Office #2-201</LocationIdentifier>
+                <LocationAddress>
+                    <USAddress>
+                        <Address1>1234 MAIN ST</Address1>
+                        <Address2>SUITE 100</Address2>
+                        <Address3>MAILSTOP 5</Address3>
+                        <City>BOULDER</City>
+                        <StateCode>CO</StateCode>
+                        <ZIPCode>80302-1234</ZIPCode>
+                    </USAddress>
+                </LocationAddress>
+                <OFAC>
+                    <Description>Description goes here...</Description>
+                    <DateOfBlocking>02-15-2015</DateOfBlocking>
+                    <LegalAuthority>31 C.F.R. Part 515</LegalAuthority>
+                    <SanctionsTarget>Cuba</SanctionsTarget>
+                    <OwnerType>Non-U.S. Bank</OwnerType>
+                </OFAC>
+                <Owner>
+                    <PrimaryContactInformation>
+                        <Type>Owner</Type>
+                        <Name>
+                            <PersonName>
+                                <!--
+                                <Prefix>Mr.</Prefix>
+                                -->
+                                <Title>Dr.</Title>
+                                <FirstName>Josef</FirstName>
+                                <MiddleName>Hermann</MiddleName>
+                                <LastName>Besitzer</LastName>
+                                <Suffix>III</Suffix>
+                            </PersonName>
+                        </Name>
+                        <USAddress>
+                            <Address1>234 Broadway</Address1>
+                            <Address2>Suite 300</Address2>
+                            <Address3>Office L20</Address3>
+                            <City>Boulder</City>
+                            <StateCode>CO</StateCode>
+                            <ZIPCode>80304</ZIPCode>
+                        </USAddress>
+                        <TelephoneNumber>
+                            <USTelephoneNumber>3035551234</USTelephoneNumber>
+                            <TelephoneExtension>2801</TelephoneExtension>
+                        </TelephoneNumber>
+                        <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
+                    </PrimaryContactInformation>
+                    <AlternateAddress>
+                        <Type>Seasonal</Type>
+                        <ForeignAddress>
+                            <Address1>Bahrenfelder Chaussee 55</Address1>
+                            <City>Hamburg</City>
+                            <ForeignPostalCode>22761</ForeignPostalCode>
+                            <CountryCode>DEU</CountryCode>
+                        </ForeignAddress>
+                    </AlternateAddress>
+                    <AlternateTelephoneNumber>
+                        <Type>Home</Type>
+                        <ForeignTelephoneNumber>498004353666</ForeignTelephoneNumber>
+                    </AlternateTelephoneNumber>
+                    <AlternateEMailAddress>jbesitzer999@somecompay.com</AlternateEMailAddress>
+                    <IdentityInformation>
+                        <USTaxID>
+                            <Type>SSN</Type>
+                            <Number>555551234</Number>
+                        </USTaxID>
+                        <!--
+                        <AlienID>999999999</AlienID>
+                        -->
+                        <DriversLicense>
+                            <State>CO</State>
+                            <Identifier>24-457-1234</Identifier>
+                        </DriversLicense>
+                    </IdentityInformation>
+                    <Description>Snooty</Description>
+                    <DateOfBirth>06-08-1954</DateOfBirth>
+                    <RelationshipCode>TBD</RelationshipCode>
+                    <TypeCode>Aggregate</TypeCode>
+                    <CompleteAccountRegistrationName>ROBERT JAMES ANDERSON</CompleteAccountRegistrationName>
+                    <DateOfTrust>01-01-2000</DateOfTrust>
+                    <MinorDateOfMajority>01-01-2010</MinorDateOfMajority>
+                    <DeceasedOwnerInformation>
+                        <DateOfDeathSource>Claim</DateOfDeathSource>
+                        <DateOfDeath>01-01-2010</DateOfDeath>
+                        <DateOfDeathIdentifiedDate>01-10-2010</DateOfDeathIdentifiedDate>
+                    </DeceasedOwnerInformation>
+                    <Beneficiary>
+                        <Type>Primary</Type>
+                        <ContactInformation>
+                            <Type>Beneficiary</Type>
+                            <Name>
+                                <PersonName>
+                                    <FirstName>Helga</FirstName>
+                                    <LastName>Besitzer</LastName>
+                                </PersonName>
+                            </Name>
+                            <USAddress>
+                                <Address1>234 BROADWAY</Address1>
+                                <Address2>SUITE 300</Address2>
+                                <Address3>Office L20</Address3>
+                                <City>BOULDER</City>
+                                <StateCode>CO</StateCode>
+                                <ZIPCode>80304</ZIPCode>
+                            </USAddress>
+                            <TelephoneNumber>
+                                <USTelephoneNumber>3035551234</USTelephoneNumber>
+                            </TelephoneNumber>
+                            <EMailAddress>rjanderson@somecompany.com</EMailAddress>
+                        </ContactInformation>
+                        <Spouse>X</Spouse>
+                        <SSN>111111111</SSN>
+                        <DateOfBirth>04-27-1975</DateOfBirth>
+                        <Percentage>100.00</Percentage>
+                    </Beneficiary>
+                </Owner>
+                <Adjustment>
+                    <Type>Income Tax Withheld</Type>
+                    <Amount>-123.45</Amount>
+                </Adjustment>
+                <Adjustment>
+                    <Type>Service Charge</Type>
+                    <Amount>-25.00</Amount>
+                </Adjustment>
+                <Cash>
+                    <ReportedAmount>543.21</ReportedAmount>
+                    <RemittedAmount>394.76</RemittedAmount>
+                    <Interest>
+                        <Rate>0.50</Rate>
+                        <PaidThroughDate>12-31-2020</PaidThroughDate>
+                    </Interest>
+                    <CheckNumber>1234567</CheckNumber>
+                    <ItemIssueState>CO</ItemIssueState>
+                </Cash>
+            </Property>
+            <Adjustment>
+                <Type>Audit Fees</Type>
+                <Amount>-125.00</Amount>
+            </Adjustment>
+            <NegativeReport>X</NegativeReport>
+        </Report>
+    </Holder>
 </Remittance>

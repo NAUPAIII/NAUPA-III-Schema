@@ -7,332 +7,58 @@
     <xs:include schemaLocation="Common.xsd" />
     <xs:include schemaLocation="Property.xsd" />
     
-    <!--
-    Named simple types section _NSTS
-    -->
-    
-    
-    <!--
-    Complex types section _CTS
-    -->
-    
-        
-    <!-- TODO:
-        Is the report summary really a good idea?  It basically amounts to a sanity check on the rest of the data,
-        which would seem to be of marginal if any value.  If the numbers herein disagree with those derived from the
-        report data, should the report be rejected?  If not, what purpose does this data serve?  If so, I suspect
-        many users will be unhappy on both the sending and receiving side.
-    -->
-    <xs:complexType name="ReportSummaryType">
-        <xs:annotation>
-            <xs:documentation>
-                Summary information for an individual holder report.  This parallels the NAUPA-II report summary,
-                which could have only one holder report within it.
-            </xs:documentation>
-        </xs:annotation>
-        <!-- TODO:
-            If we do keep the summaries, these descriptions from the spreadsheet don't sound right for the report-level
-            summary.
-        -->
-        <xs:sequence>
-                    <xs:element name="DatePrepared" type="DateType">
-                        <xs:annotation>
-                            <xs:documentation>
-                                <!-- TODO:
-                                    How would these dates actually be recorded?  If they are to be recorded
-                                    automatically when the file is saved/generated, then report and remittance dates
-                                    would be the same.  If they must be set manually, it seems very likely that they
-                                    would be inaccurate.
-                                    
-                                    Do we really need this at the report level, or would the remittance-level
-                                    DatePrepared suffice?
-                                -->
-                                Report:  This field should contain the date this NAUPA file was created. The date should be
-                                recorded in MM-DD-YYYY format.
-                                    
-                                Remittance: This field should contain the date the NAUPA file was remitted to the state.
-                                The date should be recorded in MM-DD-YYYY format.
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-            <xs:element name="NumberOfProperties">
-                <xs:annotation>
-                    <xs:documentation>
-                    <!-- TODO:  review -->
-                        Report:  This field should contain the total number of PROPERTY records for ALL reports
-                        included in this NAUPA file in the ReportNumberOfProperties field.  The number of property
-                        records is a X-digit field.
-                            
-                        Remittance:  This field should be the grand total sum of properties in the
-                        RemittanceNumberOfProperties field for each PROPERTY record for ALL reports included in
-                        this NAUPA file. The number of shares is a X-digit field with four decimal places assumed.
-                    </xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                    <!-- TODO:
-                        Discuss this restriction, which was carried over from NAUPA-II.
-                    -->
-                    <xs:restriction base="xs:integer">
-                        <xs:totalDigits value="6" />
-                    </xs:restriction>
-                  </xs:simpleType>
-            </xs:element>
-            <xs:element name="TotalAmountReported">
-                <xs:annotation>
-                    <xs:documentation>
-                        Report:  This field should be the total sum of the amounts in the CASHREPORTEDAMOUNT field
-                        for each PROPERTY record for ALL reports included in this NAUPA file. The amount reported
-                        is a X-digit field.
-                            
-                        Remittance:  This field should be the grand total sum of the amounts in the
-                        CASHREPORTEDAMOUNT field for each PROPERTY record for ALL reports included in this NAUPA
-                        file. The amount reported is a X-digit field with two decimal places assumed.
-                    </xs:documentation>
-                </xs:annotation>
-                <!-- TODO:  Use CurrencyType? -->
-                <xs:simpleType>
-                    <xs:restriction base="xs:decimal">
-                         <!-- TODO:  review this -->
-                         <xs:totalDigits value="12"/>
-                          <xs:fractionDigits value="2" />
-                    </xs:restriction>
-                  </xs:simpleType>
-            </xs:element>
-            <xs:element name="TotalAdjustments">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO:  No descriptions in current version of spreadsheet. -->
-                    </xs:documentation>
-                </xs:annotation>
-                <!-- TODO:  Use CurrencyType? -->
-                <xs:simpleType>
-                    <xs:restriction base="xs:decimal">
-                         <!-- TODO:  review this -->
-                         <xs:totalDigits value="12"/>
-                          <xs:fractionDigits value="2" />
-                    </xs:restriction>
-                  </xs:simpleType>
-            </xs:element>
-            <xs:element name="TotalAmountRemitted">
-                <xs:annotation>
-                    <xs:documentation>
-                    <!-- TODO:  Review. -->
-                        Report:  This field should be the total sum of the amounts in the CASH REMITTED AMOUNT
-                        field for each PROPERTY record for ALL reports included in this NAUPA file. The amount
-                        remitted is a X-digit field with two decimal places.
-                            
-                        Remittance:This field should be the total sum of the amounts in the CASH REMITTED field
-                        for each PROPERTY record for ALL reports included in this NAUPA file. The amount remitted
-                        is a X-digit field with two decimal places.
-                    </xs:documentation>
-                </xs:annotation>
-                <!-- TODO:  Use CurrencyType? -->
-                <xs:simpleType>
-                    <xs:restriction base="xs:decimal">
-                         <!-- TODO:  review this -->
-                         <xs:totalDigits value="12"/>
-                          <xs:fractionDigits value="2" />
-                    </xs:restriction>
-                  </xs:simpleType>
-            </xs:element>
-            <xs:element name="TotalSharesReported">
-                <xs:annotation>
-                    <xs:documentation>
-                    <!-- TODO:  Review. -->
-                        Report:  This field should be the total sum of amounts in the REPORTEDSHARES field for
-                        each PROPERTY record for ALL reports included in this NAUPA file. The number of shares
-                        is a X-digit field with four decimal places assumed.
-                            
-                        Remittance:  This field should be the total sum of amounts in the REPORTEDSHARES field
-                        for each PROPERTY record for ALL reports included in this NAUPA file. The number of shares
-                        is a X-digit field with four decimal places assumed.
-                    </xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                    <xs:restriction base="xs:decimal">
-                         <!-- TODO:  review this -->
-                         <xs:totalDigits value="12"/>
-                        <!-- TODO:  discuss diffence vs. NumberOfShares, which specified 3 fraction digits. -->
-                          <xs:fractionDigits value="4" />
-                    </xs:restriction>
-                  </xs:simpleType>
-            </xs:element>
-            <xs:element name="TotalSharesRemitted">
-                <xs:annotation>
-                    <xs:documentation>
-                        Report:  This field should be the total sum of amounts in the REMITTEDSHARES field for
-                        each PROPERTY record for ALL reports included in this NAUPA file. The number of shares
-                        is a X-digit field with four decimal places assumed.
-                            
-                        Remittance:  This field should be the total sum of amounts in the REMITTEDSHARES field
-                        for each PROPERTY record for ALL reports included in this NAUPA file. The number of shares
-                        is a X-digit field with four decimal places.
-                    </xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                    <xs:restriction base="xs:decimal">
-                         <!-- TODO:  review this -->
-                         <xs:totalDigits value="12"/>
-                          <xs:fractionDigits value="4" />
-                    </xs:restriction>
-                  </xs:simpleType>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-    
     <xs:complexType name="ReportType">
         <xs:sequence>
             <xs:element name="Year">
                 <xs:simpleType>
-                    <xs:annotation>
-                        <xs:documentation>
-                            Four-digit year.
-                        </xs:documentation>
-                    </xs:annotation>
                     <xs:restriction base="xs:string">
                         <xs:pattern value="[0-9]{4}" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="AsOfDate" type="DateType">
-                <xs:annotation>
-                    <xs:documentation>
-                        Bankruptcy date, audit date, reporting period ending, etc.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="AsOfDate" type="DateType" minOccurs="0" />
             <!-- TODO:
                 If this is just a summary indicator (i.e. True if any Property elements have it set to True),
                 we should consider removing it.
             -->
-            <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO: redo description in terms of IndicatorType -->
-                        Report contains information subject to HIPAA regulations.  Field should contain YES or NO.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="ProductionReport" type="IndicatorType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO: redo description in terms of IndicatorType -->
-                        Indicate if this is a production report, enter YES for production, NO for test data.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0" />
+            <xs:element name="ProductionReport" type="IndicatorType" minOccurs="0" />
             <xs:element name="Type">
                 <xs:simpleType>
-                    <xs:annotation>
-                        <xs:documentation>
-                            Types of reports.
-                        </xs:documentation>
-                    </xs:annotation>
                     <xs:restriction base="xs:string">
-                        <xs:enumeration value="Advertising">
-                            <xs:annotation>
-                                <xs:documentation>Advertising</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="Remittance">
-                            <xs:annotation>
-                                <xs:documentation>Remittance</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="Test">
-                            <xs:annotation>
-                                <xs:documentation>Test</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
+                        <!-- TODO: define
+                        <xs:maxLength value="?" />
+                        -->
+                        <xs:enumeration value="Advertising" />
+                        <xs:enumeration value="Remittance" />
+                        <xs:enumeration value="Test" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="Contact" type="ContactType" maxOccurs="unbounded">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!--  TODO: description -->
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="Property" type="PropertyType" maxOccurs="unbounded">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!--  TODO: description -->
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="Contact" type="ContactType" maxOccurs="unbounded" />
+            <xs:element name="Property" type="PropertyType" maxOccurs="unbounded" />
             <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="Type">
                             <xs:simpleType>
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        <!-- TODO:  description -->
-                                    </xs:documentation>
-                                </xs:annotation>
                                 <xs:restriction base="xs:string">
-                                    <xs:enumeration value="Audit Fees">
-                                        <xs:annotation>
-                                            <xs:documentation>Audit Fees</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Estimate or Prepayment">
-                                        <xs:annotation>
-                                            <xs:documentation>Estimate or Prepayment</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Out of Proof Cash">
-                                        <xs:annotation>
-                                            <xs:documentation>Out of Proof Cash</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Out of Proof Shares">
-                                        <xs:annotation>
-                                            <xs:documentation>Out of Proof Shares</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
+                                    <!-- TODO: define
+                                    <xs:maxLength value="?" />
+                                    -->
+                                    <xs:enumeration value="Audit Fees" />
+                                    <xs:enumeration value="Estimate or Prepayment" />
+                                    <xs:enumeration value="Out of Proof Cash" />
+                                    <xs:enumeration value="Out of Proof Shares" />
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
-                        <xs:element name="Amount" type="CurrencyType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Dollar amount of the adjustment resulting in net amount reported.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
+                        <xs:element name="Amount" type="CurrencyType" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <!-- TODO:
-                If the remittance-level summary does not agree with the report-level summaries (and the raw data),
-                should the remittance be rejected?  If not, is the remittance-level summary really of any use?
-                This was discussed in one of the general committee meetings, but no conclusion was reached.
-                
-                If we do keep this, see TODOs on ReportSummaryType.
-            -->
-            <xs:element name="ReportSummary" type="ReportSummaryType">
-                <xs:annotation>
-                    <xs:documentation>
-                            Summary for this holder report.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="NegativeReport" type="IndicatorType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Presence indicates a negative report.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="NegativeReport" type="IndicatorType" minOccurs="0" />
         </xs:sequence>
     </xs:complexType>
-    
-    <!--
-    Enumerated types section _ETS
-    -->
-    
-    
     
 </xs:schema>

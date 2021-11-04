@@ -6,204 +6,72 @@
 
     <xs:include schemaLocation="Common.xsd" />
     <xs:include schemaLocation="Holder.xsd" />
-    
-    <!-- TODO:  Global Issues
-    
-        1) Dates
-           1a) Should we base date formats on XML schema date format, or the more familiar NAUPA-II format?
-           1b) Are there any dates that need to be date-times?
-        2) Domestic vs. Foreign information, e.g. addresses, telephone numbers, tax IDs, drivers licenses, etc.  Some
-           places in the spreadsheet assume domestic information, but should they?
-    -->
-
-    <xs:complexType name="RemittanceType">
-        <xs:annotation>
-            <xs:documentation>
-                Documentation.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:sequence>
-            <xs:element name="Payment" minOccurs="0">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="ConfirmationNumber">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    This field should contain Check #, Wire ID#, any identifying number for the remittance.
-                                </xs:documentation>
-                            </xs:annotation>
-                            <xs:simpleType>
-                                <xs:restriction base="xs:string">
-                                    <xs:maxLength value="50"/>
-                                </xs:restriction>
-                            </xs:simpleType>
-                        </xs:element>
-                        <xs:element name="Type" minOccurs="0">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    The type of payment used for this remittance.
-                                </xs:documentation>
-                            </xs:annotation>
-                            <xs:simpleType>
-                                <xs:restriction base="xs:string">
-                                    <xs:maxLength value="40" />
-                                    <xs:enumeration value="Check">
-                                        <xs:annotation>
-                                            <xs:documentation>Check</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Wire">
-                                        <xs:annotation>
-                                            <xs:documentation>Wire</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="ACH Credit">
-                                        <xs:annotation>
-                                            <xs:documentation>ACH Credit</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="ACH Debit">
-                                        <xs:annotation>
-                                            <xs:documentation>ACH Debit</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Internal Transfer">
-                                        <xs:annotation>
-                                            <xs:documentation>Internal Transfer</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="ECheck">
-                                        <xs:annotation>
-                                            <xs:documentation>ECheck</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                </xs:restriction>
-                            </xs:simpleType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="Remitter">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="CompanyName" type="CompanyNameType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    This field should contain the name of the company sending in the report or group of
-                                    reports on behalf of holder.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                        <xs:choice>
-                            <xs:annotation>
-                                <xs:documentation>
-                                    This field should contain the tax ID and mailing address for the remitter company.
-                                </xs:documentation>
-                            </xs:annotation>
-                            <xs:element name="USCompanyInfo" type="USCompanyInfoType" />
-                            <xs:element name="ForeignCompanyInfo" type="ForeignCompanyInfoType" />
-                        </xs:choice>
-                        <xs:element name="TelephoneNumber" type="TelephoneNumberType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    This field should contain the contact telephone number of remitter.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                        <xs:element name="EMailAddress" type="EMailAddressType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    This field should contain the contact email of remitter.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <!-- TODO:  Consider removing HolderParent -->
-            <xs:element name="HolderParent" type="HolderParentType" minOccurs="0" maxOccurs="unbounded">
-                <xs:annotation>
-                    <xs:documentation>
-                            <!-- TODO -->
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="Holder" type="HolderType" maxOccurs="unbounded">
-                <xs:annotation>
-                    <xs:documentation>
-                         <!-- TODO -->
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="SoftwareInformation">
-                <xs:complexType>
-                    <xs:annotation>
-                        <xs:documentation>
-                            Information about the software that generated this report.
-                        </xs:documentation>
-                    </xs:annotation>
-                    <xs:sequence>
-                        <xs:element name="Version">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    The version of the software that generated this report.
-                                </xs:documentation>
-                            </xs:annotation>
-                            <xs:simpleType>
-                                <xs:restriction base="xs:string">
-                                    <xs:maxLength value="50" />
-                                </xs:restriction>
-                            </xs:simpleType>
-                        </xs:element>
-                        <xs:element name="SoftwareCompany" type="CompanyNameType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    The name of the company that developed the software that generated this report.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                        <xs:element name="Contact" type="ContactType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Contact information for a person within the company that developed the software
-                                    that generated this report.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-        </xs:sequence>
-        
-        <xs:attribute name="version" type="xs:string" use="required" fixed="0.1" >
-            <xs:annotation>
-                <xs:documentation>Remittance version</xs:documentation>
-            </xs:annotation>
-        </xs:attribute>
-    </xs:complexType>
 
     <!--
     Root element definition
     -->
 
-    <xs:element name="Remittance" type="RemittanceType">
-        <xs:annotation>
-            <xs:documentation>
-                A complete unclaimed property remittance document.
-            </xs:documentation>
-        </xs:annotation>
-        <!--
-            NOTE:  Although the Microsoft and Eclipse XML parsers accept this reference constraint, they do not appear to
-            enforce it on the XML document.
-        -->
-        <xs:key name="holderParentKey">
-            <xs:selector xpath="HolderParent" />
-            <xs:field xpath="HolderParentID" />
-        </xs:key>
-        <xs:keyref name="holderParentKeyRef" refer="holderParentKey">
-            <xs:selector xpath="Holder" />
-            <xs:field xpath="@parentId" />
-        </xs:keyref>
+    <xs:element name="Remittance" >
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="SoftwareInformation">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Version">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="SoftwareCompany" type="CompanyNameType" />
+                            <xs:element name="Contact" type="ContactType" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Payment" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ConfirmationNumber">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Type" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="40" />
+                                        <xs:enumeration value="Check" />
+                                        <xs:enumeration value="Wire" />
+                                        <xs:enumeration value="ACH Credit" />
+                                        <xs:enumeration value="ACH Debit" />
+                                        <xs:enumeration value="Internal Transfer" />
+                                        <xs:enumeration value="ECheck" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Remitter">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="CompanyName" type="CompanyNameType" />
+                            <xs:choice>
+                                <xs:element name="USCompanyInfo" type="USCompanyInfoType" />
+                                <xs:element name="ForeignCompanyInfo" type="ForeignCompanyInfoType" />
+                            </xs:choice>
+                            <xs:element name="TelephoneNumber" type="TelephoneNumberType" />
+                            <xs:element name="EMailAddress" type="EMailAddressType" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Holder" type="HolderType" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="version" type="xs:string" use="required" fixed="0.1" />
+        </xs:complexType>
     </xs:element>
 
 </xs:schema>

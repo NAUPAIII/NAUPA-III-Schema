@@ -6,125 +6,32 @@
 
     <xs:include schemaLocation="Common.xsd" />
     <xs:include schemaLocation="Report.xsd" />
-
-    <!-- TODO:  If HolderParent goes away, HolderIDType can become anonymous -->
-    <xs:simpleType name="HolderIDType">
-        <xs:annotation>
-            <xs:documentation>
-                Used as an identifier for a holder or holder parent.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <!-- TODO:  do any states need alphanumeric? -->
-            <xs:pattern value="[0-9]{1,15}" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <!-- TODO:  If HolderParent goes away, NAICSCodeType can become anonymous -->
-    <xs:simpleType name="NAICSCodeType">
-        <xs:annotation>
-            <xs:documentation>
-                A 6-digit National American Industry Classification System (NAICS) code.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[1-9][1-9][0-9]{4}" />
-        </xs:restriction>
-    </xs:simpleType>
-    
-    <xs:complexType name="HolderParentType">
-        <xs:sequence>
-            <xs:element name="CompanyName" type="CompanyNameType">
-                <xs:annotation>
-                    <xs:documentation>
-                        Parent Company - Enter the name of the company or institution for which you are reporting.
-                        Punctuation should never be used under any circumstances (periods, commas, apostrophes,
-                        etc.) If the name of the company starts with the word "the," place "the" at the end.
-                        For example: "The Smith Company" should read "Smith Company The". Do not abbreviate the
-                        first word of the company name, e.g., American vs. Amer. National vs. Natl. Also, do not
-                        use numeric values in the holder name field unless absolutely necessary. The word "first"
-                        should never be abbreviated as "1st." Exceptions can be made when a number is a part of a
-                        company logo or registered trademark such as A1 Inc or 84 Lumber.Company names containing
-                        initials should have spaces between them, e.g., J J Reynolds vs. JJ Reynolds.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:choice>
-                <xs:annotation>
-                    <xs:documentation>
-                        Tax ID and mailing address for the property holder's parent company.
-                    </xs:documentation>
-                </xs:annotation>
-                <xs:element name="USCompanyInfo" type="USCompanyInfoType" />
-                <xs:element name="ForeignCompanyInfo" type="ForeignCompanyInfoType" />
-            </xs:choice>
-            <!-- TODO:
-                Assuming multiple contacts allowed per holder parent, since NAUPA-II allowed two contacts for per holder.
-             -->
-            <xs:element name="Contact" type="ContactType" maxOccurs="unbounded">
-                <xs:annotation>
-                    <xs:documentation>
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <!-- TODO:
-                Defining an incorporated state with a state code for a holder parent and making it mandatory implies
-                that a holder's parent company must be domestic.  Is that true?  If not, should IncorporatedState
-                and IncorporatedDate be optional?
-             -->
-            <xs:element name="IncorporatedState" type="StateCodeType">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the two-character postal abbreviation of the state in
-                        which the company is incorporated. Savings and loan associations, banks, and credit
-                        unions should enter the state in which they were chartered.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="IncorporatedDate" type="DateType">
-                <xs:annotation>
-                    <!-- TODO:  update this -->
-                    <xs:documentation>
-                        This field should contain the date on which the company was incorporated or licensed to
-                        do business. Savings and loan associations, banks, and credit unions should enter the
-                        date their organization was chartered.  Date should be entered as 4 digit year followed
-                        by 2 digit month and 2 digit day.  January 1, 2020 should be entered as 20200101.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="NAICSCode" type="NAICSCodeType">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the 6 digit Industry Type code.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="HolderParentID" type="HolderIDType">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the state specific holder ID.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
     
     <xs:complexType name="HolderType">
         <xs:sequence>
-            <xs:element name="CompanyName" type="CompanyNameType">
-            </xs:element>
-            <!-- TODO:
-                The spreadsheet implies that holders can be foreign, but we have a bunch of required information
-                that would not apply to a foreign holder.
-                
-                In NAUPA-II, the holder's city, county, and state are contained in the holder record.  In NAUPA-III,
-                this has been changed to be a full address, but that full address does not contain county information.
-             -->
+            <xs:element name="CompanyName" type="CompanyNameType" />
             <xs:choice>
                 <xs:element name="USCompanyInfo" type="USCompanyInfoType" />
                 <xs:element name="ForeignCompanyInfo" type="ForeignCompanyInfoType" />
             </xs:choice>
-            <xs:element name="Contact" type="ContactType" maxOccurs="unbounded">
+            <xs:element name="ParentCompany" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="CompanyName" type="CompanyNameType" />
+                        <xs:choice>
+                            <xs:element name="FEIN" type="USTaxIDType" />
+                            <xs:element name="ForeignTaxID" type="ForeignTaxIDType" />
+                        </xs:choice>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Contact" type="ContactType" maxOccurs="unbounded" />
+            <xs:element name="NAICSCode">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[1-9][1-9][0-9]{4}" />
+                    </xs:restriction>
+                </xs:simpleType>
             </xs:element>
             <xs:element name="TaxIDExtension" minOccurs="0">
                 <xs:simpleType>
@@ -134,20 +41,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <!-- TODO:
-                No equivalent to the NAUPA-II HOLDER-RPT-NUMBER appears in the spreadsheet.  Is this correct?  Is this
-                something that was just not needed and therefore dropped?
-             -->
-            <!-- TODO:
-                HOLDER-RPT-FORMAT was not needed/used in NAUPA-II, and therefore dropped in NAUPA-III, correct?
-             -->
-            <xs:element name="DBAName">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain DBAs, trade names, or other commonly used titles associated
-                        with the reporting holder.
-                    </xs:documentation>
-                </xs:annotation>
+            <xs:element name="DBAName" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <!-- TODO:  define maxLength
@@ -156,45 +50,17 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="IncorporatedState" type="StateCodeType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the two-character postal abbreviation of the state in which
-                        the company is incorporated. Savings and loan associations, banks, and credit unions
-                        should enter the state in which they were chartered.
-                </xs:documentation>
-                </xs:annotation>
+            <!-- NOTE:  Incorporated element had to be made optional to allow for foreign holders -->
+            <xs:element name="Incorporated" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="State" type="StateCodeType" />
+                        <xs:element name="Date" type="DateType" />
+                    </xs:sequence>
+                </xs:complexType>
             </xs:element>
-            <xs:element name="IncorporatedDate" type="DateType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the date on which the company was incorporated or licensed to
-                        do business. Savings and loan associations, banks, and credit unions should enter the
-                        date their organization was chartered. Date should be entered as 4 digit year followed
-                        by 2 digit month and 2 digit day.  January 1, 2020 should be entered as 20200101.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="NAICSCode" type="NAICSCodeType">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the 6 digit Industry Type code.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="SalesAmount" type="CurrencyType">
-                <xs:annotation>
-                    <xs:documentation>
-                         This field should contain the dollar value of sales from the most current year end totals.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="NumberOfEmployees">
-                <xs:annotation>
-                    <xs:documentation>
-                         This field should contain the number of employees from the most current year end totals.
-                    </xs:documentation>
-                </xs:annotation>
+            <xs:element name="SalesAmount" type="CurrencyType" minOccurs="0" />
+            <xs:element name="NumberOfEmployees" minOccurs="0">
                 <xs:simpleType>
                 <xs:restriction base="xs:integer">
                     <!-- TODO: review-->
@@ -202,20 +68,8 @@
                 </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="AssetsAmount" type="CurrencyType">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the dollar value of assets from the most current year end totals.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="NumberOfInsurancePolicies">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the number of insurance policies written from most current year-end
-                        totals.
-                    </xs:documentation>
-                </xs:annotation>
+            <xs:element name="AssetsAmount" type="CurrencyType" minOccurs="0" />
+            <xs:element name="NumberOfInsurancePolicies" minOccurs="0">
                 <xs:simpleType>
                 <xs:restriction base="xs:integer">
                     <!-- TODO: review-->
@@ -223,29 +77,15 @@
                 </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="HolderID" type="HolderIDType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the state specific holder ID.
-                    </xs:documentation>
-                </xs:annotation>
+            <xs:element name="HolderID" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{1,15}" />
+                    </xs:restriction>
+                </xs:simpleType>
             </xs:element>
-            <xs:element name="Report" type="ReportType" maxOccurs="unbounded">
-                <xs:annotation>
-                    <xs:documentation>
-                    <!-- TODO -->
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="Report" type="ReportType" />
         </xs:sequence>
-        <xs:attribute name="parentID" type="HolderIDType" use="optional">
-            <xs:annotation>
-                <xs:documentation>
-                    If the holder has a parent, the parentId attribute should be present and should match the parentId
-                    attribute of the HolderParent element.
-                </xs:documentation>
-            </xs:annotation>
-        </xs:attribute>
     </xs:complexType>
     
 </xs:schema>

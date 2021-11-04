@@ -13,22 +13,6 @@
     
     <xs:complexType name="PropertyType">
         <xs:sequence>
-            <xs:element name="AccountNumber">
-                <xs:annotation>
-                    <xs:documentation>
-                        Account number, policy number (incurance), owner number (minerals), box number (tangibles)
-                        or other unique identifier under which the holder identifies the owner--if there are
-                        multiple numbers used to identify the owner, include all such numbers. If additional space
-                        is needed, use Miscellaneous Description field.
-                    </xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <!-- Based on Avenu -->
-                        <xs:maxLength value="25" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
             <xs:element name="TypeCode">
                 <xs:simpleType>
                     <xs:annotation>
@@ -374,6 +358,22 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="AccountNumber">
+                <xs:annotation>
+                    <xs:documentation>
+                        Account number, policy number (incurance), owner number (minerals), box number (tangibles)
+                        or other unique identifier under which the holder identifies the owner--if there are
+                        multiple numbers used to identify the owner, include all such numbers. If additional space
+                        is needed, use Miscellaneous Description field.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- Based on Avenu -->
+                        <xs:maxLength value="25" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="DueDiligence" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -477,6 +477,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <!-- TODO:  Consider changing this to TaxExempt if most things are taxable. -->
             <xs:element name="Taxable" type="IndicatorType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
