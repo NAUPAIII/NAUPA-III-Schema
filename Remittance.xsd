@@ -24,7 +24,6 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="SoftwareCompany" type="CompanyNameType" />
                             <xs:element name="Contact" type="ContactType" />
                         </xs:sequence>
                     </xs:complexType>

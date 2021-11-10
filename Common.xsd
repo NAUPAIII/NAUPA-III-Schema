@@ -3,8 +3,6 @@
            xmlns="http://www.unclaimed.org/NAUPA-3"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
-           
-    <!-- Named simple types section _NSTS -->
     
     <xs:simpleType name="DateType">
         <xs:restriction base="xs:string">
@@ -45,33 +43,18 @@
     </xs:simpleType>
     
     <xs:simpleType name="FEINType">
-        <xs:annotation>
-            <xs:documentation>
-                A 9-digit US Federal Employer Identification Number (FEIN).
-            </xs:documentation>
-        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:pattern value="[0-9]{9}" />
         </xs:restriction>
     </xs:simpleType>
     
     <xs:simpleType name="SSNType">
-        <xs:annotation>
-            <xs:documentation>
-                A 9-digit Social Security Number (SSN).
-            </xs:documentation>
-        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:pattern value="[0-9]{9}" />
         </xs:restriction>
     </xs:simpleType>
     
     <xs:simpleType name="ForeignTaxIDType">
-        <xs:annotation>
-            <xs:documentation>
-                Used for foreign tax IDs.
-            </xs:documentation>
-        </xs:annotation>
         <xs:restriction base="xs:string">
             <!-- TODO:  Can foreign tax IDs have non-numeric characters?  How long can they be?-->
             <xs:pattern value="[0-9]{9}" />
@@ -79,37 +62,18 @@
     </xs:simpleType>
 
     <xs:simpleType name="USTelephoneNumberType">
-        <xs:annotation>
-            <xs:documentation>
-                A US 10-digit telephone number without any formatting.
-            </xs:documentation>
-        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:pattern value="[0-9]{10}" />
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="ForeignTelephoneNumberType">
-        <xs:annotation>
-            <xs:documentation>
-                A foreign telephone number without any formatting.
-            </xs:documentation>
-        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:pattern value="[0-9]{7,15}" />
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="TelephoneExtensionType">
-        <xs:annotation>
-            <!-- TODO:
-            Spreadsheet still shows things the old way, with US telephone numbers using this for and extension
-            only, and foreign telephone numbers being held entirely in this fields.
-         -->
-            <xs:documentation>
-                Used for an extension of a US or foreign telephone number (e.g. "2502").
-            </xs:documentation>
-        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:maxLength value="4" />
         </xs:restriction>
@@ -166,11 +130,6 @@
             </xs:element>
             <xs:element name="StateCode" type="StateCodeType" />
             <xs:element name="ZIPCode">
-                <xs:annotation>
-                    <xs:documentation>
-                        US ZIP Code - 5 digits plus optional 4.
-                    </xs:documentation>
-                </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:pattern value="[0-9]{5}(-[0-9]{4})?" />
@@ -249,69 +208,24 @@
     
     <xs:complexType name="USCompanyInfoType">
         <xs:sequence>
-            <xs:element name="FEIN" type="FEINType">
-                <xs:annotation>
-                    <xs:documentation>
-                        The company's Federal Employer Identification Number (FEIN).
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            
-            <xs:element name="USAddress" type="USAddressType">
-                <xs:annotation>
-                    <xs:documentation>
-                        The company's US postal address.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="FEIN" type="FEINType" />
+            <xs:element name="USAddress" type="USAddressType" />
         </xs:sequence>
     </xs:complexType>
     
     <xs:complexType name="ForeignCompanyInfoType">
         <xs:sequence>
-            <xs:element name="ForeignTaxID" type="ForeignTaxIDType">
-                <xs:annotation>
-                    <xs:documentation>
-                        The company's foreign tax identifier.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="ForeignAddress" type="ForeignAddressType">
-                <xs:annotation>
-                    <xs:documentation>
-                        The company's foreign postal address.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="ForeignTaxID" type="ForeignTaxIDType" />
+            <xs:element name="ForeignAddress" type="ForeignAddressType" />
         </xs:sequence>
     </xs:complexType>
     
     <xs:complexType name="PersonNameType">
         <xs:sequence>
             <!-- TODO:
-                Do we really need to distinguish Prefix from Title?  We could use a xs:choice here if necessary,
-                but the current form, based on NAUPA-II, can lead to silly-looking names like "Mr. Dr. John Doe".
-                But since both fields are free-form, you could really end up with just about anything.
+                Review this.  The spreadsheet has both Prefix and Title, both free-form, which seems strange.
             -->
             <xs:element name="Prefix" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Mr., Mrs., Ms.
-                    </xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <!-- Based on FAST -->
-                        <xs:maxLength value="10" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="Title" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Dr., Sen., Del., etc.
-                    </xs:documentation>
-                </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <!-- Based on FAST -->
@@ -320,11 +234,6 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="FirstName">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the reporting contact first name.
-                    </xs:documentation>
-                </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <!-- Based on Avenu property owner names -->
@@ -334,11 +243,6 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="MiddleName" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the reporting contact middle name.
-                    </xs:documentation>
-                </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <!-- Based on Avenu property owner names -->
@@ -348,11 +252,6 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="LastName">
-                <xs:annotation>
-                    <xs:documentation>
-                        This field should contain the reporting contact last name.
-                    </xs:documentation>
-                </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <!-- Based on Avenu property owner names -->
@@ -362,11 +261,6 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="Suffix" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Sr., Jr., III, IV, etc
-                    </xs:documentation>
-                </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <!-- Based on Avenu -->
@@ -389,338 +283,81 @@
 
     <xs:simpleType name="EMailAddressType">
         <xs:restriction base="xs:string">
+            <!-- TODO:  review maxLength, I made it up. -->
+            <xs:maxLength value="255" />
             <!-- Cribbed from StackOverflow. -->
             <xs:pattern value="[^@]+@[^\.]+\..+"/>
-            <!-- TODO:  specify max length, since pattern does not restrict it.
-                        <xs:length value="255"></xs:length>
-                        -->
         </xs:restriction>
     </xs:simpleType>
     
-    <!--Named enumerated types section _NETS -->
-    
     <xs:simpleType name="StateCodeType">
-        <xs:annotation>
-            <xs:documentation>
-                Two-character abbreviation for a state within the United States.
-            </xs:documentation>
-        </xs:annotation>
         <xs:restriction base="xs:string">
-            <xs:enumeration value="AL">
-                <xs:annotation>
-                    <xs:documentation>Alabama</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="AK">
-                <xs:annotation>
-                    <xs:documentation>Alaska</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="AZ">
-                <xs:annotation>
-                    <xs:documentation>Arizona</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="CA">
-                <xs:annotation>
-                    <xs:documentation>California</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="CO">
-                <xs:annotation>
-                    <xs:documentation>Colorado</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="CT">
-                <xs:annotation>
-                    <xs:documentation>Connecticut</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="DE">
-                <xs:annotation>
-                    <xs:documentation>Delaware</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="DC">
-                <xs:annotation>
-                    <xs:documentation>District of Columbia</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="FL">
-                <xs:annotation>
-                    <xs:documentation>Florida</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="GA">
-                <xs:annotation>
-                    <xs:documentation>Georgia</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="HI">
-                <xs:annotation>
-                    <xs:documentation>Hawaii</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="ID">
-                <xs:annotation>
-                    <xs:documentation>Idaho</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="IL">
-                <xs:annotation>
-                    <xs:documentation>Illinois</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="IN">
-                <xs:annotation>
-                    <xs:documentation>Indiana</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="IA">
-                <xs:annotation>
-                    <xs:documentation>Iowa</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="KS">
-                <xs:annotation>
-                    <xs:documentation>Kansas</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="KY">
-                <xs:annotation>
-                    <xs:documentation>Kentucky</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="LA">
-                <xs:annotation>
-                    <xs:documentation>Louisiana</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="ME">
-                <xs:annotation>
-                    <xs:documentation>Maine</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="MD">
-                <xs:annotation>
-                    <xs:documentation>Maryland</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="MA">
-                <xs:annotation>
-                    <xs:documentation>Massachusetts</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="MI">
-                <xs:annotation>
-                    <xs:documentation>Michigan</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="MN">
-                <xs:annotation>
-                    <xs:documentation>Minnesota</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="MS">
-                <xs:annotation>
-                    <xs:documentation>Mississippi</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="MO">
-                <xs:annotation>
-                    <xs:documentation>Missouri</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="MT">
-                <xs:annotation>
-                    <xs:documentation>Montana</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="NE">
-                <xs:annotation>
-                    <xs:documentation>Nebraska</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="NV">
-                <xs:annotation>
-                    <xs:documentation>Nevada</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="NH">
-                <xs:annotation>
-                    <xs:documentation>New Hampshire</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="NJ">
-                <xs:annotation>
-                    <xs:documentation>New Jersey</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="NM">
-                <xs:annotation>
-                    <xs:documentation>New Mexico</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="NY">
-                <xs:annotation>
-                    <xs:documentation>New York</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="NC">
-                <xs:annotation>
-                    <xs:documentation>North Carolina</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="ND">
-                <xs:annotation>
-                    <xs:documentation>North Dakota</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="OH">
-                <xs:annotation>
-                    <xs:documentation>Ohio</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="OK">
-                <xs:annotation>
-                    <xs:documentation>Oklahoma</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="OR">
-                <xs:annotation>
-                    <xs:documentation>Oregon</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="PA">
-                <xs:annotation>
-                    <xs:documentation>Pennsylvania</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="RI">
-                <xs:annotation>
-                    <xs:documentation>Rhode Island</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="SC">
-                <xs:annotation>
-                    <xs:documentation>South Carolina</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="SD">
-                <xs:annotation>
-                    <xs:documentation>South Dakota</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="TN">
-                <xs:annotation>
-                    <xs:documentation>Tennessee</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="TX">
-                <xs:annotation>
-                    <xs:documentation>Texas</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="UT">
-                <xs:annotation>
-                    <xs:documentation>Utah</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="VT">
-                <xs:annotation>
-                    <xs:documentation>Vermont</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="VA">
-                <xs:annotation>
-                    <xs:documentation>Virginia</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="WA">
-                <xs:annotation>
-                    <xs:documentation>Washington</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="WV">
-                <xs:annotation>
-                    <xs:documentation>West Virginia</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="WI">
-                <xs:annotation>
-                    <xs:documentation>Wisconsin</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="WY">
-                <xs:annotation>
-                    <xs:documentation>Wyoming</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="AS">
-                <xs:annotation>
-                    <xs:documentation>American Samoa</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="GU">
-                <xs:annotation>
-                    <xs:documentation>Guam</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="MH">
-                <xs:annotation>
-                    <xs:documentation>Marshall Islands</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="FM">
-                <xs:annotation>
-                    <xs:documentation>Micronesia</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="MP">
-                <xs:annotation>
-                    <xs:documentation>Northern Marianas</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="PW">
-                <xs:annotation>
-                    <xs:documentation>Palau</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="PR">
-                <xs:annotation>
-                    <xs:documentation>Puerto Rico</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="VI">
-                <xs:annotation>
-                    <xs:documentation>Virgin Islands</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
+            <xs:enumeration value="AL" />
+            <xs:enumeration value="AK" />
+            <xs:enumeration value="AZ" />
+            <xs:enumeration value="CA" />
+            <xs:enumeration value="CO" />
+            <xs:enumeration value="CT" />
+            <xs:enumeration value="DE" />
+            <xs:enumeration value="DC" />
+            <xs:enumeration value="FL" />
+            <xs:enumeration value="GA" />
+            <xs:enumeration value="HI" />
+            <xs:enumeration value="ID" />
+            <xs:enumeration value="IL" />
+            <xs:enumeration value="IN" />
+            <xs:enumeration value="IA" />
+            <xs:enumeration value="KS" />
+            <xs:enumeration value="KY" />
+            <xs:enumeration value="LA" />
+            <xs:enumeration value="ME" />
+            <xs:enumeration value="MD" />
+            <xs:enumeration value="MA" />
+            <xs:enumeration value="MI" />
+            <xs:enumeration value="MN" />
+            <xs:enumeration value="MS" />
+            <xs:enumeration value="MO" />
+            <xs:enumeration value="MT" />
+            <xs:enumeration value="NE" />
+            <xs:enumeration value="NV" />
+            <xs:enumeration value="NH" />
+            <xs:enumeration value="NJ" />
+            <xs:enumeration value="NM" />
+            <xs:enumeration value="NY" />
+            <xs:enumeration value="NC" />
+            <xs:enumeration value="ND" />
+            <xs:enumeration value="OH" />
+            <xs:enumeration value="OK" />
+            <xs:enumeration value="OR" />
+            <xs:enumeration value="PA" />
+            <xs:enumeration value="RI" />
+            <xs:enumeration value="SC" />
+            <xs:enumeration value="SD" />
+            <xs:enumeration value="TN" />
+            <xs:enumeration value="TX" />
+            <xs:enumeration value="UT" />
+            <xs:enumeration value="VT" />
+            <xs:enumeration value="VA" />
+            <xs:enumeration value="WA" />
+            <xs:enumeration value="WV" />
+            <xs:enumeration value="WI" />
+            <xs:enumeration value="WY" />
+            <xs:enumeration value="AS" />
+            <xs:enumeration value="GU" />
+            <xs:enumeration value="MH" />
+            <xs:enumeration value="FM" />
+            <xs:enumeration value="MP" />
+            <xs:enumeration value="PW" />
+            <xs:enumeration value="PR" />
+            <xs:enumeration value="VI" />
         </xs:restriction>
     </xs:simpleType>
     
     <xs:simpleType name="CountryCodeType">
-        <xs:annotation>
-            <xs:documentation>
-                Two-character abbreviation for a state within the United States.
-            </xs:documentation>
-        </xs:annotation>
         <xs:restriction base="xs:string">
-            <xs:enumeration value="AFG">
-                <xs:annotation>
-                    <xs:documentation>Afghanistan</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="ALA">
-                <xs:annotation>
-                    <xs:documentation>Aland Islands</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="DEU">
-                <xs:annotation>
-                    <xs:documentation>Germany</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
+            <xs:enumeration value="AFG" />
+            <xs:enumeration value="ALA" />
+            <xs:enumeration value="DEU" />
             <!-- TODO:  finish formatting these
             ALB
             DZA
@@ -954,11 +591,7 @@
             UKR
             ARE
             -->
-            <xs:enumeration value="GBR">
-                <xs:annotation>
-                    <xs:documentation>United Kingdom</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
+            <xs:enumeration value="GBR" />
             <!--
             USA
             UMI
@@ -981,77 +614,31 @@
         <xs:sequence>
             <xs:element name="Type">
                 <xs:simpleType>
-                    <xs:annotation>
-                        <xs:documentation>
-                            Table: report, claims, cfo, safe deposit box, securities
-                        </xs:documentation>
-                    </xs:annotation>
                     <xs:restriction base="xs:string">
-                        <xs:enumeration value="Claims">
-                            <xs:annotation>
-                                <xs:documentation>Claims</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="Report">
-                            <xs:annotation>
-                                <xs:documentation>Report</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="CFO">
-                            <xs:annotation>
-                                <xs:documentation>CFO</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="SDB">
-                            <xs:annotation>
-                                <xs:documentation>Safe Deposit Box</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="Securities">
-                            <xs:annotation>
-                                <xs:documentation>Securities</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="Software">
-                            <xs:annotation>
-                                <xs:documentation>Securities</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
+                        <xs:maxLength value="50" />
+                        <xs:enumeration value="Claims" />
+                        <xs:enumeration value="Report" />
+                        <xs:enumeration value="CFO" />
+                        <xs:enumeration value="Safe Deposit Box" />
+                        <xs:enumeration value="Securities" />
+                        <xs:enumeration value="Software" />
                         <!-- TODO:  added for property owner contact -->
-                        <xs:enumeration value="Owner">
-                            <xs:annotation>
-                                <xs:documentation>Securities</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
+                        <xs:enumeration value="Owner" />
                         <!-- TODO:  added for property owner beneficiary contact -->
-                        <xs:enumeration value="Beneficiary">
-                            <xs:annotation>
-                                <xs:documentation>Securities</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
+                        <xs:enumeration value="Beneficiary" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="Name" minOccurs="0">
-                <!-- TOOD:  Seemed like a good idea to make this either a person or a company, need to review. -->
-                <xs:complexType>
-                    <xs:choice>
-                        <xs:element name="CompanyName" type="CompanyNameType" />
-                        <xs:element name="PersonName" type="PersonNameType" />
-                    </xs:choice>
-                </xs:complexType>
-            </xs:element>
+            <xs:choice>
+                <xs:element name="CompanyName" type="CompanyNameType" />
+                <xs:element name="PersonName" type="PersonNameType" />
+            </xs:choice>
             <xs:choice>
                 <xs:element name="USAddress" type="USAddressType" />
                 <xs:element name="ForeignAddress" type="ForeignAddressType" />
             </xs:choice>
             <xs:element name="TelephoneNumber" type="TelephoneNumberType" />
-            <xs:element name="EMailAddress" type="EMailAddressType">
-                <xs:annotation>
-                    <xs:documentation>
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="EMailAddress" type="EMailAddressType" />
         </xs:sequence>
     </xs:complexType>
     

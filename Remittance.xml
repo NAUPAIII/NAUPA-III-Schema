@@ -5,9 +5,9 @@
             version="0.1">
     <SoftwareInformation>
         <Version>0.1</Version>
-        <SoftwareCompany>The Software Application Folks</SoftwareCompany>
         <Contact>
             <Type>Software</Type>
+            <CompanyName>The Software Application Folks</CompanyName>
             <USAddress>
                 <Address1>1234 Kelmar Avenu</Address1>
                 <City>Boulder</City>
@@ -61,12 +61,10 @@
         </ParentCompany>
         <Contact>
             <Type>Report</Type>
-            <Name>
-                <PersonName>
-                    <FirstName>Fred</FirstName>
-                    <LastName>Smith</LastName>
-                </PersonName>
-            </Name>
+            <PersonName>
+                <FirstName>Fred</FirstName>
+                <LastName>Smith</LastName>
+            </PersonName>
             <USAddress>
                 <Address1>1234 Main St</Address1>
                 <Address2>Suite 100</Address2>
@@ -80,8 +78,8 @@
             </TelephoneNumber>
             <EMailAddress>fred.smith@testbank.com</EMailAddress>
         </Contact>
-        <NAICSCode>123456</NAICSCode>
-        <TaxIDExtension>1</TaxIDExtension>
+        <NAICSCode>120001</NAICSCode>
+        <TaxIDExtension>0123</TaxIDExtension>
         <DBAName>Boulder Test Bank</DBAName>
         <Incorporated>
             <State>CO</State>
@@ -95,17 +93,13 @@
         <Report>
             <Year>2020</Year>
             <AsOfDate>07-01-2019</AsOfDate>
-            <HIPAAIndicator>X</HIPAAIndicator>
-            <ProductionReport>X</ProductionReport>
             <Type>Remittance</Type>
             <Contact>
                 <Type>Report</Type>
-                <Name>
-                    <PersonName>
-                        <FirstName>JOHN</FirstName>
-                        <LastName>SMITH</LastName>
-                    </PersonName>
-                </Name>
+                <PersonName>
+                    <FirstName>JOHN</FirstName>
+                    <LastName>SMITH</LastName>
+                </PersonName>
                 <USAddress>
                     <Address1>1234 MAIN ST</Address1>
                     <Address2>SUITE 200</Address2>
@@ -164,18 +158,13 @@
                 <Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
-                        <Name>
-                            <PersonName>
-                                <!--
-                                <Prefix>Mr.</Prefix>
-                                -->
-                                <Title>Dr.</Title>
-                                <FirstName>Josef</FirstName>
-                                <MiddleName>Hermann</MiddleName>
-                                <LastName>Besitzer</LastName>
-                                <Suffix>III</Suffix>
-                            </PersonName>
-                        </Name>
+                        <PersonName>
+                            <Prefix>Dr.</Prefix>
+                            <FirstName>Josef</FirstName>
+                            <MiddleName>Hermann</MiddleName>
+                            <LastName>Besitzer</LastName>
+                            <Suffix>III</Suffix>
+                        </PersonName>
                         <USAddress>
                             <Address1>234 Broadway</Address1>
                             <Address2>Suite 300</Address2>
@@ -233,12 +222,10 @@
                         <Type>Primary</Type>
                         <ContactInformation>
                             <Type>Beneficiary</Type>
-                            <Name>
-                                <PersonName>
-                                    <FirstName>Helga</FirstName>
-                                    <LastName>Besitzer</LastName>
-                                </PersonName>
-                            </Name>
+                            <PersonName>
+                                <FirstName>Helga</FirstName>
+                                <LastName>Besitzer</LastName>
+                            </PersonName>
                             <USAddress>
                                 <Address1>234 BROADWAY</Address1>
                                 <Address2>SUITE 300</Address2>
@@ -287,12 +274,10 @@
                 <Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
-                        <Name>
-                            <PersonName>
-                                <FirstName>Josef</FirstName>
-                                <LastName>Besitzer</LastName>
-                            </PersonName>
-                        </Name>
+                        <PersonName>
+                            <FirstName>Josef</FirstName>
+                            <LastName>Besitzer</LastName>
+                        </PersonName>
                         <USAddress>
                             <Address1>234 Broadway</Address1>
                             <City>Boulder</City>
@@ -337,12 +322,10 @@
                 <Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
-                        <Name>
-                            <PersonName>
-                                <FirstName>Josef</FirstName>
-                                <LastName>Besitzer</LastName>
-                            </PersonName>
-                        </Name>
+                        <PersonName>
+                            <FirstName>Josef</FirstName>
+                            <LastName>Besitzer</LastName>
+                        </PersonName>
                         <USAddress>
                             <Address1>234 Broadway</Address1>
                             <City>Boulder</City>
@@ -426,12 +409,10 @@
                 <Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
-                        <Name>
-                            <PersonName>
-                                <FirstName>Josef</FirstName>
-                                <LastName>Besitzer</LastName>
-                            </PersonName>
-                        </Name>
+                        <PersonName>
+                            <FirstName>Josef</FirstName>
+                            <LastName>Besitzer</LastName>
+                        </PersonName>
                         <USAddress>
                             <Address1>234 Broadway</Address1>
                             <City>Boulder</City>
@@ -502,12 +483,10 @@
                 <Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
-                        <Name>
-                            <PersonName>
-                                <FirstName>Josef</FirstName>
-                                <LastName>Besitzer</LastName>
-                            </PersonName>
-                        </Name>
+                        <PersonName>
+                            <FirstName>Josef</FirstName>
+                            <LastName>Besitzer</LastName>
+                        </PersonName>
                         <USAddress>
                             <Address1>234 Broadway</Address1>
                             <City>Boulder</City>
@@ -562,12 +541,10 @@
                 <Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
-                        <Name>
-                            <PersonName>
-                                <FirstName>Josef</FirstName>
-                                <LastName>Besitzer</LastName>
-                            </PersonName>
-                        </Name>
+                        <PersonName>
+                            <FirstName>Josef</FirstName>
+                            <LastName>Besitzer</LastName>
+                        </PersonName>
                         <USAddress>
                             <Address1>234 Broadway</Address1>
                             <City>Boulder</City>
@@ -610,6 +587,8 @@
                 <Type>Audit Fees</Type>
                 <Amount>-125.00</Amount>
             </Adjustment>
+            <HIPAAIndicator>X</HIPAAIndicator>
+            <NonProductionReport>X</NonProductionReport>
         </Report>
     </Holder>
     <Holder>
@@ -625,12 +604,10 @@
         </USCompanyInfo>
         <Contact>
             <Type>Report</Type>
-            <Name>
-                <PersonName>
-                    <FirstName>Joe</FirstName>
-                    <LastName>Johnson</LastName>
-                </PersonName>
-            </Name>
+            <PersonName>
+                <FirstName>Joe</FirstName>
+                <LastName>Johnson</LastName>
+            </PersonName>
             <USAddress>
                 <Address1>1234 Pearl St</Address1>
                 <City>Boulder</City>
@@ -645,16 +622,13 @@
         <NAICSCode>123456</NAICSCode>
         <Report>
             <Year>2020</Year>
-            <ProductionReport>X</ProductionReport>
             <Type>Remittance</Type>
             <Contact>
                 <Type>Report</Type>
-                <Name>
-                    <PersonName>
-                        <FirstName>Joe</FirstName>
-                        <LastName>Johnson</LastName>
-                    </PersonName>
-                </Name>
+                <PersonName>
+                    <FirstName>Joe</FirstName>
+                    <LastName>Johnson</LastName>
+                </PersonName>
                 <USAddress>
                     <Address1>1234 Pearl St</Address1>
                     <City>Boulder</City>
@@ -711,18 +685,13 @@
                 <Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
-                        <Name>
-                            <PersonName>
-                                <!--
-                                <Prefix>Mr.</Prefix>
-                                -->
-                                <Title>Dr.</Title>
-                                <FirstName>Josef</FirstName>
-                                <MiddleName>Hermann</MiddleName>
-                                <LastName>Besitzer</LastName>
-                                <Suffix>III</Suffix>
-                            </PersonName>
-                        </Name>
+                        <PersonName>
+                            <Prefix>Dr.</Prefix>
+                            <FirstName>Josef</FirstName>
+                            <MiddleName>Hermann</MiddleName>
+                            <LastName>Besitzer</LastName>
+                            <Suffix>III</Suffix>
+                        </PersonName>
                         <USAddress>
                             <Address1>234 Broadway</Address1>
                             <Address2>Suite 300</Address2>
@@ -780,12 +749,10 @@
                         <Type>Primary</Type>
                         <ContactInformation>
                             <Type>Beneficiary</Type>
-                            <Name>
-                                <PersonName>
-                                    <FirstName>Helga</FirstName>
-                                    <LastName>Besitzer</LastName>
-                                </PersonName>
-                            </Name>
+                            <PersonName>
+                                <FirstName>Helga</FirstName>
+                                <LastName>Besitzer</LastName>
+                            </PersonName>
                             <USAddress>
                                 <Address1>234 BROADWAY</Address1>
                                 <Address2>SUITE 300</Address2>
@@ -828,7 +795,6 @@
                 <Type>Audit Fees</Type>
                 <Amount>-125.00</Amount>
             </Adjustment>
-            <NegativeReport>X</NegativeReport>
         </Report>
     </Holder>
 </Remittance>

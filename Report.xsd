@@ -17,18 +17,11 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="AsOfDate" type="DateType" minOccurs="0" />
-            <!-- TODO:
-                If this is just a summary indicator (i.e. True if any Property elements have it set to True),
-                we should consider removing it.
-            -->
-            <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0" />
-            <xs:element name="ProductionReport" type="IndicatorType" minOccurs="0" />
+            <!-- TODO:  review this after it is reviewed at the general committee meeting -->
             <xs:element name="Type">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- TODO: define
-                        <xs:maxLength value="?" />
-                        -->
+                        <xs:maxLength value="50" />
                         <xs:enumeration value="Advertising" />
                         <xs:enumeration value="Remittance" />
                         <xs:enumeration value="Test" />
@@ -57,7 +50,12 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="NegativeReport" type="IndicatorType" minOccurs="0" />
+            <!-- TODO:
+                If this is just a summary indicator (i.e. True if any Property elements have it set to True),
+                we should consider removing it.
+            -->
+            <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0" />
+            <xs:element name="NonProductionReport" type="IndicatorType" minOccurs="0" />
         </xs:sequence>
     </xs:complexType>
     
