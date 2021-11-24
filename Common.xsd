@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="http://www.unclaimed.org/NAUPA-3"
-           xmlns="http://www.unclaimed.org/NAUPA-3"
+<xs:schema targetNamespace="http://www.unclaimed.org/NAUPA-III"
+           xmlns="http://www.unclaimed.org/NAUPA-III"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
     
@@ -277,7 +277,7 @@
                 <xs:element name="USTelephoneNumber" type="USTelephoneNumberType" />
                 <xs:element name="ForeignTelephoneNumber" type="ForeignTelephoneNumberType" />
             </xs:choice>
-            <xs:element name="TelephoneExtension" type="TelephoneExtensionType" minOccurs="0" />
+            <xs:element name="Extension" type="TelephoneExtensionType" minOccurs="0" />
         </xs:sequence>
     </xs:complexType>
 
@@ -342,14 +342,19 @@
             <xs:enumeration value="WV" />
             <xs:enumeration value="WI" />
             <xs:enumeration value="WY" />
-            <xs:enumeration value="AS" />
-            <xs:enumeration value="GU" />
-            <xs:enumeration value="MH" />
-            <xs:enumeration value="FM" />
-            <xs:enumeration value="MP" />
-            <xs:enumeration value="PW" />
-            <xs:enumeration value="PR" />
-            <xs:enumeration value="VI" />
+            <!-- American territories codes -->
+            <xs:enumeration value="AS" /> <!-- American Samoa -->
+            <xs:enumeration value="GU" /> <!-- Guam -->
+            <xs:enumeration value="MH" /> <!-- Marshall Islands -->
+            <xs:enumeration value="FM" /> <!-- Micronesia -->
+            <xs:enumeration value="MP" /> <!-- Northern Marianas -->
+            <xs:enumeration value="PW" /> <!-- Palau -->
+            <xs:enumeration value="PR" /> <!-- Puerto Rico-->
+            <xs:enumeration value="VI" /> <!-- Virgin Islands -->
+            <!-- Armed Forces codes -->
+            <xs:enumeration value="AA" /> <!-- Armed Forces Americas -->
+            <xs:enumeration value="AE" /> <!-- Armed Forces Europe -->
+            <xs:enumeration value="AP" /> <!-- Armed Forces Pacific -->
         </xs:restriction>
     </xs:simpleType>
     

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://www.unclaimed.org/NAUPA-3"
-           xmlns="http://www.unclaimed.org/NAUPA-3"
+<xs:schema targetNamespace="http://www.unclaimed.org/NAUPA-III"
+           xmlns="http://www.unclaimed.org/NAUPA-III"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 

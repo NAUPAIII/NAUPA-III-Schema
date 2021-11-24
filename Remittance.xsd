@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="http://www.unclaimed.org/NAUPA-3"
-           xmlns="http://www.unclaimed.org/NAUPA-3"
+<xs:schema targetNamespace="http://www.unclaimed.org/NAUPA-III"
+           xmlns="http://www.unclaimed.org/NAUPA-III"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 
@@ -48,6 +48,9 @@
                                         <xs:enumeration value="ACH Debit" />
                                         <xs:enumeration value="Internal Transfer" />
                                         <xs:enumeration value="ECheck" />
+                                        <xs:enumeration value="Online" />
+                                        <xs:enumeration value="Other" />
+                                        <xs:enumeration value="None" />
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>

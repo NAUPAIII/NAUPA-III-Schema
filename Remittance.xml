@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Remittance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://www.unclaimed.org/NAUPA-3 Remittance.xsd"
-            xmlns="http://www.unclaimed.org/NAUPA-3"
+            xsi:schemaLocation="http://www.unclaimed.org/NAUPA-III Remittance.xsd"
+            xmlns="http://www.unclaimed.org/NAUPA-III"
             version="0.1">
     <SoftwareInformation>
         <Version>0.1</Version>
@@ -175,7 +175,7 @@
                         </USAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
-                            <TelephoneExtension>2801</TelephoneExtension>
+                            <Extension>2801</Extension>
                         </TelephoneNumber>
                         <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
                     </PrimaryContactInformation>
@@ -302,10 +302,6 @@
                     <Type>Service Charge</Type>
                     <Amount>-20.00</Amount>
                 </Adjustment>
-                <Cash>
-                    <ReportedAmount>1234.56</ReportedAmount>
-                    <RemittedAmount>1214.56</RemittedAmount>
-                </Cash>
                 <Bond>
                     <Name>Bondy McBondface</Name>
                     <Number>123456789</Number>
@@ -350,10 +346,6 @@
                     <Type>Service Charge</Type>
                     <Amount>-20.00</Amount>
                 </Adjustment>
-                <Cash>
-                    <ReportedAmount>0.00</ReportedAmount>
-                    <RemittedAmount>0.00</RemittedAmount>
-                </Cash>
                 <Security>
                     <TransferAgent>COMPUTERSHARE</TransferAgent>
                     <Name>FORD MOTOR CO</Name>
@@ -433,10 +425,6 @@
                     <RelationshipCode>TBD</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                 </Owner>
-                <Cash>
-                    <ReportedAmount>0.00</ReportedAmount>
-                    <RemittedAmount>0.00</RemittedAmount>
-                </Cash>
                 <Safekeeping>
                     <BoxCaseNumber>1234</BoxCaseNumber>
                     <BoxOpenDate>01-15-2019</BoxOpenDate>
@@ -511,10 +499,6 @@
                     <Type>Service Charge</Type>
                     <Amount>-125.00</Amount>
                 </Adjustment>
-                <Cash>
-                    <ReportedAmount>12345.67</ReportedAmount>
-                    <RemittedAmount>12220.67</RemittedAmount>
-                </Cash>
                 <MineralInterests>
                     <StateCode>OK</StateCode>
                     <StateFormatNumber>01</StateFormatNumber>
@@ -569,10 +553,6 @@
                     <Type>Service Charge</Type>
                     <Amount>-20.00</Amount>
                 </Adjustment>
-                <Cash>
-                    <ReportedAmount>5033090.00</ReportedAmount>
-                    <RemittedAmount>5033070.00</RemittedAmount>
-                </Cash>
                 <Cryptocurrency>
                     <Name>Bitcoin</Name>
                     <Symbol>BTC</Symbol>
@@ -702,7 +682,7 @@
                         </USAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
-                            <TelephoneExtension>2801</TelephoneExtension>
+                            <Extension>2801</Extension>
                         </TelephoneNumber>
                         <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
                     </PrimaryContactInformation>

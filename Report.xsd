@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="http://www.unclaimed.org/NAUPA-3"
-           xmlns="http://www.unclaimed.org/NAUPA-3"
+<xs:schema targetNamespace="http://www.unclaimed.org/NAUPA-III"
+           xmlns="http://www.unclaimed.org/NAUPA-III"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
            
@@ -36,13 +36,13 @@
                         <xs:element name="Type">
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
-                                    <!-- TODO: define
-                                    <xs:maxLength value="?" />
-                                    -->
+                                    <xs:maxLength value="50" />
                                     <xs:enumeration value="Audit Fees" />
+                                    <!--
                                     <xs:enumeration value="Estimate or Prepayment" />
                                     <xs:enumeration value="Out of Proof Cash" />
                                     <xs:enumeration value="Out of Proof Shares" />
+                                    -->
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
