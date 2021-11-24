@@ -9,8 +9,7 @@
     <xs:complexType name="OwnerType">
         <!-- TODO:  Review how this differs from the spreadsheet. -->
         <xs:sequence>
-            <xs:element name="PrimaryContactInformation" type="ContactType">
-            </xs:element>
+            <xs:element name="PrimaryContactInformation" type="ContactType" />
             <xs:element name="AlternateAddress" minOccurs="0" maxOccurs="unbounded" >
                 <xs:complexType>
                     <xs:sequence>
