@@ -6,54 +6,6 @@
 
     <xs:include schemaLocation="Common.xsd" />
     
-    <!--
-    Complex types section _CTS
-    -->
-    
-    <xs:complexType name="DeceasedOwnerInformationType">
-        <xs:annotation>
-            <xs:documentation>
-                Date-of-death information for a deceased owner, if available.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:sequence>
-            <!-- TODO:
-                Proposal:  If we know the owner is dead but we have no date of death or other details,
-                the only DateOfDeathSource would need to be filled in.  Since it is free-form, we can
-                put just about anything here.
-            -->
-            <xs:element name="DateOfDeathSource">
-                <xs:annotation>
-                    <xs:documentation>
-                        Source of owner date of death information (DMF, beneficiary, claim).
-                    </xs:documentation>
-                </xs:annotation>
-                <!-- TODO:  enumerated type? -->
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <!-- TODO:  determine length
-                        <xs:maxLength value="?" />
-                        -->
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="DateOfDeath" type="DateType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter the date of death, if known.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="DateOfDeathIdentifiedDate" type="DateType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter the date at which the owner date of death was provided to reporting company.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-    
     <xs:complexType name="OwnerType">
         <!-- TODO:  Review how this differs from the spreadsheet. -->
         <xs:sequence>
@@ -64,42 +16,13 @@
                     <xs:sequence>
                         <xs:element name="Type">
                             <xs:simpleType>
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Distinguishes different types of alternate addresses.
-                                    </xs:documentation>
-                                </xs:annotation>
                                 <xs:restriction base="xs:string">
-                                    <xs:enumeration value="Seasonal">
-                                        <xs:annotation>
-                                            <xs:documentation>Seasonal</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Obsolete/Prior">
-                                        <xs:annotation>
-                                            <xs:documentation>Obsolete/Prior</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Forwarding/Non-Permanent">
-                                        <xs:annotation>
-                                            <xs:documentation>Forwarding / non-permanent</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Billing">
-                                        <xs:annotation>
-                                            <xs:documentation>Billing</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Service">
-                                        <xs:annotation>
-                                            <xs:documentation>Service</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Owned but not occupied">
-                                        <xs:annotation>
-                                            <xs:documentation>Owned but not occupied</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
+                                    <xs:enumeration value="Seasonal" />
+                                    <xs:enumeration value="Obsolete/Prior" />
+                                    <xs:enumeration value="Forwarding/Non-Permanent" />
+                                    <xs:enumeration value="Billing" />
+                                    <xs:enumeration value="Service" />
+                                    <xs:enumeration value="Owned but not occupied" />
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
@@ -114,16 +37,9 @@
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="Type">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Free-form.
-                                </xs:documentation>
-                            </xs:annotation>
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
-                                    <!-- TODO:  determine length
-                                    <xs:maxLength value="?" />
-                                    -->
+                                    <xs:maxLength value="50" />
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
@@ -181,9 +97,7 @@
                                     <xs:element name="Identifier">
                                         <xs:simpleType>
                                             <xs:restriction base="xs:string">
-                                                <!-- TODO: define length
                                                 <xs:maxLength value="15" />
-                                                -->
                                             </xs:restriction>
                                         </xs:simpleType>
                                     </xs:element>
@@ -194,126 +108,77 @@
                 </xs:complexType>
             </xs:element>
             <xs:element name="Description" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Help explain relationship or other owner info
-                    </xs:documentation>
-                </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- TODO:  set max length
-                        <xs:maxLength value="???" />
-                        -->
+                        <xs:maxLength value="255" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="DateOfBirth" type="DateType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter the owner's date of birth.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="RelationshipCode" type="RelationshipCodeType">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter the relationship between multiple owners. See appendix. If single owner, enter
-                        the relationship that defines the owner. For example, sole owner, payee, etc.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="TypeCode" type="TypeCodeType">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter the owner type code, see appendix.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="DateOfBirth" type="DateType" minOccurs="0" />
+			<xs:element name="RelationshipCode">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<!-- TODO -->
+						<xs:enumeration value="TBD" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TypeCode">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Aggregate" />
+						<xs:enumeration value="Unknown" />
+						<xs:enumeration value="NamedOwner" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
             <xs:element name="CompleteAccountRegistrationName" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter the complete account registration.
-                    </xs:documentation>
-                </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- TODO:  determine length
-                        <xs:maxLength value="???" />
-                        -->
+                        <xs:maxLength value="50" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="DateOfTrust" type="DateType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter the date of the trust.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="MinorDateOfMajority" type="DateType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Date at which minor owner reaches age of majority.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="DateOfTrust" type="DateType" minOccurs="0" />
+            <xs:element name="MinorDateOfMajority" type="DateType" minOccurs="0" />
             <!-- TODO:  discuss DOD structure change -->
-            <xs:element name="DeceasedOwnerInformation" type="DeceasedOwnerInformationType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        The presence of this element indicates that the property owner is known to be deceased.
-                        If date-of-death information is available, it is provided in the sub-elements of this
-                        element.
-                    </xs:documentation>
-                </xs:annotation>
+            <xs:element name="DeceasedOwnerInformation" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<!-- TODO:
+                             Proposal:  If we know the owner is dead but we have no date of death or other details,
+                             the only DateOfDeathSource would need to be filled in.  Since it is free-form, we can
+                             put just about anything here.
+                        -->
+						<xs:element name="DateOfDeathSource">
+							<!-- TODO:  enumerated type? -->
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="50" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="DateOfDeath" type="DateType" minOccurs="0" />
+						<xs:element name="DateOfDeathIdentifiedDate" type="DateType" minOccurs="0" />
+					</xs:sequence>
+				</xs:complexType>
             </xs:element>
             <xs:element name="Beneficiary" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="Type" type="BeneficiaryType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Enter the type of beneficiary - see appendix.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                        <xs:element name="ContactInformation" type="ContactType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Contact information for beneficiary.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                        <xs:element name="Spouse" type="IndicatorType" minOccurs="0">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Indicates that the beneficiary is a the spouse of the owner.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                        <xs:element name="SSN" type="SSNType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    If owner is a beneficiary of a policy or account for which the owner of the policy or
-                                    account is listed as the owner above, list social security number.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                        <xs:element name="DateOfBirth" type="DateType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    If owner is a beneficiary of a policy or account for which the owner of the policy or
-                                    account is listed as the owner above, list date of birth.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                        <xs:element name="Percentage" type="PercentageType" minOccurs="0">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Enter the beneficiary's percentage of the funds.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
+						<xs:element name="Type">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Primary" />
+									<xs:enumeration value="Contingent" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+                        <xs:element name="ContactInformation" type="ContactType" />
+                        <xs:element name="Spouse" type="IndicatorType" minOccurs="0" />
+                        <xs:element name="SSN" type="SSNType" />
+                        <xs:element name="DateOfBirth" type="DateType" />
+                        <xs:element name="Percentage" type="PercentageType" minOccurs="0" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -324,109 +189,11 @@
     Enumerated types section _ETS
     -->
     
-    <xs:simpleType name="PropertyOwnershipType">
-        <xs:annotation>
-            <xs:documentation>
-                Distinguishes whether the property is owned by an individual or a business.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Individual">
-                <xs:annotation>
-                    <xs:documentation>Property is owned by an individual.</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="Business">
-                <xs:annotation>
-                    <xs:documentation>Property is owned by a business.</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-        </xs:restriction>
-    </xs:simpleType>
-    
     <xs:simpleType name="USTaxIDType">
-        <xs:annotation>
-            <xs:documentation>
-                Distinguishes different types of US Tax IDs.
-            </xs:documentation>
-        </xs:annotation>
         <xs:restriction base="xs:string">
-            <xs:enumeration value="SSN">
-                <xs:annotation>
-                    <xs:documentation>Social Security Number</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="FEIN">
-                <xs:annotation>
-                    <xs:documentation>Employer Identification Number</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="ITIN">
-                <xs:annotation>
-                    <xs:documentation>Individual Taxpayer Identification Number</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-        </xs:restriction>
-    </xs:simpleType>
-    
-    <xs:simpleType name="RelationshipCodeType">
-        <xs:annotation>
-            <xs:documentation>
-                Enter the relationship between multiple owners. See appendix. If single owner, enter the
-                relationship that defines the owner. For example, sole owner, payee, etc.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="TBD">
-                <xs:annotation>
-                    <xs:documentation>TBD</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-        </xs:restriction>
-    </xs:simpleType>
-     
-    <xs:simpleType name="TypeCodeType">
-        <xs:annotation>
-            <xs:documentation>
-                Enter the owner type code, see appendix.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Aggregate">
-                <xs:annotation>
-                    <xs:documentation>Aggregate Property</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="Unknown">
-                <xs:annotation>
-                    <xs:documentation>Unknown</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="NamedOwner">
-                <xs:annotation>
-                    <xs:documentation>All Owners Except Aggregate and Unknown</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-        </xs:restriction>
-    </xs:simpleType>
-    
-    <xs:simpleType name="BeneficiaryType">
-        <xs:annotation>
-            <xs:documentation>
-                Benficiary type.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Primary">
-                <xs:annotation>
-                    <xs:documentation>Primary</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="Contingent">
-                <xs:annotation>
-                    <xs:documentation>Contingent</xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
+            <xs:enumeration value="SSN" />
+            <xs:enumeration value="FEIN" />
+            <xs:enumeration value="ITIN" />
         </xs:restriction>
     </xs:simpleType>
     
