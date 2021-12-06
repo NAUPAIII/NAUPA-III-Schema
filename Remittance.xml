@@ -220,6 +220,8 @@
                     </DeceasedOwnerInformation>
                     <Beneficiary>
                         <Type>Primary</Type>
+                        <Spouse>X</Spouse>
+                        <Percentage>100.00</Percentage>
                         <ContactInformation>
                             <Type>Beneficiary</Type>
                             <PersonName>
@@ -239,10 +241,8 @@
                             </TelephoneNumber>
                             <EMailAddress>rjanderson@somecompany.com</EMailAddress>
                         </ContactInformation>
-                        <Spouse>X</Spouse>
-                        <SSN>111111111</SSN>
                         <DateOfBirth>04-27-1975</DateOfBirth>
-                        <Percentage>100.00</Percentage>
+                        <SSN>111111111</SSN>
                     </Beneficiary>
                 </Owner>
                 <Adjustment>
@@ -727,6 +727,8 @@
                     </DeceasedOwnerInformation>
                     <Beneficiary>
                         <Type>Primary</Type>
+                        <Spouse>X</Spouse>
+                        <Percentage>100.00</Percentage>
                         <ContactInformation>
                             <Type>Beneficiary</Type>
                             <PersonName>
@@ -746,10 +748,8 @@
                             </TelephoneNumber>
                             <EMailAddress>rjanderson@somecompany.com</EMailAddress>
                         </ContactInformation>
-                        <Spouse>X</Spouse>
-                        <SSN>111111111</SSN>
                         <DateOfBirth>04-27-1975</DateOfBirth>
-                        <Percentage>100.00</Percentage>
+                        <SSN>111111111</SSN>
                     </Beneficiary>
                 </Owner>
                 <Adjustment>

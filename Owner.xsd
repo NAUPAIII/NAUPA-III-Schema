@@ -7,8 +7,13 @@
     <xs:include schemaLocation="Common.xsd" />
     
     <xs:complexType name="OwnerType">
-        <!-- TODO:  Review how this differs from the spreadsheet. -->
         <xs:sequence>
+			<!--
+			    TODO:  The spreadsheet version of the owner fields matches up exactly with a ContactType (i.e.
+		        person name or business name + address + telephone number + email, so I turned it into a ContactType.
+				The only potential issue with that is that the addresss portion is no longer explicitly labeled "LNA"
+				for "Last Known Address".  Is that a problem?
+		    -->
             <xs:element name="PrimaryContactInformation" type="ContactType" />
             <xs:element name="AlternateAddress" minOccurs="0" maxOccurs="unbounded" >
                 <xs:complexType>
@@ -16,6 +21,7 @@
                         <xs:element name="Type">
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
+									<xs:maxLength value="50" />
                                     <xs:enumeration value="Seasonal" />
                                     <xs:enumeration value="Obsolete/Prior" />
                                     <xs:enumeration value="Forwarding/Non-Permanent" />
@@ -46,6 +52,7 @@
                             <xs:element name="USTelephoneNumber" type="USTelephoneNumberType" />
                             <xs:element name="ForeignTelephoneNumber" type="ForeignTelephoneNumberType" />
                         </xs:choice>
+						<xs:element name="Extension" type="TelephoneExtensionType" minOccurs="0" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -88,7 +95,7 @@
                                 </xs:simpleType>
                             </xs:element>
                         </xs:choice>
-                        <!-- TODO:  Domestic driver's license is assumed.  Is this a valid assumption? -->
+                        <!-- TODO:  Domestic driver's license is assumed, if present. -->
                         <xs:element name="DriversLicense" minOccurs="0">
                             <xs:complexType>
                                 <xs:sequence>
@@ -117,6 +124,7 @@
 			<xs:element name="RelationshipCode">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
 						<!-- TODO -->
 						<xs:enumeration value="TBD" />
 					</xs:restriction>
@@ -125,16 +133,18 @@
 			<xs:element name="TypeCode">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
 						<xs:enumeration value="Aggregate" />
-						<xs:enumeration value="Unknown" />
 						<xs:enumeration value="NamedOwner" />
+						<xs:enumeration value="Unknown" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
             <xs:element name="CompleteAccountRegistrationName" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
+						<!-- TODO:  is maxLength 100 enough? -->
+                        <xs:maxLength value="100" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -150,7 +160,6 @@
                              put just about anything here.
                         -->
 						<xs:element name="DateOfDeathSource">
-							<!-- TODO:  enumerated type? -->
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:maxLength value="50" />
@@ -168,16 +177,17 @@
 						<xs:element name="Type">
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
+									<xs:maxLength value="50" />
 									<xs:enumeration value="Primary" />
 									<xs:enumeration value="Contingent" />
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-                        <xs:element name="ContactInformation" type="ContactType" />
-                        <xs:element name="Spouse" type="IndicatorType" minOccurs="0" />
-                        <xs:element name="SSN" type="SSNType" />
-                        <xs:element name="DateOfBirth" type="DateType" />
-                        <xs:element name="Percentage" type="PercentageType" minOccurs="0" />
+						<xs:element name="Spouse" type="IndicatorType" minOccurs="0" />
+						<xs:element name="Percentage" type="PercentageType" minOccurs="0" />
+						<xs:element name="ContactInformation" type="ContactType"  minOccurs="0" />
+						<xs:element name="DateOfBirth" type="DateType" minOccurs="0" />
+						<xs:element name="SSN" type="SSNType"  minOccurs="0" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -190,6 +200,7 @@
     
     <xs:simpleType name="USTaxIDType">
         <xs:restriction base="xs:string">
+			<xs:maxLength value="10" />
             <xs:enumeration value="SSN" />
             <xs:enumeration value="FEIN" />
             <xs:enumeration value="ITIN" />

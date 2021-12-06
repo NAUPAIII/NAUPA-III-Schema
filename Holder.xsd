@@ -19,7 +19,7 @@
                     <xs:sequence>
                         <xs:element name="CompanyName" type="CompanyNameType" />
                         <xs:choice>
-                            <xs:element name="FEIN" type="USTaxIDType" />
+                            <xs:element name="FEIN" type="FEINType" />
                             <xs:element name="ForeignTaxID" type="ForeignTaxIDType" />
                         </xs:choice>
                     </xs:sequence>
