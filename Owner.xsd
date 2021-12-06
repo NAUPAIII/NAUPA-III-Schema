@@ -95,7 +95,7 @@
                                 </xs:simpleType>
                             </xs:element>
                         </xs:choice>
-                        <!-- TODO:  Domestic driver's license is assumed, if present. -->
+                        <!-- NOTE:  Domestic driver's license is assumed, if present. -->
                         <xs:element name="DriversLicense" minOccurs="0">
                             <xs:complexType>
                                 <xs:sequence>
@@ -133,6 +133,7 @@
 			<xs:element name="TypeCode">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
+						<!-- TODO:  Is this complete/sufficent? -->
 						<xs:maxLength value="50" />
 						<xs:enumeration value="Aggregate" />
 						<xs:enumeration value="NamedOwner" />
@@ -154,11 +155,6 @@
             <xs:element name="DeceasedOwnerInformation" minOccurs="0">
 				<xs:complexType>
 					<xs:sequence>
-						<!-- TODO:
-                             Proposal:  If we know the owner is dead but we have no date of death or other details,
-                             the only DateOfDeathSource would need to be filled in.  Since it is free-form, we can
-                             put just about anything here.
-                        -->
 						<xs:element name="DateOfDeathSource">
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -166,7 +162,7 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="DateOfDeath" type="DateType" minOccurs="0" />
+						<xs:element name="DateOfDeath" type="DateType" />
 						<xs:element name="DateOfDeathIdentifiedDate" type="DateType" minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
