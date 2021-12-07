@@ -56,8 +56,7 @@
     
     <xs:simpleType name="ForeignTaxIDType">
         <xs:restriction base="xs:string">
-            <!-- TODO:  Can foreign tax IDs have non-numeric characters?  How long can they be?-->
-            <xs:pattern value="[0-9]{9}" />
+			<xs:maxLength value="20" />
         </xs:restriction>
     </xs:simpleType>
 

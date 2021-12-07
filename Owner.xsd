@@ -8,12 +8,6 @@
     
     <xs:complexType name="OwnerType">
         <xs:sequence>
-			<!--
-			    TODO:  The spreadsheet version of the owner fields matches up exactly with a ContactType (i.e.
-		        person name or business name + address + telephone number + email, so I turned it into a ContactType.
-				The only potential issue with that is that the addresss portion is no longer explicitly labeled "LNA"
-				for "Last Known Address".  Is that a problem?
-		    -->
             <xs:element name="PrimaryContactInformation" type="ContactType" />
             <xs:element name="AlternateAddress" minOccurs="0" maxOccurs="unbounded" >
                 <xs:complexType>
@@ -58,15 +52,11 @@
             </xs:element>
             <xs:element name ="AlternateEMailAddress" type="EMailAddressType" minOccurs="0" maxOccurs="unbounded">
             </xs:element>
-            <xs:element name="IdentityInformation">
+            <xs:element name="IdentityInformation" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
-                        <!-- TODO:
-                            Is xs:choice correct here?  Do we always have one or the other?  Or is AlienID just
-                            another tax ID type?  Or does this whole thing need to be optional?
-                        -->
                         <xs:choice>
-                            <xs:element name="USTaxID">
+                            <xs:element name="USTaxID" minOccurs="0">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="Type" type="USTaxIDType">
@@ -81,7 +71,7 @@
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="AlienID">
+                            <xs:element name="AlienID" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>
                                         Enter owner identification number/alien id.
@@ -89,13 +79,11 @@
                                 </xs:annotation>
                                 <xs:simpleType>
                                     <xs:restriction base="xs:string">
-                                        <!-- TODO:  same form as USTaxID?-->
-                                        <xs:pattern value="[0-9]{9}" />
+										<xs:maxLength value="20" />
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
                         </xs:choice>
-                        <!-- NOTE:  Domestic driver's license is assumed, if present. -->
                         <xs:element name="DriversLicense" minOccurs="0">
                             <xs:complexType>
                                 <xs:sequence>
@@ -125,16 +113,26 @@
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:maxLength value="50" />
-						<!-- TODO -->
-						<xs:enumeration value="TBD" />
+						<xs:enumeration value="Administrator" />
+						<xs:enumeration value="Agent For" />
+						<xs:enumeration value="Attorney For" />
+						<xs:enumeration value="And" />
+						<xs:enumeration value="Beneficiary" />
+						<xs:enumeration value="Community Property" />
+						<xs:enumeration value="Conservator" />
+						<xs:enumeration value="Custodian" />
+						<xs:enumeration value="Defendant" />
+						<xs:enumeration value="Estate" />
+						<xs:enumeration value="Executor" />
+						<xs:enumeration value="For Benefit Of" />
+						<xs:enumeration value="Guardian" />
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
 			<xs:element name="TypeCode">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
-						<!-- TODO:  Is this complete/sufficent? -->
-						<xs:maxLength value="50" />
+						<xs:maxLength value="15" />
 						<xs:enumeration value="Aggregate" />
 						<xs:enumeration value="NamedOwner" />
 						<xs:enumeration value="Unknown" />
@@ -144,14 +142,12 @@
             <xs:element name="CompleteAccountRegistrationName" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-						<!-- TODO:  is maxLength 100 enough? -->
-                        <xs:maxLength value="100" />
+                        <xs:maxLength value="255" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="DateOfTrust" type="DateType" minOccurs="0" />
             <xs:element name="MinorDateOfMajority" type="DateType" minOccurs="0" />
-            <!-- TODO:  discuss DOD structure change -->
             <xs:element name="DeceasedOwnerInformation" minOccurs="0">
 				<xs:complexType>
 					<xs:sequence>

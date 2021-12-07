@@ -208,7 +208,7 @@
                     </IdentityInformation>
                     <Description>Snooty</Description>
                     <DateOfBirth>06-08-1954</DateOfBirth>
-                    <RelationshipCode>TBD</RelationshipCode>
+                    <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                     <CompleteAccountRegistrationName>ROBERT JAMES ANDERSON</CompleteAccountRegistrationName>
                     <DateOfTrust>01-01-2000</DateOfTrust>
@@ -295,7 +295,7 @@
                             <Number>555551234</Number>
                         </USTaxID>
                     </IdentityInformation>
-                    <RelationshipCode>TBD</RelationshipCode>
+                    <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                 </Owner>
                 <Adjustment>
@@ -339,7 +339,7 @@
                             <Number>555551234</Number>
                         </USTaxID>
                     </IdentityInformation>
-                    <RelationshipCode>TBD</RelationshipCode>
+                    <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                 </Owner>
                 <Adjustment>
@@ -422,7 +422,7 @@
                             <Number>555551234</Number>
                         </USTaxID>
                     </IdentityInformation>
-                    <RelationshipCode>TBD</RelationshipCode>
+                    <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                 </Owner>
                 <Safekeeping>
@@ -492,7 +492,7 @@
                             <Number>555551234</Number>
                         </USTaxID>
                     </IdentityInformation>
-                    <RelationshipCode>TBD</RelationshipCode>
+                    <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                 </Owner>
                 <Adjustment>
@@ -546,7 +546,7 @@
                             <Number>555551234</Number>
                         </USTaxID>
                     </IdentityInformation>
-                    <RelationshipCode>TBD</RelationshipCode>
+                    <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                 </Owner>
                 <Adjustment>
@@ -715,7 +715,7 @@
                     </IdentityInformation>
                     <Description>Snooty</Description>
                     <DateOfBirth>06-08-1954</DateOfBirth>
-                    <RelationshipCode>TBD</RelationshipCode>
+                    <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                     <CompleteAccountRegistrationName>ROBERT JAMES ANDERSON</CompleteAccountRegistrationName>
                     <DateOfTrust>01-01-2000</DateOfTrust>
