@@ -9,11 +9,18 @@
     <xs:simpleType name="SecurityNameType">
         <xs:annotation>
             <xs:documentation>
-                Name of security.
+                Enter the name of the security issue which is due the owner. DO NOT enter more
+                than one issue per owner record. (For example, brokers must provide one property
+                record for each issue held in an owner's account.) When reporting stock where the
+                owner has different issues and these issues will be due the owner, there should be
+                a property record for each issue that will be due that owner. For example: Paul
+                Smith had an account with XYZ broker. In the account, Mr. Smith owned 12 shares of
+                ABC Office Supply Common, 4 shares of ABC Office Supply $2.75 Preferred, and 20
+                shares of Afterschool Snack Company Common. There should be three property records
+                for Mr. Smith.
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-            <!-- Based on Avenu -->
             <xs:maxLength value="50" />
         </xs:restriction>
     </xs:simpleType>
@@ -21,11 +28,11 @@
     <xs:simpleType name="SecuritySymbolType">
         <xs:annotation>
             <xs:documentation>
-                Ticker symbol for a security.
+                Enter Security Ticker Symbol - Enter the Ticker Symbol under which the security is being
+                traded - if available.
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-            <!-- Based on Avenu -->
             <xs:maxLength value="6" />
         </xs:restriction>
     </xs:simpleType>
@@ -37,30 +44,54 @@
                 38259P508 for Google) code that identifies a North American financial security for the purposes
                 of facilitating clearing and settlement of trades. The acronym CUSIP derives from the Committee
                 on Uniform Security Identification Procedures, a committee of the American Bankers Association.
+                Enter the CUSIP number of the specific security issue. If no CUSIP or other identifier is
+				available, contact the State to obtain a placeholder CUSIP number.
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-            <!-- Based on Avenu -->
-            <xs:maxLength value="12" />
+            <xs:maxLength value="9" />
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="NumberOfSharesType">
         <xs:annotation>
             <xs:documentation>
-                Note that most processing platforms can only accommodate only up to three decimal places.
+                Up to six decimal places are allowed to support 
+				Dividend Reinvestment Plans and other fractional share accounts.
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:decimal">
             <xs:totalDigits value="12" />
-            <xs:fractionDigits value="3" />
+            <xs:fractionDigits value="6" />
         </xs:restriction>
     </xs:simpleType>
     
-    <xs:complexType name="AlternativeSecurityIDType">
+    <xs:simpleType name="HoldingPeriodType">
         <xs:annotation>
             <xs:documentation>
-                <!-- TODO:  description -->
+                If security has a long term holding period, then YES otherwise NO.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+        <xs:maxLength value="3" />
+            <xs:enumeration value="YES">
+                <xs:annotation>
+                    <xs:documentation>YES - Security has a Long Term Holding period.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NO">
+                <xs:annotation>
+                    <xs:documentation>NO - Security does not have a Long Term Holding period.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+<xs:complexType name="AlternativeSecurityIDType">
+        <xs:annotation>
+            <xs:documentation>
+                For securities that do not have an assigned CUSIP number, identifiers such as ISIN and SEDOL
+				are used in place of the primarily US-based CUSIP identifier.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
@@ -68,23 +99,29 @@
                 <xs:simpleType>
                     <xs:annotation>
                         <xs:documentation>
-                            <!-- TODO:  description -->
+                            SEDOL, ISIN, VALOREN and OTHER are valid responses.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
                         <xs:enumeration value="SEDOL">
                             <xs:annotation>
-                                <xs:documentation>SEDOL</xs:documentation>
+                                <xs:documentation>SEDOL - Stock Exchange Daily Official List. British securities identification.</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                         <xs:enumeration value="ISIN">
                             <xs:annotation>
-                                <xs:documentation>ISIN</xs:documentation>
+                                <xs:documentation>ISIN - International Securities Identification Number. This is a twelve digit code.</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                         <xs:enumeration value="VALOREN">
                             <xs:annotation>
-                                <xs:documentation>VALOREN</xs:documentation>
+                                <xs:documentation>VALOREN - Identifier for Swiss securities.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="OTHER">
+                            <xs:annotation>
+                                <xs:documentation>OTHER - Other Securities Identifier.</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                     </xs:restriction>
@@ -93,7 +130,6 @@
             <xs:element name="Identifier">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu -->
                         <xs:maxLength value="20" />
                     </xs:restriction>
                 </xs:simpleType>
@@ -112,63 +148,30 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu -->
                         <xs:maxLength value="35" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="Name" type="SecurityNameType">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter the name of the security issue which is due the owner. DO NOT enter more than one
-                        issue per owner record. (For example, brokers must provide one property record for each
-                        issue held in an owner's account.)  When reporting stock where the owner has different
-                        issues and these issues will be due the owner, there should be a property record for each
-                        issue that will be due that owner. For example: Paul Smith had an account with XYZ broker.
-                        In the account, Mr. Smith owned 12 shares of ABC Office Supply Common, 4 shares of ABC
-                        Office Supply $2.75 Preferred, and 20 shares of Afterschool Snack Company Common. There
-                        should be three property records for Mr. Smith.
-                    </xs:documentation>
-                </xs:annotation>
             </xs:element>
             <xs:element name="Symbol" type="SecuritySymbolType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter Security Ticker Symbol - Enter the Ticker Symbol under which the security is being
-                        traded - if available.
-                    </xs:documentation>
-                </xs:annotation>
             </xs:element>
-            <xs:element name="CUSIP" type="CUSIPType">
-                <xs:annotation>
-                    <xs:documentation>
-                        Enter the CUSIP number of the specific security issue. If no CUSIP number available,
-                        contact State's custodian to obtain placeholder CUSIP number.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="AlternativeID" type="AlternativeSecurityIDType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO -->
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:choice minOccurs="1" maxOccurs="1">
+			    <xs:element name="CUSIP" type="CUSIPType"></xs:element>
+                <xs:element name="AlternativeID" type="AlternativeSecurityIDType" minOccurs="0"></xs:element>
+            </xs:choice>				
+			
             <xs:element name="ReportedShares" type="NumberOfSharesType">
                 <xs:annotation>
                     <xs:documentation>
-                        Enter number of shares including fractional shares. Note that most processing platforms
-                        can only accommodate only up to three decimal places. Decimal required if reporting
-                        fractional shares.
+                        Number of Shares Reported by Holder for the Owner.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="RemittedShares" type="NumberOfSharesType">
                 <xs:annotation>
                     <xs:documentation>
-                        Final number of shares remitted to state. Decimal required if remitting fractional shares,
-                        up to three decimal places. Note that most processing platforms can only accommodate only
-                        up to three decimal places.
+                        Number of Shares Remitted by Holder for the Owner.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -194,8 +197,7 @@
                         <xs:element name="Shares" type="NumberOfSharesType">
                             <xs:annotation>
                                 <xs:documentation>
-                                    Enter number of unexchanged shares. Decimal required if reporting fractional shares. Note
-                                    that most processing platforms can only accommodate only up to three decimal places.
+                                    Enter number of oroginal unexchanged shares.
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
@@ -206,7 +208,8 @@
                 <xs:simpleType>
                     <xs:annotation>
                         <xs:documentation>
-                            Stock, Mutual Funds, Bonds, Warrants, Rights, Privately held, CVR, ADR, Foreign.
+                            Common Stock, Preferred Stock, Open-End Mutual Funds, Closed-End Mutual Funds,
+							Bonds, Options/Warrants, Rights, Privately held, CVR, ADR, Foreign.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:string">
@@ -240,6 +243,31 @@
                                 <xs:documentation>Options/Warrants</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
+                        <xs:enumeration value="Rights">
+                            <xs:annotation>
+                                <xs:documentation>Rights</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Privately Held">
+                            <xs:annotation>
+                                <xs:documentation>Privately Held Securities</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="CVR">
+                            <xs:annotation>
+                                <xs:documentation>CVR - Contingent Value Right</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="ADR">
+                            <xs:annotation>
+                                <xs:documentation>ADR - American Depository Receipts</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Foreign">
+                            <xs:annotation>
+                                <xs:documentation>Foreign Securities</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -248,13 +276,15 @@
                 <xs:simpleType>
                     <xs:annotation>
                         <xs:documentation>
-                            Ways of handling dividends for securities.
+                            Ways of handling dividends for securities. Cash if paid to account holder, Reinvested if
+							additional shares are purchased with dividends, None if the security does not currently
+							pay dividends.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:string">
                         <xs:enumeration value="Cash">
                             <xs:annotation>
-                                <xs:documentation>Convert divedends to cash.</xs:documentation>
+                                <xs:documentation>Convert dividends to cash.</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                         <xs:enumeration value="Reinvested">
@@ -264,7 +294,7 @@
                         </xs:enumeration>
                         <xs:enumeration value="None">
                             <xs:annotation>
-                                <xs:documentation>No dividends to be handled for this security.</xs:documentation>
+                                <xs:documentation>Security does not currently pay dividends.</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                     </xs:restriction>
@@ -274,19 +304,19 @@
                 <xs:simpleType>
                     <xs:annotation>
                         <xs:documentation>
-                            Ways of delivering security remittances to the state.
+                            Ways of delivering security remittances to the state.  Valid values are 
+							DTC, Physical, Book Entry, Foreign, DWAC, Fund/SERV, DRS and Held at holder
                         </xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:string">
                         <xs:enumeration value="DTC">
                             <xs:annotation>
-                                <!-- TODO:  What does DTC stand for?-->
-                                <xs:documentation>DTC</xs:documentation>
+                                <xs:documentation>DTC - Depository Trust Company</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                         <xs:enumeration value="Physical">
                             <xs:annotation>
-                                <xs:documentation>Physical</xs:documentation>
+                                <xs:documentation>Physical - delivered in certificated form.</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                         <xs:enumeration value="Book Entry">
@@ -301,18 +331,17 @@
                         </xs:enumeration>
                         <xs:enumeration value="DWAC">
                             <xs:annotation>
-                                <!-- TODO:  What does DTC stand for?-->
-                                <xs:documentation>DWAC</xs:documentation>
+                                <xs:documentation>DWAC - Deposit /Withdrawl at Custodian</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
-                        <xs:enumeration value="Fund Serve">
+                        <xs:enumeration value="Fund/SERV">
                             <xs:annotation>
-                                <xs:documentation>Fund Serve</xs:documentation>
+                                <xs:documentation>Fund/SERV - U.S. industry standard for processing and settling mutual fund</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                         <xs:enumeration value="DRS">
                             <xs:annotation>
-                                <xs:documentation>DRS</xs:documentation>
+                                <xs:documentation>DRS - Direct Registration System</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                         <xs:enumeration value="Held at Holder">
@@ -331,7 +360,6 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu -->
                         <xs:maxLength value="25" />
                     </xs:restriction>
                 </xs:simpleType>
@@ -347,7 +375,6 @@
                 </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu -->
                         <xs:maxLength value="20" />
                     </xs:restriction>
                 </xs:simpleType>
@@ -356,13 +383,35 @@
                 <xs:simpleType>
                     <xs:annotation>
                         <xs:documentation>
-                            Market Exchange where the security is held and traded.
+                            Market Exchange where the security is held and traded. Valid values are
+							NYSE, AMEX, NASDAQ, Other.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:string">
-                        <xs:enumeration value="TBD">
+                        <xs:maxLength value="6" />
+                        <xs:enumeration value="NYSE">
                             <xs:annotation>
-                                <xs:documentation>TBD</xs:documentation>
+                                <xs:documentation>NYSE - New York Stock Exchange</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="AMEX">
+                            <xs:annotation>
+                                <xs:documentation>AMEX - American Stock Exchange</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="NASDAQ">
+                            <xs:annotation>
+                                <xs:documentation>NASDAQ - NASDAQ Securities Exchange</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Private">
+                            <xs:annotation>
+                                <xs:documentation>Privately Held Securities</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Other">
+                            <xs:annotation>
+                                <xs:documentation>Other Securities Exchange</xs:documentation>
                             </xs:annotation>
                         </xs:enumeration>
                     </xs:restriction>
@@ -371,9 +420,7 @@
             <xs:element name="DividendsPaidThroughDate" type="DateType">
                 <xs:annotation>
                     <xs:documentation>
-                        <!-- TODO:  review description -->
-                        Date through which dividend and other payments - Can we develop a new field for Long/Short
-                        term capital gains?-  were reported for this security.
+                        Date through or last payment date for which dividend and/or other payments have been accured for this security.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -383,105 +430,77 @@
                         <xs:element name="Date1" type="DateType">
                             <xs:annotation>
                                 <xs:documentation>
-                                    Need clarification for the purpose of this field.
+                                    Date of the SEC-mandated first owner search effort by the Holder.
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
                         <xs:element name="Date2" type="DateType">
                             <xs:annotation>
                                 <xs:documentation>
-                                    Need clarification for the purpose of this field.
+                                    Date of the SEC-mandated second owner search effort by the Holder.
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <!-- TODO:  Do we really need this in addition to the Adjustment element at the Property level? -->
-            <xs:element name="Adjustment">
+            <xs:element name="Adjustment" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Allowable Deductions from the Original Reported shares to the Remitted Shares.
+                    </xs:documentation>
+                </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="Type">
+                        <xs:element name="Type">    
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Allowable Deductions Type is Tax for tax obligations.
+                                </xs:documentation>
+                            </xs:annotation>
                             <xs:simpleType>
-                                <xs:annotation>
-                                    <xs:documentation>
-                                    </xs:documentation>
-                                </xs:annotation>
                                 <xs:restriction base="xs:string">
-                                    <xs:enumeration value="TBD">
+                                    <xs:enumeration value="Tax">
                                         <xs:annotation>
-                                            <xs:documentation>TBD</xs:documentation>
+                                            <xs:documentation>Securities sold to pay tax obligations</xs:documentation>
                                         </xs:annotation>
                                     </xs:enumeration>
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
-                        <xs:element name="Amount" type="CurrencyType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                </xs:documentation>
-                            </xs:annotation>
+                        <xs:element name="Amount" type="NumberOfSharesType">
                         </xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="CostBasis">
+            <xs:element name="CostBasis" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        This section provides for detailed cost basis of the securities remitted to the state.
+						It supports multiple entries that represent each component of the security cost basis.
+                    </xs:documentation>
+                </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="Name" type="SecurityNameType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Enter the name of the security issue which is due the owner. DO NOT enter more
-                                    than one issue per owner record. (For example, brokers must provide one property
-                                    record for each issue held in an owner's account.) When reporting stock where the
-                                    owner has different issues and these issues will be due the owner, there should be
-                                    a property record for each issue that will be due that owner. For example: Paul
-                                    Smith had an account with XYZ broker. In the account, Mr. Smith owned 12 shares of
-                                    ABC Office Supply Common, 4 shares of ABC Office Supply $2.75 Preferred, and 20
-                                    shares of Afterschool Snack Company Common. There should be three property records
-                                    for Mr. Smith.
-                                </xs:documentation>
-                            </xs:annotation>
+                        <xs:element name="Name" type="SecurityNameType" minOccurs="1">
                         </xs:element>
                         <xs:element name="Symbol" type="SecuritySymbolType" minOccurs="0">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Enter Security Ticker Symbol - Enter the Ticker Symbol under which the security is
-                                    being traded - if available
-                                </xs:documentation>
-                            </xs:annotation>
                         </xs:element>
-                        <xs:element name="CUSIP" type="CUSIPType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Enter the CUSIP number of the specific security issue. If no CUSIP number available,
-                                    contact State's custodian to obtain placeholder CUSIP number.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                        <!-- TODO:
-                            Is the alternative security ID providing additional information, or would it be used instead
-                                of SecurityName/SecuritySymbol/CUSIP?  If it replaces those elements, there should be an
-                                xs:choice here.
-                        -->
-                        <xs:element name="AlternativeID" type="AlternativeSecurityIDType" minOccurs="0">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    <!-- TODO -->
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
+                        <xs:choice minOccurs="1" maxOccurs="1">
+			                <xs:element name="CUSIP" type="CUSIPType"></xs:element>
+                            <xs:element name="AlternativeID" type="AlternativeSecurityIDType"></xs:element>
+                        </xs:choice>				
                         <xs:element name="Amount" type="CurrencyType">
                             <xs:annotation>
                                 <xs:documentation>
-                                    The amount paid for the security
+                                    The cash basis or acquisition cost of the security.
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
                         <xs:element name="SharesPurchased" type="NumberOfSharesType">
                             <xs:annotation>
                                 <xs:documentation>
-                                    Number of shares purchased in this transaction
+                                    Number of shares purchased in this transaction.
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
@@ -492,14 +511,7 @@
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
-                        <!-- TODO:  review change to IndicatorType -->
-                        <xs:element name="LongTerm" type="IndicatorType" minOccurs="0">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Provide this information as defined by Internal Revenue Code of United States - Need
-                                    more clarification as how this field will be used to arrive at a better description.
-                                </xs:documentation>
-                            </xs:annotation>
+                        <xs:element name="LongTerm" type="HoldingPeriodType" minOccurs="0">
                         </xs:element>
                     </xs:sequence>
                 </xs:complexType>

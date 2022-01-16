@@ -350,7 +350,7 @@
                     <TransferAgent>COMPUTERSHARE</TransferAgent>
                     <Name>FORD MOTOR CO</Name>
                     <Symbol>F</Symbol>
-                    <CUSIP>A12345678</CUSIP>
+					<!--<CUSIP>A12345678</CUSIP> -->
                     <AlternativeID>
                         <Type>SEDOL</Type>
                         <Identifier>1234567</Identifier>
@@ -367,20 +367,20 @@
                     <DeliveryMethod>DTC</DeliveryMethod>
                     <StateAccountNumber>123456</StateAccountNumber>
                     <DTCDeliveryReferenceNumber>0005</DTCDeliveryReferenceNumber>
-                    <Market>TBD</Market>
+                    <Market>AMEX</Market>
                     <DividendsPaidThroughDate>07-01-2019</DividendsPaidThroughDate>
                     <SECSearch>
                         <Date1>03-15-2019</Date1>
                         <Date2>06-15-2019</Date2>
                     </SECSearch>
                     <Adjustment>
-                        <Type>TBD</Type>
+                        <Type>Tax</Type>
                         <Amount>-12.50</Amount>
                     </Adjustment>
                     <CostBasis>
                         <Name>FORD MOTOR CO</Name>
                         <Symbol>F</Symbol>
-                        <CUSIP>A12345678</CUSIP>
+                        <!--<CUSIP>A12345678</CUSIP> -->
                         <AlternativeID>
                             <Type>SEDOL</Type>
                             <Identifier>1234567</Identifier>
@@ -388,7 +388,7 @@
                         <Amount>12000.00</Amount>
                         <SharesPurchased>1000.001</SharesPurchased>
                         <PurchaseDate>01-01-1980</PurchaseDate>
-                        <LongTerm>X</LongTerm>
+                        <LongTerm>YES</LongTerm>
                     </CostBasis>
                 </Security>
             </Property>
