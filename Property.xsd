@@ -1174,51 +1174,24 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="NonRemitIndicator" minOccurs="0">
+            <xs:element name="NonRemitIndicator" type ="IndicatorType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
 						Indicate whether the property is being delivered/transfered at the same time as the filing
 						of the report.  When indicating that property is being reported but not being turned over 
 						to the state, be aware that most states require the reporting organization to notify the 
 						state about these properties in separate correspondance prior to sending their report.
+						X indicates that the property is Non remitted, and the element is not present if it is remitted.
 					</xs:documentation>
                 </xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Yes">
-							<xs:annotation>
-								<xs:documentation>Property is not remitted to the state</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="No">
-							<xs:annotation>
-								<xs:documentation>Property is remitted to the state</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-					</xs:restriction>
-				</xs:simpleType>           
 			</xs:element>
             <!-- TODO:  Consider changing this to TaxExempt if most things are taxable. -->
-            <xs:element name="Taxable" minOccurs="0">
+            <xs:element name="Taxable" type ="IndicatorType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
-						Whether the property is or includes taxable income or taxable distribution(s) (Yes or No)
+						Whether the property is or includes taxable income or taxable distribution(s) (X or element not present)
 					</xs:documentation>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Yes">
-							<xs:annotation>
-								<xs:documentation>Property is taxable</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-						<xs:enumeration value="No">
-							<xs:annotation>
-								<xs:documentation>Property is not taxable</xs:documentation>
-							</xs:annotation>
-						</xs:enumeration>
-					</xs:restriction>
-				</xs:simpleType>
 			</xs:element>
             <xs:element name="TaxForm1099IssuedDate" type="DateType" minOccurs="0">
 			    <xs:annotation>

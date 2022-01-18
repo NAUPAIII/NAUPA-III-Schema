@@ -137,7 +137,7 @@
                 <Taxable>X</Taxable>
                 <TaxForm1099IssuedDate>09-01-2019</TaxForm1099IssuedDate>
                 <Description>This is a property description.</Description>
-                <LocationIdentifier>Office #2-201</LocationIdentifier>
+                <LocationIdentifier>Branch</LocationIdentifier>
                 <LocationAddress>
                     <USAddress>
                         <Address1>1234 MAIN ST</Address1>
