@@ -466,7 +466,7 @@
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
                 <AccountNumber>1234567890</AccountNumber>
-				<NonRemitIndicator>Yes</NonRemitIndicator>
+				<NonRemitIndicator>X</NonRemitIndicator>
 				<Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
@@ -620,7 +620,7 @@
                 <EMailAddress>joe.johnson@testcompany.com</EMailAddress>
             </Contact>
             <Property>
-                <TypeCode>AC001 - Checking Accounts</TypeCode>
+                <TypeCode>AC001</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
@@ -636,14 +636,14 @@
                 </ReturnedByPostOffice>
                 <PayableOrDistributableDate>01-15-2015</PayableOrDistributableDate>
                 <Transaction>
-                    <StartDate>01-15-2015</StartDate>
-                    <EndDate>01-15-2015</EndDate>
+                    <StartingTransactionDate>01-15-2015</StartingTransactionDate>
+                    <EndingTransactionDate>01-15-2015</EndingTransactionDate>
                 </Transaction>
                 <NonRemitIndicator>X</NonRemitIndicator>
                 <Taxable>X</Taxable>
-                <Ten99IssuedDate>09-01-2019</Ten99IssuedDate>
+                <TaxForm1099IssuedDate>09-01-2019</TaxForm1099IssuedDate>
                 <Description>This is a property description.</Description>
-                <LocationIdentifier>Office #2-201</LocationIdentifier>
+                <LocationIdentifier>Branch</LocationIdentifier>
                 <LocationAddress>
                     <USAddress>
                         <Address1>1234 MAIN ST</Address1>
