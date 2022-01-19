@@ -111,7 +111,7 @@
                 <EMailAddress>JOHN.SMITH@TESTBANK.COM</EMailAddress>
             </Contact>
             <Property>
-                <TypeCode>AC001 - Checking Accounts</TypeCode>
+                <TypeCode>AC001</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
@@ -127,14 +127,14 @@
                 </ReturnedByPostOffice>
                 <PayableOrDistributableDate>01-15-2015</PayableOrDistributableDate>
                 <Transaction>
-                    <StartDate>01-15-2015</StartDate>
-                    <EndDate>01-15-2015</EndDate>
+                    <StartingTransactionDate>01-15-2015</StartingTransactionDate>
+                    <EndingTransactionDate>01-15-2015</EndingTransactionDate>
                 </Transaction>
                 <NonRemitIndicator>X</NonRemitIndicator>
                 <Taxable>X</Taxable>
-                <Ten99IssuedDate>09-01-2019</Ten99IssuedDate>
+                <TaxForm1099IssuedDate>09-01-2019</TaxForm1099IssuedDate>
                 <Description>This is a property description.</Description>
-                <LocationIdentifier>Office #2-201</LocationIdentifier>
+                <LocationIdentifier>Branch</LocationIdentifier>
                 <LocationAddress>
                     <USAddress>
                         <Address1>1234 MAIN ST</Address1>
@@ -152,7 +152,8 @@
                     <SanctionsTarget>Cuba</SanctionsTarget>
                     <OwnerType>Non-U.S. Bank</OwnerType>
                 </OFAC>
-                <Owner>
+				<HIPAAFlag>Yes</HIPAAFlag>
+				<Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
                         <PersonName>
@@ -262,7 +263,7 @@
                 </Cash>
             </Property>
             <Property>
-                <TypeCode>SC002 - Interest on Bonds</TypeCode>
+                <TypeCode>SC002</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
@@ -306,7 +307,7 @@
                 </Bond>
             </Property>
             <Property>
-                <TypeCode>SC006 - Shares of Equities</TypeCode>
+                <TypeCode>SC006</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
@@ -347,7 +348,7 @@
                     <TransferAgent>COMPUTERSHARE</TransferAgent>
                     <Name>FORD MOTOR CO</Name>
                     <Symbol>F</Symbol>
-                    <CUSIP>A12345678</CUSIP>
+					<!--<CUSIP>A12345678</CUSIP> -->
                     <AlternativeID>
                         <Type>SEDOL</Type>
                         <Identifier>1234567</Identifier>
@@ -364,20 +365,20 @@
                     <DeliveryMethod>DTC</DeliveryMethod>
                     <StateAccountNumber>123456</StateAccountNumber>
                     <DTCDeliveryReferenceNumber>0005</DTCDeliveryReferenceNumber>
-                    <Market>TBD</Market>
+                    <Market>AMEX</Market>
                     <DividendsPaidThroughDate>07-01-2019</DividendsPaidThroughDate>
                     <SECSearch>
-                        <Date1>03-15-2019</Date1>
-                        <Date2>06-15-2019</Date2>
+                        <Date1>03-15-2019</Date1> 
+						<Date2>06-15-2019</Date2>
                     </SECSearch>
                     <Adjustment>
-                        <Type>TBD</Type>
+                        <Type>Tax</Type>
                         <Amount>-12.50</Amount>
                     </Adjustment>
                     <CostBasis>
                         <Name>FORD MOTOR CO</Name>
                         <Symbol>F</Symbol>
-                        <CUSIP>A12345678</CUSIP>
+                        <!--<CUSIP>A12345678</CUSIP> -->
                         <AlternativeID>
                             <Type>SEDOL</Type>
                             <Identifier>1234567</Identifier>
@@ -385,12 +386,12 @@
                         <Amount>12000.00</Amount>
                         <SharesPurchased>1000.001</SharesPurchased>
                         <PurchaseDate>01-01-1980</PurchaseDate>
-                        <LongTerm>X</LongTerm>
+                        <LongTerm>YES</LongTerm>
                     </CostBasis>
                 </Security>
             </Property>
             <Property>
-                <TypeCode>SD001 - SD Box Contents</TypeCode>
+                <TypeCode>SD001</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
@@ -460,12 +461,13 @@
                 </Safekeeping>
             </Property>
             <Property>
-                <TypeCode>MI001 - Working Interest Payment</TypeCode>
+                <TypeCode>MI001</TypeCode>
                 <DormancyPeriod>12</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
                 <AccountNumber>1234567890</AccountNumber>
-                <Owner>
+				<NonRemitIndicator>Yes</NonRemitIndicator>
+				<Owner>
                     <PrimaryContactInformation>
                         <Type>Owner</Type>
                         <PersonName>
@@ -514,8 +516,8 @@
                 </MineralInterests>
             </Property>
             <Property>
-                <TypeCode>VC002 - Virtual Currency Liquidated</TypeCode>
-                <DormancyPeriod>12</DormancyPeriod>
+                <TypeCode>VC002</TypeCode>
+                <DormancyPeriod>5</DormancyPeriod>
                 <LastActivityDate>01-15-2015</LastActivityDate>
                 <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
                 <AccountNumber>1234567890</AccountNumber>

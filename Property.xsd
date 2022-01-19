@@ -26,12 +26,12 @@
                                 CK - Check
                                 VC - Virtual Currency
                                 CS - College Savings
-                                CT - Court-Related (?)
+                                CT - Court-Related
                                 HS - Health Savings Accounts
                                 IN - Insurance
                                 IR - Individual Retirement Accounts
                                 MI - Mineral Interests
-                                MS - Salary-Related (?)
+                                MS - Miscellaneous Property
                                 SC - Securities
                                 SD - Safe Deposit Box
                                 TR - Trust-Related
@@ -39,233 +39,936 @@
                                 
                         </xs:documentation>
                     </xs:annotation>
-                    <xs:restriction base="xs:string">
-                        <!-- TODO:  Discuss the fact that only the "value" property of the "enumeration" element appears in the XML. -->
-                        <!-- TODO:  Discuss the handling of state-specific extenstions -->
-                        <xs:enumeration value="AC001 - Checking Accounts">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    A demand deposit account with unrestricted transactions.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="AC002 - Savings Accounts">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    A demand deposit account with restricted transactions.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <!-- 
-            AC003    Mature CD or Save Cert
-            AC004    IOLTA / Attorney Trust Fund
-            AC005    Failed Electronic Payments
-            AC006    Unclaimed Intangible Loan Collarteral
-            AC007    Unidentified Deposit
-            AC008    Security Deposits for Rent
-            AC009    ABLE Account
-            AC010    Payroll Card Account
-            AC011    Reloadable Non-Retail Card
-            AC012    Reloadable Government Card
-                
-            CK001    Cashier's, Certified and other instrument which the bank is direclty liable.
-            CK002    Payment to Vendor
-            CK003    Payment to Nonretail Customer
-            CK004    Payment to Retail Customer
-            CK005    Retirement Distrubution checks
-            CK006    Government Warrants
-            CK007    Money Orders
-            CK008    Traveler's Checks
-            CK009    CD Interest Checks
--->
-            <!-- TODO: should we make these descriptions shorter since they will typically be used in drop-downs? -->
-            <xs:enumeration value="VC001 - Virtual Currency in Native Currency Units">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO -->
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="VC002 - Virtual Currency Liquidated">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO -->
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-<!-- 
-            CS001    Educational Savings Account - Cash
-            CS002    Educational Savings Account - Mutual Fund
-            CS003    Educational Savings Account - Securities
-            CS004    Coverdell Educational Savings Account - Cash
-            CS005    Coverdell Educational Savings Account - Mutual Fund
-            CS006    Coverdell Educational Savings Account - Securities
-            CS007    529 Plan Educational Savings Account - Cash
-            CS008    529 Plan Educational Savings Account - Mutual Fund
-            CS009    529 Plan Educational Savings Account - Securities
-            CS010    College Savings Distribution
-                   
-            CT001    Escrow Funds
-            CT002    Condemnation Awards
-            CT003    Estate / Missing Heir's Funds
-            CT004    Class Action Funds
-            CT005    Other Court Deposits
-            CT006    Bail Bonds
-            CT007    Judgements
-            CT008    Trust Funds
-            CT009    Child Support Payments
-            CT010    Abandoned Vehicle Proceeds
-            CT011    Real Estate sold
-                
-            HS001    Health Savings Account (HSA)
-            HS002    Health Savings Account Investment
-                
-            IN001    Policy Benefits or Claim Payments Including Claims Paid on Auto, Home, P&C, Rental, or Health Policies
-            IN002    Retained Asset Accounts including account balances and distributions
-            IN003    Proceeds Due Beneficiaries Including Life Insurance Proceeds (Death Claims)
-            IN004    Proceeds Due From Matured Policies, Endowments or Annuties for the Insured
-            IN005    Premium Refunds including Overpayments
-            IN006    Unidentified Remittances
-            IN007    Other Amounts Due Under Policy Terms
-            IN008    Agent Credit Balances
-               
-            IR001    Traditional IRA - Cash
-            IR002    Traditional IRA - Mutual Funds
-            IR003    Traditional IRA - Securities
-            IR004    Traditional IRA - Other
-            IR005    Roth IRA - Cash
-            IR006    Roth IRA - Mutual Funds
-            IR007    Roth IRA - Securities
-            IR008    Roth IRA - Other
-            IR009    Pension & Profit Sharing
--->
-            <xs:enumeration value="MI001 - Working Interest Payment">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO -->
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-<!--
-            MI001    Working Interest Payment
-            MI002    Mineral Interest Royalties
-            MI003    Overriding Royalties
-            MI004    Production Payments
-            MI005    Current Production Payments
-            MI006    Bonuses
-            MI007    Delay Rentals
-            MI008    Shut-in Royalties
-            MI009    Miscellaneous Production Payment
-                
-            MS001    Wages, Payroll, Salary - Check or Direct Deposit
-            MS002    Commissions
-            MS003    "Workers Compensation Benefits
-             Recommendation: Move to insurance"
-            MS004    Credit Due Vendor
-            MS005    Credit Due Nonretail Customer
-            MS006    Credit Due Retail Customer
-            MS007    Store/Merchandise Credit
-            MS008    Stored Value Card
-            MS010    General Use Prepaid Card
-            MS011    Loyalty, Award or Promotional Card
-            MS012    Telephone or other Telecommunications Card
-            MS013    Game Related Digital Content Card
--->
-                        <xs:enumeration value="SC001 - Dividends on Shares">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Distribution of earnings to shareholders, prorated by class of security. Any
-                                    security distributions must be reported under SC006.</xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="SC002 - Interest on Bonds">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Interest earned on Bonds (all types of Bonds) prior to the redemption date.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="SC003 - Return of Principal on Bonds">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Principal is the amount of money the issuer of a bond is borrowing and will repay
-                                    to the bondholder in full upon the bond’s redemption or maturity.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="SC004 - Cash for Fractional Shares">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Proceeds from the sale of fractional shares required to be liquidated prior to
-                                    remittance. An owner's fractional shares must be cashed out prior to remitting
-                                    (cannot remit partial shares). (Cash in lieu).
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="SC005 - Unexchanged Stock Certificates">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Incomplete exchange of old shares to new successor corporate shares (shares drawn
-                                    on prior company name). Certificates remitted in the original owner name.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-                        <xs:enumeration value="SC006 - Shares of Equities">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    All types of Equity Securities, including: Certificated shares, book entry shares,
-                                    dividends paid in shares. (For Dividend Reinvestment Plan Shares use SC012.)
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:enumeration>
-<!--
-            SC007    Funds for Liquidation / Redemption of Unsurrendered Stock or Bonds
-            SC008    Debentures
-            SC009    US Government Debt Securities
-            SC010    Mutual Fund Shares
-            SC011    Warrants/Rights/Options
-            SC012    Dividend Reinvestment Plan Shares
-            SC013    Security Account Credit Balances
-            SC014    Non-freely transferable and Worthless Securities (Equity, Debt, Mutual Funds (Shares) (not all states will adopt).
-            SC015    Restricted Securities -Broker Held
-            SC016    Unexchanged Shares
-            SC017    Dissolution or Liquidation
--->
-            <xs:enumeration value="SD001 - SD Box Contents">
-                <xs:annotation>
-                    <xs:documentation>
-                        Valuables, coins, jewelry, important documents, and sentimental keepsakes.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-<!--
-            SD002    Other Safekeeping
-            SD003    Other Tangible Property
-                
-            TR001    Pre Need Funeral Expenses 
-            TR002    Undelivered or Uncashed Dividends
-            TR003    Funds held in Fiduciary Capacity
-            TR004    Escrow Accounts
-            TR005    Escrow Taxes 
-            TR006    Escrow Earnest Money Disputed
-            TR007    Burial Expenses
-                
-            UT001    Utility Deposits
-            UT002    Refunds or Rebates
--->
-                    </xs:restriction>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="AC001">
+							<xs:annotation>
+								<xs:documentation>
+									AC001 - Checking Accounts
+									A demand deposit account with unrestricted transactions
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="AC002">
+							<xs:annotation>
+								<xs:documentation>
+									AC002 - Savings Accounts
+									A demand deposit account with restricted transactions
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="AC003">
+							<xs:annotation>
+								<xs:documentation>
+									AC003 - Mature CD or Save Cert
+									A timed deposit account with a fixed term and generally a fixed rate.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="AC004">
+							<xs:annotation>
+								<xs:documentation>
+									AC004 - IOLTA / Attorney Trust Fund
+									Interest on Lawyer Trust Accounts (does not include Lawyer trust client funds reported by law offices)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="AC005">
+							<xs:annotation>
+								<xs:documentation>
+									AC005 - Failed Electronic Payments
+									(California has CK51) Electronic/wire payments that are not received by the payee and are held in the bank's accounts:  In which the payor’s account cannot receive the funds back due to: Payor’s account is inactive. A check was provided to the bank to make the payment. bounced payment, can sometimes be
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="AC006">
+							<xs:annotation>
+								<xs:documentation>
+									AC006 - Unclaimed Intangible Loan Collarteral
+									Property deposit on account to secure a loan. Intangible? Tangible?
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="AC007">
+							<xs:annotation>
+								<xs:documentation>
+									AC007 - Unidentified Deposit
+									Deposited Funds where there is insufficent information to credit the funds directly into a customer's account.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="AC008">
+							<xs:annotation>
+								<xs:documentation>
+									AC008 - Security Deposits for Rent
+									Where does this go?
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="AC009">
+							<xs:annotation>
+								<xs:documentation>
+									AC009 - ABLE Account
+									Achieving a Better Life Experience tax favored account, available to individuals with significant disabilities
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="AC010">
+							<xs:annotation>
+								<xs:documentation>
+									AC010 - Payroll Card Account
+									Payroll Card Account CFPBxxxx
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="AC011">
+							<xs:annotation>
+								<xs:documentation>
+									AC011 - Reloadable Non-Retail Card
+									Reloadable cared not marketed to the general public and not labeled "Gift Card" CFPBxxxx (Example: Comdata trucker fuel card)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="AC012">
+							<xs:annotation>
+								<xs:documentation>
+									AC012 - Reloadable Government Card
+									Reloadable benefit card; EBT card
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CK001">
+							<xs:annotation>
+								<xs:documentation>
+									CK001 - Cashier's, Certified and other instrument which the bank is directly liable.
+									Check written by financial institution where the bank is directly liable for payment, for the amount paid to the bank by the purchaser with a named payee. This includes Cashier's, Certified, and Registered Checks. Does not include Traveler's Check, money orders, and similar instruments, as covered rule enacted by Congress in 12 U.S.C. Sections 2501 et seq.  (It is encouraged to include any Remitter information that is available.)  What does ""similar instrument"" mean in Federal law? Are Cashier's, Certified, and Registered Checks similar instruments?
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CK002">
+							<xs:annotation>
+								<xs:documentation>
+									CK002 - Payment to Vendor
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CK003">
+							<xs:annotation>
+								<xs:documentation>
+									CK003 - Payment to Nonretail Customer
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CK004">
+							<xs:annotation>
+								<xs:documentation>
+									CK004 - Payment to Retail Customer
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CK005">
+							<xs:annotation>
+								<xs:documentation>
+									CK005 - Retirement Distrubution checks
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CK006">
+							<xs:annotation>
+								<xs:documentation>
+									CK006 - Government Warrants
+									An order issued by a governmental entity that serves as authorization, especially a voucher authorizing payment or receipt of money. A warrant draws funds from a government treasury and is not an order to pay.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CK007">
+							<xs:annotation>
+								<xs:documentation>
+									CK007 - Money Orders
+									A payment order for a specified amount of money. Includes both express money orders and personal orders, on which the remitter is the purchaser. Does not include Cashier's, Certified, and Registered Checks.  (Money orders are covered under the rule enacted by Congress in 12 U.S.C. Sections 2501 et seq.)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CK008">
+							<xs:annotation>
+								<xs:documentation>
+									CK008 - Traveler's Checks
+									An internationally redeemable draft issued by a major financial services company in various denominations and payable only upon the purchaser's endorsement against the original signature on the draft. Does not include Cashier's, Certified, and Registered Checks.  (Travelers checks are covered under Section 306 which states the rule enacted by Congress in 12 U.S.C. Sections 2501 et seq.)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CK009">
+							<xs:annotation>
+								<xs:documentation>
+									CK009 - CD Interest Checks
+									A check issued for interest payable to an owner of a certificate of deposit.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CS001">
+							<xs:annotation>
+								<xs:documentation>
+									CS001 - Educational Savings Account - Cash
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CS002">
+							<xs:annotation>
+								<xs:documentation>
+									CS002 - Educational Savings Account - Mutual Fund
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CS003">
+							<xs:annotation>
+								<xs:documentation>
+									CS003 - Educational Savings Account - Securities
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CS004">
+							<xs:annotation>
+								<xs:documentation>
+									CS004 - Coverdell Educational Savings Account - Cash
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CS005">
+							<xs:annotation>
+								<xs:documentation>
+									CS005 - Coverdell Educational Savings Account - Mutual Fund
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CS006">
+							<xs:annotation>
+								<xs:documentation>
+									CS006 - Coverdell Educational Savings Account - Securities
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CS007">
+							<xs:annotation>
+								<xs:documentation>
+									CS007 - 529 Plan Educational Savings Account - Cash
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CS008">
+							<xs:annotation>
+								<xs:documentation>
+									CS008 - 529 Plan Educational Savings Account - Mutual Fund
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CS009">
+							<xs:annotation>
+								<xs:documentation>
+									CS009 - 529 Plan Educational Savings Account - Securities
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CS010">
+							<xs:annotation>
+								<xs:documentation>
+									CS010 - College Savings Distribution
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CT001">
+							<xs:annotation>
+								<xs:documentation>
+									CT001 - Escrow Funds
+									All agreed this code is still consistently used. However, we all decided that because there are other property codes with the same description (specifically TR04) it would be helpful to revise the description so that the code is properly used.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CT002">
+							<xs:annotation>
+								<xs:documentation>
+									CT002 - Condemnation Awards
+									This code is still used, but not as often as in the past. No one thinks the code needs to be further defined.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CT003">
+							<xs:annotation>
+								<xs:documentation>
+									CT003 - Estate / Missing Heir's Funds
+									This code is actively used. However, all felt it needed further clarification as applying to funds associated with estates. Several states have already changed the description.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CT004">
+							<xs:annotation>
+								<xs:documentation>
+									CT004 - Class Action Funds
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CT005">
+							<xs:annotation>
+								<xs:documentation>
+									CT005 - Other Court Deposits
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CT006">
+							<xs:annotation>
+								<xs:documentation>
+									CT006 - Bail Bonds
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CT007">
+							<xs:annotation>
+								<xs:documentation>
+									CT007 - Judgements
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CT008">
+							<xs:annotation>
+								<xs:documentation>
+									CT008 - Trust Funds
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CT009">
+							<xs:annotation>
+								<xs:documentation>
+									CT009 - Child Support Payments
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CT010">
+							<xs:annotation>
+								<xs:documentation>
+									CT010 - Abandoned Vehicle Proceeds
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CT011">
+							<xs:annotation>
+								<xs:documentation>
+									CT011 - Real Estate sold
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="HS001">
+							<xs:annotation>
+								<xs:documentation>
+									HS001 - Health Savings Account (HSA)
+									Tax-advantaged account structured to save for medical expenses. HSA funds are tax-exempt at the time of deposit and roll over and accumulate year to year if they are not spent.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="HS002">
+							<xs:annotation>
+								<xs:documentation>
+									HS002 - Health Savings Account Investment
+									Funds in your HSA account can be invested and earn interest to take advantage of potential growth of your funds.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IN001">
+							<xs:annotation>
+								<xs:documentation>
+									IN001 - Policy Benefits or Claim Payments Including Claims Paid on Auto, Home, PC, Rental, or Health Policies
+
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IN002">
+							<xs:annotation>
+								<xs:documentation>
+									IN002 - Retained Asset Accounts including account balances and distributions
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IN003">
+							<xs:annotation>
+								<xs:documentation>
+									IN003 - Proceeds Due Beneficiaries Including Life Insurance Proceeds (Death Claims)
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IN004">
+							<xs:annotation>
+								<xs:documentation>
+									IN004 - Proceeds Due From Matured Policies, Endowments or Annuties for the Insured
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IN005">
+							<xs:annotation>
+								<xs:documentation>
+									IN005 - Premium Refunds including Overpayments
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IN006">
+							<xs:annotation>
+								<xs:documentation>
+									IN006 - Unidentified Remittances
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IN007">
+							<xs:annotation>
+								<xs:documentation>
+									IN007 - Other Amounts Due Under Policy Terms
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IN008">
+							<xs:annotation>
+								<xs:documentation>
+									IN008 - Agent Credit Balances
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IR001">
+							<xs:annotation>
+								<xs:documentation>
+									IR001 - Traditional IRA - Cash
+									Include: - Any cash or cash-equivalents (e.g, money markets) balances in a traditional, self-directed, SIMPLE or SEP IRA. Exclude: -I IRA mutual fund shares (other than money market funds), securities, or alternative investments (see IN02, IN03, and IN04, respectively) -Roth IRAs including self-directed Roth IRAs (see IN05) -Education Savings accounts (see ___)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IR002">
+							<xs:annotation>
+								<xs:documentation>
+									IR002 - Traditional IRA - Mutual Funds
+									Include: - Any mutual funds, other than money market funds held in a traditional, self-directed, SIMPLE or SEP IRA. -If the IRA contains multiple, different mutual funds, report each mutual fund/share balance separately. Exclude: -Roth IRAs including self-directed Roth IRAs(see IN06) -IRA cash (including money market funds), securities, or alternative investments (see IN01, IN03, and IN04, respectively) -Education Savings accounts (see ___)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IR003">
+							<xs:annotation>
+								<xs:documentation>
+									IR003 - Traditional IRA - Securities
+									Include: -Any securities (other than mutual funds) held in a traditional, self-directed, SIMPLE and SEP IRA. -If the IRA contains multiple, different securities, report each CUSIP/share balance separately. Exclude: -Roth IRAs including self-directed Roth IRAS(see IN07) --IRA cash (including money market funds), mutual funds, or alternative investments (see IN01, IN02, and IN04, respectively) -Education Savings accounts (see ___).
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IR004">
+							<xs:annotation>
+								<xs:documentation>
+									IR004 - Traditional IRA - Other
+									Include:-Any alternative investments held in a SDIRA. -If the SDIRA contains multiple, different types of alternative assets, report each asset separately. Exclude: -Roth IRAs including self-directed Roth IRAs (see IN08) -Traditional, SIMPLE or SEP IRAs --IRA cash (including money market funds), mutual funds, or securities (see IN01, IN02, and IN03, respectively) -Education Savings accounts (see ___).
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IR005">
+							<xs:annotation>
+								<xs:documentation>
+									IR005 - Roth IRA - Cash
+									Include: - Any cash or cash-equivalents (e.g, money markets) balances in a Roth IRA, including aself-directed Roth IRA. Exclude: -Non-Roth IRAs, e.g., traditional, self-directed, SIMPLE and SEP IRA cash (see IR01) -Roth IRA and self-directed Roth IRA mutual fund shares (other than money market funds), securities, or alternative investments (see IN06, IN07, and IN08, respectively -Education Savings accounts (see ___)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IR006">
+							<xs:annotation>
+								<xs:documentation>
+									IR006 - Roth IRA - Mutual Funds
+									Include: - Any mutual funds, other than money market funds, held in a Roth IRA, including a self-directed Roth IRA. -If the Roth IRA contains multiple, different mutual funds, report each mutual fund/share balance separately. Exclude: -Non-Roth IRAs, e.g., traditional, self-directed, SIMPLE and SEP IRA mutual funds (see IR02) -Roth IRA and self-directed Roth IRA cash (including money market funds), securities, or alternative investments (see IN05, IN07, and IN08, respectively) -Education Savings accounts (see ___)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IR007">
+							<xs:annotation>
+								<xs:documentation>
+									IR007 - Roth IRA - Securities
+									Include: - Any securities held in a Roth, including a self-directed Roth IRA. -If the Roth IRA contains multiple, different securities, report each CUSIP/share balance separately. Exclude: -Non-Roth IRAs, e.g., traditional, self-directed, SIMPLE and SEP IRA securities (see IR03) -Roth IRA and self-directed Roth IRA cash (including money market funds), mutual funds, or alternative investments (see IN05, IN06, and IN08, respectively) -Education Savings accounts (see ___)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IR008">
+							<xs:annotation>
+								<xs:documentation>
+									IR008 - Roth IRA - Other
+									Include: - Any alternative investments held in a self-directed Roth IRA. -If the self-directed Roth IRA contains multiple, different types of alternative assets, report each asset separately. Exclude: -Non-Roth IRAs, e.g., traditional, SIMPLE and SEP IRA alternative investments -Self-directed IRAs that are not Roth self-directed IRA alternative assets (see IR04) -Self-directed Roth IRA cash (including money market funds), mutual funds, or securities (see IN05, IN06, and IN07, respectively) -Education Savings accounts (see ___)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IR009">
+							<xs:annotation>
+								<xs:documentation>
+									IR009 - Pension / Profit Sharing
+									Non-IRA accounts
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MI001">
+							<xs:annotation>
+								<xs:documentation>
+									MI001 - Working Interest Payment
+									Includes all re
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MI002">
+							<xs:annotation>
+								<xs:documentation>
+									MI002 - Mineral Interest Royalties
+									Includes old MI09 Minimum Royalties, per holder represenitives minimum royalties are reported under the general royalties code.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MI003">
+							<xs:annotation>
+								<xs:documentation>
+									MI003 - Overriding Royalties
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MI004">
+							<xs:annotation>
+								<xs:documentation>
+									MI004 - Production Payments
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MI005">
+							<xs:annotation>
+								<xs:documentation>
+									MI005 - Current Production Payments
+									After you have remitted money on behalf of an owner, any additional amounts that accrue in subsequent years must also be reported. You must hold monthly checks and include them on your annual report. Continuing production payments should be reported with property type code MI05
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MI006">
+							<xs:annotation>
+								<xs:documentation>
+									MI006 - Bonuses
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MI007">
+							<xs:annotation>
+								<xs:documentation>
+									MI007 - Delay Rentals
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MI008">
+							<xs:annotation>
+								<xs:documentation>
+									MI008 - Shut-in Royalties
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MI009">
+							<xs:annotation>
+								<xs:documentation>
+									MI009 - Miscellaneous Production Payment
+									All other production type payments.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS001">
+							<xs:annotation>
+								<xs:documentation>
+									MS001 - Wages, Payroll, Salary - Check or Direct Deposit
+									Income earned from employment or contractual work and paid via check or direct deposit.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS002">
+							<xs:annotation>
+								<xs:documentation>
+									MS002 - Commissions
+									Commission earned, including those not related to employment or contractual work.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS003">
+							<xs:annotation>
+								<xs:documentation>
+									MS003 - Workers Compensation Benefits
+									Recommendation: Move to insurance
+									Note: dicuss with IN group Recommendation: Move to insurance
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS004">
+							<xs:annotation>
+								<xs:documentation>
+									MS004 - Credit Due Vendor
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS005">
+							<xs:annotation>
+								<xs:documentation>
+									MS005 - Credit Due Nonretail Customer
+									Funds owed to Nonretail Customer for amount due. May include refund, overpayment, reimbursement, discounts due, ?, etc. Check or other payment has not been issued.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS006">
+							<xs:annotation>
+								<xs:documentation>
+									MS006 - Credit Due Retail Customer
+									Funds owed to Retail Customer for amount due. May include refund, overpayment, reimbursement, discounts due, ?, etc. Check or other payment has not been issued.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS007">
+							<xs:annotation>
+								<xs:documentation>
+									MS007 - Store/Merchandise Credit
+									CFPBxxxx
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS008">
+							<xs:annotation>
+								<xs:documentation>
+									MS008 - Stored Value Card
+									CFPBxxxx (Example: RUPPA defintion includes all different types of medium. Paper, Card, E-mail)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS010">
+							<xs:annotation>
+								<xs:documentation>
+									MS010 - General Use Prepaid Card
+									CFPBxxxx (Example: Visa card)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS011">
+							<xs:annotation>
+								<xs:documentation>
+									MS011 - Loyalty, Award or Promotional Card
+									CFPBxxxx
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS012">
+							<xs:annotation>
+								<xs:documentation>
+									MS012 - Telephone or other Telecommunications Card
+									CFPBxxxx
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MS013">
+							<xs:annotation>
+								<xs:documentation>
+									MS013 - Game Related Digital Content Card
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC001">
+							<xs:annotation>
+								<xs:documentation>
+									SC001 - Dividends on Shares
+									Distribution of earnings to shareholders, prorated by class of security. Any security distributions must be reported under SC12.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC002">
+							<xs:annotation>
+								<xs:documentation>
+									SC002 - Interest on Bonds
+									Interest earned on Bonds (all types of Bonds) prior to the redemption date.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC003">
+							<xs:annotation>
+								<xs:documentation>
+									SC003 - Return of Principal on Bonds
+									Principal is the amount of money the issuer of a bond is borrowing and will repay to the bondholder in full upon the bond’s redemption or maturity.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC004">
+							<xs:annotation>
+								<xs:documentation>
+									SC004 - Cash for Fractional Shares
+									Proceeds from the sale of fractional shares required to be liquidated prior to remittance. An owner's fractional shares must be cashed out prior to remitting (cannot remit partial shares). (Cash in lieu).
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC005">
+							<xs:annotation>
+								<xs:documentation>
+									SC005 - Unexchanged Stock Certificates
+									Incomplete exchange of old shares to new successor corporate shares (shares drawn on prior company name). Certificates remitted in the original owner name.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC006">
+							<xs:annotation>
+								<xs:documentation>
+									SC006 - Shares of Equities
+									All types of Equity Securities, including: Certificated shares, book entry shares, dividends paid in shares. (For Dividend Reinvestment Plan Shares use SC19.)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC007">
+							<xs:annotation>
+								<xs:documentation>
+									SC007 - Funds for Liquidation / Redemption of Unsurrendered Stock or Bonds
+									Distribution of assets in the form of a dividend from a corporation that is going out of business. Liquidation may occur when a firm goes bankrupt or when management decides to sell off a company's assets and pass the proceeds on to shareholders.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC008">
+							<xs:annotation>
+								<xs:documentation>
+									SC008 - Debentures
+									General debt obligation- unsecured bond.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC009">
+							<xs:annotation>
+								<xs:documentation>
+									SC009 - US Government Debt Securities
+									Debt obligation issued by US Government.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC010">
+							<xs:annotation>
+								<xs:documentation>
+									SC010 - Mutual Fund Shares
+									Shares from funds operated by an investment company - including but not limited to: Open End funds, Closed End funds, Index funds, ETF and UIT.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC011">
+							<xs:annotation>
+								<xs:documentation>
+									SC011 - Warrants/Rights/Options
+									Shares identified as warrants/rights/ options, which have not expired.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC012">
+							<xs:annotation>
+								<xs:documentation>
+									SC012 - Dividend Reinvestment Plan Shares
+									Shares held in accounts identified for Dividend Reinvestment Plan.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC013">
+							<xs:annotation>
+								<xs:documentation>
+									SC013 - Security Account Credit Balances
+									Cash balance in a security account. (For interest/dividends use SC01, for cash in lieu use SC09.)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC014">
+							<xs:annotation>
+								<xs:documentation>
+									SC014 - Non-freely transferable and Worthless Securities (Equity, Debt, Mutual Funds (Shares) (not all states will adopt).
+									To define that holder has the custody of this type of property. How about RUUPA states?
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC015">
+							<xs:annotation>
+								<xs:documentation>
+									SC015 - Restricted Securities -Broker Held
+									Physical Certificates that contain a restriction that cannot be lifted without an opinion from legal counsel. The certificates are also most likely in non negotiable form in the shareholder name and cannot be re registered to the states nominee name.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC016">
+							<xs:annotation>
+								<xs:documentation>
+									SC016 - Unexchanged Shares
+									Shares of successor entity remitted without shareholders' action. Original owner name
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SC017">
+							<xs:annotation>
+								<xs:documentation>
+									SC017 - Dissolution or Liquidation
+									Properties for entities that have ceased operations, to accelerate reporting.  Dissolution or Liquidation Other Allen to bring up to NAUPA's Standardization and Uniformity Committee put into defintion what it is and is not Is this code being used correctly by holders?
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SD001">
+							<xs:annotation>
+								<xs:documentation>
+									SD001 - SD Box Contents
+									Valuables, coins, jewelry, important documents, and sentimental keepsakes
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SD002">
+							<xs:annotation>
+								<xs:documentation>
+									SD002 - Other Safekeeping
+									Bailments/Other Safekeeping (Property held in trust for a specific purpose that will be returned to the owner)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SD003">
+							<xs:annotation>
+								<xs:documentation>
+									SD003 - Other Tangible Property
+									Tangible Loan Collateral (tangible assets that a borrower pledges to a lender to secure a loan)
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="TR001">
+							<xs:annotation>
+								<xs:documentation>
+									TR001 - Pre Need Funeral Expenses
+									Any funds due for pre need funeral expenses
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="TR002">
+							<xs:annotation>
+								<xs:documentation>
+									TR002 - Undelivered or Uncashed Dividends
+									NEEDS DEFINITION
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="TR003">
+							<xs:annotation>
+								<xs:documentation>
+									TR003 - Funds held in Fiduciary Capacity
+									All accounts held that are not escrow, for example a trust voucher.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="TR004">
+							<xs:annotation>
+								<xs:documentation>
+									TR004 - Escrow Accounts
+									Everything that falls under other course of business for escrows, such as escrow refund checks
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="TR005">
+							<xs:annotation>
+								<xs:documentation>
+									TR005 - Escrow Taxes
+									Funds escrowed for payment of property taxes
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="TR006">
+							<xs:annotation>
+								<xs:documentation>
+									TR006 - Escrow Earnest Money Disputed
+									Disputed escrow money between multiple parties
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="TR007">
+							<xs:annotation>
+								<xs:documentation>
+									TR007 - Burial Expenses
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="UT001">
+							<xs:annotation>
+								<xs:documentation>
+									UT001 - Utility Deposits
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="UT002">
+							<xs:annotation>
+								<xs:documentation>
+									UT002 - Refunds or Rebates
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="VC001">
+							<xs:annotation>
+								<xs:documentation>
+									VC001 - Virtual Currency in Native Currency Units
+									TBD
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="VC002">
+							<xs:annotation>
+								<xs:documentation>
+									VC002 - Virtual Currency Liquidated
+									Liquidated for cash or another virtual currency. Add in description the original virtual currency
+								</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+
+					</xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="DormancyPeriod">
                 <!-- TODO:  Consider using xs:duration here. -->
+				<!-- Should this be left to state-specific xsd values?  Otherwise invalid periods could be selected -->
                 <xs:simpleType>
                     <xs:annotation>
                         <xs:documentation>
-                            <!-- TODO -->
-                        </xs:documentation>
+								The dormancy period is the number of years you hold the property before sending it to the State. 
+								When examining your records, use the last entry or activity generated by the owner, or the date 
+								of last documented contact with the owner, to begin the dormancy period. If the property type 
+								does not generate owner activity, use the date upon which the item was payable or distributable 
+								to the owner.
+						</xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:string">
-                        <xs:enumeration value="1">
+						<xs:enumeration value=".5">
+							<xs:annotation>
+								<xs:documentation>1/2 Year</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="1">
                             <xs:annotation>
                                 <xs:documentation>1 Year</xs:documentation>
                             </xs:annotation>
@@ -385,14 +1088,14 @@
                         <xs:element name="Date1" type="DateType" minOccurs="0">
                             <xs:annotation>
                                 <xs:documentation>
-                                    Date that statutorily required owner notification initially performed.
+                                    Date that statutorily required owner notification was initially performed.
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
                         <xs:element name="Date2" type="DateType" minOccurs="0">
                             <xs:annotation>
                                 <xs:documentation>
-                                    Date(s) that supplemental owner notification(s) performed, if needed.
+                                    Date(s) that supplemental owner notification(s) were performed, if needed.
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
@@ -402,7 +1105,7 @@
             <xs:element name="ReturnedByPostOffice" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
-                        <!-- TODO -->
+                        The date that physical mail communication to the property owner was returned by the Post Office.
                     </xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
@@ -417,7 +1120,7 @@
                         <xs:element name="ReturnCount" type="xs:short">
                             <xs:annotation>
                                 <xs:documentation>
-                                    <!-- TODO -->
+                                    Number of returned mail items.
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
@@ -442,12 +1145,13 @@
             <xs:element name="Transaction" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
-                        <!-- TODO -->
+                        The Starting and Ending Transaction fields are used for properties with a string of payments, such 
+						as dividends, royalties or commissions.
                     </xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="StartDate" type="DateType">
+                        <xs:element name="StartingTransactionDate" type="DateType">
                             <xs:annotation>
                                 <xs:documentation>
                                     If you are reporting property with periodic payments such as dividends, oil and gas
@@ -457,7 +1161,7 @@
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
-                        <xs:element name="EndDate" type="DateType">
+                        <xs:element name="EndingTransactionDate" type="DateType">
                             <xs:annotation>
                                 <xs:documentation>
                                     If you are reporting property with periodic payments such as dividends, oil and gas
@@ -470,30 +1174,33 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="NonRemitIndicator" type="IndicatorType" minOccurs="0">
+            <xs:element name="NonRemitIndicator" type ="IndicatorType" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
-                    <!-- TODO:  description -->
-                    </xs:documentation>
+						Indicate whether the property is being delivered/transfered at the same time as the filing
+						of the report.  When indicating that property is being reported but not being turned over 
+						to the state, be aware that most states require the reporting organization to notify the 
+						state about these properties in separate correspondance prior to sending their report.
+						X indicates that the property is Non remitted, and the element is not present if it is remitted.
+					</xs:documentation>
                 </xs:annotation>
-            </xs:element>
+			</xs:element>
             <!-- TODO:  Consider changing this to TaxExempt if most things are taxable. -->
-            <xs:element name="Taxable" type="IndicatorType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                    <!-- TODO:  description -->
-                        Whether the property is or includes taxable income or taxable distribution(s).
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="Ten99IssuedDate" type="DateType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        <!-- TODO: date or not? -->
-                        Year for which the last 1099 was (will be) issued on this account.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="Taxable" type ="IndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Whether the property is or includes taxable income or taxable distribution(s) (X or element not present)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="TaxForm1099IssuedDate" type="DateType" minOccurs="0">
+			    <xs:annotation>
+				    <xs:documentation>
+						Provide the tax year for which the last 1099 was (will be) issued with respect to the property; 
+						where issued for multiple years, provide the most recent year only.
+					</xs:documentation>
+			    </xs:annotation>
+			</xs:element>
             <xs:element name="Description" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
@@ -515,20 +1222,32 @@
                 <xs:annotation>
                     <xs:documentation>
                         Indicate whether location of reporting company is a branch, franchise office,
-                        specific unit etc if different than main address.
+                        specific business unit etc if different than main address.
                     </xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <!-- TODO:
-                            This is shown in the spreadsheet as an Avenu-defined number, with a Kelmar comment that
-                            says "Defined by NAUPA".  Where did this number come from?
-                        -->
-                        <xs:maxLength value="20" />
-                    </xs:restriction>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Branch">
+							<xs:annotation>
+								<xs:documentation>Business location is a Branch Office</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Franchise">
+							<xs:annotation>
+								<xs:documentation>Business location is a Frachise Office</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Business Unit">
+							<xs:annotation>
+								<xs:documentation>Business location is a separate business unit</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <!-- TODO:  can these be foreign addresses? -->
+            <!-- TODO:  can these be foreign addresses? 
+				 KGW - I think yes 
+			-->
             <xs:element name="LocationAddress" minOccurs="0">
                 <xs:complexType>
                     <xs:choice>
@@ -542,6 +1261,8 @@
                     <!-- TODO:
                         If this information is present, are all elements required? If not, which ones are?  As
                         currently defined here, they would all be required or the XML would fail validation.
+						
+						KGW - I think we should query New York on the field sizes and what is required.
                     -->
                     <xs:sequence>
                         <xs:element name="Description">
@@ -564,8 +1285,8 @@
                         <xs:element name="LegalAuthority">
                             <xs:annotation>
                                 <xs:documentation>
-                                    Cite the legal authority or authorities under which the property is blocked(e.g., 31 C.F.R.
-                                    Part 515).
+                                    Cite the legal authority or authorities under which the property is blocked
+									(e.g., 31 C.F.R. Part 515).
                                 </xs:documentation>
                             </xs:annotation>
                             <xs:simpleType>
@@ -592,6 +1313,7 @@
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
+						<!-- note that this is OFAC Owner Type -->
                         <xs:element name="OwnerType">
                             <xs:simpleType>
                                 <xs:annotation>
@@ -632,23 +1354,34 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0">
-                <xs:annotation>
+            <xs:element name="HIPAAFlag" minOccurs="0">
+				<xs:simpleType>
+					<xs:annotation>
                     <xs:documentation>
-                        Property information contains information subject to HIPAA regulations.  Presence of element
-                        containing the value "X" indicates the presence of HIPPA information, absence of such an
-                        elements indicates no HIPPA information.
-                    </xs:documentation>
+						Report contains information subject to HIPAA regulations. Field should contain Yes or No.
+					</xs:documentation>
                 </xs:annotation>
-            </xs:element>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Yes">
+					        <xs:annotation>
+						        <xs:documentation>Report contains information subject to HIPAA Regulations</xs:documentation>
+					        </xs:annotation>
+        				</xs:enumeration>
+				        <xs:enumeration value="No">
+					        <xs:annotation>
+						        <xs:documentation>Report does not contain information subject to HIPAA Regulations</xs:documentation>
+					        </xs:annotation>
+				        </xs:enumeration>
+				</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
             <!-- TODO:
                 Should we consider making owners independent of Property elements and using references?  That might
                 make sense if there are typically a lot of properties reported for the same owner.
+				
+				KGW - owner count is typically 1-2, with a very small pecentage having more than two owners. We should require one owner.
             -->
-            <xs:element name="Owner" type="OwnerType" maxOccurs="unbounded"/>
-            <!-- TODO:
-                Is there an equivalent for NAUPA-II PROP-DELETION-TYPE/PROP-DELETION-AMOUNT?
-            -->
+			<xs:element name="Owner" type="OwnerType" minOccurs ="1" maxOccurs="unbounded"/>
             <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType >
                     <xs:sequence>
@@ -656,8 +1389,8 @@
                             <xs:simpleType>
                                 <xs:annotation>
                                     <xs:documentation>
-                                        <!-- TODO:  description -->
-                                    </xs:documentation>
+										Type of monetary adjustment (can be additions or witholdings).
+									</xs:documentation>
                                 </xs:annotation>
                                 <xs:restriction base="xs:string">
                                     <xs:enumeration value="Due Diligence Cost">
@@ -682,17 +1415,28 @@
                                     </xs:enumeration>
                                     <xs:enumeration value="IRS Back-Up Withholding">
                                         <xs:annotation>
-                                            <xs:documentation>Due Diligence Cost</xs:documentation>
+                                            <xs:documentation>IRS Back-Up Withholding</xs:documentation>
                                         </xs:annotation>
                                     </xs:enumeration>
-                                    <!-- TODO:  others? -->
+									<xs:enumeration value="Interest Earned">
+										<xs:annotation>
+											<xs:documentation>Interest Earned</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Property Deleted">
+										<xs:annotation>
+											<xs:documentation>Property is no longer reportable</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<!-- TODO:  others? -->
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
                         <xs:element name="Amount" type="CurrencyType">
                             <xs:annotation>
                                 <xs:documentation>
-                                    Dollar amount of the adjustment resulting in net amount reported.
+                                    Dollar amount of the adjustment resulting in net amount reported. Deductions should be shown
+									as negative values, additions as positive values.
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
@@ -702,6 +1446,9 @@
             <!-- TODO:
                 Is this correct?  Should there always be a Cash element, optionally followed by ONE Bond, Security,
                 Safekeeping, MineralInterest, or CryptoCurrency element?
+				
+				KGW - Cash need not always be present. I think one of Cash, Securities, Safekeeping, MineralInterest or CryptoCurrency
+				should be required.
             -->
             <xs:choice>
                 <xs:element name="Cash">
@@ -768,7 +1515,12 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="Bond">
+
+				<!-- 
+					KGW - where did this Bond section come from?  It's not in the current Google Sheet. Can it be included in the Securities section instead?
+				-->
+
+				<xs:element name="Bond">
                     <xs:complexType >
                         <xs:sequence>
                             <xs:element name="Name">
@@ -833,29 +1585,29 @@
                 <xs:element name="Security" type="SecurityType">
                     <xs:annotation>
                         <xs:documentation>
-                            <!-- TODO:  description -->
+                            This section includes data elements related to reporting of securities for a Property.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:element>
                 <xs:element name="Safekeeping" type="SafekeepingType">
                     <xs:annotation>
                         <xs:documentation>
-                            <!-- TODO:  description -->
-                        </xs:documentation>
+							This section includes data elements related to reporting of safekeeping or tangible items for a Property.
+						</xs:documentation>
                     </xs:annotation>
                 </xs:element>
                 <xs:element name="MineralInterests" type="MineralInterestsType">
                     <xs:annotation>
                         <xs:documentation>
-                            <!-- TODO:  description -->
-                        </xs:documentation>
+							This section includes data elements related to reporting of mineral interest elements for a Property.
+						</xs:documentation>
                     </xs:annotation>
                 </xs:element>
                 <xs:element name="Cryptocurrency" type="CryptocurrencyType">
                     <xs:annotation>
                         <xs:documentation>
-                            <!-- TODO:  description -->
-                        </xs:documentation>
+							This section includes data elements related to reporting of cryptocurrency for a Property.
+						</xs:documentation>
                     </xs:annotation>
                 </xs:element>
             </xs:choice>
