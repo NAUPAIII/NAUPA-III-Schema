@@ -25,18 +25,16 @@
         <Type>ACH Debit</Type>
     </Payment>
     <Remitter>
-        <CompanyName>TEST BANK</CompanyName>
-        <USCompanyInfo>
-            <FEIN>999999999</FEIN>
-            <USAddress>
-                <Address1>1234 MAIN ST</Address1>
-                <Address2>SUITE 400</Address2>
-                <Address3>MAILSTOP 5</Address3>
-                <City>BOULDER</City>
-                <StateCode>CO</StateCode>
-                <ZIPCode>80302-1234</ZIPCode>
-            </USAddress>
-        </USCompanyInfo>
+        <CompanyName>Test Bank Parent</CompanyName>
+		<ForeignCompanyInfo>
+			<ForeignTaxID>A999999999</ForeignTaxID>
+			<ForeignAddress>
+				<Address1>8 Canada Square</Address1>
+				<City>London</City>
+				<ForeignPostalCode>E14 5HQ</ForeignPostalCode>
+				<CountryCode>GBR</CountryCode>
+			</ForeignAddress>
+		</ForeignCompanyInfo>
         <TelephoneNumber>
             <USTelephoneNumber>3035551234</USTelephoneNumber>
         </TelephoneNumber>
@@ -56,8 +54,8 @@
             </USAddress>
         </USCompanyInfo>
         <ParentCompany>
-            <CompanyName>Test Parent</CompanyName>
-            <ForeignTaxID>999999999</ForeignTaxID>
+            <CompanyName>Test Bank Parent</CompanyName>
+            <ForeignTaxID>A9999999999</ForeignTaxID>
         </ParentCompany>
         <Contact>
             <Type>Report</Type>
@@ -67,8 +65,7 @@
             </PersonName>
             <USAddress>
                 <Address1>1234 Main St</Address1>
-                <Address2>Suite 100</Address2>
-                <Address3>Mailstop 5</Address3>
+                <Address2>Suite 101</Address2>
                 <City>Boulder</City>
                 <StateCode>CO</StateCode>
                 <ZIPCode>80302-1234</ZIPCode>
@@ -573,15 +570,15 @@
     </Holder>
     <Holder>
         <CompanyName>Test Company</CompanyName>
-        <USCompanyInfo>
-            <FEIN>888888888</FEIN>
-            <USAddress>
-                <Address1>1235 Main St</Address1>
-                <City>Boulder</City>
-                <StateCode>CO</StateCode>
-                <ZIPCode>80302-1234</ZIPCode>
-            </USAddress>
-        </USCompanyInfo>
+		<USCompanyInfo>
+			<FEIN>777777777</FEIN>
+			<USAddress>
+				<Address1>1234 Pearl St</Address1>
+				<City>Boulder</City>
+				<StateCode>CO</StateCode>
+				<ZIPCode>80302-1234</ZIPCode>
+			</USAddress>
+		</USCompanyInfo>
         <Contact>
             <Type>Report</Type>
             <PersonName>
