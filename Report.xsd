@@ -16,15 +16,21 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="AsOfDate" type="DateType" minOccurs="0" />
+            <xs:element name="AsOfDate" type="xs:date" minOccurs="0" />
             <!-- TODO:  review this after it is reviewed at the general committee meeting -->
             <xs:element name="Type">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
-                        <xs:enumeration value="Advertising" />
-                        <xs:enumeration value="Remittance" />
+                        <xs:enumeration value="Advertising/No Remittance" />
+                        <xs:enumeration value="Remittance/Annual" />
                         <xs:enumeration value="Test" />
+						<xs:enumeration value="Audit" />
+						<xs:enumeration value="Supplemental/Correction" />
+						<xs:enumeration value="Reciprocal" />
+						<xs:enumeration value="Voluntary Disclosure Agreement" />
+						<xs:enumeration value="Final Remittance" />
+						<xs:enumeration value="Initial Remittance" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -38,11 +44,7 @@
                                 <xs:restriction base="xs:string">
                                     <xs:maxLength value="50" />
                                     <xs:enumeration value="Audit Fees" />
-                                    <!--
                                     <xs:enumeration value="Estimate or Prepayment" />
-                                    <xs:enumeration value="Out of Proof Cash" />
-                                    <xs:enumeration value="Out of Proof Shares" />
-                                    -->
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
@@ -50,11 +52,6 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <!-- TODO:
-                If this is just a summary indicator (i.e. True if any Property elements have it set to True),
-                we should consider removing it.
-            -->
-            <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0" />
             <xs:element name="NonProductionReport" type="IndicatorType" minOccurs="0" />
         </xs:sequence>
     </xs:complexType>

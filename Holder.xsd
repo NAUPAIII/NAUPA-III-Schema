@@ -46,7 +46,7 @@
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="State" type="StateCodeType" />
-                        <xs:element name="Date" type="DateType" />
+                        <xs:element name="Date" type="xs:date" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>

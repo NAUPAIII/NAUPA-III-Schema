@@ -8,51 +8,8 @@
     
     <xs:complexType name="OwnerType">
         <xs:sequence>
-            <xs:element name="PrimaryContactInformation" type="ContactType" />
-            <xs:element name="AlternateAddress" minOccurs="0" maxOccurs="unbounded" >
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="Type">
-                            <xs:simpleType>
-                                <xs:restriction base="xs:string">
-									<xs:maxLength value="50" />
-                                    <xs:enumeration value="Seasonal" />
-                                    <xs:enumeration value="Obsolete/Prior" />
-                                    <xs:enumeration value="Forwarding/Non-Permanent" />
-                                    <xs:enumeration value="Billing" />
-                                    <xs:enumeration value="Service" />
-                                    <xs:enumeration value="Owned but not occupied" />
-                                </xs:restriction>
-                            </xs:simpleType>
-                        </xs:element>
-                        <xs:choice>
-                            <xs:element name="USAddress" type="USAddressType" />
-                            <xs:element name="ForeignAddress" type="ForeignAddressType" />
-                        </xs:choice>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="AlternateTelephoneNumber" minOccurs="0" maxOccurs="unbounded">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="Type">
-                            <xs:simpleType>
-                                <xs:restriction base="xs:string">
-                                    <xs:maxLength value="50" />
-                                </xs:restriction>
-                            </xs:simpleType>
-                        </xs:element>
-                        <xs:choice>
-                            <xs:element name="USTelephoneNumber" type="USTelephoneNumberType" />
-                            <xs:element name="ForeignTelephoneNumber" type="ForeignTelephoneNumberType" />
-                        </xs:choice>
-						<xs:element name="Extension" type="TelephoneExtensionType" minOccurs="0" />
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name ="AlternateEMailAddress" type="EMailAddressType" minOccurs="0" maxOccurs="unbounded">
-            </xs:element>
-            <xs:element name="IdentityInformation" minOccurs="0">
+            <xs:element name="Contact" type="ContactType" />
+            <xs:element name="Identity" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:choice>
@@ -72,11 +29,6 @@
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="AlienID" minOccurs="0">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Enter owner identification number/alien id.
-                                    </xs:documentation>
-                                </xs:annotation>
                                 <xs:simpleType>
                                     <xs:restriction base="xs:string">
 										<xs:maxLength value="20" />
@@ -108,7 +60,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="DateOfBirth" type="DateType" minOccurs="0" />
+            <xs:element name="DateOfBirth" type="xs:date" minOccurs="0" />
 			<xs:element name="RelationshipCode">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -146,8 +98,8 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="DateOfTrust" type="DateType" minOccurs="0" />
-            <xs:element name="MinorDateOfMajority" type="DateType" minOccurs="0" />
+            <xs:element name="DateOfTrust" type="xs:date" minOccurs="0" />
+            <xs:element name="MinorDateOfMajority" type="xs:date" minOccurs="0" />
             <xs:element name="DeceasedOwnerInformation" minOccurs="0">
 				<xs:complexType>
 					<xs:sequence>
@@ -158,30 +110,10 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="DateOfDeath" type="DateType" />
-						<xs:element name="DateOfDeathIdentifiedDate" type="DateType" minOccurs="0" />
+						<xs:element name="DateOfDeath" type="xs:date" />
+						<xs:element name="DateOfDeathIdentifiedDate" type="xs:date" minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
-            </xs:element>
-            <xs:element name="Beneficiary" minOccurs="0">
-                <xs:complexType>
-                    <xs:sequence>
-						<xs:element name="Type">
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:maxLength value="50" />
-									<xs:enumeration value="Primary" />
-									<xs:enumeration value="Contingent" />
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-						<xs:element name="Spouse" type="IndicatorType" minOccurs="0" />
-						<xs:element name="Percentage" type="PercentageType" minOccurs="0" />
-						<xs:element name="ContactInformation" type="ContactType"  minOccurs="0" />
-						<xs:element name="DateOfBirth" type="DateType" minOccurs="0" />
-						<xs:element name="SSN" type="SSNType"  minOccurs="0" />
-                    </xs:sequence>
-                </xs:complexType>
             </xs:element>
         </xs:sequence>
     </xs:complexType>

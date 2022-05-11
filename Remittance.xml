@@ -8,12 +8,14 @@
         <Contact>
             <Type>Software</Type>
             <CompanyName>The Software Application Folks</CompanyName>
-            <USAddress>
-                <Address1>1234 Kelmar Avenu</Address1>
-                <City>Boulder</City>
-                <StateCode>CO</StateCode>
-                <ZIPCode>80302-1234</ZIPCode>
-            </USAddress>
+			<PrimaryAddress>
+                <USAddress>
+                    <Address1>1234 Kelmar Avenu</Address1>
+                    <City>Boulder</City>
+                    <StateCode>CO</StateCode>
+                    <ZIPCode>80302-1234</ZIPCode>
+                </USAddress>
+			</PrimaryAddress>
             <TelephoneNumber>
                 <USTelephoneNumber>3035551111</USTelephoneNumber>
             </TelephoneNumber>
@@ -63,13 +65,15 @@
                 <FirstName>Fred</FirstName>
                 <LastName>Smith</LastName>
             </PersonName>
-            <USAddress>
-                <Address1>1234 Main St</Address1>
-                <Address2>Suite 101</Address2>
-                <City>Boulder</City>
-                <StateCode>CO</StateCode>
-                <ZIPCode>80302-1234</ZIPCode>
-            </USAddress>
+			<PrimaryAddress>
+                <USAddress>
+                    <Address1>1234 Main St</Address1>
+                    <Address2>Suite 101</Address2>
+                    <City>Boulder</City>
+                    <StateCode>CO</StateCode>
+                    <ZIPCode>80302-1234</ZIPCode>
+                </USAddress>
+			</PrimaryAddress>
             <TelephoneNumber>
                 <USTelephoneNumber>3035551235</USTelephoneNumber>
             </TelephoneNumber>
@@ -80,31 +84,33 @@
         <DBAName>Boulder Test Bank</DBAName>
         <Incorporated>
             <State>CO</State>
-            <Date>12-24-1975</Date>
+            <Date>1975-12-24</Date>
         </Incorporated>
         <SalesAmount>1000000</SalesAmount>
         <NumberOfEmployees>75</NumberOfEmployees>
         <AssetsAmount>2000000</AssetsAmount>
-        <NumberOfInsurancePolicies>0</NumberOfInsurancePolicies>
+        <NumberOfInsurancePolicies>1025</NumberOfInsurancePolicies>
         <HolderID>1234567890</HolderID>
         <Report>
             <Year>2020</Year>
-            <AsOfDate>07-01-2019</AsOfDate>
-            <Type>Remittance</Type>
+            <AsOfDate>2019-07-01</AsOfDate>
+            <Type>Remittance/Annual</Type>
             <Contact>
                 <Type>Report</Type>
                 <PersonName>
                     <FirstName>JOHN</FirstName>
                     <LastName>SMITH</LastName>
                 </PersonName>
-                <USAddress>
-                    <Address1>1234 MAIN ST</Address1>
-                    <Address2>SUITE 200</Address2>
-                    <Address3>MAILSTOP 7</Address3>
-                    <City>BOULDER</City>
-                    <StateCode>CO</StateCode>
-                    <ZIPCode>80302-1234</ZIPCode>
-                </USAddress>
+				<PrimaryAddress>
+                    <USAddress>
+                        <Address1>1234 MAIN ST</Address1>
+                        <Address2>SUITE 200</Address2>
+                        <Address3>MAILSTOP 7</Address3>
+                        <City>BOULDER</City>
+                        <StateCode>CO</StateCode>
+                        <ZIPCode>80302-1234</ZIPCode>
+                    </USAddress>
+				</PrimaryAddress>
                 <TelephoneNumber>
                     <USTelephoneNumber>3035551234</USTelephoneNumber>
                 </TelephoneNumber>
@@ -112,27 +118,26 @@
             </Contact>
             <Property>
                 <TypeCode>AC001</TypeCode>
-                <DormancyPeriod>12</DormancyPeriod>
-                <LastActivityDate>01-15-2015</LastActivityDate>
-                <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <LastActivityDate>2015-01-15</LastActivityDate>
+                <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
                 <AccountNumber>1234567890</AccountNumber>
                 <DueDiligence>
-                    <Date1>09-01-2019</Date1>
-                    <Date2>09-02-2019</Date2>
+                    <Date1>2019-09-01</Date1>
+                    <Date2>2019-09-01</Date2>
                 </DueDiligence>
                 <ReturnedByPostOffice>
-                    <MailDate>09-01-2019</MailDate>
+                    <MailDate>2019-09-01</MailDate>
                     <ReturnCount>1</ReturnCount>
-                    <DateAccountCodedRPO>09-01-2019</DateAccountCodedRPO>
+                    <DateAccountCodedRPO>2019-09-01</DateAccountCodedRPO>
                 </ReturnedByPostOffice>
-                <PayableOrDistributableDate>01-15-2015</PayableOrDistributableDate>
+                <PayableOrDistributableDate>2015-01-15</PayableOrDistributableDate>
                 <Transaction>
-                    <StartingTransactionDate>01-15-2015</StartingTransactionDate>
-                    <EndingTransactionDate>01-15-2015</EndingTransactionDate>
+                    <StartDate>2015-01-15</StartDate>
+                    <EndDate>2015-01-15</EndDate>
                 </Transaction>
                 <NonRemitIndicator>X</NonRemitIndicator>
                 <Taxable>X</Taxable>
-                <TaxForm1099IssuedDate>09-01-2019</TaxForm1099IssuedDate>
+                <TaxForm1099IssuedDate>2019-09-01</TaxForm1099IssuedDate>
                 <Description>This is a property description.</Description>
                 <LocationIdentifier>Branch</LocationIdentifier>
                 <LocationAddress>
@@ -147,14 +152,14 @@
                 </LocationAddress>
                 <OFAC>
                     <Description>Description goes here...</Description>
-                    <DateOfBlocking>02-15-2015</DateOfBlocking>
+                    <DateOfBlocking>2015-02-15</DateOfBlocking>
                     <LegalAuthority>31 C.F.R. Part 515</LegalAuthority>
                     <SanctionsTarget>Cuba</SanctionsTarget>
                     <OwnerType>Non-U.S. Bank</OwnerType>
                 </OFAC>
-				<HIPAAFlag>Yes</HIPAAFlag>
+				<HIPAAIndicator>X</HIPAAIndicator>
 				<Owner>
-                    <PrimaryContactInformation>
+                    <Contact>
                         <Type>Owner</Type>
                         <PersonName>
                             <Prefix>Dr.</Prefix>
@@ -163,35 +168,38 @@
                             <LastName>Besitzer</LastName>
                             <Suffix>III</Suffix>
                         </PersonName>
-                        <USAddress>
-                            <Address1>234 Broadway</Address1>
-                            <Address2>Suite 300</Address2>
-                            <Address3>Office L20</Address3>
-                            <City>Boulder</City>
-                            <StateCode>CO</StateCode>
-                            <ZIPCode>80304</ZIPCode>
-                        </USAddress>
+						<PrimaryAddress>
+                            <USAddress>
+                                <Address1>234 Broadway</Address1>
+                                <Address2>Suite 300</Address2>
+                                <Address3>Office L20</Address3>
+                                <City>Boulder</City>
+                                <StateCode>CO</StateCode>
+                                <ZIPCode>80304</ZIPCode>
+                            </USAddress>
+						</PrimaryAddress>
+						<AlternateAddress>
+					        <Type>Seasonal</Type>
+                            <ForeignAddress>
+                                <Address1>Bahrenfelder Chaussee 55</Address1>
+                                <City>Hamburg</City>
+                                <ForeignPostalCode>22761</ForeignPostalCode>
+								<CountryCode>DEU</CountryCode>
+                            </ForeignAddress>
+						</AlternateAddress>
                         <TelephoneNumber>
+                            <Type>Mobile</Type>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                             <Extension>2801</Extension>
                         </TelephoneNumber>
+                        <AlternateTelephoneNumber>
+                            <Type>Home</Type>
+                            <ForeignTelephoneNumber>498004353666</ForeignTelephoneNumber>
+                        </AlternateTelephoneNumber>
                         <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
-                    </PrimaryContactInformation>
-                    <AlternateAddress>
-                        <Type>Seasonal</Type>
-                        <ForeignAddress>
-                            <Address1>Bahrenfelder Chaussee 55</Address1>
-                            <City>Hamburg</City>
-                            <ForeignPostalCode>22761</ForeignPostalCode>
-                            <CountryCode>DEU</CountryCode>
-                        </ForeignAddress>
-                    </AlternateAddress>
-                    <AlternateTelephoneNumber>
-                        <Type>Home</Type>
-                        <ForeignTelephoneNumber>498004353666</ForeignTelephoneNumber>
-                    </AlternateTelephoneNumber>
-                    <AlternateEMailAddress>jbesitzer999@somecompay.com</AlternateEMailAddress>
-                    <IdentityInformation>
+                        <AlternateEMailAddress>jbesitzer999@somecompay.com</AlternateEMailAddress>
+                    </Contact>
+                    <Identity>
                         <USTaxID>
                             <Type>SSN</Type>
                             <Number>555551234</Number>
@@ -203,46 +211,48 @@
                             <State>CO</State>
                             <Identifier>24-457-1234</Identifier>
                         </DriversLicense>
-                    </IdentityInformation>
+                    </Identity>
                     <Description>Snooty</Description>
-                    <DateOfBirth>06-08-1954</DateOfBirth>
+                    <DateOfBirth>1954-06-08</DateOfBirth>
                     <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                     <CompleteAccountRegistrationName>ROBERT JAMES ANDERSON</CompleteAccountRegistrationName>
-                    <DateOfTrust>01-01-2000</DateOfTrust>
-                    <MinorDateOfMajority>01-01-2010</MinorDateOfMajority>
+                    <DateOfTrust>2000-01-01</DateOfTrust>
+                    <MinorDateOfMajority>2000-01-01</MinorDateOfMajority>
                     <DeceasedOwnerInformation>
                         <DateOfDeathSource>Claim</DateOfDeathSource>
-                        <DateOfDeath>01-01-2010</DateOfDeath>
-                        <DateOfDeathIdentifiedDate>01-10-2010</DateOfDeathIdentifiedDate>
+                        <DateOfDeath>2000-01-01</DateOfDeath>
+                        <DateOfDeathIdentifiedDate>2000-01-01</DateOfDeathIdentifiedDate>
                     </DeceasedOwnerInformation>
+                </Owner>
                     <Beneficiary>
                         <Type>Primary</Type>
                         <Spouse>X</Spouse>
                         <Percentage>100.00</Percentage>
-                        <ContactInformation>
+                        <Contact>
                             <Type>Beneficiary</Type>
                             <PersonName>
                                 <FirstName>Helga</FirstName>
                                 <LastName>Besitzer</LastName>
                             </PersonName>
-                            <USAddress>
-                                <Address1>234 BROADWAY</Address1>
-                                <Address2>SUITE 300</Address2>
-                                <Address3>Office L20</Address3>
-                                <City>BOULDER</City>
-                                <StateCode>CO</StateCode>
-                                <ZIPCode>80304</ZIPCode>
-                            </USAddress>
+							<PrimaryAddress>
+                                <USAddress>
+                                    <Address1>234 BROADWAY</Address1>
+                                    <Address2>SUITE 300</Address2>
+                                    <Address3>Office L20</Address3>
+                                    <City>BOULDER</City>
+                                    <StateCode>CO</StateCode>
+                                    <ZIPCode>80304</ZIPCode>
+                                </USAddress>
+							</PrimaryAddress>
                             <TelephoneNumber>
                                 <USTelephoneNumber>3035551234</USTelephoneNumber>
                             </TelephoneNumber>
-                            <EMailAddress>rjanderson@somecompany.com</EMailAddress>
-                        </ContactInformation>
-                        <DateOfBirth>04-27-1975</DateOfBirth>
+                            <EMailAddress>hbesitzer@gmail.com</EMailAddress>
+                        </Contact>
+                        <DateOfBirth>1975-04-27</DateOfBirth>
                         <SSN>111111111</SSN>
                     </Beneficiary>
-                </Owner>
                 <Adjustment>
                     <Type>Income Tax Withheld</Type>
                     <Amount>-123.45</Amount>
@@ -256,7 +266,7 @@
                     <RemittedAmount>394.76</RemittedAmount>
                     <Interest>
                         <Rate>0.50</Rate>
-                        <PaidThroughDate>12-31-2020</PaidThroughDate>
+                        <PaidThroughDate>2020-12-31</PaidThroughDate>
                     </Interest>
                     <CheckNumber>1234567</CheckNumber>
                     <ItemIssueState>CO</ItemIssueState>
@@ -264,35 +274,36 @@
             </Property>
             <Property>
                 <TypeCode>SC002</TypeCode>
-                <DormancyPeriod>12</DormancyPeriod>
-                <LastActivityDate>01-15-2015</LastActivityDate>
-                <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <LastActivityDate>2015-01-15</LastActivityDate>
+                <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
                 <AccountNumber>123-4567-001</AccountNumber>
                 <Taxable>X</Taxable>
                 <Owner>
-                    <PrimaryContactInformation>
+                    <Contact>
                         <Type>Owner</Type>
                         <PersonName>
                             <FirstName>Josef</FirstName>
                             <LastName>Besitzer</LastName>
                         </PersonName>
-                        <USAddress>
-                            <Address1>234 Broadway</Address1>
-                            <City>Boulder</City>
-                            <StateCode>CO</StateCode>
-                            <ZIPCode>80304</ZIPCode>
-                        </USAddress>
+						<PrimaryAddress>
+                            <USAddress>
+                                <Address1>234 Broadway</Address1>
+                                <City>Boulder</City>
+                                <StateCode>CO</StateCode>
+                                <ZIPCode>80304</ZIPCode>
+                            </USAddress>
+						</PrimaryAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                         </TelephoneNumber>
                         <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
-                    </PrimaryContactInformation>
-                    <IdentityInformation>
+                    </Contact>
+                    <Identity>
                         <USTaxID>
                             <Type>SSN</Type>
                             <Number>555551234</Number>
                         </USTaxID>
-                    </IdentityInformation>
+                    </Identity>
                     <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                 </Owner>
@@ -308,35 +319,36 @@
             </Property>
             <Property>
                 <TypeCode>SC006</TypeCode>
-                <DormancyPeriod>12</DormancyPeriod>
-                <LastActivityDate>01-15-2015</LastActivityDate>
-                <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <LastActivityDate>2015-01-15</LastActivityDate>
+                <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
                 <AccountNumber>1234567890</AccountNumber>
                 <Taxable>X</Taxable>
                 <Owner>
-                    <PrimaryContactInformation>
+                    <Contact>
                         <Type>Owner</Type>
                         <PersonName>
                             <FirstName>Josef</FirstName>
                             <LastName>Besitzer</LastName>
                         </PersonName>
-                        <USAddress>
-                            <Address1>234 Broadway</Address1>
-                            <City>Boulder</City>
-                            <StateCode>CO</StateCode>
-                            <ZIPCode>80304</ZIPCode>
-                        </USAddress>
+						<PrimaryAddress>
+                            <USAddress>
+                                <Address1>234 Broadway</Address1>
+                                <City>Boulder</City>
+                                <StateCode>CO</StateCode>
+                                <ZIPCode>80304</ZIPCode>
+                            </USAddress>
+						</PrimaryAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                         </TelephoneNumber>
                         <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
-                    </PrimaryContactInformation>
-                    <IdentityInformation>
+                    </Contact>
+                    <Identity>
                         <USTaxID>
                             <Type>SSN</Type>
                             <Number>555551234</Number>
                         </USTaxID>
-                    </IdentityInformation>
+                    </Identity>
                     <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                 </Owner>
@@ -366,10 +378,10 @@
                     <StateAccountNumber>123456</StateAccountNumber>
                     <DTCDeliveryReferenceNumber>0005</DTCDeliveryReferenceNumber>
                     <Market>AMEX</Market>
-                    <DividendsPaidThroughDate>07-01-2019</DividendsPaidThroughDate>
+                    <DividendsPaidThroughDate>2019-07-01</DividendsPaidThroughDate>
                     <SECSearch>
-                        <Date1>03-15-2019</Date1> 
-						<Date2>06-15-2019</Date2>
+                        <Date1>2019-03-15</Date1> 
+						<Date2>2019-06-15</Date2>
                     </SECSearch>
                     <Adjustment>
                         <Type>Tax</Type>
@@ -385,48 +397,49 @@
                         </AlternativeID>
                         <Amount>12000.00</Amount>
                         <SharesPurchased>1000.001</SharesPurchased>
-                        <PurchaseDate>01-01-1980</PurchaseDate>
+                        <PurchaseDate>1980-01-01</PurchaseDate>
                         <LongTerm>YES</LongTerm>
                     </CostBasis>
                 </Security>
             </Property>
             <Property>
                 <TypeCode>SD001</TypeCode>
-                <DormancyPeriod>12</DormancyPeriod>
-                <LastActivityDate>01-15-2015</LastActivityDate>
-                <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <LastActivityDate>2015-01-15</LastActivityDate>
+                <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
                 <AccountNumber>1234567890</AccountNumber>
                 <Owner>
-                    <PrimaryContactInformation>
+                    <Contact>
                         <Type>Owner</Type>
                         <PersonName>
                             <FirstName>Josef</FirstName>
                             <LastName>Besitzer</LastName>
                         </PersonName>
-                        <USAddress>
-                            <Address1>234 Broadway</Address1>
-                            <City>Boulder</City>
-                            <StateCode>CO</StateCode>
-                            <ZIPCode>80304</ZIPCode>
-                        </USAddress>
+						<PrimaryAddress>
+                            <USAddress>
+                                <Address1>234 Broadway</Address1>
+                                <City>Boulder</City>
+                                <StateCode>CO</StateCode>
+                                <ZIPCode>80304</ZIPCode>
+                            </USAddress>
+						</PrimaryAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                         </TelephoneNumber>
                         <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
-                    </PrimaryContactInformation>
-                    <IdentityInformation>
+                    </Contact>
+                    <Identity>
                         <USTaxID>
                             <Type>SSN</Type>
                             <Number>555551234</Number>
                         </USTaxID>
-                    </IdentityInformation>
+                    </Identity>
                     <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                 </Owner>
                 <Safekeeping>
                     <BoxCaseNumber>1234</BoxCaseNumber>
-                    <BoxOpenDate>01-15-2019</BoxOpenDate>
-                    <LeaseExpiredDate>08-15-2015</LeaseExpiredDate>
+                    <BoxOpenDate>2019-01-15</BoxOpenDate>
+                    <LeaseExpiredDate>2015-08-15</LeaseExpiredDate>
                     <Fee>
                         <Type>Drilling Fee</Type>
                         <Amount>25.00</Amount>
@@ -462,35 +475,36 @@
             </Property>
             <Property>
                 <TypeCode>MI001</TypeCode>
-                <DormancyPeriod>12</DormancyPeriod>
-                <LastActivityDate>01-15-2015</LastActivityDate>
-                <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <LastActivityDate>2015-01-15</LastActivityDate>
+                <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
                 <AccountNumber>1234567890</AccountNumber>
 				<NonRemitIndicator>X</NonRemitIndicator>
 				<Owner>
-                    <PrimaryContactInformation>
+                    <Contact>
                         <Type>Owner</Type>
                         <PersonName>
                             <FirstName>Josef</FirstName>
                             <LastName>Besitzer</LastName>
                         </PersonName>
-                        <USAddress>
-                            <Address1>234 Broadway</Address1>
-                            <City>Boulder</City>
-                            <StateCode>CO</StateCode>
-                            <ZIPCode>80304</ZIPCode>
-                        </USAddress>
+						<PrimaryAddress>
+                            <USAddress>
+                                <Address1>234 Broadway</Address1>
+                                <City>Boulder</City>
+                                <StateCode>CO</StateCode>
+                                <ZIPCode>80304</ZIPCode>
+                            </USAddress>
+						</PrimaryAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                         </TelephoneNumber>
                         <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
-                    </PrimaryContactInformation>
-                    <IdentityInformation>
+                    </Contact>
+                    <Identity>
                         <USTaxID>
                             <Type>SSN</Type>
                             <Number>555551234</Number>
                         </USTaxID>
-                    </IdentityInformation>
+                    </Identity>
                     <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                 </Owner>
@@ -507,7 +521,7 @@
                     <Range>11W</Range>
                     <SupplementalDescription>NE 1/4 S 1/2 1/8TH</SupplementalDescription>
                     <PoolingOrder>660667</PoolingOrder>
-                    <PoolingDate>12-24-2002</PoolingDate>
+                    <PoolingDate>2002-12-24</PoolingDate>
                     <WellName>CIMARRON H2</WellName>
                     <WellNumber>21165620010090</WellNumber>
                     <LeaseName>CIMMARRON</LeaseName>
@@ -517,34 +531,35 @@
             </Property>
             <Property>
                 <TypeCode>VC002</TypeCode>
-                <DormancyPeriod>5</DormancyPeriod>
-                <LastActivityDate>01-15-2015</LastActivityDate>
-                <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <LastActivityDate>2015-01-15</LastActivityDate>
+                <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
                 <AccountNumber>1234567890</AccountNumber>
                 <Owner>
-                    <PrimaryContactInformation>
+                    <Contact>
                         <Type>Owner</Type>
                         <PersonName>
                             <FirstName>Josef</FirstName>
                             <LastName>Besitzer</LastName>
                         </PersonName>
-                        <USAddress>
-                            <Address1>234 Broadway</Address1>
-                            <City>Boulder</City>
-                            <StateCode>CO</StateCode>
-                            <ZIPCode>80304</ZIPCode>
-                        </USAddress>
+						<PrimaryAddress>
+                            <USAddress>
+                                <Address1>234 Broadway</Address1>
+                                <City>Boulder</City>
+                                <StateCode>CO</StateCode>
+                                <ZIPCode>80304</ZIPCode>
+                            </USAddress>
+						</PrimaryAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                         </TelephoneNumber>
                         <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
-                    </PrimaryContactInformation>
-                    <IdentityInformation>
+                    </Contact>
+                    <Identity>
                         <USTaxID>
                             <Type>SSN</Type>
                             <Number>555551234</Number>
                         </USTaxID>
-                    </IdentityInformation>
+                    </Identity>
                     <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                 </Owner>
@@ -566,7 +581,6 @@
                 <Type>Audit Fees</Type>
                 <Amount>-125.00</Amount>
             </Adjustment>
-            <HIPAAIndicator>X</HIPAAIndicator>
             <NonProductionReport>X</NonProductionReport>
         </Report>
     </Holder>
@@ -587,12 +601,14 @@
                 <FirstName>Joe</FirstName>
                 <LastName>Johnson</LastName>
             </PersonName>
-            <USAddress>
-                <Address1>1234 Pearl St</Address1>
-                <City>Boulder</City>
-                <StateCode>CO</StateCode>
-                <ZIPCode>80302-1234</ZIPCode>
-            </USAddress>
+			<PrimaryAddress>
+                <USAddress>
+                    <Address1>1234 Pearl St</Address1>
+                    <City>Boulder</City>
+                    <StateCode>CO</StateCode>
+                    <ZIPCode>80302-1234</ZIPCode>
+                </USAddress>
+			</PrimaryAddress>
             <TelephoneNumber>
                 <USTelephoneNumber>3035551235</USTelephoneNumber>
             </TelephoneNumber>
@@ -601,19 +617,21 @@
         <NAICSCode>123456</NAICSCode>
         <Report>
             <Year>2020</Year>
-            <Type>Remittance</Type>
+            <Type>Remittance/Annual</Type>
             <Contact>
                 <Type>Report</Type>
                 <PersonName>
                     <FirstName>Joe</FirstName>
                     <LastName>Johnson</LastName>
                 </PersonName>
-                <USAddress>
-                    <Address1>1234 Pearl St</Address1>
-                    <City>Boulder</City>
-                    <StateCode>CO</StateCode>
-                    <ZIPCode>80302-1234</ZIPCode>
-                </USAddress>
+				<PrimaryAddress>
+                    <USAddress>
+                        <Address1>1234 Pearl St</Address1>
+                        <City>Boulder</City>
+                        <StateCode>CO</StateCode>
+                        <ZIPCode>80302-1234</ZIPCode>
+                    </USAddress>
+				</PrimaryAddress>
                 <TelephoneNumber>
                     <USTelephoneNumber>3035551235</USTelephoneNumber>
                 </TelephoneNumber>
@@ -621,27 +639,26 @@
             </Contact>
             <Property>
                 <TypeCode>AC001</TypeCode>
-                <DormancyPeriod>12</DormancyPeriod>
-                <LastActivityDate>01-15-2015</LastActivityDate>
-                <PresumedAbandonedDate>01-15-2015</PresumedAbandonedDate>
+                <LastActivityDate>2015-01-15</LastActivityDate>
+                <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
                 <AccountNumber>1234567890</AccountNumber>
                 <DueDiligence>
-                    <Date1>09-01-2019</Date1>
-                    <Date2>09-02-2019</Date2>
+                    <Date1>2019-09-01</Date1>
+                    <Date2>2019-09-02</Date2>
                 </DueDiligence>
                 <ReturnedByPostOffice>
-                    <MailDate>09-01-2019</MailDate>
+                    <MailDate>2019-09-01</MailDate>
                     <ReturnCount>1</ReturnCount>
-                    <DateAccountCodedRPO>09-01-2019</DateAccountCodedRPO>
+                    <DateAccountCodedRPO>2019-09-01</DateAccountCodedRPO>
                 </ReturnedByPostOffice>
-                <PayableOrDistributableDate>01-15-2015</PayableOrDistributableDate>
+                <PayableOrDistributableDate>2015-01-15</PayableOrDistributableDate>
                 <Transaction>
-                    <StartingTransactionDate>01-15-2015</StartingTransactionDate>
-                    <EndingTransactionDate>01-15-2015</EndingTransactionDate>
+                    <StartDate>2015-01-15</StartDate>
+                    <EndDate>2015-01-15</EndDate>
                 </Transaction>
                 <NonRemitIndicator>X</NonRemitIndicator>
                 <Taxable>X</Taxable>
-                <TaxForm1099IssuedDate>09-01-2019</TaxForm1099IssuedDate>
+                <TaxForm1099IssuedDate>2019-09-01</TaxForm1099IssuedDate>
                 <Description>This is a property description.</Description>
                 <LocationIdentifier>Branch</LocationIdentifier>
                 <LocationAddress>
@@ -656,13 +673,13 @@
                 </LocationAddress>
                 <OFAC>
                     <Description>Description goes here...</Description>
-                    <DateOfBlocking>02-15-2015</DateOfBlocking>
+                    <DateOfBlocking>2015-02-15</DateOfBlocking>
                     <LegalAuthority>31 C.F.R. Part 515</LegalAuthority>
                     <SanctionsTarget>Cuba</SanctionsTarget>
                     <OwnerType>Non-U.S. Bank</OwnerType>
                 </OFAC>
                 <Owner>
-                    <PrimaryContactInformation>
+                    <Contact>
                         <Type>Owner</Type>
                         <PersonName>
                             <Prefix>Dr.</Prefix>
@@ -671,35 +688,37 @@
                             <LastName>Besitzer</LastName>
                             <Suffix>III</Suffix>
                         </PersonName>
-                        <USAddress>
-                            <Address1>234 Broadway</Address1>
-                            <Address2>Suite 300</Address2>
-                            <Address3>Office L20</Address3>
-                            <City>Boulder</City>
-                            <StateCode>CO</StateCode>
-                            <ZIPCode>80304</ZIPCode>
-                        </USAddress>
+						<PrimaryAddress>
+                            <USAddress>
+                                <Address1>234 Broadway</Address1>
+                                <Address2>Suite 300</Address2>
+                                <Address3>Office L20</Address3>
+                                <City>Boulder</City>
+                                <StateCode>CO</StateCode>
+                                <ZIPCode>80304</ZIPCode>
+                            </USAddress>
+						</PrimaryAddress>
+                        <AlternateAddress>
+                            <Type>Seasonal</Type>
+                            <ForeignAddress>
+                                <Address1>Bahrenfelder Chaussee 55</Address1>
+                                <City>Hamburg</City>
+                                <ForeignPostalCode>22761</ForeignPostalCode>
+                                <CountryCode>DEU</CountryCode>
+                            </ForeignAddress>
+                        </AlternateAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                             <Extension>2801</Extension>
                         </TelephoneNumber>
+                        <AlternateTelephoneNumber>
+                            <Type>Home</Type>
+                            <ForeignTelephoneNumber>498004353666</ForeignTelephoneNumber>
+                        </AlternateTelephoneNumber>
                         <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
-                    </PrimaryContactInformation>
-                    <AlternateAddress>
-                        <Type>Seasonal</Type>
-                        <ForeignAddress>
-                            <Address1>Bahrenfelder Chaussee 55</Address1>
-                            <City>Hamburg</City>
-                            <ForeignPostalCode>22761</ForeignPostalCode>
-                            <CountryCode>DEU</CountryCode>
-                        </ForeignAddress>
-                    </AlternateAddress>
-                    <AlternateTelephoneNumber>
-                        <Type>Home</Type>
-                        <ForeignTelephoneNumber>498004353666</ForeignTelephoneNumber>
-                    </AlternateTelephoneNumber>
-                    <AlternateEMailAddress>jbesitzer999@somecompay.com</AlternateEMailAddress>
-                    <IdentityInformation>
+                        <AlternateEMailAddress>jbesitzer999@somecompay.com</AlternateEMailAddress>
+                    </Contact>
+                    <Identity>
                         <USTaxID>
                             <Type>SSN</Type>
                             <Number>555551234</Number>
@@ -711,29 +730,31 @@
                             <State>CO</State>
                             <Identifier>24-457-1234</Identifier>
                         </DriversLicense>
-                    </IdentityInformation>
+                    </Identity>
                     <Description>Snooty</Description>
-                    <DateOfBirth>06-08-1954</DateOfBirth>
+                    <DateOfBirth>1954-06-08</DateOfBirth>
                     <RelationshipCode>Administrator</RelationshipCode>
                     <TypeCode>Aggregate</TypeCode>
                     <CompleteAccountRegistrationName>ROBERT JAMES ANDERSON</CompleteAccountRegistrationName>
-                    <DateOfTrust>01-01-2000</DateOfTrust>
-                    <MinorDateOfMajority>01-01-2010</MinorDateOfMajority>
+                    <DateOfTrust>2000-01-01</DateOfTrust>
+                    <MinorDateOfMajority>2010-01-01</MinorDateOfMajority>
                     <DeceasedOwnerInformation>
                         <DateOfDeathSource>Claim</DateOfDeathSource>
-                        <DateOfDeath>01-01-2010</DateOfDeath>
-                        <DateOfDeathIdentifiedDate>01-10-2010</DateOfDeathIdentifiedDate>
+                        <DateOfDeath>2010-01-01</DateOfDeath>
+                        <DateOfDeathIdentifiedDate>2010-01-10</DateOfDeathIdentifiedDate>
                     </DeceasedOwnerInformation>
-                    <Beneficiary>
-                        <Type>Primary</Type>
-                        <Spouse>X</Spouse>
-                        <Percentage>100.00</Percentage>
-                        <ContactInformation>
-                            <Type>Beneficiary</Type>
-                            <PersonName>
-                                <FirstName>Helga</FirstName>
-                                <LastName>Besitzer</LastName>
-                            </PersonName>
+                </Owner>
+                <Beneficiary>
+                    <Type>Primary</Type>
+                    <Spouse>X</Spouse>
+                    <Percentage>100.00</Percentage>
+                    <Contact>
+                        <Type>Beneficiary</Type>
+                        <PersonName>
+                            <FirstName>Helga</FirstName>
+                            <LastName>Besitzer</LastName>
+                        </PersonName>
+						<PrimaryAddress>
                             <USAddress>
                                 <Address1>234 BROADWAY</Address1>
                                 <Address2>SUITE 300</Address2>
@@ -742,15 +763,15 @@
                                 <StateCode>CO</StateCode>
                                 <ZIPCode>80304</ZIPCode>
                             </USAddress>
-                            <TelephoneNumber>
-                                <USTelephoneNumber>3035551234</USTelephoneNumber>
-                            </TelephoneNumber>
-                            <EMailAddress>rjanderson@somecompany.com</EMailAddress>
-                        </ContactInformation>
-                        <DateOfBirth>04-27-1975</DateOfBirth>
-                        <SSN>111111111</SSN>
-                    </Beneficiary>
-                </Owner>
+						</PrimaryAddress>
+                        <TelephoneNumber>
+                            <USTelephoneNumber>3035551234</USTelephoneNumber>
+                        </TelephoneNumber>
+                        <EMailAddress>hbesitzer@gmail.com</EMailAddress>
+                    </Contact>
+                    <DateOfBirth>1975-04-27</DateOfBirth>
+                    <SSN>111111111</SSN>
+                </Beneficiary>
                 <Adjustment>
                     <Type>Income Tax Withheld</Type>
                     <Amount>-123.45</Amount>
@@ -764,7 +785,7 @@
                     <RemittedAmount>394.76</RemittedAmount>
                     <Interest>
                         <Rate>0.50</Rate>
-                        <PaidThroughDate>12-31-2020</PaidThroughDate>
+                        <PaidThroughDate>2020-12-31</PaidThroughDate>
                     </Interest>
                     <CheckNumber>1234567</CheckNumber>
                     <ItemIssueState>CO</ItemIssueState>

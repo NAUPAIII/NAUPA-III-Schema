@@ -4,16 +4,6 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
     
-    <xs:simpleType name="DateType">
-        <xs:restriction base="xs:string">
-            <!-- TODO:
-                This could probably use some refinement to disallow invalid month/day/year values/combinations, or
-                we could just use xs:date.
-            -->
-            <xs:pattern value="\d{2}[-]\d{2}[-]\d{4}" />
-        </xs:restriction>
-    </xs:simpleType>
-    
     <xs:simpleType name="CurrencyType">
         <xs:restriction base="xs:decimal">
             <!-- TODO:  Discuss default for totalDigits. -->
@@ -38,6 +28,10 @@
     
     <xs:simpleType name="CompanyNameType">
         <xs:restriction base="xs:string">
+			<!-- TODO:  Discuss minLength.  Seems like a good idea to prevent users from giving us completely
+			     blank names.
+		    -->
+			<xs:minLength value="1"/>
             <xs:maxLength value="100"/>
         </xs:restriction>
     </xs:simpleType>
@@ -253,9 +247,11 @@
             <xs:element name="LastName">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu property owner names -->
-                        <!-- TODO:  Should this be longer?-->
-                        <xs:maxLength value="40" />
+						<!-- TODO:  Discuss minLength.  Seems like a good idea to prevent users from giving us
+						     completely blank names.
+					    -->
+						<xs:minLength value="1" />
+                        <xs:maxLength value="100" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -272,6 +268,13 @@
 
     <xs:complexType name="TelephoneNumberType">
         <xs:sequence>
+			<xs:element name="Type" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
             <xs:choice>
                 <xs:element name="USTelephoneNumber" type="USTelephoneNumberType" />
                 <xs:element name="ForeignTelephoneNumber" type="ForeignTelephoneNumberType" />
@@ -443,6 +446,7 @@
 			<xs:enumeration value="GMB"/>
 			<xs:enumeration value="GEO"/>
 			<xs:enumeration value="DEU"/>
+			<xs:enumeration value="GER"/>
 			<xs:enumeration value="GHA"/>
 			<xs:enumeration value="GIB"/>
 			<xs:enumeration value="GRC"/>
@@ -594,6 +598,7 @@
 			<xs:enumeration value="UKR"/>
 			<xs:enumeration value="ARE"/>
 			<xs:enumeration value="GBR"/>
+			<xs:enumeration value="UNK"/>
 			<xs:enumeration value="UMI"/>
 			<xs:enumeration value="USA"/>
 			<xs:enumeration value="URY"/>
@@ -635,13 +640,42 @@
                 <xs:element name="CompanyName" type="CompanyNameType" />
                 <xs:element name="PersonName" type="PersonNameType" />
             </xs:choice>
-            <xs:choice>
-                <xs:element name="USAddress" type="USAddressType" />
-                <xs:element name="ForeignAddress" type="ForeignAddressType" />
-            </xs:choice>
-            <xs:element name="TelephoneNumber" type="TelephoneNumberType" />
-            <xs:element name="EMailAddress" type="EMailAddressType" />
+			<xs:element name="PrimaryAddress" type="AddressType" minOccurs="0" />
+			<xs:element name="AlternateAddress" minOccurs="0" >
+				<xs:complexType>
+                    <xs:sequence>
+					    <xs:element name="Type">
+						    <xs:simpleType>
+							    <xs:restriction base="xs:string">
+								    <xs:maxLength value="50" />
+								    <xs:enumeration value="Seasonal" />
+								    <xs:enumeration value="Obsolete/Prior" />
+								    <xs:enumeration value="Forwarding/Non-Permanent" />
+								    <xs:enumeration value="Billing" />
+								    <xs:enumeration value="Service" />
+								    <xs:enumeration value="Owned but not occupied" />
+							    </xs:restriction>
+						    </xs:simpleType>
+					    </xs:element>
+						<xs:choice>
+							<xs:element name="USAddress" type="USAddressType" />
+							<xs:element name="ForeignAddress" type="ForeignAddressType" />
+						</xs:choice>
+			        </xs:sequence>
+				</xs:complexType>
+			</xs:element>
+            <xs:element name="TelephoneNumber" type="TelephoneNumberType" minOccurs="0" />
+			<xs:element name="AlternateTelephoneNumber" type="TelephoneNumberType" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="EMailAddress" type="EMailAddressType" minOccurs="0" />
+			<xs:element name="AlternateEMailAddress" type="EMailAddressType" minOccurs="0" maxOccurs="unbounded" />
         </xs:sequence>
     </xs:complexType>
+
+	<xs:complexType name="AddressType">
+		<xs:choice>
+			<xs:element name="USAddress" type="USAddressType" />
+			<xs:element name="ForeignAddress" type="ForeignAddressType" />
+		</xs:choice>
+	</xs:complexType>
     
 </xs:schema>

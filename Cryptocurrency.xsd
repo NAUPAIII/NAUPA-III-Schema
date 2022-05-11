@@ -42,9 +42,6 @@
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
                                     <xs:enumeration value="TBD">
-                                        <xs:annotation>
-                                            <xs:documentation>TBD</xs:documentation>
-                                        </xs:annotation>
                                     </xs:enumeration>
                                 </xs:restriction>
                             </xs:simpleType>
@@ -68,9 +65,9 @@
             <xs:element name="ProceedsReported" type="CurrencyType" />
             <!-- TODO:  Is this redundant with the Property/Cash level values? -->
             <xs:element name="ProceedsRemitted" type="CurrencyType" />
-            <xs:element name="DateSold" type="DateType" minOccurs="0" />
+            <xs:element name="DateSold" type="xs:date" minOccurs="0" />
             <xs:element name="UnitsSold" type="CryptocurrencyUnits" minOccurs="0" />
-            <xs:element name="DateAcquired" type="DateType" minOccurs="0" />
+            <xs:element name="DateAcquired" type="xs:date" minOccurs="0" />
             <xs:element name="DeliveryDestination" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">

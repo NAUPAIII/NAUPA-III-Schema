@@ -9,11 +9,6 @@
     <xs:complexType name="SafekeepingType">
         <xs:sequence>
             <xs:element name="BoxCaseNumber">
-                <xs:annotation>
-                    <xs:documentation>
-                        Safe Deposit Box Number or Container Number.
-                    </xs:documentation>
-                </xs:annotation>
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <!-- Based on Kelmar -->
@@ -21,52 +16,21 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="BoxOpenDate" type="DateType">
-                <xs:annotation>
-                    <xs:documentation>
-                        Date Box was drilled open.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="LeaseExpiredDate" type="DateType">
-                <xs:annotation>
-                    <xs:documentation>
-                        End date on the paid rental agreement.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="BoxOpenDate" type="xs:date" />
+            <xs:element name="LeaseExpiredDate" type="xs:date" />
             <!-- TODO:  Might want to revert to specific fields for these fees, since there are only two -->
             <xs:element name="Fee" maxOccurs="unbounded">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="Type">
                             <xs:simpleType>
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Drop down box - 1. Drill 2. Non Payment 3. Advertising 4. Other
-                                    </xs:documentation>
-                                </xs:annotation>
                                 <xs:restriction base="xs:string">
-                                    <xs:enumeration value="Drilling Fee">
-                                        <xs:annotation>
-                                            <xs:documentation>Drilling Fee</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Unpaid Rent">
-                                        <xs:annotation>
-                                            <xs:documentation>Unpaid Rent</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
+                                    <xs:enumeration value="Drilling Fee" />
+                                    <xs:enumeration value="Unpaid Rent" />
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
-                        <xs:element name="Amount" type="CurrencyType">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Safekeeping fee amount.
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
+                        <xs:element name="Amount" type="CurrencyType" />
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -75,71 +39,21 @@
                     <xs:sequence>
                         <xs:element name="ItemCode">
                             <xs:simpleType>
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Tangible category code - contact each state for valid code listing.
-                                    </xs:documentation>
-                                </xs:annotation>
                                 <xs:restriction base="xs:string">
-                                    <xs:enumeration value="Coins">
-                                        <xs:annotation>
-                                            <xs:documentation>Coins</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Paper Currency">
-                                        <xs:annotation>
-                                            <xs:documentation>Paper Currency</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Empty Box">
-                                        <xs:annotation>
-                                            <xs:documentation>Empty Box</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Jewelry">
-                                        <xs:annotation>
-                                            <xs:documentation>Jewelry</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Legal or Misc Papers">
-                                        <xs:annotation>
-                                            <xs:documentation>Legal or Misc Papers</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Military Medals">
-                                        <xs:annotation>
-                                            <xs:documentation>Military Medals</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Miscellaneous Items">
-                                        <xs:annotation>
-                                            <xs:documentation>Miscellaneous Items</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Savings Bonds">
-                                        <xs:annotation>
-                                            <xs:documentation>Coins</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Stock Certificates">
-                                        <xs:annotation>
-                                            <xs:documentation>Coins</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
-                                    <xs:enumeration value="Weapons">
-                                        <xs:annotation>
-                                            <xs:documentation>Coins</xs:documentation>
-                                        </xs:annotation>
-                                    </xs:enumeration>
+                                    <xs:enumeration value="Coins" />
+                                    <xs:enumeration value="Paper Currency" />
+                                    <xs:enumeration value="Empty Box" />
+                                    <xs:enumeration value="Jewelry" />
+                                    <xs:enumeration value="Legal or Misc Papers" />
+                                    <xs:enumeration value="Military Medals" />
+                                    <xs:enumeration value="Miscellaneous Items" />
+                                    <xs:enumeration value="Savings Bonds" />
+                                    <xs:enumeration value="Stock Certificates" />
+                                    <xs:enumeration value="Weapons" />
                                 </xs:restriction>
                             </xs:simpleType>
                         </xs:element>
                         <xs:element name="Description">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Description of contents in Safe Deposit Box or Container.
-                                </xs:documentation>
-                            </xs:annotation>
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
                                     <!-- Based on Kelmar -->
@@ -151,11 +65,6 @@
                             <xs:complexType >
                                 <xs:sequence>
                                     <xs:element name="BondNumber">
-                                        <xs:annotation>
-                                            <xs:documentation>
-                                                Savings Bond registration number.
-                                            </xs:documentation>
-                                        </xs:annotation>
                                         <xs:simpleType>
                                             <xs:restriction base="xs:string">
                                                 <!-- Based on Kelmar -->
@@ -163,22 +72,11 @@
                                             </xs:restriction>
                                         </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="FaceValue" type="CurrencyType">
-                                        <xs:annotation>
-                                            <xs:documentation>
-                                                Face value for savings bond.
-                                            </xs:documentation>
-                                        </xs:annotation>
-                                    </xs:element>
+                                    <xs:element name="FaceValue" type="CurrencyType" />
                                     <xs:element name="Owner">
                                         <xs:complexType>
                                             <xs:sequence>
                                                 <xs:element name="Name">
-                                                    <xs:annotation>
-                                                        <xs:documentation>
-                                                            Listed Payee for bond.
-                                                        </xs:documentation>
-                                                    </xs:annotation>
                                                     <xs:simpleType>
                                                         <xs:restriction base="xs:string">
                                                             <!-- Based on Kelmar -->
@@ -190,38 +88,13 @@
                                                     <xs:element name="USAddress" type="USAddressType" />
                                                     <xs:element name="ForeignAddress" type="ForeignAddressType" />
                                                 </xs:choice>
-                                                <xs:element name="SocialSecurityNumber" type="SSNType">
-                                                    <xs:annotation>
-                                                        <xs:documentation>
-                                                            Social security number or bond payee.
-                                                        </xs:documentation>
-                                                    </xs:annotation>
-                                                </xs:element>
+                                                <xs:element name="SocialSecurityNumber" type="SSNType" />
                                                 <xs:element name="Relationship">
                                                     <xs:simpleType>
-                                                        <xs:annotation>
-                                                            <xs:documentation>
-                                                                <!-- TODO:  review -->
-                                                                Relationship of owner listed to this bond - new table
-                                                                (owner, purchaser, POD, etc.).
-                                                            </xs:documentation>
-                                                        </xs:annotation>
                                                         <xs:restriction base="xs:string">
-                                                            <xs:enumeration value="Owner">
-                                                                <xs:annotation>
-                                                                    <xs:documentation>Owner</xs:documentation>
-                                                                </xs:annotation>
-                                                            </xs:enumeration>
-                                                            <xs:enumeration value="Purchaser">
-                                                                <xs:annotation>
-                                                                    <xs:documentation>Purchaser</xs:documentation>
-                                                                </xs:annotation>
-                                                            </xs:enumeration>
-                                                            <xs:enumeration value="PID">
-                                                                <xs:annotation>
-                                                                    <xs:documentation>PID</xs:documentation>
-                                                                </xs:annotation>
-                                                            </xs:enumeration>
+                                                            <xs:enumeration value="Owner" />
+                                                            <xs:enumeration value="Purchaser" />
+                                                            <xs:enumeration value="PID" />
                                                         </xs:restriction>
                                                     </xs:simpleType>
                                                 </xs:element>
