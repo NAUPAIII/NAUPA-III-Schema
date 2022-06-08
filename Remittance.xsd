@@ -7,10 +7,6 @@
     <xs:include schemaLocation="Common.xsd" />
     <xs:include schemaLocation="Holder.xsd" />
 
-    <!--
-    Root element definition
-    -->
-
     <xs:element name="Remittance" >
         <xs:complexType>
             <xs:sequence>
