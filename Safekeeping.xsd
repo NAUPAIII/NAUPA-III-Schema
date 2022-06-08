@@ -23,7 +23,7 @@
                         <xs:element name="Type">
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
-									<xs:maxLength value="50" />
+                                    <xs:maxLength value="50" />
                                     <xs:enumeration value="Drilling Fee" />
                                     <xs:enumeration value="Unpaid Rent" />
                                 </xs:restriction>
@@ -39,7 +39,7 @@
                         <xs:element name="ItemCode">
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
-									<xs:maxLength value="50" />
+                                    <xs:maxLength value="50" />
                                     <xs:enumeration value="Coins" />
                                     <xs:enumeration value="Paper Currency" />
                                     <xs:enumeration value="Empty Box" />
@@ -89,7 +89,7 @@
                                                 <xs:element name="Relationship">
                                                     <xs:simpleType>
                                                         <xs:restriction base="xs:string">
-															<xs:maxLength value="50" />
+                                                            <xs:maxLength value="50" />
                                                             <xs:enumeration value="Owner" />
                                                             <xs:enumeration value="Purchaser" />
                                                             <xs:enumeration value="PID" />

@@ -31,7 +31,7 @@
                             <xs:element name="AlienID" minOccurs="0">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:string">
-										<xs:maxLength value="20" />
+                                        <xs:maxLength value="20" />
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
@@ -61,36 +61,36 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="DateOfBirth" type="xs:date" minOccurs="0" />
-			<xs:element name="RelationshipCode">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="50" />
-						<xs:enumeration value="Administrator" />
-						<xs:enumeration value="Agent For" />
-						<xs:enumeration value="Attorney For" />
-						<xs:enumeration value="And" />
-						<xs:enumeration value="Beneficiary" />
-						<xs:enumeration value="Community Property" />
-						<xs:enumeration value="Conservator" />
-						<xs:enumeration value="Custodian" />
-						<xs:enumeration value="Defendant" />
-						<xs:enumeration value="Estate" />
-						<xs:enumeration value="Executor" />
-						<xs:enumeration value="For Benefit Of" />
-						<xs:enumeration value="Guardian" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="TypeCode">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="15" />
-						<xs:enumeration value="Aggregate" />
-						<xs:enumeration value="NamedOwner" />
-						<xs:enumeration value="Unknown" />
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
+            <xs:element name="RelationshipCode">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                        <xs:enumeration value="Administrator" />
+                        <xs:enumeration value="Agent For" />
+                        <xs:enumeration value="Attorney For" />
+                        <xs:enumeration value="And" />
+                        <xs:enumeration value="Beneficiary" />
+                        <xs:enumeration value="Community Property" />
+                        <xs:enumeration value="Conservator" />
+                        <xs:enumeration value="Custodian" />
+                        <xs:enumeration value="Defendant" />
+                        <xs:enumeration value="Estate" />
+                        <xs:enumeration value="Executor" />
+                        <xs:enumeration value="For Benefit Of" />
+                        <xs:enumeration value="Guardian" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="TypeCode">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="15" />
+                        <xs:enumeration value="Aggregate" />
+                        <xs:enumeration value="NamedOwner" />
+                        <xs:enumeration value="Unknown" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="CompleteAccountRegistrationName" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -101,19 +101,19 @@
             <xs:element name="DateOfTrust" type="xs:date" minOccurs="0" />
             <xs:element name="MinorDateOfMajority" type="xs:date" minOccurs="0" />
             <xs:element name="DeceasedOwnerInformation" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="DateOfDeathSource">
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:maxLength value="50" />
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-						<xs:element name="DateOfDeath" type="xs:date" />
-						<xs:element name="DateOfDeathIdentifiedDate" type="xs:date" minOccurs="0" />
-					</xs:sequence>
-				</xs:complexType>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="DateOfDeathSource">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:maxLength value="50" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="DateOfDeath" type="xs:date" />
+                        <xs:element name="DateOfDeathIdentifiedDate" type="xs:date" minOccurs="0" />
+                    </xs:sequence>
+                </xs:complexType>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
@@ -124,7 +124,7 @@
     
     <xs:simpleType name="USTaxIDType">
         <xs:restriction base="xs:string">
-			<xs:maxLength value="10" />
+            <xs:maxLength value="10" />
             <xs:enumeration value="SSN" />
             <xs:enumeration value="FEIN" />
             <xs:enumeration value="ITIN" />

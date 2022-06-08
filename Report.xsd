@@ -24,12 +24,12 @@
                         <xs:enumeration value="Advertising/No Remittance" />
                         <xs:enumeration value="Remittance/Annual" />
                         <xs:enumeration value="Test" />
-						<xs:enumeration value="Audit" />
-						<xs:enumeration value="Supplemental/Correction" />
-						<xs:enumeration value="Reciprocal" />
-						<xs:enumeration value="Voluntary Disclosure Agreement" />
-						<xs:enumeration value="Final Remittance" />
-						<xs:enumeration value="Initial Remittance" />
+                        <xs:enumeration value="Audit" />
+                        <xs:enumeration value="Supplemental/Correction" />
+                        <xs:enumeration value="Reciprocal" />
+                        <xs:enumeration value="Voluntary Disclosure Agreement" />
+                        <xs:enumeration value="Final Remittance" />
+                        <xs:enumeration value="Initial Remittance" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>

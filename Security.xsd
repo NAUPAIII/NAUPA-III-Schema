@@ -39,7 +39,7 @@
         </xs:restriction>
     </xs:simpleType>
 
-<xs:complexType name="AlternativeSecurityIDType">
+    <xs:complexType name="AlternativeSecurityIDType">
         <xs:sequence>
             <xs:element name="Type">
                 <xs:simpleType>
@@ -71,15 +71,12 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="Name" type="SecurityNameType">
-            </xs:element>
-            <xs:element name="Symbol" type="SecuritySymbolType" minOccurs="0">
-            </xs:element>
+            <xs:element name="Name" type="SecurityNameType" />
+            <xs:element name="Symbol" type="SecuritySymbolType" minOccurs="0" />
             <xs:choice minOccurs="1" maxOccurs="1">
-			    <xs:element name="CUSIP" type="CUSIPType"></xs:element>
+                <xs:element name="CUSIP" type="CUSIPType"></xs:element>
                 <xs:element name="AlternativeID" type="AlternativeSecurityIDType" minOccurs="0"></xs:element>
-            </xs:choice>				
-			
+            </xs:choice>   
             <xs:element name="ReportedShares" type="NumberOfSharesType" />
             <xs:element name="RemittedShares" type="NumberOfSharesType" />
             <xs:element name="OriginalSharesHeld" minOccurs="0">
@@ -94,7 +91,7 @@
             <xs:element name="Type">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-						<xs:maxLength value="50" />
+                        <xs:maxLength value="50" />
                         <xs:enumeration value="Common Stock" />
                         <xs:enumeration value="Preferred Stock" />
                         <xs:enumeration value="Open-End Mutual Fund" />
@@ -112,7 +109,7 @@
             <xs:element name="DividendHandling">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-						<xs:maxLength value="50" />
+                        <xs:maxLength value="50" />
                         <xs:enumeration value="Cash" />
                         <xs:enumeration value="Reinvested" />
                         <xs:enumeration value="None" />
@@ -122,7 +119,7 @@
             <xs:element name="DeliveryMethod">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-						<xs:maxLength value="50" />
+                        <xs:maxLength value="50" />
                         <xs:enumeration value="DTC" />
                         <xs:enumeration value="Physical" />
                         <xs:enumeration value="Book Entry" />
@@ -176,7 +173,7 @@
                         <xs:element name="Type"> 
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
-									<xs:maxLength value="50" />
+                                    <xs:maxLength value="50" />
                                     <xs:enumeration value="Tax" />
                                 </xs:restriction>
                             </xs:simpleType>
@@ -194,9 +191,9 @@
                         <xs:element name="Symbol" type="SecuritySymbolType" minOccurs="0">
                         </xs:element>
                         <xs:choice minOccurs="1" maxOccurs="1">
-			                <xs:element name="CUSIP" type="CUSIPType"></xs:element>
+                            <xs:element name="CUSIP" type="CUSIPType"></xs:element>
                             <xs:element name="AlternativeID" type="AlternativeSecurityIDType"></xs:element>
-                        </xs:choice>				
+                        </xs:choice>                
                         <xs:element name="Amount" type="CurrencyType" />
                         <xs:element name="SharesPurchased" type="NumberOfSharesType" />
                         <xs:element name="PurchaseDate" type="xs:date" />

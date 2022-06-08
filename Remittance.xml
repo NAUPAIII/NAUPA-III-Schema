@@ -8,14 +8,14 @@
         <Contact>
             <Type>Software</Type>
             <CompanyName>The Software Application Folks</CompanyName>
-			<PrimaryAddress>
+            <PrimaryAddress>
                 <USAddress>
                     <Address1>1234 Kelmar Avenu</Address1>
                     <City>Boulder</City>
                     <StateCode>CO</StateCode>
                     <ZIPCode>80302-1234</ZIPCode>
                 </USAddress>
-			</PrimaryAddress>
+            </PrimaryAddress>
             <TelephoneNumber>
                 <USTelephoneNumber>3035551111</USTelephoneNumber>
             </TelephoneNumber>
@@ -28,15 +28,15 @@
     </Payment>
     <Remitter>
         <CompanyName>Test Bank Parent</CompanyName>
-		<ForeignCompanyInfo>
-			<ForeignTaxID>A999999999</ForeignTaxID>
-			<ForeignAddress>
-				<Address1>8 Canada Square</Address1>
-				<City>London</City>
-				<ForeignPostalCode>E14 5HQ</ForeignPostalCode>
-				<CountryCode>GBR</CountryCode>
-			</ForeignAddress>
-		</ForeignCompanyInfo>
+        <ForeignCompanyInfo>
+            <ForeignTaxID>A999999999</ForeignTaxID>
+            <ForeignAddress>
+                <Address1>8 Canada Square</Address1>
+                <City>London</City>
+                <ForeignPostalCode>E14 5HQ</ForeignPostalCode>
+                <CountryCode>GBR</CountryCode>
+            </ForeignAddress>
+        </ForeignCompanyInfo>
         <TelephoneNumber>
             <USTelephoneNumber>3035551234</USTelephoneNumber>
         </TelephoneNumber>
@@ -65,7 +65,7 @@
                 <FirstName>Fred</FirstName>
                 <LastName>Smith</LastName>
             </PersonName>
-			<PrimaryAddress>
+            <PrimaryAddress>
                 <USAddress>
                     <Address1>1234 Main St</Address1>
                     <Address2>Suite 101</Address2>
@@ -73,7 +73,7 @@
                     <StateCode>CO</StateCode>
                     <ZIPCode>80302-1234</ZIPCode>
                 </USAddress>
-			</PrimaryAddress>
+            </PrimaryAddress>
             <TelephoneNumber>
                 <USTelephoneNumber>3035551235</USTelephoneNumber>
             </TelephoneNumber>
@@ -101,7 +101,7 @@
                     <FirstName>JOHN</FirstName>
                     <LastName>SMITH</LastName>
                 </PersonName>
-				<PrimaryAddress>
+                <PrimaryAddress>
                     <USAddress>
                         <Address1>1234 MAIN ST</Address1>
                         <Address2>SUITE 200</Address2>
@@ -110,7 +110,7 @@
                         <StateCode>CO</StateCode>
                         <ZIPCode>80302-1234</ZIPCode>
                     </USAddress>
-				</PrimaryAddress>
+                </PrimaryAddress>
                 <TelephoneNumber>
                     <USTelephoneNumber>3035551234</USTelephoneNumber>
                 </TelephoneNumber>
@@ -157,8 +157,8 @@
                     <SanctionsTarget>Cuba</SanctionsTarget>
                     <OwnerType>Non-U.S. Bank</OwnerType>
                 </OFAC>
-				<HIPAAIndicator>X</HIPAAIndicator>
-				<Owner>
+                <HIPAAIndicator>X</HIPAAIndicator>
+                <Owner>
                     <Contact>
                         <Type>Owner</Type>
                         <PersonName>
@@ -168,7 +168,7 @@
                             <LastName>Besitzer</LastName>
                             <Suffix>III</Suffix>
                         </PersonName>
-						<PrimaryAddress>
+                        <PrimaryAddress>
                             <USAddress>
                                 <Address1>234 Broadway</Address1>
                                 <Address2>Suite 300</Address2>
@@ -177,16 +177,16 @@
                                 <StateCode>CO</StateCode>
                                 <ZIPCode>80304</ZIPCode>
                             </USAddress>
-						</PrimaryAddress>
-						<AlternateAddress>
-					        <Type>Seasonal</Type>
+                        </PrimaryAddress>
+                        <AlternateAddress>
+                            <Type>Seasonal</Type>
                             <ForeignAddress>
                                 <Address1>Bahrenfelder Chaussee 55</Address1>
                                 <City>Hamburg</City>
                                 <ForeignPostalCode>22761</ForeignPostalCode>
-								<CountryCode>DEU</CountryCode>
+                                <CountryCode>DEU</CountryCode>
                             </ForeignAddress>
-						</AlternateAddress>
+                        </AlternateAddress>
                         <TelephoneNumber>
                             <Type>Mobile</Type>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
@@ -225,34 +225,34 @@
                         <DateOfDeathIdentifiedDate>2000-01-01</DateOfDeathIdentifiedDate>
                     </DeceasedOwnerInformation>
                 </Owner>
-                    <Beneficiary>
-                        <Type>Primary</Type>
-                        <Spouse>X</Spouse>
-                        <Percentage>100.00</Percentage>
-                        <Contact>
-                            <Type>Beneficiary</Type>
-                            <PersonName>
-                                <FirstName>Helga</FirstName>
-                                <LastName>Besitzer</LastName>
-                            </PersonName>
-							<PrimaryAddress>
-                                <USAddress>
-                                    <Address1>234 BROADWAY</Address1>
-                                    <Address2>SUITE 300</Address2>
-                                    <Address3>Office L20</Address3>
-                                    <City>BOULDER</City>
-                                    <StateCode>CO</StateCode>
-                                    <ZIPCode>80304</ZIPCode>
-                                </USAddress>
-							</PrimaryAddress>
-                            <TelephoneNumber>
-                                <USTelephoneNumber>3035551234</USTelephoneNumber>
-                            </TelephoneNumber>
-                            <EMailAddress>hbesitzer@gmail.com</EMailAddress>
-                        </Contact>
-                        <DateOfBirth>1975-04-27</DateOfBirth>
-                        <SSN>111111111</SSN>
-                    </Beneficiary>
+                <Beneficiary>
+                    <Type>Primary</Type>
+                    <Spouse>X</Spouse>
+                    <Percentage>100.00</Percentage>
+                    <Contact>
+                        <Type>Beneficiary</Type>
+                        <PersonName>
+                            <FirstName>Helga</FirstName>
+                            <LastName>Besitzer</LastName>
+                        </PersonName>
+                        <PrimaryAddress>
+                            <USAddress>
+                                <Address1>234 BROADWAY</Address1>
+                                <Address2>SUITE 300</Address2>
+                                <Address3>Office L20</Address3>
+                                <City>BOULDER</City>
+                                <StateCode>CO</StateCode>
+                                <ZIPCode>80304</ZIPCode>
+                            </USAddress>
+                        </PrimaryAddress>
+                        <TelephoneNumber>
+                            <USTelephoneNumber>3035551234</USTelephoneNumber>
+                        </TelephoneNumber>
+                        <EMailAddress>hbesitzer@gmail.com</EMailAddress>
+                    </Contact>
+                    <DateOfBirth>1975-04-27</DateOfBirth>
+                    <SSN>111111111</SSN>
+                </Beneficiary>
                 <Adjustment>
                     <Type>Income Tax Withheld</Type>
                     <Amount>-123.45</Amount>
@@ -285,14 +285,14 @@
                             <FirstName>Josef</FirstName>
                             <LastName>Besitzer</LastName>
                         </PersonName>
-						<PrimaryAddress>
+                        <PrimaryAddress>
                             <USAddress>
                                 <Address1>234 Broadway</Address1>
                                 <City>Boulder</City>
                                 <StateCode>CO</StateCode>
                                 <ZIPCode>80304</ZIPCode>
                             </USAddress>
-						</PrimaryAddress>
+                        </PrimaryAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                         </TelephoneNumber>
@@ -330,14 +330,14 @@
                             <FirstName>Josef</FirstName>
                             <LastName>Besitzer</LastName>
                         </PersonName>
-						<PrimaryAddress>
+                        <PrimaryAddress>
                             <USAddress>
                                 <Address1>234 Broadway</Address1>
                                 <City>Boulder</City>
                                 <StateCode>CO</StateCode>
                                 <ZIPCode>80304</ZIPCode>
                             </USAddress>
-						</PrimaryAddress>
+                        </PrimaryAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                         </TelephoneNumber>
@@ -360,7 +360,7 @@
                     <TransferAgent>COMPUTERSHARE</TransferAgent>
                     <Name>FORD MOTOR CO</Name>
                     <Symbol>F</Symbol>
-					<!--<CUSIP>A12345678</CUSIP> -->
+                    <!--<CUSIP>A12345678</CUSIP> -->
                     <AlternativeID>
                         <Type>SEDOL</Type>
                         <Identifier>1234567</Identifier>
@@ -381,7 +381,7 @@
                     <DividendsPaidThroughDate>2019-07-01</DividendsPaidThroughDate>
                     <SECSearch>
                         <Date1>2019-03-15</Date1> 
-						<Date2>2019-06-15</Date2>
+                        <Date2>2019-06-15</Date2>
                     </SECSearch>
                     <Adjustment>
                         <Type>Tax</Type>
@@ -414,14 +414,14 @@
                             <FirstName>Josef</FirstName>
                             <LastName>Besitzer</LastName>
                         </PersonName>
-						<PrimaryAddress>
+                        <PrimaryAddress>
                             <USAddress>
                                 <Address1>234 Broadway</Address1>
                                 <City>Boulder</City>
                                 <StateCode>CO</StateCode>
                                 <ZIPCode>80304</ZIPCode>
                             </USAddress>
-						</PrimaryAddress>
+                        </PrimaryAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                         </TelephoneNumber>
@@ -473,28 +473,28 @@
                     </Inventory>
                 </Safekeeping>
             </Property>
-			<!-- Mineral interests schema has not yet been reviewed.
+            <!-- Mineral interests schema has not yet been reviewed.
             <Property>
                 <TypeCode>MI001</TypeCode>
                 <LastActivityDate>2015-01-15</LastActivityDate>
                 <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
                 <AccountNumber>1234567890</AccountNumber>
-				<NonRemitIndicator>X</NonRemitIndicator>
-				<Owner>
+                <NonRemitIndicator>X</NonRemitIndicator>
+                <Owner>
                     <Contact>
                         <Type>Owner</Type>
                         <PersonName>
                             <FirstName>Josef</FirstName>
                             <LastName>Besitzer</LastName>
                         </PersonName>
-						<PrimaryAddress>
+                        <PrimaryAddress>
                             <USAddress>
                                 <Address1>234 Broadway</Address1>
                                 <City>Boulder</City>
                                 <StateCode>CO</StateCode>
                                 <ZIPCode>80304</ZIPCode>
                             </USAddress>
-						</PrimaryAddress>
+                        </PrimaryAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                         </TelephoneNumber>
@@ -530,8 +530,8 @@
                     <OwnershipPercentage>1.025</OwnershipPercentage>
                 </MineralInterests>
             </Property>
-			-->
-			<!-- Cryptocurrency schema has not yet been reviewed.
+            -->
+            <!-- Cryptocurrency schema has not yet been reviewed.
             <Property>
                 <TypeCode>VC002</TypeCode>
                 <LastActivityDate>2015-01-15</LastActivityDate>
@@ -544,14 +544,14 @@
                             <FirstName>Josef</FirstName>
                             <LastName>Besitzer</LastName>
                         </PersonName>
-						<PrimaryAddress>
+                        <PrimaryAddress>
                             <USAddress>
                                 <Address1>234 Broadway</Address1>
                                 <City>Boulder</City>
                                 <StateCode>CO</StateCode>
                                 <ZIPCode>80304</ZIPCode>
                             </USAddress>
-						</PrimaryAddress>
+                        </PrimaryAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                         </TelephoneNumber>
@@ -580,7 +580,7 @@
                     <ProceedsRemitted>5033070.00</ProceedsRemitted>
                 </Cryptocurrency>
             </Property>
-			-->
+            -->
             <Adjustment>
                 <Type>Audit Fees</Type>
                 <Amount>-125.00</Amount>
@@ -590,29 +590,29 @@
     </Holder>
     <Holder>
         <CompanyName>Test Company</CompanyName>
-		<USCompanyInfo>
-			<FEIN>777777777</FEIN>
-			<USAddress>
-				<Address1>1234 Pearl St</Address1>
-				<City>Boulder</City>
-				<StateCode>CO</StateCode>
-				<ZIPCode>80302-1234</ZIPCode>
-			</USAddress>
-		</USCompanyInfo>
+        <USCompanyInfo>
+            <FEIN>777777777</FEIN>
+            <USAddress>
+                <Address1>1234 Pearl St</Address1>
+                <City>Boulder</City>
+                <StateCode>CO</StateCode>
+                <ZIPCode>80302-1234</ZIPCode>
+            </USAddress>
+        </USCompanyInfo>
         <Contact>
             <Type>Report</Type>
             <PersonName>
                 <FirstName>Joe</FirstName>
                 <LastName>Johnson</LastName>
             </PersonName>
-			<PrimaryAddress>
+            <PrimaryAddress>
                 <USAddress>
                     <Address1>1234 Pearl St</Address1>
                     <City>Boulder</City>
                     <StateCode>CO</StateCode>
                     <ZIPCode>80302-1234</ZIPCode>
                 </USAddress>
-			</PrimaryAddress>
+            </PrimaryAddress>
             <TelephoneNumber>
                 <USTelephoneNumber>3035551235</USTelephoneNumber>
             </TelephoneNumber>
@@ -628,14 +628,14 @@
                     <FirstName>Joe</FirstName>
                     <LastName>Johnson</LastName>
                 </PersonName>
-				<PrimaryAddress>
+                <PrimaryAddress>
                     <USAddress>
                         <Address1>1234 Pearl St</Address1>
                         <City>Boulder</City>
                         <StateCode>CO</StateCode>
                         <ZIPCode>80302-1234</ZIPCode>
                     </USAddress>
-				</PrimaryAddress>
+                </PrimaryAddress>
                 <TelephoneNumber>
                     <USTelephoneNumber>3035551235</USTelephoneNumber>
                 </TelephoneNumber>
@@ -692,7 +692,7 @@
                             <LastName>Besitzer</LastName>
                             <Suffix>III</Suffix>
                         </PersonName>
-						<PrimaryAddress>
+                        <PrimaryAddress>
                             <USAddress>
                                 <Address1>234 Broadway</Address1>
                                 <Address2>Suite 300</Address2>
@@ -701,7 +701,7 @@
                                 <StateCode>CO</StateCode>
                                 <ZIPCode>80304</ZIPCode>
                             </USAddress>
-						</PrimaryAddress>
+                        </PrimaryAddress>
                         <AlternateAddress>
                             <Type>Seasonal</Type>
                             <ForeignAddress>
@@ -758,7 +758,7 @@
                             <FirstName>Helga</FirstName>
                             <LastName>Besitzer</LastName>
                         </PersonName>
-						<PrimaryAddress>
+                        <PrimaryAddress>
                             <USAddress>
                                 <Address1>234 BROADWAY</Address1>
                                 <Address2>SUITE 300</Address2>
@@ -767,7 +767,7 @@
                                 <StateCode>CO</StateCode>
                                 <ZIPCode>80304</ZIPCode>
                             </USAddress>
-						</PrimaryAddress>
+                        </PrimaryAddress>
                         <TelephoneNumber>
                             <USTelephoneNumber>3035551234</USTelephoneNumber>
                         </TelephoneNumber>
