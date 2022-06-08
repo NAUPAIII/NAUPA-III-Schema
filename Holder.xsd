@@ -41,7 +41,6 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="DBAName" type="CompanyNameType" minOccurs="0" />
-            <!-- NOTE:  Incorporated element had to be made optional to allow for foreign holders -->
             <xs:element name="Incorporated" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>

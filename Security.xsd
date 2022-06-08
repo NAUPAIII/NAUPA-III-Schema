@@ -94,6 +94,7 @@
             <xs:element name="Type">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
                         <xs:enumeration value="Common Stock" />
                         <xs:enumeration value="Preferred Stock" />
                         <xs:enumeration value="Open-End Mutual Fund" />
@@ -108,10 +109,10 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <!-- TODO:  discuss renaming of element -->
             <xs:element name="DividendHandling">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
                         <xs:enumeration value="Cash" />
                         <xs:enumeration value="Reinvested" />
                         <xs:enumeration value="None" />
@@ -121,6 +122,7 @@
             <xs:element name="DeliveryMethod">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
                         <xs:enumeration value="DTC" />
                         <xs:enumeration value="Physical" />
                         <xs:enumeration value="Book Entry" />
@@ -174,6 +176,7 @@
                         <xs:element name="Type"> 
                             <xs:simpleType>
                                 <xs:restriction base="xs:string">
+									<xs:maxLength value="50" />
                                     <xs:enumeration value="Tax" />
                                 </xs:restriction>
                             </xs:simpleType>

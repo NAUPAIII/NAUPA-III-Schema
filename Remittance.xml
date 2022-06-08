@@ -473,6 +473,7 @@
                     </Inventory>
                 </Safekeeping>
             </Property>
+			<!-- Mineral interests schema has not yet been reviewed.
             <Property>
                 <TypeCode>MI001</TypeCode>
                 <LastActivityDate>2015-01-15</LastActivityDate>
@@ -529,6 +530,8 @@
                     <OwnershipPercentage>1.025</OwnershipPercentage>
                 </MineralInterests>
             </Property>
+			-->
+			<!-- Cryptocurrency schema has not yet been reviewed.
             <Property>
                 <TypeCode>VC002</TypeCode>
                 <LastActivityDate>2015-01-15</LastActivityDate>
@@ -577,6 +580,7 @@
                     <ProceedsRemitted>5033070.00</ProceedsRemitted>
                 </Cryptocurrency>
             </Property>
+			-->
             <Adjustment>
                 <Type>Audit Fees</Type>
                 <Amount>-125.00</Amount>

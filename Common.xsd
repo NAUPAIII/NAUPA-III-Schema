@@ -6,7 +6,6 @@
     
     <xs:simpleType name="CurrencyType">
         <xs:restriction base="xs:decimal">
-            <!-- TODO:  Discuss default for totalDigits. -->
             <xs:totalDigits value="12"></xs:totalDigits>
             <xs:fractionDigits value="2" />
         </xs:restriction>
@@ -28,9 +27,6 @@
     
     <xs:simpleType name="CompanyNameType">
         <xs:restriction base="xs:string">
-			<!-- TODO:  Discuss minLength.  Seems like a good idea to prevent users from giving us completely
-			     blank names.
-		    -->
 			<xs:minLength value="1"/>
             <xs:maxLength value="100"/>
         </xs:restriction>
@@ -72,51 +68,32 @@
         </xs:restriction>
     </xs:simpleType>
     
-    <!--Named complex types section _CTS -->
-    
-    <!-- TODO:
-        Review all address fields lengths and figure out what to do w/ NAUPA-III common address type for all
-        addresses.
-     -->
     <xs:complexType name="USAddressType">
         <xs:sequence>
             <xs:element name="Address1">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu remitter -->
-                        <xs:maxLength value="40" />
+                        <xs:maxLength value="255" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="Address2" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu remitter -->
-                        <xs:maxLength value="40" />
+                        <xs:maxLength value="255" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="Address3" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu remitter -->
-                        <xs:maxLength value="40" />
+                        <xs:maxLength value="50" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="City">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu remitter -->
-                        <xs:maxLength value="30" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <!-- TODO:  This is needed for Holders only.  -->
-            <xs:element name="County" minOccurs="0">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <!-- Based on Avenu remitter -->
                         <xs:maxLength value="30" />
                     </xs:restriction>
                 </xs:simpleType>
@@ -137,40 +114,27 @@
             <xs:element name="Address1">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu remitter -->
-                        <xs:maxLength value="40" />
+                        <xs:maxLength value="255" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="Address2" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu remitter -->
-                        <xs:maxLength value="40" />
+                        <xs:maxLength value="255" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="Address3" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu remitter -->
-                        <xs:maxLength value="40" />
+                        <xs:maxLength value="50" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="City">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu remitter -->
-                        <xs:maxLength value="30" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <!-- TODO:  This is needed for Holders only.  -->
-            <xs:element name="County" minOccurs="0">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <!-- Based on Avenu remitter -->
                         <xs:maxLength value="30" />
                     </xs:restriction>
                 </xs:simpleType>
@@ -178,7 +142,6 @@
             <xs:element name="ProvinceOrState" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Kelmar "State" value -->
                         <xs:maxLength value="50" />
                     </xs:restriction>
                 </xs:simpleType>
@@ -186,15 +149,10 @@
             <xs:element name="ForeignPostalCode" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Kelmar -->
-                        <xs:maxLength value="10" />
+                        <xs:maxLength value="9" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <!-- TODO:
-                In some cases, these country codes do not line up with what is actually used, e.g. "UK" is much more
-                commonly used than "GBR" in actual correspondence.  Not sure if that matters here.
-             -->
             <xs:element name="CountryCode" type="CountryCodeType" />
         </xs:sequence>
     </xs:complexType>
@@ -215,13 +173,9 @@
     
     <xs:complexType name="PersonNameType">
         <xs:sequence>
-            <!-- TODO:
-                Review this.  The spreadsheet has both Prefix and Title, both free-form, which seems strange.
-            -->
             <xs:element name="Prefix" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on FAST -->
                         <xs:maxLength value="10" />
                     </xs:restriction>
                 </xs:simpleType>
@@ -229,27 +183,20 @@
             <xs:element name="FirstName">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu property owner names -->
-                        <!-- TODO:  Should this be longer?-->
-                        <xs:maxLength value="30" />
+                        <xs:maxLength value="50" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="MiddleName" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu property owner names -->
-                        <!-- TODO:  Should this be longer?-->
-                        <xs:maxLength value="10" />
+                        <xs:maxLength value="50" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="LastName">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-						<!-- TODO:  Discuss minLength.  Seems like a good idea to prevent users from giving us
-						     completely blank names.
-					    -->
 						<xs:minLength value="1" />
                         <xs:maxLength value="100" />
                     </xs:restriction>
@@ -258,7 +205,6 @@
             <xs:element name="Suffix" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <!-- Based on Avenu -->
                         <xs:maxLength value="10" />
                     </xs:restriction>
                 </xs:simpleType>
@@ -285,7 +231,6 @@
 
     <xs:simpleType name="EMailAddressType">
         <xs:restriction base="xs:string">
-            <!-- TODO:  review maxLength, I made it up. -->
             <xs:maxLength value="255" />
             <!-- Cribbed from StackOverflow. -->
             <xs:pattern value="[^@]+@[^\.]+\..+"/>
@@ -629,9 +574,7 @@
                         <xs:enumeration value="Safe Deposit Box" />
                         <xs:enumeration value="Securities" />
                         <xs:enumeration value="Software" />
-                        <!-- TODO:  added for property owner contact -->
                         <xs:enumeration value="Owner" />
-                        <!-- TODO:  added for property owner beneficiary contact -->
                         <xs:enumeration value="Beneficiary" />
                     </xs:restriction>
                 </xs:simpleType>

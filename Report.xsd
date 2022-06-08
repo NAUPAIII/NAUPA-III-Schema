@@ -17,7 +17,6 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="AsOfDate" type="xs:date" minOccurs="0" />
-            <!-- TODO:  review this after it is reviewed at the general committee meeting -->
             <xs:element name="Type">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
