@@ -682,7 +682,7 @@
                                   <xs:element name="ReportedShares" type="SecurityNumberOfSharesType" />
                                   <xs:element name="RemittedShares" type="SecurityNumberOfSharesType" />
                                   <!-- Section 4.4.3.2.12.1 -->
-                                  <xs:element name="OriginalSecurity" minOccurs="0">
+                                  <xs:element name="Original" minOccurs="0">
                                     <xs:complexType>
                                       <xs:sequence>
                                         <xs:element name="Name" type="SecurityNameType" />

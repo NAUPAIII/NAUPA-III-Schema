@@ -374,11 +374,11 @@
           </AlternativeID>
           <ReportedShares>1234.123</ReportedShares>
           <RemittedShares>1234.0</RemittedShares>
-          <OriginalSecurity>
+          <Original>
             <Name>FORD MOTOR CO</Name>
             <CUSIP>A12345678</CUSIP>
             <Shares>1000.001</Shares>
-          </OriginalSecurity>
+          </Original>
           <Type>Common Stock</Type>
           <DividendHandling>Cash</DividendHandling>
           <DividendsPaidThroughDate>2019-07-01</DividendsPaidThroughDate>
