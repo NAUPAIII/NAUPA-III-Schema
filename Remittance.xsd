@@ -585,13 +585,13 @@
                                   <xs:simpleType>
                                     <xs:restriction base="xs:string">
                                       <xs:maxLength value="50" />
-                                      <xs:enumeration value="Due Diligence Cost" />
-                                      <xs:enumeration value="Service Charge" />
-                                      <xs:enumeration value="Income Tax Withheld" />
-                                      <xs:enumeration value="IRS Penalty withheld" />
-                                      <xs:enumeration value="IRS Back-Up Withholding" />
-                                      <xs:enumeration value="Interest Earned" />
-                                      <xs:enumeration value="Property Deleted" />
+                                      <xs:enumeration value="DC" />
+                                      <xs:enumeration value="SC" />
+                                      <xs:enumeration value="TW" />
+                                      <xs:enumeration value="PW" />
+                                      <xs:enumeration value="BW" />
+                                      <xs:enumeration value="IE" />
+                                      <xs:enumeration value="DE" />
                                     </xs:restriction>
                                   </xs:simpleType>
                                 </xs:element>

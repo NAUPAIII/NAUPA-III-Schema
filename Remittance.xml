@@ -255,11 +255,11 @@
           <SSN>111111111</SSN>
         </Beneficiary>
         <Adjustment>
-          <TypeCode>Income Tax Withheld</TypeCode>
+          <TypeCode>TW</TypeCode>
           <Amount>-123.45</Amount>
         </Adjustment>
         <Adjustment>
-          <TypeCode>Service Charge</TypeCode>
+          <TypeCode>SC</TypeCode>
           <Amount>-25.00</Amount>
         </Adjustment>
         <Cash>
@@ -315,7 +315,7 @@
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
         <Adjustment>
-          <TypeCode>Service Charge</TypeCode>
+          <TypeCode>SC</TypeCode>
           <Amount>-20.00</Amount>
         </Adjustment>
         <Bond>
@@ -360,7 +360,7 @@
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
         <Adjustment>
-          <TypeCode>Service Charge</TypeCode>
+          <TypeCode>SC</TypeCode>
           <Amount>-20.00</Amount>
         </Adjustment>
         <Security>
@@ -512,7 +512,7 @@
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
         <Adjustment>
-          <TypeCode>Service Charge</TypeCode>
+          <TypeCode>SC</TypeCode>
           <Amount>-125.00</Amount>
         </Adjustment>
         <MineralInterests>
@@ -566,7 +566,7 @@
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
         <Adjustment>
-          <TypeCode>Service Charge</TypeCode>
+          <TypeCode>SC</TypeCode>
           <Amount>-20.00</Amount>
         </Adjustment>
         <Cryptocurrency>
@@ -774,11 +774,11 @@
           <SSN>111111111</SSN>
         </Beneficiary>
         <Adjustment>
-          <TypeCode>Income Tax Withheld</TypeCode>
+          <TypeCode>SC</TypeCode>
           <Amount>-123.45</Amount>
         </Adjustment>
         <Adjustment>
-          <TypeCode>Service Charge</TypeCode>
+          <TypeCode>SC</TypeCode>
           <Amount>-25.00</Amount>
         </Adjustment>
         <Cash>
