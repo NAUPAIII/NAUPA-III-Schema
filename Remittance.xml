@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Section 4 Remittance Element -->
 <Remittance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.unclaimed.org/NAUPA-III Remittance.xsd"
       xmlns="http://www.unclaimed.org/NAUPA-III"
       version="0.1">
+  <!-- Section 4.1 SoftwareInformation Element -->
   <SoftwareInformation>
     <Version>0.1</Version>
     <Contact>
@@ -22,10 +24,13 @@
       <EMailAddress>support@softwareapp.com</EMailAddress>
     </Contact>
   </SoftwareInformation>
+  <!-- Section 4.2 Payment Element -->
   <Payment>
+    <!-- Section 4.2.1 Payment TypeCode -->
     <TypeCode>Wire</TypeCode>
     <ConfirmationNumber>1234567890123456789012345678901234567890</ConfirmationNumber>
   </Payment>
+  <!-- Section 4.3 Remitter Element -->
   <Remitter>
     <CompanyName>Test Bank Parent</CompanyName>
     <ForeignCompanyInfo>
@@ -42,6 +47,7 @@
     </TelephoneNumber>
     <EMailAddress>TEST@TESTBANK.COM</EMailAddress>
   </Remitter>
+  <!-- Section 4.4 Holder Element -->
   <Holder>
     <CompanyName>Test Bank</CompanyName>
     <USCompanyInfo>
@@ -55,6 +61,7 @@
         <ZIPCode>80302-1234</ZIPCode>
       </USAddress>
     </USCompanyInfo>
+    <!-- Section 4.4.1 ParentCompany Element -->
     <ParentCompany>
       <CompanyName>Test Bank Parent</CompanyName>
       <ForeignTaxID>A9999999999</ForeignTaxID>
@@ -82,6 +89,7 @@
     <NAICSCode>120001</NAICSCode>
     <TaxIDExtension>0123</TaxIDExtension>
     <DBAName>Boulder Test Bank</DBAName>
+    <!-- Section 4.4.2 Incorporated Element -->
     <Incorporated>
       <State>CO</State>
       <Date>1975-12-24</Date>
@@ -91,7 +99,9 @@
     <AssetsAmount>2000000</AssetsAmount>
     <NumberOfInsurancePolicies>1025</NumberOfInsurancePolicies>
     <HolderID>1234567890</HolderID>
+    <!-- Section 4.4.3 Report Element -->
     <Report>
+      <!-- Section 4.4.3.1 Report TypeCode Element -->
       <TypeCode>Remittance/Annual</TypeCode>
       <Year>2020</Year>
       <AsOfDate>2019-07-01</AsOfDate>
@@ -116,14 +126,18 @@
         </TelephoneNumber>
         <EMailAddress>JOHN.SMITH@TESTBANK.COM</EMailAddress>
       </Contact>
+      <!-- Section 4.4.3.2 Property Element -->
       <Property>
+        <!-- Section 4.4.3.2.1 Property TypeCode Element -->
         <TypeCode>AC001</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
+        <!-- Section 4.4.3.2.2 DueDiligencePerformed Element -->
         <DueDiligencePerformed>
           <Date1>2019-09-01</Date1>
           <Date2>2019-10-01</Date2>
         </DueDiligencePerformed>
+        <!-- Section 4.4.3.2.3 ReturnedByPostOffice Element -->
         <ReturnedByPostOffice>
           <MailDate>2019-09-01</MailDate>
           <ReturnCount>1</ReturnCount>
@@ -131,6 +145,7 @@
         </ReturnedByPostOffice>
         <PayableOrDistributableDate>2015-01-15</PayableOrDistributableDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
+        <!-- Section 4.4.3.2.4 Transaction Element -->
         <!--
         <Transaction>
           <StartDate>2015-01-15</StartDate>
@@ -141,6 +156,7 @@
         <Taxable>X</Taxable>
         <TaxForm1099IssuedDate>2019-09-01</TaxForm1099IssuedDate>
         <Description>This is a property description.</Description>
+        <!-- Section 4.4.3.2.5 AlternateLocation Element -->
         <AlternateLocation>
           <Identifier>Branch</Identifier>
           <USAddress>
@@ -152,23 +168,31 @@
             <ZIPCode>80302-1234</ZIPCode>
           </USAddress>
         </AlternateLocation>
+        <!-- Section 4.4.3.2.6 OFAC Element -->
         <OFAC>
           <DateOfBlocking>2015-02-15</DateOfBlocking>
           <LegalAuthority>31 C.F.R. Part 515</LegalAuthority>
           <SanctionsTarget>Cuba</SanctionsTarget>
+          <!-- Section 4.4.3.2.6.1 OFAC OwnerType Element -->
           <OwnerType>Non-U.S. Bank</OwnerType>
         </OFAC>
         <HIPAAIndicator>X</HIPAAIndicator>
+        <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
+          <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
           <TypeCode>Aggregate</TypeCode>
+          <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
+            <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
             <USTaxID>
+              <!-- Section 4.4.3.2.7.2.1.1 USTaxID TypeCode Element -->
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
             <!--
             <AlienID>999999999</AlienID>
             -->
+            <!-- Section 4.4.3.2.7.2.2 DriversLicense Element -->
             <DriversLicense>
               <State>CO</State>
               <Identifier>24-457-1234</Identifier>
@@ -216,17 +240,21 @@
           </Contact>
           <Description>Snooty</Description>
           <DateOfBirth>1954-06-08</DateOfBirth>
+          <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
           <CompleteAccountRegistrationName>ROBERT JAMES ANDERSON</CompleteAccountRegistrationName>
           <DateOfTrust>2000-01-01</DateOfTrust>
           <MinorDateOfMajority>2000-01-01</MinorDateOfMajority>
+          <!-- Section 4.4.3.2.7.4 Deceased Element -->
           <Deceased>
             <DateOfDeath>2000-01-01</DateOfDeath>
             <DateOfDeathSource>Claim</DateOfDeathSource>
             <DateOfDeathIdentifiedDate>2000-01-01</DateOfDeathIdentifiedDate>
           </Deceased>
         </Owner>
+        <!-- Section 4.4.3.2.8 Beneficiary Element -->
         <Beneficiary>
+          <!-- Section 4.4.3.2.8.1 Beneficiary TypeCode Element -->
           <TypeCode>Primary</TypeCode>
           <Spouse>X</Spouse>
           <Percentage>100.00</Percentage>
@@ -254,17 +282,23 @@
           <DateOfBirth>1975-04-27</DateOfBirth>
           <SSN>111111111</SSN>
         </Beneficiary>
+        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
         <Adjustment>
+          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
           <TypeCode>TW</TypeCode>
           <Amount>-123.45</Amount>
         </Adjustment>
+        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
         <Adjustment>
+          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
           <TypeCode>SC</TypeCode>
           <Amount>-25.00</Amount>
         </Adjustment>
+        <!-- Section 4.4.3.2.10 Cash Element -->
         <Cash>
           <ReportedAmount>543.21</ReportedAmount>
           <RemittedAmount>394.76</RemittedAmount>
+          <!-- Section 4.4.3.2.10.1 Interest Element -->
           <Interest>
             <Rate>0.50</Rate>
             <PaidThroughDate>2020-12-31</PaidThroughDate>
@@ -273,22 +307,30 @@
           <ItemIssueState>CO</ItemIssueState>
         </Cash>
       </Property>
+      <!-- Section 4.4.3.2 Property Element -->
       <Property>
+        <!-- Section 4.4.3.2.1 Property TypeCode Element -->
         <TypeCode>SC002</TypeCode>
         <AccountNumber>123-4567-001</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <!--
         <LastActivityDate>2015-01-15</LastActivityDate>
 				-->
+        <!-- Section 4.4.3.2.4 Transaction Element -->
         <Transaction>
           <StartDate>2015-01-15</StartDate>
           <EndDate>2015-01-15</EndDate>
         </Transaction>
         <Taxable>X</Taxable>
+        <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
+          <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
           <TypeCode>Aggregate</TypeCode>
+          <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
+            <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
             <USTaxID>
+              <!-- Section 4.4.3.2.7.2.1.1 USTaxID TypeCode Element -->
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
@@ -312,28 +354,39 @@
             </TelephoneNumber>
             <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
           </Contact>
+          <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
+        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
         <Adjustment>
+          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
           <TypeCode>SC</TypeCode>
           <Amount>-20.00</Amount>
         </Adjustment>
+        <!-- Section 4.4.3.2.11 Bond Element -->
         <Bond>
           <Name>Bondy McBondface</Name>
           <Number>123456789</Number>
           <PayingAgent>Bonds R Us</PayingAgent>
         </Bond>
       </Property>
+      <!-- Section 4.4.3.2 Property Element -->
       <Property>
+        <!-- Section 4.4.3.2.1 Property TypeCode Element -->
         <TypeCode>SC006</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
         <Taxable>X</Taxable>
+        <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
+          <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
           <TypeCode>Aggregate</TypeCode>
+          <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
+            <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
             <USTaxID>
+              <!-- Section 4.4.3.2.7.2.1.1 USTaxID TypeCode Element -->
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
@@ -357,13 +410,18 @@
             </TelephoneNumber>
             <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
           </Contact>
+          <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
+        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
         <Adjustment>
+          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
           <TypeCode>SC</TypeCode>
           <Amount>-20.00</Amount>
         </Adjustment>
+        <!-- Section 4.4.3.2.12 Security Element -->
         <Security>
+          <!-- Section 4.4.3.2.12.1 Security TypeCode Element -->
           <TypeCode>Common Stock</TypeCode>
           <Name>FORD MOTOR CO</Name>
           <Symbol>F</Symbol>
@@ -375,22 +433,30 @@
           <TransferAgent>COMPUTERSHARE</TransferAgent>
           <ReportedShares>1234.123</ReportedShares>
           <RemittedShares>1234.0</RemittedShares>
+          <!-- Section 4.4.3.2.12.2 Original Element -->
           <Original>
             <Name>FORD MOTOR CO</Name>
             <CUSIP>A12345678</CUSIP>
             <Shares>1000.001</Shares>
           </Original>
+          <!-- Section 4.4.3.2.12.3 DividendHandling Element -->
           <DividendHandling>Cash</DividendHandling>
           <DividendsPaidThroughDate>2019-07-01</DividendsPaidThroughDate>
+          <!-- Section 4.4.3.2.12.4 DeliveryMethod Element -->
           <DeliveryMethod>DTC</DeliveryMethod>
           <StateAccountNumber>123456</StateAccountNumber>
           <DTCDeliveryReferenceNumber>0005</DTCDeliveryReferenceNumber>
+          <!-- Section 4.4.3.2.12.5 Market Element -->
           <Market>AMEX</Market>
+          <!-- Section 4.4.3.2.12.6 Status Element -->
           <Status>Transferable</Status>
+          <!-- Section 4.4.3.2.12.7 Security Adjustment Element -->
           <Adjustment>
+            <!-- Section 4.4.3.2.12.7.1 Security Adjustment TypeCode Element -->
             <TypeCode>Tax</TypeCode>
             <Amount>-12.50</Amount>
           </Adjustment>
+          <!-- Section 4.4.3.2.12.8 CostBasis Element -->
           <CostBasis>
             <Name>FORD MOTOR CO</Name>
             <Symbol>F</Symbol>
@@ -405,15 +471,22 @@
           </CostBasis>
         </Security>
       </Property>
+      <!-- Section 4.4.3.2 Property Element -->
       <Property>
+        <!-- Section 4.4.3.2.1 Property TypeCode Element -->
         <TypeCode>SD001</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
+        <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
+          <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
           <TypeCode>Aggregate</TypeCode>
+          <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
+            <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
             <USTaxID>
+              <!-- Section 4.4.3.2.7.2.1.1 USTaxID TypeCode Element -->
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
@@ -437,26 +510,35 @@
             </TelephoneNumber>
             <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
           </Contact>
+          <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
         <Safekeeping>
           <BoxCaseNumber>1234</BoxCaseNumber>
           <BoxOpenDate>2019-01-15</BoxOpenDate>
           <LeaseExpiredDate>2015-08-15</LeaseExpiredDate>
+          <!-- Section 4.4.3.2.13.1 Fee Element -->
           <Fee>
+            <!-- Section 4.4.3.2.13.1.1 Fee TypeCode Element -->
             <TypeCode>Drilling Fee</TypeCode>
             <Amount>25.00</Amount>
           </Fee>
+          <!-- Section 4.4.3.2.13.1 Fee Element -->
           <Fee>
+            <!-- Section 4.4.3.2.13.1.1 Fee TypeCode Element -->
             <TypeCode>Unpaid Rent</TypeCode>
             <Amount>15.51</Amount>
           </Fee>
+          <!-- Section 4.4.3.2.13.2 Inventory Element -->
           <Inventory>
+            <!-- Section 4.4.3.2.13.2.1 ItemCode Element -->
             <ItemCode>Savings Bonds</ItemCode>
             <Description>Savings bond</Description>
+            <!-- Section 4.4.3.2.13.2.2 SavingsBond Element -->
             <SavingsBond>
               <BondNumber>C999999999EE</BondNumber>
               <FaceValue>100.00</FaceValue>
+              <!-- Section 4.4.3.2.13.2.2.1 SavingsBond Owner Element -->
               <Owner>
                 <Name>Fred</Name>
                 <USAddress>
@@ -469,23 +551,32 @@
               </Owner>
             </SavingsBond>
           </Inventory>
+          <!-- Section 4.4.3.2.13.2 Inventory Element -->
           <Inventory>
+            <!-- Section 4.4.3.2.13.2.1 ItemCode Element-->
             <ItemCode>Coins</ItemCode>
             <Description>Gold colored dollar dated 1976</Description>
             <EstimatedValue>250</EstimatedValue>
           </Inventory>
         </Safekeeping>
       </Property>
+      <!-- Section 4.4.3.2 Property Element -->
       <Property>
+        <!-- Section 4.4.3.2.1 Property TypeCode Element -->
         <TypeCode>MI001</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
         <NonRemitIndicator>X</NonRemitIndicator>
+        <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
+          <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
           <TypeCode>Aggregate</TypeCode>
+          <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
+            <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
             <USTaxID>
+              <!-- Section 4.4.3.2.7.2.1.1 USTaxID TypeCode Element -->
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
@@ -509,12 +600,16 @@
             </TelephoneNumber>
             <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
           </Contact>
+          <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
+        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
         <Adjustment>
+          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
           <TypeCode>SC</TypeCode>
           <Amount>-125.00</Amount>
         </Adjustment>
+        <!-- Section 4.4.3.2.14 MineralInterests Element -->
         <MineralInterests>
           <StateCode>OK</StateCode>
           <CountyName>WASHINGTON</CountyName>
@@ -531,15 +626,22 @@
           <OwnershipPercentage>1.025</OwnershipPercentage>
         </MineralInterests>
       </Property>
+      <!-- Section 4.4.3.2 Property Element -->
       <Property>
+        <!-- Section 4.4.3.2.1 Property TypeCode Element -->
         <TypeCode>VC002</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
+        <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
+          <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
           <TypeCode>Aggregate</TypeCode>
+          <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
+            <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
             <USTaxID>
+              <!-- Section 4.4.3.2.7.2.1.1 USTaxID TypeCode Element -->
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
@@ -563,9 +665,12 @@
             </TelephoneNumber>
             <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
           </Contact>
+          <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
+        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
         <Adjustment>
+          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
           <TypeCode>SC</TypeCode>
           <Amount>-20.00</Amount>
         </Adjustment>
@@ -573,7 +678,9 @@
           <Name>Bitcoin</Name>
           <Symbol>BTC</Symbol>
           <AccountNumber>1234567890</AccountNumber>
+          <!-- Section 4.4.3.2.15.1 AlternativeID Element -->
           <AlternativeID>
+            <!-- Section 4.4.3.2.15.1.1 AlternativeID TypeCode Element -->
             <TypeCode>TBD</TypeCode>
             <Identifier>ABC123</Identifier>
           </AlternativeID>
@@ -583,13 +690,16 @@
           <ProceedsRemitted>5033070.00</ProceedsRemitted>
         </Cryptocurrency>
       </Property>
+      <!-- Section 4.4.3.3 Report Adjustment Element -->
       <Adjustment>
+        <!-- Section 4.4.3.3.1 Report Adjustment TypeCode Element -->
         <TypeCode>Audit Fees</TypeCode>
         <Amount>-125.00</Amount>
       </Adjustment>
       <NonProductionReport>X</NonProductionReport>
     </Report>
   </Holder>
+  <!-- Section 4.4 Holder Element -->
   <Holder>
     <CompanyName>Test Company</CompanyName>
     <USCompanyInfo>
@@ -621,7 +731,9 @@
       <EMailAddress>joe.johnson@testcompany.com</EMailAddress>
     </Contact>
     <NAICSCode>123456</NAICSCode>
+    <!-- Section 4.4.3 Report Element -->
     <Report>
+      <!-- Section 4.4.3.1 Report TypeCode Element -->
       <TypeCode>Remittance/Annual</TypeCode>
       <Year>2020</Year>
       <Contact>
@@ -643,14 +755,18 @@
         </TelephoneNumber>
         <EMailAddress>joe.johnson@testcompany.com</EMailAddress>
       </Contact>
+      <!-- Section 4.4.3.2 Property Element -->
       <Property>
+        <!-- Section 4.4.3.2.1 Property TypeCode Element -->
         <TypeCode>AC001</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
+        <!-- Section 4.4.3.2.2 DueDiligencePerformed Element -->
         <DueDiligencePerformed>
           <Date1>2019-09-01</Date1>
           <Date2>2019-09-02</Date2>
         </DueDiligencePerformed>
+        <!-- Section 4.4.3.2.3 ReturnedByPostOffice Element -->
         <ReturnedByPostOffice>
           <MailDate>2019-09-01</MailDate>
           <ReturnCount>1</ReturnCount>
@@ -662,6 +778,7 @@
         <Taxable>X</Taxable>
         <TaxForm1099IssuedDate>2019-09-01</TaxForm1099IssuedDate>
         <Description>This is a property description.</Description>
+        <!-- Section 4.4.3.2.5 AlternateLocation Element -->
         <AlternateLocation>
           <Identifier>Branch</Identifier>
           <USAddress>
@@ -673,16 +790,23 @@
             <ZIPCode>80302-1234</ZIPCode>
           </USAddress>
         </AlternateLocation>
+        <!-- Section 4.4.3.2.6 OFAC Element -->
         <OFAC>
           <DateOfBlocking>2015-02-15</DateOfBlocking>
           <LegalAuthority>31 C.F.R. Part 515</LegalAuthority>
           <SanctionsTarget>Cuba</SanctionsTarget>
+          <!-- Section 4.4.3.2.6.1 OFAC OwnerType Element -->
           <OwnerType>Non-U.S. Bank</OwnerType>
         </OFAC>
+        <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
+          <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
           <TypeCode>Aggregate</TypeCode>
+          <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
+            <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
             <USTaxID>
+              <!-- Section 4.4.3.2.7.2.1.1 USTaxID TypeCode Element -->
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
@@ -735,17 +859,21 @@
           </Contact>
           <Description>Snooty</Description>
           <DateOfBirth>1954-06-08</DateOfBirth>
+          <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
           <CompleteAccountRegistrationName>ROBERT JAMES ANDERSON</CompleteAccountRegistrationName>
           <DateOfTrust>2000-01-01</DateOfTrust>
           <MinorDateOfMajority>2010-01-01</MinorDateOfMajority>
+          <!-- Section 4.4.3.2.7.4 Deceased Element -->
           <Deceased>
             <DateOfDeath>2010-01-01</DateOfDeath>
             <DateOfDeathSource>Claim</DateOfDeathSource>
             <DateOfDeathIdentifiedDate>2010-01-10</DateOfDeathIdentifiedDate>
           </Deceased>
         </Owner>
+        <!-- Section 4.4.3.2.8 Beneficiary Element -->
         <Beneficiary>
+          <!-- Section 4.4.3.2.8.1 Beneficiary TypeCode Element -->
           <TypeCode>Primary</TypeCode>
           <Spouse>X</Spouse>
           <Percentage>100.00</Percentage>
@@ -773,17 +901,23 @@
           <DateOfBirth>1975-04-27</DateOfBirth>
           <SSN>111111111</SSN>
         </Beneficiary>
+        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
         <Adjustment>
+          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
           <TypeCode>SC</TypeCode>
           <Amount>-123.45</Amount>
         </Adjustment>
+        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
         <Adjustment>
+          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
           <TypeCode>SC</TypeCode>
           <Amount>-25.00</Amount>
         </Adjustment>
+        <!-- Section 4.4.3.2.10 Cash Element -->
         <Cash>
           <ReportedAmount>543.21</ReportedAmount>
           <RemittedAmount>394.76</RemittedAmount>
+          <!-- Section 4.4.3.2.10.1 Interest Element -->
           <Interest>
             <Rate>0.50</Rate>
             <PaidThroughDate>2020-12-31</PaidThroughDate>
@@ -792,7 +926,9 @@
           <ItemIssueState>CO</ItemIssueState>
         </Cash>
       </Property>
+      <!-- Section 4.4.3.3 Report Adjustment Element -->
       <Adjustment>
+        <!-- Section 4.4.3.3.1 Report Adjustment TypeCode Element -->
         <TypeCode>Audit Fees</TypeCode>
         <Amount>-125.00</Amount>
       </Adjustment>
