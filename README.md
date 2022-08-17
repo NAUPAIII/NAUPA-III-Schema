@@ -38,5 +38,3 @@ XML also permits tags to be embedded within each other, to denote hierarchical, 
 The specific type of data to be contained between defined tags can be specified set out in a separate XSD file.  This makes it possible to ensure that data being transmitted by XML is of the right type, thereby making it easier for the recipient to process correctlyusually to enable the importing of transmitted data to a database. 
 
 Below is a link to an example NAUPA-III XML file that conforms to the NAUPA-III XML schema. list of all data elements and how they are organized in their hierarchical structure. Each opening tag is in a blue italic font. Each closing tag is in a red italic font. All the data elements within an opening and closing tag can be repeated as many times as needed.
-
-View Example NAUPA-III XML FileView Example XML elements
