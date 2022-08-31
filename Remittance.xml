@@ -900,12 +900,6 @@
           <DateOfBirth>1975-04-27</DateOfBirth>
           <SSN>111111111</SSN>
         </Beneficiary>
-        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
-        <Adjustment>
-          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
-          <TypeCode>SC</TypeCode>
-          <Amount>-25.00</Amount>
-        </Adjustment>
         <!-- Section 4.4.3.2.10 Cash Element -->
         <Cash>
           <ReportedAmount>543.21</ReportedAmount>
@@ -923,6 +917,12 @@
           <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
           <TypeCode>SC</TypeCode>
           <Amount>-123.45</Amount>
+        </Adjustment>
+        <!-- Section 4.4.3.2.15 Property Adjustment Element -->
+        <Adjustment>
+          <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
+          <TypeCode>SC</TypeCode>
+          <Amount>-25.00</Amount>
         </Adjustment>
       </Property>
       <!-- Section 4.4.3.3 Report Adjustment Element -->
