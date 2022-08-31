@@ -103,7 +103,6 @@
     <Report>
       <!-- Section 4.4.3.1 Report TypeCode Element -->
       <TypeCode>Remittance/Annual</TypeCode>
-      <Year>2020</Year>
       <AsOfDate>2019-07-01</AsOfDate>
       <Contact>
         <TypeCode>Report</TypeCode>
@@ -282,18 +281,6 @@
           <DateOfBirth>1975-04-27</DateOfBirth>
           <SSN>111111111</SSN>
         </Beneficiary>
-        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
-        <Adjustment>
-          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
-          <TypeCode>TW</TypeCode>
-          <Amount>-123.45</Amount>
-        </Adjustment>
-        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
-        <Adjustment>
-          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
-          <TypeCode>SC</TypeCode>
-          <Amount>-25.00</Amount>
-        </Adjustment>
         <!-- Section 4.4.3.2.10 Cash Element -->
         <Cash>
           <ReportedAmount>543.21</ReportedAmount>
@@ -306,6 +293,18 @@
           <CheckNumber>1234567</CheckNumber>
           <ItemIssueState>CO</ItemIssueState>
         </Cash>
+        <!-- Section 4.4.3.2.15 Property Adjustment Element -->
+        <Adjustment>
+          <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
+          <TypeCode>TW</TypeCode>
+          <Amount>-123.45</Amount>
+        </Adjustment>
+        <!-- Section 4.4.3.2.15 Property Adjustment Element -->
+        <Adjustment>
+          <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
+          <TypeCode>SC</TypeCode>
+          <Amount>-25.00</Amount>
+        </Adjustment>
       </Property>
       <!-- Section 4.4.3.2 Property Element -->
       <Property>
@@ -317,10 +316,10 @@
         <LastActivityDate>2015-01-15</LastActivityDate>
 				-->
         <!-- Section 4.4.3.2.4 Transaction Element -->
-        <Transaction>
+        <PeriodicPaymentDates>
           <StartDate>2015-01-15</StartDate>
           <EndDate>2015-01-15</EndDate>
-        </Transaction>
+        </PeriodicPaymentDates>
         <Taxable>X</Taxable>
         <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
@@ -357,18 +356,18 @@
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
-        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
-        <Adjustment>
-          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
-          <TypeCode>SC</TypeCode>
-          <Amount>-20.00</Amount>
-        </Adjustment>
         <!-- Section 4.4.3.2.11 Bond Element -->
         <Bond>
           <Name>Bondy McBondface</Name>
           <Number>123456789</Number>
           <PayingAgent>Bonds R Us</PayingAgent>
         </Bond>
+        <!-- Section 4.4.3.2.15 Property Adjustment Element -->
+        <Adjustment>
+          <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
+          <TypeCode>SC</TypeCode>
+          <Amount>-20.00</Amount>
+        </Adjustment>
       </Property>
       <!-- Section 4.4.3.2 Property Element -->
       <Property>
@@ -413,12 +412,6 @@
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
-        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
-        <Adjustment>
-          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
-          <TypeCode>SC</TypeCode>
-          <Amount>-20.00</Amount>
-        </Adjustment>
         <!-- Section 4.4.3.2.12 Security Element -->
         <Security>
           <!-- Section 4.4.3.2.12.1 Security TypeCode Element -->
@@ -470,6 +463,12 @@
             <PurchaseDate>1980-01-01</PurchaseDate>
           </CostBasis>
         </Security>
+        <!-- Section 4.4.3.2.15 Property Adjustment Element -->
+        <Adjustment>
+          <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
+          <TypeCode>SC</TypeCode>
+          <Amount>-20.00</Amount>
+        </Adjustment>
       </Property>
       <!-- Section 4.4.3.2 Property Element -->
       <Property>
@@ -603,12 +602,6 @@
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
-        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
-        <Adjustment>
-          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
-          <TypeCode>SC</TypeCode>
-          <Amount>-125.00</Amount>
-        </Adjustment>
         <!-- Section 4.4.3.2.14 MineralInterests Element -->
         <MineralInterests>
           <StateCode>OK</StateCode>
@@ -625,6 +618,12 @@
           <LeaseNumber>891006793A</LeaseNumber>
           <OwnershipPercentage>1.025</OwnershipPercentage>
         </MineralInterests>
+        <!-- Section 4.4.3.2.15 Property Adjustment Element -->
+        <Adjustment>
+          <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
+          <TypeCode>SC</TypeCode>
+          <Amount>-125.00</Amount>
+        </Adjustment>
       </Property>
       <!-- Section 4.4.3.2 Property Element -->
       <Property>
@@ -668,12 +667,6 @@
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
-        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
-        <Adjustment>
-          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
-          <TypeCode>SC</TypeCode>
-          <Amount>-20.00</Amount>
-        </Adjustment>
         <Cryptocurrency>
           <Name>Bitcoin</Name>
           <Symbol>BTC</Symbol>
@@ -689,6 +682,12 @@
           <ProceedsReported>5033090.00</ProceedsReported>
           <ProceedsRemitted>5033070.00</ProceedsRemitted>
         </Cryptocurrency>
+        <!-- Section 4.4.3.2.15 Property Adjustment Element -->
+        <Adjustment>
+          <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
+          <TypeCode>SC</TypeCode>
+          <Amount>-20.00</Amount>
+        </Adjustment>
       </Property>
       <!-- Section 4.4.3.3 Report Adjustment Element -->
       <Adjustment>
@@ -735,7 +734,7 @@
     <Report>
       <!-- Section 4.4.3.1 Report TypeCode Element -->
       <TypeCode>Remittance/Annual</TypeCode>
-      <Year>2020</Year>
+      <AsOfDate>2019-06-01</AsOfDate>
       <Contact>
         <TypeCode>Report</TypeCode>
         <PersonName>
@@ -905,12 +904,6 @@
         <Adjustment>
           <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
           <TypeCode>SC</TypeCode>
-          <Amount>-123.45</Amount>
-        </Adjustment>
-        <!-- Section 4.4.3.2.9 Property Adjustment Element -->
-        <Adjustment>
-          <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
-          <TypeCode>SC</TypeCode>
           <Amount>-25.00</Amount>
         </Adjustment>
         <!-- Section 4.4.3.2.10 Cash Element -->
@@ -925,6 +918,12 @@
           <CheckNumber>1234567</CheckNumber>
           <ItemIssueState>CO</ItemIssueState>
         </Cash>
+        <!-- Section 4.4.3.2.15 Property Adjustment Element -->
+        <Adjustment>
+          <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
+          <TypeCode>SC</TypeCode>
+          <Amount>-123.45</Amount>
+        </Adjustment>
       </Property>
       <!-- Section 4.4.3.3 Report Adjustment Element -->
       <Adjustment>

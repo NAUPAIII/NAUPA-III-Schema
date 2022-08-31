@@ -24,7 +24,7 @@
           </xs:complexType>
         </xs:element> <!-- SoftwareInformation -->
         <!-- Section 4.2 Payment Element -->
-        <xs:element name="Payment" minOccurs="0">
+        <xs:element name="Payment">
           <xs:complexType>
             <xs:sequence>
               <!-- Section 4.2.1 Payment TypeCode -->
@@ -158,14 +158,7 @@
                         </xs:restriction>
                       </xs:simpleType>
                     </xs:element>
-                    <xs:element name="Year">
-                      <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                          <xs:pattern value="[0-9]{4}" />
-                        </xs:restriction>
-                      </xs:simpleType>
-                    </xs:element>
-                    <xs:element name="AsOfDate" type="xs:date" minOccurs="0" />
+                    <xs:element name="AsOfDate" type="xs:date" />
                     <xs:element name="Contact" type="ContactType" maxOccurs="unbounded" />
                     <!-- Section 4.4.3.2 Property Element -->
                     <xs:element name="Property" maxOccurs="unbounded">
@@ -323,7 +316,7 @@
                           <xs:choice>
                             <xs:element name="LastActivityDate" type="xs:date" />
                             <!-- Section 4.4.3.2.4 Transaction Element -->
-                            <xs:element name="Transaction">
+                            <xs:element name="PeriodicPaymentDates">
                               <xs:complexType>
                                 <xs:sequence>
                                   <xs:element name="StartDate" type="xs:date" />
@@ -571,31 +564,8 @@
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element> <!-- Beneficiary -->
-                          <!-- Section 4.4.3.2.9 Property Adjustment Element -->
-                          <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType >
-                              <xs:sequence>
-                                <!-- Section 4.4.3.2.9.1 Property Adjustment TypeCode Element -->
-                                <xs:element name="TypeCode">
-                                  <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                      <xs:maxLength value="50" />
-                                      <xs:enumeration value="DC" />
-                                      <xs:enumeration value="SC" />
-                                      <xs:enumeration value="TW" />
-                                      <xs:enumeration value="PW" />
-                                      <xs:enumeration value="BW" />
-                                      <xs:enumeration value="IE" />
-                                      <xs:enumeration value="DE" />
-                                    </xs:restriction>
-                                  </xs:simpleType>
-                                </xs:element>
-                                <xs:element name="Amount" type="CurrencyType" />
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
                           <xs:choice>
-                            <!-- Section 4.4.3.2.10 Cash Element -->
+                            <!-- Section 4.4.3.2.9 Cash Element -->
                             <xs:element name="Cash">
                               <xs:complexType>
                                 <xs:sequence>
@@ -629,7 +599,7 @@
                                 </xs:sequence>
                               </xs:complexType>
                             </xs:element> <!-- Cash -->
-                            <!-- Section 4.4.3.2.11 Bond Element -->
+                            <!-- Section 4.4.3.2.10 Bond Element -->
                             <xs:element name="Bond">
                               <xs:complexType >
                                 <xs:sequence>
@@ -664,7 +634,7 @@
                                 </xs:sequence>
                               </xs:complexType>
                             </xs:element> <!-- Bond -->
-                            <!-- Section 4.4.3.2.12 Security Element -->
+                            <!-- Section 4.4.3.2.11 Security Element -->
                             <xs:element name="Security">
                               <xs:complexType>
                                 <xs:sequence>
@@ -824,7 +794,7 @@
                                 </xs:sequence>
                               </xs:complexType>
                             </xs:element> <!-- Security -->
-                            <!-- Section 4.4.3.2.13 Safekeeping Element -->
+                            <!-- Section 4.4.3.2.12 Safekeeping Element -->
                             <xs:element name="Safekeeping">
                               <xs:complexType>
                                 <xs:sequence>
@@ -925,7 +895,7 @@
                                 </xs:sequence>
                               </xs:complexType>
                             </xs:element> <!-- Safekeeping -->
-                            <!-- Section 4.4.3.2.14 MineralInterests Element -->
+                            <!-- Section 4.4.3.2.13 MineralInterests Element -->
                             <xs:element name="MineralInterests">
                               <xs:complexType>
                                 <xs:sequence>
@@ -1015,7 +985,7 @@
                                 </xs:sequence>
                               </xs:complexType>
                             </xs:element> <!-- MineralInterests -->
-                            <!-- Section 4.4.3.2.15 -->
+                            <!-- Section 4.4.3.2.14 -->
                             <xs:element name="Cryptocurrency">
                               <xs:complexType>
                                 <xs:sequence>
@@ -1090,6 +1060,29 @@
                               </xs:complexType>
                             </xs:element> <!-- Cryptocurrency -->
                           </xs:choice>
+                          <!-- Section 4.4.3.2.15 Property Adjustment Element -->
+                          <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType >
+                              <xs:sequence>
+                                <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
+                                <xs:element name="TypeCode">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="50" />
+                                      <xs:enumeration value="DC" />
+                                      <xs:enumeration value="SC" />
+                                      <xs:enumeration value="TW" />
+                                      <xs:enumeration value="PW" />
+                                      <xs:enumeration value="BW" />
+                                      <xs:enumeration value="IE" />
+                                      <xs:enumeration value="DE" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="Amount" type="CurrencyType" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element> <!-- Property -->
