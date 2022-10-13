@@ -137,978 +137,988 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <!-- Section 4.4.3 Report Element -->
-              <xs:element name="Report">
-                <xs:complexType>
-                  <xs:sequence>
-                    <!-- Section 4.4.3.1 Report TypeCode Element -->
-                    <xs:element name="TypeCode">
-                      <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                          <xs:maxLength value="50" />
-                          <xs:enumeration value="Advertising/No Remittance" />
-                          <xs:enumeration value="Remittance/Annual" />
-                          <xs:enumeration value="Test" />
-                          <xs:enumeration value="Audit" />
-                          <xs:enumeration value="Supplemental/Correction" />
-                          <xs:enumeration value="Reciprocal" />
-                          <xs:enumeration value="Voluntary Disclosure Agreement" />
-                          <xs:enumeration value="Final Remittance" />
-                          <xs:enumeration value="Initial Remittance" />
-                        </xs:restriction>
-                      </xs:simpleType>
-                    </xs:element>
-                    <xs:element name="AsOfDate" type="xs:date" />
-                    <xs:element name="Contact" type="ContactType" maxOccurs="unbounded" />
-                    <!-- Section 4.4.3.2 Property Element -->
-                    <xs:element name="Property" maxOccurs="unbounded">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <!-- Section 4.4.3.2.1 Property TypeCode Element -->
-                          <xs:element name="TypeCode">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="5" />
-                                <xs:enumeration value="AC001" />
-                                <xs:enumeration value="AC002" />
-                                <xs:enumeration value="AC003" />
-                                <xs:enumeration value="AC004" />
-                                <xs:enumeration value="AC005" />
-                                <xs:enumeration value="AC006" />
-                                <xs:enumeration value="AC007" />
-                                <xs:enumeration value="AC008" />
-                                <xs:enumeration value="AC009" />
-                                <xs:enumeration value="AC010" />
-                                <xs:enumeration value="AC011" />
-                                <xs:enumeration value="AC012" />
-                                <xs:enumeration value="CK001" />
-                                <xs:enumeration value="CK002" />
-                                <xs:enumeration value="CK003" />
-                                <xs:enumeration value="CK004" />
-                                <xs:enumeration value="CK005" />
-                                <xs:enumeration value="CK006" />
-                                <xs:enumeration value="CK007" />
-                                <xs:enumeration value="CK008" />
-                                <xs:enumeration value="CK009" />
-                                <xs:enumeration value="CS001" />
-                                <xs:enumeration value="CS002" />
-                                <xs:enumeration value="CS003" />
-                                <xs:enumeration value="CS004" />
-                                <xs:enumeration value="CS005" />
-                                <xs:enumeration value="CS006" />
-                                <xs:enumeration value="CS007" />
-                                <xs:enumeration value="CS008" />
-                                <xs:enumeration value="CS009" />
-                                <xs:enumeration value="CS010" />
-                                <xs:enumeration value="CT001" />
-                                <xs:enumeration value="CT002" />
-                                <xs:enumeration value="CT003" />
-                                <xs:enumeration value="CT004" />
-                                <xs:enumeration value="CT005" />
-                                <xs:enumeration value="CT006" />
-                                <xs:enumeration value="CT007" />
-                                <xs:enumeration value="CT008" />
-                                <xs:enumeration value="CT009" />
-                                <xs:enumeration value="CT010" />
-                                <xs:enumeration value="CT011" />
-                                <xs:enumeration value="HS001" />
-                                <xs:enumeration value="HS002" />
-                                <xs:enumeration value="IN001" />
-                                <xs:enumeration value="IN002" />
-                                <xs:enumeration value="IN003" />
-                                <xs:enumeration value="IN004" />
-                                <xs:enumeration value="IN005" />
-                                <xs:enumeration value="IN006" />
-                                <xs:enumeration value="IN007" />
-                                <xs:enumeration value="IN008" />
-                                <xs:enumeration value="IR001" />
-                                <xs:enumeration value="IR002" />
-                                <xs:enumeration value="IR003" />
-                                <xs:enumeration value="IR004" />
-                                <xs:enumeration value="IR005" />
-                                <xs:enumeration value="IR006" />
-                                <xs:enumeration value="IR007" />
-                                <xs:enumeration value="IR008" />
-                                <xs:enumeration value="IR009" />
-                                <xs:enumeration value="MI001" />
-                                <xs:enumeration value="MI002" />
-                                <xs:enumeration value="MI003" />
-                                <xs:enumeration value="MI004" />
-                                <xs:enumeration value="MI005" />
-                                <xs:enumeration value="MI006" />
-                                <xs:enumeration value="MI007" />
-                                <xs:enumeration value="MI008" />
-                                <xs:enumeration value="MI009" />
-                                <xs:enumeration value="MS001" />
-                                <xs:enumeration value="MS002" />
-                                <xs:enumeration value="MS003" />
-                                <xs:enumeration value="MS004" />
-                                <xs:enumeration value="MS005" />
-                                <xs:enumeration value="MS006" />
-                                <xs:enumeration value="MS007" />
-                                <xs:enumeration value="MS008" />
-                                <xs:enumeration value="MS010" />
-                                <xs:enumeration value="MS011" />
-                                <xs:enumeration value="MS012" />
-                                <xs:enumeration value="MS013" />
-                                <xs:enumeration value="SC001" />
-                                <xs:enumeration value="SC002" />
-                                <xs:enumeration value="SC003" />
-                                <xs:enumeration value="SC004" />
-                                <xs:enumeration value="SC005" />
-                                <xs:enumeration value="SC006" />
-                                <xs:enumeration value="SC007" />
-                                <xs:enumeration value="SC008" />
-                                <xs:enumeration value="SC009" />
-                                <xs:enumeration value="SC010" />
-                                <xs:enumeration value="SC011" />
-                                <xs:enumeration value="SC012" />
-                                <xs:enumeration value="SC013" />
-                                <xs:enumeration value="SC014" />
-                                <xs:enumeration value="SC015" />
-                                <xs:enumeration value="SC016" />
-                                <xs:enumeration value="SC017" />
-                                <xs:enumeration value="SD001" />
-                                <xs:enumeration value="SD002" />
-                                <xs:enumeration value="SD003" />
-                                <xs:enumeration value="TR001" />
-                                <xs:enumeration value="TR002" />
-                                <xs:enumeration value="TR003" />
-                                <xs:enumeration value="TR004" />
-                                <xs:enumeration value="TR005" />
-                                <xs:enumeration value="TR006" />
-                                <xs:enumeration value="TR007" />
-                                <xs:enumeration value="UT001" />
-                                <xs:enumeration value="UT002" />
-                                <xs:enumeration value="VC001" />
-                                <xs:enumeration value="VC002" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="AccountNumber">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="100" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="PresumedAbandonedDate" type="xs:date" />
-                          <!-- Section 4.4.3.2.2 DueDiligencePerformed Element -->
-                          <xs:element name="DueDiligencePerformed" minOccurs="0">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="Date1" type="xs:date" />
-                                <xs:element name="Date2" type="xs:date" minOccurs="0" />
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                          <!-- Section 4.4.3.2.3 ReturnedByPostOffice Element -->
-                          <xs:element name="ReturnedByPostOffice" minOccurs="0">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="MailDate" type="xs:date" />
-                                <xs:element name="ReturnCount" type="xs:short" minOccurs="0" />
-                                <xs:element name="DateAccountCodedRPO" type="xs:date" minOccurs="0" />
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                          <xs:element name="PayableOrDistributableDate" type="xs:date" minOccurs="0" />
-                          <xs:choice>
-                            <xs:element name="LastActivityDate" type="xs:date" />
-                            <!-- Section 4.4.3.2.4 Transaction Element -->
-                            <xs:element name="PeriodicPaymentDates">
+              <xs:choice>
+                <!-- Section 4.4.3 Report Element -->
+                <xs:element name="Report">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <!-- Section 4.4.3.1 Report TypeCode Element -->
+                      <xs:element name="TypeCode">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="50" />
+                            <xs:enumeration value="Advertising/No Remittance" />
+                            <xs:enumeration value="Remittance/Annual" />
+                            <xs:enumeration value="Test" />
+                            <xs:enumeration value="Audit" />
+                            <xs:enumeration value="Supplemental/Correction" />
+                            <xs:enumeration value="Reciprocal" />
+                            <xs:enumeration value="Voluntary Disclosure Agreement" />
+                            <xs:enumeration value="Final Remittance" />
+                            <xs:enumeration value="Initial Remittance" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="AsOfDate" type="xs:date" />
+                      <xs:element name="Contact" type="ContactType" maxOccurs="unbounded" />
+                      <!-- Section 4.4.3.2 Property Element -->
+                      <xs:element name="Property" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <!-- Section 4.4.3.2.1 Property TypeCode Element -->
+                            <xs:element name="TypeCode">
+                              <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                  <xs:maxLength value="5" />
+                                  <xs:enumeration value="AC001" />
+                                  <xs:enumeration value="AC002" />
+                                  <xs:enumeration value="AC003" />
+                                  <xs:enumeration value="AC004" />
+                                  <xs:enumeration value="AC005" />
+                                  <xs:enumeration value="AC006" />
+                                  <xs:enumeration value="AC007" />
+                                  <xs:enumeration value="AC008" />
+                                  <xs:enumeration value="AC009" />
+                                  <xs:enumeration value="AC010" />
+                                  <xs:enumeration value="AC011" />
+                                  <xs:enumeration value="AC012" />
+                                  <xs:enumeration value="CK001" />
+                                  <xs:enumeration value="CK002" />
+                                  <xs:enumeration value="CK003" />
+                                  <xs:enumeration value="CK004" />
+                                  <xs:enumeration value="CK005" />
+                                  <xs:enumeration value="CK006" />
+                                  <xs:enumeration value="CK007" />
+                                  <xs:enumeration value="CK008" />
+                                  <xs:enumeration value="CK009" />
+                                  <xs:enumeration value="CS001" />
+                                  <xs:enumeration value="CS002" />
+                                  <xs:enumeration value="CS003" />
+                                  <xs:enumeration value="CS004" />
+                                  <xs:enumeration value="CS005" />
+                                  <xs:enumeration value="CS006" />
+                                  <xs:enumeration value="CS007" />
+                                  <xs:enumeration value="CS008" />
+                                  <xs:enumeration value="CS009" />
+                                  <xs:enumeration value="CS010" />
+                                  <xs:enumeration value="CT001" />
+                                  <xs:enumeration value="CT002" />
+                                  <xs:enumeration value="CT003" />
+                                  <xs:enumeration value="CT004" />
+                                  <xs:enumeration value="CT005" />
+                                  <xs:enumeration value="CT006" />
+                                  <xs:enumeration value="CT007" />
+                                  <xs:enumeration value="CT008" />
+                                  <xs:enumeration value="CT009" />
+                                  <xs:enumeration value="CT010" />
+                                  <xs:enumeration value="CT011" />
+                                  <xs:enumeration value="HS001" />
+                                  <xs:enumeration value="HS002" />
+                                  <xs:enumeration value="IN001" />
+                                  <xs:enumeration value="IN002" />
+                                  <xs:enumeration value="IN003" />
+                                  <xs:enumeration value="IN004" />
+                                  <xs:enumeration value="IN005" />
+                                  <xs:enumeration value="IN006" />
+                                  <xs:enumeration value="IN007" />
+                                  <xs:enumeration value="IN008" />
+                                  <xs:enumeration value="IN009" />
+                                  <xs:enumeration value="IR001" />
+                                  <xs:enumeration value="IR002" />
+                                  <xs:enumeration value="IR003" />
+                                  <xs:enumeration value="IR004" />
+                                  <xs:enumeration value="IR005" />
+                                  <xs:enumeration value="IR006" />
+                                  <xs:enumeration value="IR007" />
+                                  <xs:enumeration value="IR008" />
+                                  <xs:enumeration value="IR009" />
+                                  <xs:enumeration value="MI001" />
+                                  <xs:enumeration value="MI002" />
+                                  <xs:enumeration value="MI003" />
+                                  <xs:enumeration value="MI004" />
+                                  <xs:enumeration value="MI005" />
+                                  <xs:enumeration value="MI006" />
+                                  <xs:enumeration value="MI007" />
+                                  <xs:enumeration value="MI008" />
+                                  <xs:enumeration value="MI009" />
+                                  <xs:enumeration value="MS001" />
+                                  <xs:enumeration value="MS002" />
+                                  <xs:enumeration value="MS003" />
+                                  <xs:enumeration value="MS004" />
+                                  <xs:enumeration value="MS005" />
+                                  <xs:enumeration value="MS006" />
+                                  <xs:enumeration value="MS007" />
+                                  <xs:enumeration value="MS008" />
+                                  <xs:enumeration value="MS010" />
+                                  <xs:enumeration value="MS011" />
+                                  <xs:enumeration value="SC001" />
+                                  <xs:enumeration value="SC002" />
+                                  <xs:enumeration value="SC003" />
+                                  <xs:enumeration value="SC004" />
+                                  <xs:enumeration value="SC005" />
+                                  <xs:enumeration value="SC006" />
+                                  <xs:enumeration value="SC007" />
+                                  <xs:enumeration value="SC008" />
+                                  <xs:enumeration value="SC009" />
+                                  <xs:enumeration value="SC010" />
+                                  <xs:enumeration value="SC011" />
+                                  <xs:enumeration value="SC012" />
+                                  <xs:enumeration value="SC013" />
+                                  <xs:enumeration value="SC014" />
+                                  <xs:enumeration value="SC015" />
+                                  <xs:enumeration value="SC016" />
+                                  <xs:enumeration value="SC017" />
+                                  <xs:enumeration value="SD001" />
+                                  <xs:enumeration value="SD002" />
+                                  <xs:enumeration value="SD003" />
+                                  <xs:enumeration value="TR001" />
+                                  <xs:enumeration value="TR002" />
+                                  <xs:enumeration value="TR003" />
+                                  <xs:enumeration value="TR004" />
+                                  <xs:enumeration value="TR005" />
+                                  <xs:enumeration value="TR006" />
+                                  <xs:enumeration value="TR007" />
+                                  <xs:enumeration value="UT001" />
+                                  <xs:enumeration value="UT002" />
+                                  <xs:enumeration value="VC001" />
+                                  <xs:enumeration value="VC002" />
+                                </xs:restriction>
+                              </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="AccountNumber">
+                              <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                  <xs:maxLength value="100" />
+                                </xs:restriction>
+                              </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="PresumedAbandonedDate" type="xs:date" />
+                            <!-- Section 4.4.3.2.2 DueDiligencePerformed Element -->
+                            <xs:element name="DueDiligencePerformed" minOccurs="0">
                               <xs:complexType>
                                 <xs:sequence>
-                                  <xs:element name="StartDate" type="xs:date" />
-                                  <xs:element name="EndDate" type="xs:date" />
+                                  <xs:element name="Date1" type="xs:date" />
+                                  <xs:element name="Date2" type="xs:date" minOccurs="0" />
                                 </xs:sequence>
                               </xs:complexType>
                             </xs:element>
-                          </xs:choice>
-                          <xs:element name="NonRemitIndicator" type ="IndicatorType" minOccurs="0" />
-                          <xs:element name="Taxable" type ="IndicatorType" minOccurs="0" />
-                          <xs:element name="TaxForm1099IssuedDate" type="xs:date" minOccurs="0" />
-                          <xs:element name="Description" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="250" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <!-- Section 4.4.3.2.5 AlternateLocation Element -->
-                          <xs:element name="AlternateLocation" minOccurs="0">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element name="Identifier" minOccurs="0">
-                                  <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                      <xs:maxLength value="20" />
-                                    </xs:restriction>
-                                  </xs:simpleType>
-                                </xs:element>
-                                <xs:choice>
-                                  <xs:element name="USAddress" type="USAddressType" />
-                                  <xs:element name="ForeignAddress" type="ForeignAddressType" />
-                                </xs:choice>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                          <!-- Section 4.4.3.2.6 OFAC Element -->
-                          <xs:element name="OFAC" minOccurs="0">
-                            <xs:complexType>
-                              <!-- TODO:
-                              If this information is present, are all elements required? If not, which ones are?  As
-                              currently defined here, they would all be required or the XML would fail validation.
+                            <!-- Section 4.4.3.2.3 ReturnedByPostOffice Element -->
+                            <xs:element name="ReturnedByPostOffice" minOccurs="0">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="MailDate" type="xs:date" />
+                                  <xs:element name="ReturnCount" type="xs:short" minOccurs="0" />
+                                  <xs:element name="DateAccountCodedRPO" type="xs:date" minOccurs="0" />
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="PayableOrDistributableDate" type="xs:date" minOccurs="0" />
+                            <xs:choice>
+                              <xs:element name="LastActivityDate" type="xs:date" />
+                              <!-- Section 4.4.3.2.4 Transaction Element -->
+                              <xs:element name="PeriodicPaymentDates">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:element name="StartDate" type="xs:date" />
+                                    <xs:element name="EndDate" type="xs:date" />
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:choice>
+                            <xs:element name="NonRemitIndicator" type ="IndicatorType" minOccurs="0" />
+                            <xs:element name="Taxable" type ="IndicatorType" minOccurs="0" />
+                            <xs:element name="TaxForm1099IssuedDate" type="xs:date" minOccurs="0" />
+                            <xs:element name="Description" minOccurs="0">
+                              <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                  <xs:maxLength value="500" />
+                                </xs:restriction>
+                              </xs:simpleType>
+                            </xs:element>
+                            <!-- Section 4.4.3.2.5 AlternateLocation Element -->
+                            <xs:element name="AlternateLocation" minOccurs="0">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="Identifier" minOccurs="0">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:choice>
+                                    <xs:element name="USAddress" type="USAddressType" />
+                                    <xs:element name="ForeignAddress" type="ForeignAddressType" />
+                                  </xs:choice>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <!-- Section 4.4.3.2.6 OFAC Element -->
+                            <xs:element name="OFAC" minOccurs="0">
+                              <xs:complexType>
+                                <!-- TODO:
+                                If this information is present, are all elements required? If not, which ones are?  As
+                                currently defined here, they would all be required or the XML would fail validation.
             
-                              KGW - I think we should query New York on the field sizes and what is required.
-                              -->
-                              <xs:sequence>
-                                <xs:element name="DateOfBlocking" type="xs:date" minOccurs="0" />
-                                <xs:element name="LegalAuthority" minOccurs="0">
-                                  <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                      <xs:maxLength value="100" />
-                                    </xs:restriction>
-                                  </xs:simpleType>
-                                </xs:element>
-                                <xs:element name="SanctionsTarget">
-                                  <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                      <xs:maxLength value="100" />
-                                    </xs:restriction>
-                                  </xs:simpleType>
-                                </xs:element>
-                                <!-- Section 4.4.3.2.6.1 OFAC OwnerType Element -->
-                                <xs:element name="OwnerType" minOccurs="0">
-                                  <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                      <xs:maxLength value="50" />
-                                      <xs:enumeration value="Individal" />
-                                      <xs:enumeration value="U.S. Bank" />
-                                      <xs:enumeration value="Non-U.S. Bank" />
-                                      <xs:enumeration value="U.S. Non-Bank" />
-                                      <xs:enumeration value="Non-U.S. Non-Bank" />
-                                    </xs:restriction>
-                                  </xs:simpleType>
-                                </xs:element>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                          <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0" />
-                          <!-- Section 4.4.3.2.7 Owner Element -->
-                          <xs:element name="Owner" minOccurs ="1" maxOccurs="unbounded">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
-                                <xs:element name="TypeCode">
-                                  <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                      <xs:maxLength value="15" />
-                                      <xs:enumeration value="Aggregate" />
-                                      <xs:enumeration value="NamedOwner" />
-                                      <xs:enumeration value="Unknown" />
-                                    </xs:restriction>
-                                  </xs:simpleType>
-                                </xs:element>
-                                <!-- Section 4.4.3.2.7.2 Identity Element -->
-                                <xs:element name="Identity" minOccurs="0">
-                                  <xs:complexType>
-                                    <xs:sequence>
-                                      <xs:choice>
-                                        <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
-                                        <xs:element name="USTaxID" minOccurs="0">
+                                KGW - I think we should query New York on the field sizes and what is required.
+                                -->
+                                <xs:sequence>
+                                  <xs:element name="DateOfBlocking" type="xs:date" minOccurs="0" />
+                                  <xs:element name="LegalAuthority" minOccurs="0">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:maxLength value="100" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="SanctionsTarget">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:maxLength value="100" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <!-- Section 4.4.3.2.6.1 OFAC OwnerType Element -->
+                                  <xs:element name="OwnerType" minOccurs="0">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50" />
+                                        <xs:enumeration value="Individal" />
+                                        <xs:enumeration value="U.S. Bank" />
+                                        <xs:enumeration value="Non-U.S. Bank" />
+                                        <xs:enumeration value="U.S. Non-Bank" />
+                                        <xs:enumeration value="Non-U.S. Non-Bank" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0" />
+                            <!-- Section 4.4.3.2.7 Owner Element -->
+                            <xs:element name="Owner" minOccurs ="1" maxOccurs="unbounded">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
+                                  <xs:element name="TypeCode">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:maxLength value="15" />
+                                        <xs:enumeration value="Aggregate" />
+                                        <xs:enumeration value="NamedOwner" />
+                                        <xs:enumeration value="Unknown" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <!-- Section 4.4.3.2.7.2 Identity Element -->
+                                  <xs:element name="Identity" minOccurs="0">
+                                    <xs:complexType>
+                                      <xs:sequence>
+                                        <xs:choice>
+                                          <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
+                                          <xs:element name="USTaxID" minOccurs="0">
+                                            <xs:complexType>
+                                              <xs:sequence>
+                                                <!-- Section 4.4.3.2.7.2.1.1 USTaxID TypeCode Element -->
+                                                <xs:element name="TypeCode">
+                                                  <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                      <xs:maxLength value="10" />
+                                                      <xs:enumeration value="SSN" />
+                                                      <xs:enumeration value="FEIN" />
+                                                      <xs:enumeration value="ITIN" />
+                                                    </xs:restriction>
+                                                  </xs:simpleType>
+                                                </xs:element>
+                                                <xs:element name="Number">
+                                                  <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                      <xs:pattern value="[0-9]{9}" />
+                                                    </xs:restriction>
+                                                  </xs:simpleType>
+                                                </xs:element>
+                                              </xs:sequence>
+                                            </xs:complexType>
+                                          </xs:element>
+                                          <xs:element name="AlienID" minOccurs="0">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="20" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:element>
+                                        </xs:choice>
+                                        <!-- Section 4.4.3.2.7.2.2 DriversLicense Element -->
+                                        <xs:element name="DriversLicense" minOccurs="0">
                                           <xs:complexType>
                                             <xs:sequence>
-                                              <!-- Section 4.4.3.2.7.2.1.1 USTaxID TypeCode Element -->
-                                              <xs:element name="TypeCode">
+                                              <xs:element name="State" type="StateCodeType" />
+                                              <xs:element name="Identifier">
                                                 <xs:simpleType>
                                                   <xs:restriction base="xs:string">
-                                                    <xs:maxLength value="10" />
-                                                    <xs:enumeration value="SSN" />
-                                                    <xs:enumeration value="FEIN" />
-                                                    <xs:enumeration value="ITIN" />
-                                                  </xs:restriction>
-                                                </xs:simpleType>
-                                              </xs:element>
-                                              <xs:element name="Number">
-                                                <xs:simpleType>
-                                                  <xs:restriction base="xs:string">
-                                                    <xs:pattern value="[0-9]{9}" />
+                                                    <xs:maxLength value="15" />
                                                   </xs:restriction>
                                                 </xs:simpleType>
                                               </xs:element>
                                             </xs:sequence>
                                           </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="AlienID" minOccurs="0">
-                                          <xs:simpleType>
-                                            <xs:restriction base="xs:string">
-                                              <xs:maxLength value="20" />
-                                            </xs:restriction>
-                                          </xs:simpleType>
-                                        </xs:element>
-                                      </xs:choice>
-                                      <!-- Section 4.4.3.2.7.2.2 DriversLicense Element -->
-                                      <xs:element name="DriversLicense" minOccurs="0">
-                                        <xs:complexType>
-                                          <xs:sequence>
-                                            <xs:element name="State" type="StateCodeType" />
-                                            <xs:element name="Identifier">
-                                              <xs:simpleType>
-                                                <xs:restriction base="xs:string">
-                                                  <xs:maxLength value="15" />
-                                                </xs:restriction>
-                                              </xs:simpleType>
-                                            </xs:element>
-                                          </xs:sequence>
-                                        </xs:complexType>
-                                      </xs:element>
-                                    </xs:sequence>
-                                  </xs:complexType>
-                                </xs:element>
-                                <xs:element name="Contact" type="ContactType" />
-                                <xs:element name="Description" minOccurs="0">
-                                  <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                      <xs:maxLength value="255" />
-                                    </xs:restriction>
-                                  </xs:simpleType>
-                                </xs:element>
-                                <xs:element name="DateOfBirth" type="xs:date" minOccurs="0" />
-                                <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
-                                <xs:element name="RelationshipCode">
-                                  <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                      <xs:maxLength value="50" />
-                                      <xs:enumeration value="AD" />
-                                      <xs:enumeration value="AG" />
-                                      <xs:enumeration value="AF" />
-                                      <xs:enumeration value="AN" />
-                                      <xs:enumeration value="CP" />
-                                      <xs:enumeration value="CN" />
-                                      <xs:enumeration value="CF" />
-                                      <xs:enumeration value="DF" />
-                                      <xs:enumeration value="ES" />
-                                      <xs:enumeration value="EX" />
-                                      <xs:enumeration value="FB" />
-                                      <xs:enumeration value="GR" />
-                                      <xs:enumeration value="HE" />
-                                      <xs:enumeration value="IN" />
-                                      <xs:enumeration value="JT" />
-                                      <xs:enumeration value="TC" />
-                                      <xs:enumeration value="JE" />
-                                      <xs:enumeration value="PC" />
-                                      <xs:enumeration value="OR" />
-                                      <xs:enumeration value="OT" />
-                                      <xs:enumeration value="PD" />
-                                      <xs:enumeration value="PA" />
-                                      <xs:enumeration value="PO" />
-                                      <xs:enumeration value="RE" />
-                                      <xs:enumeration value="SO" />
-                                      <xs:enumeration value="TE" />
-                                      <xs:enumeration value="UG" />
-                                      <xs:enumeration value="UT" />
-                                      <xs:enumeration value="UN" />
-                                      <xs:enumeration value="UF" />
-                                      <xs:enumeration value="LA" />
-                                    </xs:restriction>
-                                  </xs:simpleType>
-                                </xs:element>
-                                <xs:element name="CompleteAccountRegistrationName" minOccurs="0">
-                                  <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                      <xs:maxLength value="255" />
-                                    </xs:restriction>
-                                  </xs:simpleType>
-                                </xs:element>
-                                <xs:element name="DateOfTrust" type="xs:date" minOccurs="0" />
-                                <xs:element name="MinorDateOfMajority" type="xs:date" minOccurs="0" />
-                                <!-- Section 4.4.3.2.7.4 Deceased Element -->
-                                <xs:element name="Deceased" minOccurs="0">
-                                  <xs:complexType>
-                                    <xs:sequence>
-                                      <xs:element name="DateOfDeath" type="xs:date" minOccurs="0" />
-                                      <xs:element name="DateOfDeathSource" minOccurs="0">
-                                        <xs:simpleType>
-                                          <xs:restriction base="xs:string">
-                                            <xs:maxLength value="50" />
-                                          </xs:restriction>
-                                        </xs:simpleType>
-                                      </xs:element>
-                                      <xs:element name="DateOfDeathIdentifiedDate" type="xs:date" minOccurs="0" />
-                                    </xs:sequence>
-                                  </xs:complexType>
-                                </xs:element>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element> <!-- Owner -->
-                          <!-- Section 4.4.3.2.8 Beneficiary Element -->
-                          <xs:element name="Beneficiary" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <!-- Section 4.4.3.2.8.1 Beneficiary TypeCode Element -->
-                                <xs:element name="TypeCode">
-                                  <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                      <xs:maxLength value="50" />
-                                      <xs:enumeration value="Primary" />
-                                      <xs:enumeration value="Contingent" />
-                                    </xs:restriction>
-                                  </xs:simpleType>
-                                </xs:element>
-                                <xs:element name="Spouse" type="IndicatorType" minOccurs="0" />
-                                <xs:element name="Percentage" type="PercentageType" />
-                                <xs:element name="Contact" type="ContactType" />
-                                <xs:element name="DateOfBirth" type="xs:date" minOccurs="0" />
-                                <xs:element name="SSN" type="SSNType"  minOccurs="0" />
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element> <!-- Beneficiary -->
-                          <xs:choice>
-                            <!-- Section 4.4.3.2.9 Cash Element -->
-                            <xs:element name="Cash">
-                              <xs:complexType>
-                                <xs:sequence>
-                                  <xs:element name="ReportedAmount" type="CurrencyType" />
-                                  <xs:element name="RemittedAmount" type="CurrencyType" />
-                                  <!-- Section 4.4.3.2.10.1 Interest Element -->
-                                  <xs:element name="Interest" minOccurs="0">
-                                    <xs:complexType>
-                                      <xs:sequence>
-                                        <xs:element name="Rate">
-                                          <xs:simpleType>
-                                            <xs:restriction base="xs:decimal">
-                                              <xs:minInclusive value="0" />
-                                              <xs:maxInclusive value="100" />
-                                              <xs:fractionDigits value="3" />
-                                            </xs:restriction>
-                                          </xs:simpleType>
-                                        </xs:element>
-                                        <xs:element name="PaidThroughDate" type="xs:date" />
                                       </xs:sequence>
                                     </xs:complexType>
                                   </xs:element>
-                                  <xs:element name="CheckNumber" minOccurs="0">
+                                  <xs:element name="Contact" type="ContactType" />
+                                  <xs:element name="Description" minOccurs="0">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
-                                        <xs:maxLength value="100" />
+                                        <xs:maxLength value="255" />
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
-                                  <xs:element name="ItemIssueState" type="StateCodeType" minOccurs="0" />
+                                  <xs:element name="DateOfBirth" type="xs:date" minOccurs="0" />
+                                  <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
+                                  <xs:element name="RelationshipCode">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50" />
+                                        <xs:enumeration value="AD" />
+                                        <xs:enumeration value="AG" />
+                                        <xs:enumeration value="AF" />
+                                        <xs:enumeration value="AN" />
+                                        <xs:enumeration value="CP" />
+                                        <xs:enumeration value="CN" />
+                                        <xs:enumeration value="CF" />
+                                        <xs:enumeration value="DF" />
+                                        <xs:enumeration value="ES" />
+                                        <xs:enumeration value="EX" />
+                                        <xs:enumeration value="FB" />
+                                        <xs:enumeration value="GR" />
+                                        <xs:enumeration value="HE" />
+                                        <xs:enumeration value="IN" />
+                                        <xs:enumeration value="JT" />
+                                        <xs:enumeration value="TC" />
+                                        <xs:enumeration value="JE" />
+                                        <xs:enumeration value="PC" />
+                                        <xs:enumeration value="OR" />
+                                        <xs:enumeration value="OT" />
+                                        <xs:enumeration value="PD" />
+                                        <xs:enumeration value="PA" />
+                                        <xs:enumeration value="PO" />
+                                        <xs:enumeration value="RE" />
+                                        <xs:enumeration value="SO" />
+                                        <xs:enumeration value="TE" />
+                                        <xs:enumeration value="UG" />
+                                        <xs:enumeration value="UT" />
+                                        <xs:enumeration value="UN" />
+                                        <xs:enumeration value="UF" />
+                                        <xs:enumeration value="LA" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="CompleteAccountRegistrationName" minOccurs="0">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:maxLength value="255" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
+                                  <xs:element name="DateOfTrust" type="xs:date" minOccurs="0" />
+                                  <xs:element name="MinorDateOfMajority" type="xs:date" minOccurs="0" />
+                                  <!-- Section 4.4.3.2.7.4 Deceased Element -->
+                                  <xs:element name="Deceased" minOccurs="0">
+                                    <xs:complexType>
+                                      <xs:sequence>
+                                        <xs:element name="DateOfDeath" type="xs:date" minOccurs="0" />
+                                        <xs:element name="DateOfDeathSource" minOccurs="0">
+                                          <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                              <xs:maxLength value="50" />
+                                            </xs:restriction>
+                                          </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="DateOfDeathIdentifiedDate" type="xs:date" minOccurs="0" />
+                                      </xs:sequence>
+                                    </xs:complexType>
+                                  </xs:element>
                                 </xs:sequence>
                               </xs:complexType>
-                            </xs:element> <!-- Cash -->
-                            <!-- Section 4.4.3.2.10 Bond Element -->
-                            <xs:element name="Bond">
-                              <xs:complexType >
-                                <xs:sequence>
-                                  <xs:element name="Name">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="100" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="Number" minOccurs="0">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="25" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="CouponNumber" minOccurs="0">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="25" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="PayingAgent" minOccurs="0">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="100" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                </xs:sequence>
-                              </xs:complexType>
-                            </xs:element> <!-- Bond -->
-                            <!-- Section 4.4.3.2.11 Security Element -->
-                            <xs:element name="Security">
+                            </xs:element>
+                            <!-- Owner -->
+                            <!-- Section 4.4.3.2.8 Beneficiary Element -->
+                            <xs:element name="Beneficiary" minOccurs="0" maxOccurs="unbounded">
                               <xs:complexType>
                                 <xs:sequence>
-                                  <!-- Section 4.4.3.2.12.1 Security TypeCode Element -->
+                                  <!-- Section 4.4.3.2.8.1 Beneficiary TypeCode Element -->
                                   <xs:element name="TypeCode">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
                                         <xs:maxLength value="50" />
-                                        <xs:enumeration value="Common Stock" />
-                                        <xs:enumeration value="Preferred Stock" />
-                                        <xs:enumeration value="Open-End Mutual Fund" />
-                                        <xs:enumeration value="Closed-End Mutual Fund" />
-                                        <xs:enumeration value="Bonds" />
-                                        <xs:enumeration value="Options/Warrants" />
-                                        <xs:enumeration value="Rights" />
-                                        <xs:enumeration value="Privately Held" />
-                                        <xs:enumeration value="CVR" />
-                                        <xs:enumeration value="ADR" />
-                                        <xs:enumeration value="Foreign" />
+                                        <xs:enumeration value="Primary" />
+                                        <xs:enumeration value="Contingent" />
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
-                                  <xs:element name="Name" type="SecurityNameType" />
-                                  <xs:element name="Symbol" type="SecuritySymbolType" minOccurs="0" />
-                                  <xs:choice>
-                                    <xs:element name="CUSIP" type="SecurityCUSIPType" />
-                                    <xs:element name="AlternativeID" type="AlternativeSecurityIDType" />
-                                  </xs:choice>
-                                  <xs:element name="TransferAgent">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="35" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="ReportedShares" type="SecurityNumberOfSharesType" />
-                                  <xs:element name="RemittedShares" type="SecurityNumberOfSharesType" />
-                                  <!-- Section 4.4.3.2.12.2 Original Element -->
-                                  <xs:element name="Original" minOccurs="0">
-                                    <xs:complexType>
-                                      <xs:sequence>
-                                        <xs:element name="Name" type="SecurityNameType" />
-                                        <xs:choice>
-                                          <xs:element name="CUSIP" type="SecurityCUSIPType" />
-                                          <xs:element name="AlternativeID" type="AlternativeSecurityIDType" />
-                                        </xs:choice>
-                                        <xs:element name="Shares" type="SecurityNumberOfSharesType" />
-                                      </xs:sequence>
-                                    </xs:complexType>
-                                  </xs:element>
-                                  <!-- Section 4.4.3.2.12.3 DividendHandling Element -->
-                                  <xs:element name="DividendHandling">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
-                                        <xs:enumeration value="Cash" />
-                                        <xs:enumeration value="Reinvested" />
-                                        <xs:enumeration value="None" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="DividendsPaidThroughDate" type="xs:date" />
-                                  <!-- Section 4.4.3.2.12.4 DeliveryMethod Element -->
-                                  <xs:element name="DeliveryMethod">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
-                                        <xs:enumeration value="DTC" />
-                                        <xs:enumeration value="Physical" />
-                                        <xs:enumeration value="Book Entry" />
-                                        <xs:enumeration value="Foreign" />
-                                        <xs:enumeration value="DWAC" />
-                                        <xs:enumeration value="Fund/SERV" />
-                                        <xs:enumeration value="DRS" />
-                                        <xs:enumeration value="Held at Holder" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="StateAccountNumber">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="DTCDeliveryReferenceNumber">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="20" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <!-- Section 4.4.3.2.12.5 Market Element -->
-                                  <xs:element name="Market">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="6" />
-                                        <xs:enumeration value="NYSE" />
-                                        <xs:enumeration value="AMEX" />
-                                        <xs:enumeration value="NASDAQ" />
-                                        <xs:enumeration value="Private" />
-                                        <xs:enumeration value="Other" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <!-- Section 4.4.3.2.12.6 Status Element -->
-                                  <xs:element name="Status">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
-                                        <xs:enumeration value="Transferable" />
-                                        <xs:enumeration value="Non-Transferable" />
-                                        <xs:enumeration value="Chilled" />
-                                        <xs:enumeration value="Delisted" />
-                                        <xs:enumeration value="Restricted" />
-                                        <xs:enumeration value="Worthless" />
-                                        <xs:enumeration value="No ticker" />
-                                        <xs:enumeration value="Below Min Lot Size" />
-                                        <xs:enumeration value="Prohibited/Sanctioned Countries" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <!-- Section 4.4.3.2.12.7 Security Adjustment Element -->
-                                  <xs:element name="Adjustment" minOccurs="0">
-                                    <xs:complexType>
-                                      <xs:sequence>
-                                        <!-- Section 4.4.3.2.12.7.1 Security Adjustment TypeCode Element -->
-                                        <xs:element name="TypeCode">
-                                          <xs:simpleType>
-                                            <xs:restriction base="xs:string">
-                                              <xs:maxLength value="50" />
-                                              <xs:enumeration value="Tax" />
-                                            </xs:restriction>
-                                          </xs:simpleType>
-                                        </xs:element>
-                                        <xs:element name="Amount" type="SecurityNumberOfSharesType">
-                                        </xs:element>
-                                      </xs:sequence>
-                                    </xs:complexType>
-                                  </xs:element>
-                                  <!-- Section 4.4.3.2.12.8 CostBasis Element -->
-                                  <xs:element name="CostBasis" minOccurs="0">
-                                    <xs:complexType>
-                                      <xs:sequence>
-                                        <xs:element name="Name" type="SecurityNameType" minOccurs="1" />
-                                        <xs:element name="Symbol" type="SecuritySymbolType" minOccurs="0" />
-                                        <xs:choice>
-                                          <xs:element name="CUSIP" type="SecurityCUSIPType" />
-                                          <xs:element name="AlternativeID" type="AlternativeSecurityIDType" />
-                                        </xs:choice>
-                                        <xs:element name="Amount" type="CurrencyType" />
-                                        <xs:element name="Shares" type="SecurityNumberOfSharesType" />
-                                        <xs:element name="PurchaseDate" type="xs:date" />
-                                      </xs:sequence>
-                                    </xs:complexType>
-                                  </xs:element>
+                                  <xs:element name="Spouse" type="IndicatorType" minOccurs="0" />
+                                  <xs:element name="Percentage" type="PercentageType" />
+                                  <xs:element name="Contact" type="ContactType" />
+                                  <xs:element name="DateOfBirth" type="xs:date" minOccurs="0" />
+                                  <xs:element name="SSN" type="SSNType"  minOccurs="0" />
                                 </xs:sequence>
                               </xs:complexType>
-                            </xs:element> <!-- Security -->
-                            <!-- Section 4.4.3.2.12 Safekeeping Element -->
-                            <xs:element name="Safekeeping">
-                              <xs:complexType>
+                            </xs:element>
+                            <!-- Beneficiary -->
+                            <xs:choice>
+                              <!-- Section 4.4.3.2.9 Cash Element -->
+                              <xs:element name="Cash">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:element name="ReportedAmount" type="CurrencyType" />
+                                    <xs:element name="RemittedAmount" type="CurrencyType" />
+                                    <!-- Section 4.4.3.2.10.1 Interest Element -->
+                                    <xs:element name="Interest" minOccurs="0">
+                                      <xs:complexType>
+                                        <xs:sequence>
+                                          <xs:element name="Rate">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:decimal">
+                                                <xs:minInclusive value="0" />
+                                                <xs:maxInclusive value="100" />
+                                                <xs:fractionDigits value="3" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:element>
+                                          <xs:element name="PaidThroughDate" type="xs:date" />
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="CheckNumber" minOccurs="0">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="100" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="ItemIssueState" type="StateCodeType" minOccurs="0" />
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                              <!-- Cash -->
+                              <!-- Section 4.4.3.2.10 Bond Element -->
+                              <xs:element name="Bond">
+                                <xs:complexType >
+                                  <xs:sequence>
+                                    <xs:element name="Name">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="100" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="Number" minOccurs="0">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="25" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="CouponNumber" minOccurs="0">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="25" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="PayingAgent" minOccurs="0">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="100" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                              <!-- Bond -->
+                              <!-- Section 4.4.3.2.11 Security Element -->
+                              <xs:element name="Security">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <!-- Section 4.4.3.2.11.1 Security TypeCode Element -->
+                                    <xs:element name="TypeCode">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="50" />
+                                          <xs:enumeration value="Common Stock" />
+                                          <xs:enumeration value="Preferred Stock" />
+                                          <xs:enumeration value="Open-End Mutual Fund" />
+                                          <xs:enumeration value="Closed-End Mutual Fund" />
+                                          <xs:enumeration value="Bonds" />
+                                          <xs:enumeration value="Options/Warrants" />
+                                          <xs:enumeration value="Rights" />
+                                          <xs:enumeration value="Privately Held" />
+                                          <xs:enumeration value="CVR" />
+                                          <xs:enumeration value="ADR" />
+                                          <xs:enumeration value="Foreign" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="Name" type="SecurityNameType" />
+                                    <xs:element name="Symbol" type="SecuritySymbolType" minOccurs="0" />
+                                    <xs:choice>
+                                      <xs:element name="CUSIP" type="SecurityCUSIPType" />
+                                      <xs:element name="AlternativeID" type="AlternativeSecurityIDType" />
+                                    </xs:choice>
+                                    <xs:element name="TransferAgent">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="35" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="ReportedShares" type="SecurityNumberOfSharesType" />
+                                    <xs:element name="RemittedShares" type="SecurityNumberOfSharesType" />
+                                    <!-- Section 4.4.3.2.11.2 Original Element -->
+                                    <xs:element name="Original" minOccurs="0">
+                                      <xs:complexType>
+                                        <xs:sequence>
+                                          <xs:element name="Name" type="SecurityNameType" />
+                                          <xs:choice>
+                                            <xs:element name="CUSIP" type="SecurityCUSIPType" />
+                                            <xs:element name="AlternativeID" type="AlternativeSecurityIDType" />
+                                          </xs:choice>
+                                          <xs:element name="Shares" type="SecurityNumberOfSharesType" />
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
+                                    <!-- Section 4.4.3.2.11.3 Dividends Element -->
+                                    <xs:element name="Dividends">
+                                      <xs:complexType>
+                                        <xs:sequence>
+                                          <xs:element name="Handling">
+                                            <xs:simpleType>
+                                          <!-- Section 4.4.3.2.11.3.1 Dividend Handling Type -->
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="50" />
+                                                <xs:enumeration value="Cash" />
+                                                <xs:enumeration value="Reinvested" />
+                                                <xs:enumeration value="None" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:element>
+                                          <xs:element name="PaidThroughDate" type="xs:date" />
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
+                                    <!-- Section 4.4.3.2.11.4 DeliveryMethod Element -->
+                                      <xs:element name="DeliveryMethod">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="50" />
+                                          <xs:enumeration value="DTC" />
+                                          <xs:enumeration value="Physical" />
+                                          <xs:enumeration value="Book Entry" />
+                                          <xs:enumeration value="Foreign" />
+                                          <xs:enumeration value="DWAC" />
+                                          <xs:enumeration value="Fund/SERV" />
+                                          <xs:enumeration value="DRS" />
+                                          <xs:enumeration value="Held at Holder" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="StateAccountNumber">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="50" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="DTCDeliveryReferenceNumber">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="20" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <!-- Section 4.4.3.2.11.5 Market Element -->
+                                    <xs:element name="Market">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="6" />
+                                          <xs:enumeration value="NYSE" />
+                                          <xs:enumeration value="AMEX" />
+                                          <xs:enumeration value="NASDAQ" />
+                                          <xs:enumeration value="Private" />
+                                          <xs:enumeration value="Other" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <!-- Section 4.4.3.2.11.6 Status Element -->
+                                    <xs:element name="Status">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="50" />
+                                          <xs:enumeration value="Transferable" />
+                                          <xs:enumeration value="Non-Transferable" />
+                                          <xs:enumeration value="Chilled" />
+                                          <xs:enumeration value="Delisted" />
+                                          <xs:enumeration value="Restricted" />
+                                          <xs:enumeration value="Worthless" />
+                                          <xs:enumeration value="No ticker" />
+                                          <xs:enumeration value="Below Min Lot Size" />
+                                          <xs:enumeration value="Prohibited/Sanctioned Countries" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <!-- Section 4.4.3.2.11.7 Security Adjustment Element -->
+                                    <xs:element name="Adjustment" minOccurs="0">
+                                      <xs:complexType>
+                                        <xs:sequence>
+                                          <!-- Section 4.4.3.2.11.7.1 Security Adjustment TypeCode Element -->
+                                          <xs:element name="TypeCode">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="50" />
+                                                <xs:enumeration value="Tax" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:element>
+                                          <xs:element name="Amount" type="SecurityNumberOfSharesType">
+                                          </xs:element>
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
+                                    <!-- Section 4.4.3.2.11.8 CostBasis Element -->
+                                    <xs:element name="CostBasis" minOccurs="0">
+                                      <xs:complexType>
+                                        <xs:sequence>
+                                          <xs:element name="Name" type="SecurityNameType" minOccurs="1" />
+                                          <xs:element name="Symbol" type="SecuritySymbolType" minOccurs="0" />
+                                          <xs:choice>
+                                            <xs:element name="CUSIP" type="SecurityCUSIPType" />
+                                            <xs:element name="AlternativeID" type="AlternativeSecurityIDType" />
+                                          </xs:choice>
+                                          <xs:element name="Amount" type="CurrencyType" />
+                                          <xs:element name="Shares" type="SecurityNumberOfSharesType" />
+                                          <xs:element name="PurchaseDate" type="xs:date" />
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                              <!-- Security -->
+                              <!-- Section 4.4.3.2.12 Safekeeping Element -->
+                              <xs:element name="Safekeeping">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:element name="BoxCaseNumber">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="25" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="BoxOpenDate" type="xs:date" />
+                                    <xs:element name="LeaseExpiredDate" type="xs:date" />
+                                    <!-- Section 4.4.3.2.13.1 Fee Element -->
+                                    <xs:element name="Fee" minOccurs="0" maxOccurs="unbounded">
+                                      <xs:complexType>
+                                        <xs:sequence>
+                                          <!-- Section 4.4.3.2.13.1.1 Fee TypeCode Element -->
+                                          <xs:element name="TypeCode">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="50" />
+                                                <xs:enumeration value="Drilling Fee" />
+                                                <xs:enumeration value="Unpaid Rent" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:element>
+                                          <xs:element name="Amount" type="CurrencyType" />
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
+                                    <!-- Section 4.4.3.2.13.2 Inventory Element -->
+                                    <xs:element name="Inventory" maxOccurs="unbounded">
+                                      <xs:complexType>
+                                        <xs:sequence>
+                                          <!-- Section 4.4.3.2.13.2.1 ItemCode Element -->
+                                          <xs:element name="ItemCode">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="50" />
+                                                <xs:enumeration value="Coins" />
+                                                <xs:enumeration value="Paper Currency" />
+                                                <xs:enumeration value="Empty Box" />
+                                                <xs:enumeration value="Jewelry" />
+                                                <xs:enumeration value="Legal or Misc Papers" />
+                                                <xs:enumeration value="Military Medals" />
+                                                <xs:enumeration value="Miscellaneous Items" />
+                                                <xs:enumeration value="Savings Bonds" />
+                                                <xs:enumeration value="Stock Certificates" />
+                                                <xs:enumeration value="Weapons" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:element>
+                                          <xs:element name="Description">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="2000" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:element>
+                                          <xs:element name="EstimatedValue" type="CurrencyType" minOccurs="0"/>
+                                          <!-- Section 4.4.3.2.13.2.2 SavingsBond Element -->
+                                          <xs:element name="SavingsBond" minOccurs="0">
+                                            <xs:complexType >
+                                              <xs:sequence>
+                                                <xs:element name="BondNumber">
+                                                  <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                      <xs:maxLength value="250" />
+                                                    </xs:restriction>
+                                                  </xs:simpleType>
+                                                </xs:element>
+                                                <xs:element name="FaceValue" type="CurrencyType" />
+                                                <!-- Section 4.4.3.2.13.2.2.1 SavingsBond Owner Element -->
+                                                <xs:element name="Owner">
+                                                  <xs:complexType>
+                                                    <xs:sequence>
+                                                      <xs:element name="Name">
+                                                        <xs:simpleType>
+                                                          <xs:restriction base="xs:string">
+                                                            <xs:maxLength value="250" />
+                                                          </xs:restriction>
+                                                        </xs:simpleType>
+                                                      </xs:element>
+                                                      <xs:choice>
+                                                        <xs:element name="USAddress" type="USAddressType" />
+                                                        <xs:element name="ForeignAddress" type="ForeignAddressType" />
+                                                      </xs:choice>
+                                                      <xs:element name="SocialSecurityNumber" type="SSNType" />
+                                                    </xs:sequence>
+                                                  </xs:complexType>
+                                                </xs:element>
+                                              </xs:sequence>
+                                            </xs:complexType>
+                                          </xs:element>
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                              <!-- Safekeeping -->
+                              <!-- Section 4.4.3.2.13 MineralInterests Element -->
+                              <xs:element name="MineralInterests">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:element name="StateCode" type="StateCodeType" />
+                                    <xs:element name="CountyName">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:maxLength value="20" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="Section">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:maxLength value="2" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="Township">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:maxLength value="3" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="Range">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:maxLength value="3" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="SupplementalDescription">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:maxLength value="20" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="PoolingOrder">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:maxLength value="6" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="PoolingDate" type="xs:date" />
+                                    <xs:element name="WellName">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:maxLength value="30" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="WellNumber">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:maxLength value="20" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="LeaseName">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:maxLength value="30" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="LeaseNumber">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:maxLength value="20" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="OwnershipPercentage" type="PercentageType" />
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                              <!-- MineralInterests -->
+                              <!-- Section 4.4.3.2.14 -->
+                              <xs:element name="Cryptocurrency">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:element name="Name">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="100" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="Symbol">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="50" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="AccountNumber">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="50" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="ReportedUnits" type="CryptocurrencyUnits" />
+                                    <xs:element name="RemittedUnits" type="CryptocurrencyUnits" />
+                                    <!-- TODO:  Is this redundant with the Property/Cash level values? -->
+                                    <xs:element name="ProceedsReported" type="CurrencyType" />
+                                    <!-- TODO:  Is this redundant with the Property/Cash level values? -->
+                                    <xs:element name="ProceedsRemitted" type="CurrencyType" />
+                                    <xs:element name="DateSold" type="xs:date" minOccurs="0" />
+                                    <xs:element name="UnitsSold" type="CryptocurrencyUnits" minOccurs="0" />
+                                    <xs:element name="DateAcquired" type="xs:date" minOccurs="0" />
+                                    <xs:element name="DeliveryMethod" minOccurs="0">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="50" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="StateAccountNumber" maxOccurs="unbounded">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="70" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="StateAddressNumber" minOccurs="0">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="70" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="ReportNotRemit" type="IndicatorType" minOccurs="0" />
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                              <!-- Cryptocurrency -->
+                            </xs:choice>
+                            <!-- Section 4.4.3.2.15 Property Adjustment Element -->
+                            <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
+                              <xs:complexType >
                                 <xs:sequence>
-                                  <xs:element name="BoxCaseNumber">
+                                  <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
+                                  <xs:element name="TypeCode">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
-                                        <xs:maxLength value="25" />
+                                        <xs:maxLength value="50" />
+                                        <xs:enumeration value="DC" />
+                                        <xs:enumeration value="SC" />
+                                        <xs:enumeration value="TW" />
+                                        <xs:enumeration value="PW" />
+                                        <xs:enumeration value="BW" />
+                                        <xs:enumeration value="IE" />
+                                        <xs:enumeration value="DE" />
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
-                                  <xs:element name="BoxOpenDate" type="xs:date" />
-                                  <xs:element name="LeaseExpiredDate" type="xs:date" />
-                                  <!-- Section 4.4.3.2.13.1 Fee Element -->
-                                  <xs:element name="Fee" minOccurs="0" maxOccurs="unbounded">
-                                    <xs:complexType>
-                                      <xs:sequence>
-                                        <!-- Section 4.4.3.2.13.1.1 Fee TypeCode Element -->
-                                        <xs:element name="TypeCode">
-                                          <xs:simpleType>
-                                            <xs:restriction base="xs:string">
-                                              <xs:maxLength value="50" />
-                                              <xs:enumeration value="Drilling Fee" />
-                                              <xs:enumeration value="Unpaid Rent" />
-                                            </xs:restriction>
-                                          </xs:simpleType>
-                                        </xs:element>
-                                        <xs:element name="Amount" type="CurrencyType" />
-                                      </xs:sequence>
-                                    </xs:complexType>
-                                  </xs:element>
-                                  <!-- Section 4.4.3.2.13.2 Inventory Element -->
-                                  <xs:element name="Inventory" maxOccurs="unbounded">
-                                    <xs:complexType>
-                                      <xs:sequence>
-                                        <!-- Section 4.4.3.2.13.2.1 ItemCode Element -->
-                                        <xs:element name="ItemCode">
-                                          <xs:simpleType>
-                                            <xs:restriction base="xs:string">
-                                              <xs:maxLength value="50" />
-                                              <xs:enumeration value="Coins" />
-                                              <xs:enumeration value="Paper Currency" />
-                                              <xs:enumeration value="Empty Box" />
-                                              <xs:enumeration value="Jewelry" />
-                                              <xs:enumeration value="Legal or Misc Papers" />
-                                              <xs:enumeration value="Military Medals" />
-                                              <xs:enumeration value="Miscellaneous Items" />
-                                              <xs:enumeration value="Savings Bonds" />
-                                              <xs:enumeration value="Stock Certificates" />
-                                              <xs:enumeration value="Weapons" />
-                                            </xs:restriction>
-                                          </xs:simpleType>
-                                        </xs:element>
-                                        <xs:element name="Description">
-                                          <xs:simpleType>
-                                            <xs:restriction base="xs:string">
-                                              <xs:maxLength value="2000" />
-                                            </xs:restriction>
-                                          </xs:simpleType>
-                                        </xs:element>
-                                        <xs:element name="EstimatedValue" type="CurrencyType" minOccurs="0"/>
-                                        <!-- Section 4.4.3.2.13.2.2 SavingsBond Element -->
-                                        <xs:element name="SavingsBond" minOccurs="0">
-                                          <xs:complexType >
-                                            <xs:sequence>
-                                              <xs:element name="BondNumber">
-                                                <xs:simpleType>
-                                                  <xs:restriction base="xs:string">
-                                                    <xs:maxLength value="250" />
-                                                  </xs:restriction>
-                                                </xs:simpleType>
-                                              </xs:element>
-                                              <xs:element name="FaceValue" type="CurrencyType" />
-                                              <!-- Section 4.4.3.2.13.2.2.1 SavingsBond Owner Element -->
-                                              <xs:element name="Owner">
-                                                <xs:complexType>
-                                                  <xs:sequence>
-                                                    <xs:element name="Name">
-                                                      <xs:simpleType>
-                                                        <xs:restriction base="xs:string">
-                                                          <xs:maxLength value="250" />
-                                                        </xs:restriction>
-                                                      </xs:simpleType>
-                                                    </xs:element>
-                                                    <xs:choice>
-                                                      <xs:element name="USAddress" type="USAddressType" />
-                                                      <xs:element name="ForeignAddress" type="ForeignAddressType" />
-                                                    </xs:choice>
-                                                    <xs:element name="SocialSecurityNumber" type="SSNType" />
-                                                  </xs:sequence>
-                                                </xs:complexType>
-                                              </xs:element>
-                                            </xs:sequence>
-                                          </xs:complexType>
-                                        </xs:element>
-                                      </xs:sequence>
-                                    </xs:complexType>
-                                  </xs:element>
+                                  <xs:element name="Amount" type="CurrencyType" />
                                 </xs:sequence>
                               </xs:complexType>
-                            </xs:element> <!-- Safekeeping -->
-                            <!-- Section 4.4.3.2.13 MineralInterests Element -->
-                            <xs:element name="MineralInterests">
-                              <xs:complexType>
-                                <xs:sequence>
-                                  <xs:element name="StateCode" type="StateCodeType" />
-                                  <xs:element name="CountyName">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <!-- From FieldDescriptions in spreadsheet -->
-                                        <xs:maxLength value="20" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="Section">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <!-- From FieldDescriptions in spreadsheet -->
-                                        <xs:maxLength value="2" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="Township">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <!-- From FieldDescriptions in spreadsheet -->
-                                        <xs:maxLength value="3" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="Range">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <!-- From FieldDescriptions in spreadsheet -->
-                                        <xs:maxLength value="3" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="SupplementalDescription">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <!-- From FieldDescriptions in spreadsheet -->
-                                        <xs:maxLength value="20" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="PoolingOrder">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <!-- From FieldDescriptions in spreadsheet -->
-                                        <xs:maxLength value="6" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="PoolingDate" type="xs:date" />
-                                  <xs:element name="WellName">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <!-- From FieldDescriptions in spreadsheet -->
-                                        <xs:maxLength value="30" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="WellNumber">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <!-- From FieldDescriptions in spreadsheet -->
-                                        <xs:maxLength value="20" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="LeaseName">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <!-- From FieldDescriptions in spreadsheet -->
-                                        <xs:maxLength value="30" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="LeaseNumber">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <!-- From FieldDescriptions in spreadsheet -->
-                                        <xs:maxLength value="20" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="OwnershipPercentage" type="PercentageType" />
-                                </xs:sequence>
-                              </xs:complexType>
-                            </xs:element> <!-- MineralInterests -->
-                            <!-- Section 4.4.3.2.14 -->
-                            <xs:element name="Cryptocurrency">
-                              <xs:complexType>
-                                <xs:sequence>
-                                  <xs:element name="Name">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="100" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="Symbol">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="AccountNumber">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <!-- Section 4.4.3.2.15.1 AlternativeID Element -->
-                                  <xs:element name="AlternativeID" minOccurs="0">
-                                    <xs:complexType>
-                                      <xs:sequence>
-                                        <!-- Section 4.4.3.2.15.1.1 AlternativeID TypeCode Element -->
-                                        <xs:element name="TypeCode">
-                                          <xs:simpleType>
-                                            <xs:restriction base="xs:string">
-                                              <xs:enumeration value="TBD" />
-                                            </xs:restriction>
-                                          </xs:simpleType>
-                                        </xs:element>
-                                        <xs:element name="Identifier">
-                                          <xs:simpleType>
-                                            <xs:restriction base="xs:string">
-                                              <xs:maxLength value="50" />
-                                            </xs:restriction>
-                                          </xs:simpleType>
-                                        </xs:element>
-                                      </xs:sequence>
-                                    </xs:complexType>
-                                  </xs:element>
-                                  <xs:element name="ReportedUnits" type="CryptocurrencyUnits" />
-                                  <xs:element name="RemittedUnits" type="CryptocurrencyUnits" />
-                                  <!-- TODO:  Is this redundant with the Property/Cash level values? -->
-                                  <xs:element name="ProceedsReported" type="CurrencyType" />
-                                  <!-- TODO:  Is this redundant with the Property/Cash level values? -->
-                                  <xs:element name="ProceedsRemitted" type="CurrencyType" />
-                                  <xs:element name="DateSold" type="xs:date" minOccurs="0" />
-                                  <xs:element name="UnitsSold" type="CryptocurrencyUnits" minOccurs="0" />
-                                  <xs:element name="DateAcquired" type="xs:date" minOccurs="0" />
-                                  <xs:element name="DeliveryMethod" minOccurs="0">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="StateAccountNumber" minOccurs="0">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
-                                  <xs:element name="ReportNotRemit" type="IndicatorType" minOccurs="0" />
-                                </xs:sequence>
-                              </xs:complexType>
-                            </xs:element> <!-- Cryptocurrency -->
-                          </xs:choice>
-                          <!-- Section 4.4.3.2.15 Property Adjustment Element -->
-                          <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
-                            <xs:complexType >
-                              <xs:sequence>
-                                <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element -->
-                                <xs:element name="TypeCode">
-                                  <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                      <xs:maxLength value="50" />
-                                      <xs:enumeration value="DC" />
-                                      <xs:enumeration value="SC" />
-                                      <xs:enumeration value="TW" />
-                                      <xs:enumeration value="PW" />
-                                      <xs:enumeration value="BW" />
-                                      <xs:enumeration value="IE" />
-                                      <xs:enumeration value="DE" />
-                                    </xs:restriction>
-                                  </xs:simpleType>
-                                </xs:element>
-                                <xs:element name="Amount" type="CurrencyType" />
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element> <!-- Property -->
-                    <!-- Section 4.4.3.3 Report Adjustment Element -->
-                    <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <!-- Section 4.4.3.3.1 Report Adjustment TypeCode Element -->
-                          <xs:element name="TypeCode">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="50" />
-                                <xs:enumeration value="Audit Fees" />
-                                <xs:enumeration value="Estimate or Prepayment" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="Amount" type="CurrencyType" />
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <!-- Adjustment-->
-                    <xs:element name="NonProductionReport" type="IndicatorType" minOccurs="0" />
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element> <!-- Report -->
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <!-- Property -->
+                      <!-- Section 4.4.3.3 Report Adjustment Element -->
+                      <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <!-- Section 4.4.3.3.1 Report Adjustment TypeCode Element -->
+                            <xs:element name="TypeCode">
+                              <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                  <xs:maxLength value="50" />
+                                  <xs:enumeration value="Audit Fees" />
+                                  <xs:enumeration value="Estimate or Prepayment" />
+                                </xs:restriction>
+                              </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Amount" type="CurrencyType" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <!-- Adjustment-->
+                      <xs:element name="NonProductionReport" type="IndicatorType" minOccurs="0" />
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element> <!-- Report -->
+                <!-- Section 4.4.4 NegativeReport Element -->
+                <xs:element name="NegativeReport">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="Contact" type="ContactType" />
+                    </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+              </xs:choice>
             </xs:sequence>
           </xs:complexType>
         </xs:element> <!-- Holder -->

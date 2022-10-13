@@ -433,8 +433,10 @@
             <Shares>1000.001</Shares>
           </Original>
           <!-- Section 4.4.3.2.12.3 DividendHandling Element -->
-          <DividendHandling>Cash</DividendHandling>
-          <DividendsPaidThroughDate>2019-07-01</DividendsPaidThroughDate>
+          <Dividends>
+            <Handling>Cash</Handling>
+            <PaidThroughDate>2019-07-01</PaidThroughDate>
+          </Dividends>
           <!-- Section 4.4.3.2.12.4 DeliveryMethod Element -->
           <DeliveryMethod>DTC</DeliveryMethod>
           <StateAccountNumber>123456</StateAccountNumber>
@@ -671,16 +673,11 @@
           <Name>Bitcoin</Name>
           <Symbol>BTC</Symbol>
           <AccountNumber>1234567890</AccountNumber>
-          <!-- Section 4.4.3.2.15.1 AlternativeID Element -->
-          <AlternativeID>
-            <!-- Section 4.4.3.2.15.1.1 AlternativeID TypeCode Element -->
-            <TypeCode>TBD</TypeCode>
-            <Identifier>ABC123</Identifier>
-          </AlternativeID>
           <ReportedUnits>100</ReportedUnits>
           <RemittedUnits>100</RemittedUnits>
           <ProceedsReported>5033090.00</ProceedsReported>
           <ProceedsRemitted>5033070.00</ProceedsRemitted>
+          <StateAccountNumber>1234567890</StateAccountNumber>
         </Cryptocurrency>
         <!-- Section 4.4.3.2.15 Property Adjustment Element -->
         <Adjustment>
