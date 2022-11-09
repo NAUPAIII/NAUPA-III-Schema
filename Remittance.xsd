@@ -258,7 +258,7 @@
                                   <xs:enumeration value="SC005" />
                                   <xs:enumeration value="SC006" />
                                   <xs:enumeration value="SC007" />
-                                  <xs:enumeration value="SC008" />
+                                  <!-- <xs:enumeration value="SC008" /> -->
                                   <xs:enumeration value="SC009" />
                                   <xs:enumeration value="SC010" />
                                   <xs:enumeration value="SC011" />
