@@ -198,9 +198,6 @@
                                   <xs:enumeration value="CS005" />
                                   <xs:enumeration value="CS006" />
                                   <xs:enumeration value="CS007" />
-                                  <xs:enumeration value="CS008" />
-                                  <xs:enumeration value="CS009" />
-                                  <xs:enumeration value="CS010" />
                                   <xs:enumeration value="CT001" />
                                   <xs:enumeration value="CT002" />
                                   <xs:enumeration value="CT003" />
@@ -231,7 +228,6 @@
                                   <xs:enumeration value="IR006" />
                                   <xs:enumeration value="IR007" />
                                   <xs:enumeration value="IR008" />
-                                  <xs:enumeration value="IR009" />
                                   <xs:enumeration value="MI001" />
                                   <xs:enumeration value="MI002" />
                                   <xs:enumeration value="MI003" />
@@ -356,12 +352,6 @@
                             <!-- Section 4.4.3.2.6 OFAC Element -->
                             <xs:element name="OFAC" minOccurs="0">
                               <xs:complexType>
-                                <!-- TODO:
-                                If this information is present, are all elements required? If not, which ones are?  As
-                                currently defined here, they would all be required or the XML would fail validation.
-            
-                                KGW - I think we should query New York on the field sizes and what is required.
-                                -->
                                 <xs:sequence>
                                   <xs:element name="DateOfBlocking" type="xs:date" minOccurs="0" />
                                   <xs:element name="LegalAuthority" minOccurs="0">
@@ -541,8 +531,7 @@
                                   </xs:element>
                                 </xs:sequence>
                               </xs:complexType>
-                            </xs:element>
-                            <!-- Owner -->
+                            </xs:element> <!-- Owner -->
                             <!-- Section 4.4.3.2.8 Beneficiary Element -->
                             <xs:element name="Beneficiary" minOccurs="0" maxOccurs="unbounded">
                               <xs:complexType>
@@ -564,8 +553,7 @@
                                   <xs:element name="SSN" type="SSNType"  minOccurs="0" />
                                 </xs:sequence>
                               </xs:complexType>
-                            </xs:element>
-                            <!-- Beneficiary -->
+                            </xs:element> <!-- Beneficiary -->
                             <xs:choice>
                               <!-- Section 4.4.3.2.9 Cash Element -->
                               <xs:element name="Cash">
@@ -600,8 +588,7 @@
                                     <xs:element name="ItemIssueState" type="StateCodeType" minOccurs="0" />
                                   </xs:sequence>
                                 </xs:complexType>
-                              </xs:element>
-                              <!-- Cash -->
+                              </xs:element> <!-- Cash -->
                               <!-- Section 4.4.3.2.10 Bond Element -->
                               <xs:element name="Bond">
                                 <xs:complexType >
@@ -636,8 +623,7 @@
                                     </xs:element>
                                   </xs:sequence>
                                 </xs:complexType>
-                              </xs:element>
-                              <!-- Bond -->
+                              </xs:element> <!-- Bond -->
                               <!-- Section 4.4.3.2.11 Security Element -->
                               <xs:element name="Security">
                                 <xs:complexType>
@@ -804,8 +790,7 @@
                                     </xs:element>
                                   </xs:sequence>
                                 </xs:complexType>
-                              </xs:element>
-                              <!-- Security -->
+                              </xs:element> <!-- Security -->
                               <!-- Section 4.4.3.2.12 Safekeeping Element -->
                               <xs:element name="Safekeeping">
                                 <xs:complexType>
@@ -906,8 +891,7 @@
                                     </xs:element>
                                   </xs:sequence>
                                 </xs:complexType>
-                              </xs:element>
-                              <!-- Safekeeping -->
+                              </xs:element> <!-- Safekeeping -->
                               <!-- Section 4.4.3.2.13 MineralInterests Element -->
                               <xs:element name="MineralInterests">
                                 <xs:complexType>
@@ -997,8 +981,7 @@
                                     <xs:element name="OwnershipPercentage" type="PercentageType" />
                                   </xs:sequence>
                                 </xs:complexType>
-                              </xs:element>
-                              <!-- MineralInterests -->
+                              </xs:element> <!-- MineralInterests -->
                               <!-- Section 4.4.3.2.14 Cryptocurrency Elememt -->
                               <xs:element name="Cryptocurrency">
                                 <xs:complexType>
@@ -1006,29 +989,54 @@
                                     <xs:element name="Name">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:maxLength value="100" />
+                                          <xs:maxLength value="16" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
                                     <xs:element name="Symbol">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:maxLength value="50" />
+                                          <xs:maxLength value="7" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="AccountNumber">
+                                    <xs:element name="AccountNumber" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:maxLength value="50" />
+                                          <xs:maxLength value="70" />
                                         </xs:restriction>
                                       </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="Address" maxOccurs="unbounded">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="70" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="AlternativeID" minOccurs="0">
+                                      <xs:complexType>
+                                        <xs:sequence>
+                                          <xs:element name="Name">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="50" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:element>
+                                          <xs:element name="Number">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="50" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:element>
+                                        </xs:sequence>
+                                      </xs:complexType>
                                     </xs:element>
                                     <xs:element name="ReportedUnits" type="CryptocurrencyUnits" />
                                     <xs:element name="RemittedUnits" type="CryptocurrencyUnits" />
-                                    <!-- TODO:  Is this redundant with the Property/Cash level values? -->
                                     <xs:element name="ProceedsReported" type="CurrencyType" />
-                                    <!-- TODO:  Is this redundant with the Property/Cash level values? -->
                                     <xs:element name="ProceedsRemitted" type="CurrencyType" />
                                     <xs:element name="DateSold" type="xs:date" minOccurs="0" />
                                     <xs:element name="UnitsSold" type="CryptocurrencyUnits" minOccurs="0" />
@@ -1057,8 +1065,7 @@
                                     <xs:element name="ReportNotRemit" type="IndicatorType" minOccurs="0" />
                                   </xs:sequence>
                                 </xs:complexType>
-                              </xs:element>
-                              <!-- Cryptocurrency -->
+                              </xs:element> <!-- Cryptocurrency -->
                             </xs:choice>
                             <!-- Section 4.4.3.2.15 Property Adjustment Element -->
                             <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
@@ -1085,8 +1092,7 @@
                             </xs:element>
                           </xs:sequence>
                         </xs:complexType>
-                      </xs:element>
-                      <!-- Property -->
+                      </xs:element> <!-- Property -->
                       <!-- Section 4.4.3.3 Report Adjustment Element -->
                       <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
                         <xs:complexType>
@@ -1104,8 +1110,7 @@
                             <xs:element name="Amount" type="CurrencyType" />
                           </xs:sequence>
                         </xs:complexType>
-                      </xs:element>
-                      <!-- Adjustment-->
+                      </xs:element> <!-- Adjustment-->
                       <xs:element name="NonProductionReport" type="IndicatorType" minOccurs="0" />
                     </xs:sequence>
                   </xs:complexType>
@@ -1810,29 +1815,34 @@
       <xs:enumeration value="WI" />
       <xs:enumeration value="WY" />
       <!-- American territories codes -->
-      <xs:enumeration value="AS" />
-      <!-- American Samoa -->
-      <xs:enumeration value="GU" />
-      <!-- Guam -->
-      <xs:enumeration value="MH" />
-      <!-- Marshall Islands -->
-      <xs:enumeration value="FM" />
-      <!-- Micronesia -->
-      <xs:enumeration value="MP" />
-      <!-- Northern Marianas -->
-      <xs:enumeration value="PW" />
-      <!-- Palau -->
-      <xs:enumeration value="PR" />
-      <!-- Puerto Rico-->
-      <xs:enumeration value="VI" />
-      <!-- Virgin Islands -->
+      <xs:enumeration value="AS" /> <!-- American Samoa -->
+      <xs:enumeration value="GU" /> <!-- Guam -->
+      <xs:enumeration value="MH" /> <!-- Marshall Islands -->
+      <xs:enumeration value="FM" /> <!-- Micronesia -->
+      <xs:enumeration value="MP" /> <!-- Northern Marianas -->
+      <xs:enumeration value="PW" /> <!-- Palau -->
+      <xs:enumeration value="PR" /> <!-- Puerto Rico-->
+      <xs:enumeration value="VI" /> <!-- Virgin Islands -->
       <!-- Armed Forces codes -->
-      <xs:enumeration value="AA" />
-      <!-- Armed Forces Americas -->
-      <xs:enumeration value="AE" />
-      <!-- Armed Forces Europe -->
-      <xs:enumeration value="AP" />
-      <!-- Armed Forces Pacific -->
+      <xs:enumeration value="AA" /> <!-- Armed Forces Americas -->
+      <xs:enumeration value="AE" /> <!-- Armed Forces Europe -->
+      <xs:enumeration value="AP" /> <!-- Armed Forces Pacific -->
+      <xs:enumeration value="FO" /> <!-- Foreign Address -->
+      <xs:enumeration value="NA" /> <!-- Not Available -->
+      <!-- Canadian Provinces -->
+      <xs:enumeration value="AB" /> <!-- Alberta -->
+      <xs:enumeration value="BC" /> <!-- British Columbia -->
+      <xs:enumeration value="MB" /> <!-- Manitoba -->
+      <xs:enumeration value="NB" /> <!-- New Brunswick -->
+      <xs:enumeration value="NL" /> <!-- Newfoundland and Labrador -->
+      <xs:enumeration value="NS" /> <!-- Nova Scotia -->
+      <xs:enumeration value="ON" /> <!-- Ontario -->
+      <xs:enumeration value="PE" /> <!-- Prince Edward Island -->
+      <xs:enumeration value="QC" /> <!-- Quebec -->
+      <xs:enumeration value="SK" /> <!-- Saskatchewan -->
+      <xs:enumeration value="YT" /> <!-- Yukon -->
+      <xs:enumeration value="NU" /> <!-- Nunavut -->
+      <xs:enumeration value="NT" /> <!-- Northwest Territories -->
     </xs:restriction>
   </xs:simpleType>
 

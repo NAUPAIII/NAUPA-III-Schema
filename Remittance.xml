@@ -673,6 +673,7 @@
           <Name>Bitcoin</Name>
           <Symbol>BTC</Symbol>
           <AccountNumber>1234567890</AccountNumber>
+          <Address>Just a string?</Address>
           <ReportedUnits>100</ReportedUnits>
           <RemittedUnits>100</RemittedUnits>
           <ProceedsReported>5033090.00</ProceedsReported>
