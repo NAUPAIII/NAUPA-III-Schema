@@ -315,7 +315,7 @@
                             <xs:element name="PayableOrDistributableDate" type="xs:date" minOccurs="0" />
                             <xs:choice>
                               <xs:element name="LastActivityDate" type="xs:date" />
-                              <!-- Section 4.4.3.2.4 Transaction Element -->
+                              <!-- Section 4.4.3.2.4 PeriodicPaymentDates Element -->
                               <xs:element name="PeriodicPaymentDates">
                                 <xs:complexType>
                                   <xs:sequence>
@@ -999,7 +999,7 @@
                                 </xs:complexType>
                               </xs:element>
                               <!-- MineralInterests -->
-                              <!-- Section 4.4.3.2.14 -->
+                              <!-- Section 4.4.3.2.14 Cryptocurrency Elememt -->
                               <xs:element name="Cryptocurrency">
                                 <xs:complexType>
                                   <xs:sequence>
