@@ -1,4 +1,4 @@
-# NAUPA-III-Schema
+# NAUPA III Schema
 
 General Information
 
