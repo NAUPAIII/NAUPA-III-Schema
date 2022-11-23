@@ -34,9 +34,9 @@ not computer language.  Tags label, categorize, and organize information in
 a specific way.  A tag for a specific data element is placed between angle
 brackets (< >). 
 
-There are two types of tagsangle brackets:  starting tagsbrackets, which 
-identify the starting point for the tagged data and ending tagsbrackets, 
-which denote the end point.  TheAn ending tag bracket for a particular 
+There are two types of tag:  starting tags, which 
+identify the starting point for the tagged data and ending tags, 
+which denote the end point.  The ending tag bracket for a particular 
 starting tagbracket  has a forward slash added to the beginning.  
 
 Here is a sample XML tag for a Namename data element, or field:
