@@ -1823,7 +1823,21 @@
       <!-- Armed Forces Europe -->
       <xs:enumeration value="AP" />
       <!-- Armed Forces Pacific -->
-    </xs:restriction>
+	  <!-- Canadian Provinces here -->
+	  <xs:enumeration value="AB" />
+      <xs:enumeration value="BC" />
+	  <xs:enumeration value="MB" />
+	  <xs:enumeration value="NB" />
+	  <xs:enumeration value="NL" />
+	  <xs:enumeration value="NT" />
+	  <xs:enumeration value="NS" />
+	  <xs:enumeration value="NU" />
+      <xs:enumeration value="ON" />
+	  <xs:enumeration value="PE" />
+	  <xs:enumeration value="QC" />
+	  <xs:enumeration value="SK" />
+	  <xs:enumeration value="YT" />
+	</xs:restriction>
   </xs:simpleType>
 
 </xs:schema>
