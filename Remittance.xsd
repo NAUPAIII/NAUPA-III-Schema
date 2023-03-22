@@ -315,7 +315,7 @@
                           <xs:element name="PayableOrDistributableDate" type="xs:date" minOccurs="0" />
                           <xs:choice>
                             <xs:element name="LastActivityDate" type="xs:date" />
-                            <!-- Section 4.4.3.2.4 Transaction Element -->
+                            <!-- Section 4.4.3.2.4 PeriodicPaymentDates Element -->
                             <xs:element name="PeriodicPaymentDates">
                               <xs:complexType>
                                 <xs:sequence>
@@ -456,7 +456,7 @@
                                             <xs:element name="Identifier">
                                               <xs:simpleType>
                                                 <xs:restriction base="xs:string">
-                                                  <xs:maxLength value="15" />
+                                                  <xs:maxLength value="20" />
                                                 </xs:restriction>
                                               </xs:simpleType>
                                             </xs:element>
@@ -1161,7 +1161,7 @@
 
   <xs:simpleType name="SecurityNumberOfSharesType">
     <xs:restriction base="xs:decimal">
-      <xs:totalDigits value="12" />
+      <xs:totalDigits value="14" />
       <xs:fractionDigits value="6" />
     </xs:restriction>
   </xs:simpleType>
@@ -1464,7 +1464,7 @@
     <xs:restriction base="xs:decimal">
       <xs:minInclusive value="0" />
       <xs:maxInclusive value="100" />
-      <xs:fractionDigits value="3" />
+      <xs:fractionDigits value="10" />
     </xs:restriction>
   </xs:simpleType>
 
