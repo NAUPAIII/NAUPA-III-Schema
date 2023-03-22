@@ -1197,7 +1197,7 @@
             <xs:enumeration value="Securities" />
             <xs:enumeration value="Software" />
             <xs:enumeration value="Owner" />
-            <xs:enumeration value="Beneficiary" />
+            <xs:enumeration value="3rd Party" />
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
