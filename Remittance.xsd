@@ -138,7 +138,7 @@
                 </xs:simpleType>
               </xs:element>
               <!-- Section 4.4.3 Report Element -->
-              <xs:element name="Report">
+              <xs:element name="Report" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:sequence>
                     <!-- Section 4.4.3.1 Report TypeCode Element -->
@@ -315,15 +315,15 @@
                           <xs:element name="PayableOrDistributableDate" type="xs:date" minOccurs="0" />
                           <xs:choice>
                             <xs:element name="LastActivityDate" type="xs:date" />
-                            <!-- Section 4.4.3.2.4 PeriodicPaymentDates Element -->
-                            <xs:element name="PeriodicPaymentDates">
-                              <xs:complexType>
-                                <xs:sequence>
-                                  <xs:element name="StartDate" type="xs:date" />
-                                  <xs:element name="EndDate" type="xs:date" />
-                                </xs:sequence>
-                              </xs:complexType>
-                            </xs:element>
+                              <!-- Section 4.4.3.2.4 PeriodicPaymentDates Element -->
+                              <xs:element name="PeriodicPaymentDates">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:element name="StartDate" type="xs:date" />
+                                    <xs:element name="EndDate" type="xs:date" />
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
                           </xs:choice>
                           <xs:element name="NonRemitIndicator" type ="IndicatorType" minOccurs="0" />
                           <xs:element name="Taxable" type ="IndicatorType" minOccurs="0" />
@@ -357,11 +357,11 @@
                           <xs:element name="OFAC" minOccurs="0">
                             <xs:complexType>
                               <!-- TODO:
-                              If this information is present, are all elements required? If not, which ones are?  As
-                              currently defined here, they would all be required or the XML would fail validation.
-            
-                              KGW - I think we should query New York on the field sizes and what is required.
-                              -->
+                                    If this information is present, are all elements required? If not, which ones are?  As
+                                    currently defined here, they would all be required or the XML would fail validation.
+                                    
+                                    KGW - I think we should query New York on the field sizes and what is required.
+                                -->
                               <xs:sequence>
                                 <xs:element name="DateOfBlocking" type="xs:date" minOccurs="0" />
                                 <xs:element name="LegalAuthority" minOccurs="0">
@@ -770,8 +770,7 @@
                                             </xs:restriction>
                                           </xs:simpleType>
                                         </xs:element>
-                                        <xs:element name="Amount" type="SecurityNumberOfSharesType">
-                                        </xs:element>
+                                        <xs:element name="Amount" type="SecurityNumberOfSharesType" />
                                       </xs:sequence>
                                     </xs:complexType>
                                   </xs:element>
@@ -873,7 +872,7 @@
                                                   <xs:sequence>
                                                     <xs:element name="Name">
                                                       <xs:simpleType>
-                                                        <xs:restriction base="xs:string">
+                                                       <xs:restriction base="xs:string">
                                                           <xs:maxLength value="250" />
                                                         </xs:restriction>
                                                       </xs:simpleType>
@@ -909,13 +908,13 @@
                                     </xs:simpleType>
                                   </xs:element>
                                   <xs:element name="Section">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <!-- From FieldDescriptions in spreadsheet -->
-                                        <xs:maxLength value="2" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
-                                  </xs:element>
+                                   <xs:simpleType>
+                                     <xs:restriction base="xs:string">
+                                       <!-- From FieldDescriptions in spreadsheet -->
+                                       <xs:maxLength value="2" />
+                                     </xs:restriction>
+                                   </xs:simpleType>
+                                 </xs:element>
                                   <xs:element name="Township">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
@@ -1085,7 +1084,8 @@
                           </xs:element>
                         </xs:sequence>
                       </xs:complexType>
-                    </xs:element> <!-- Property -->
+                    </xs:element>
+                    <!-- Property -->
                     <!-- Section 4.4.3.3 Report Adjustment Element -->
                     <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
                       <xs:complexType>
@@ -1103,12 +1103,20 @@
                           <xs:element name="Amount" type="CurrencyType" />
                         </xs:sequence>
                       </xs:complexType>
-                    </xs:element>
-                    <!-- Adjustment-->
+                    </xs:element> <!-- Adjustment-->
                     <xs:element name="NonProductionReport" type="IndicatorType" minOccurs="0" />
                   </xs:sequence>
                 </xs:complexType>
               </xs:element> <!-- Report -->
+              <!-- Section 4.4.4 NegativeReport Element -->
+              <xs:element name="NegativeReport" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="AsOfDate" type="xs:date" />
+                    <xs:element name="Contact" type="ContactType" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element> <!-- NegativeReport -->
             </xs:sequence>
           </xs:complexType>
         </xs:element> <!-- Holder -->
@@ -1823,21 +1831,21 @@
       <!-- Armed Forces Europe -->
       <xs:enumeration value="AP" />
       <!-- Armed Forces Pacific -->
-	  <!-- Canadian Provinces here -->
-	  <xs:enumeration value="AB" />
+    <!-- Canadian Provinces here -->
+    <xs:enumeration value="AB" />
       <xs:enumeration value="BC" />
-	  <xs:enumeration value="MB" />
-	  <xs:enumeration value="NB" />
-	  <xs:enumeration value="NL" />
-	  <xs:enumeration value="NT" />
-	  <xs:enumeration value="NS" />
-	  <xs:enumeration value="NU" />
+    <xs:enumeration value="MB" />
+    <xs:enumeration value="NB" />
+    <xs:enumeration value="NL" />
+    <xs:enumeration value="NT" />
+    <xs:enumeration value="NS" />
+    <xs:enumeration value="NU" />
       <xs:enumeration value="ON" />
-	  <xs:enumeration value="PE" />
-	  <xs:enumeration value="QC" />
-	  <xs:enumeration value="SK" />
-	  <xs:enumeration value="YT" />
-	</xs:restriction>
+    <xs:enumeration value="PE" />
+    <xs:enumeration value="QC" />
+    <xs:enumeration value="SK" />
+    <xs:enumeration value="YT" />
+  </xs:restriction>
   </xs:simpleType>
 
 </xs:schema>

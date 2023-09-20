@@ -46,11 +46,11 @@ best practice to use camel case (for example,'CamelCase') for tag names.
 
 Best Practice:
 
-	<Name>John Smith</Name>
-	
+  <Name>John Smith</Name>
+  
 Not Recommended:
 
-	<name> John Smith </name>
+  <name> John Smith </name>
 
 XML also permits tags to be embedded within each other, to denote hierarchical, 
 or related data.  Here is a more complex example of an XML representation of 
@@ -58,23 +58,23 @@ some data about a particular person:
 
 Best Practice:
 
-	<Person>
-		<Name>John Smith</Name>
-		<PhoneNumber>
-			<HomeNumber>506 555 3555</HomeNumber>
-			<MobileNumber>506 555 7653</MobileNumber>
-		</PhoneNumber>
-	</Person>
+  <Person>
+    <Name>John Smith</Name>
+    <PhoneNumber>
+      <HomeNumber>506 555 3555</HomeNumber>
+      <MobileNumber>506 555 7653</MobileNumber>
+    </PhoneNumber>
+  </Person>
 
 Not Recommended:
 
-	<person>
-		<name> John Smith </name>
-		<phone number>
-			<home number> 506 555 3555 </home number>
-			<mobile number> 506 555 7653 </mobile number>
-		</phone number>
-	</person>
+  <person>
+    <name> John Smith </name>
+    <phone number>
+      <home number> 506 555 3555 </home number>
+      <mobile number> 506 555 7653 </mobile number>
+    </phone number>
+  </person>
 
 The specific type of data to be contained between defined tags can be specified 
 in the XSD file referenced above.  This makes it possible to ensure that data 

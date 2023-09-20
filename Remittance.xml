@@ -150,7 +150,7 @@
           <StartDate>2015-01-15</StartDate>
           <EndDate>2015-01-15</EndDate>
         </Transaction>
-				-->
+        -->
         <NonRemitIndicator>X</NonRemitIndicator>
         <Taxable>X</Taxable>
         <TaxForm1099IssuedDate>2019-09-01</TaxForm1099IssuedDate>
@@ -258,7 +258,7 @@
           <Spouse>X</Spouse>
           <Percentage>100.00</Percentage>
           <Contact>
-            <TypeCode>Beneficiary</TypeCode>
+            <TypeCode>Claims</TypeCode>
             <PersonName>
               <FirstName>Helga</FirstName>
               <LastName>Besitzer</LastName>
@@ -314,7 +314,7 @@
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <!--
         <LastActivityDate>2015-01-15</LastActivityDate>
-				-->
+        -->
         <!-- Section 4.4.3.2.4 Transaction Element -->
         <PeriodicPaymentDates>
           <StartDate>2015-01-15</StartDate>
@@ -877,7 +877,7 @@
           <Spouse>X</Spouse>
           <Percentage>100.00</Percentage>
           <Contact>
-            <TypeCode>Beneficiary</TypeCode>
+            <TypeCode>Claims</TypeCode>
             <PersonName>
               <FirstName>Helga</FirstName>
               <LastName>Besitzer</LastName>
