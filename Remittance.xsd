@@ -245,6 +245,7 @@
                                   <xs:enumeration value="MS006" />
                                   <xs:enumeration value="MS007" />
                                   <xs:enumeration value="MS008" />
+                                  <xs:enumeration value="MS009" />
                                   <xs:enumeration value="MS010" />
                                   <xs:enumeration value="MS011" />
                                   <xs:enumeration value="SC001" />
