@@ -571,19 +571,11 @@
                                 <xs:sequence>
                                   <xs:element name="ReportedAmount" type="CurrencyType" />
                                   <xs:element name="RemittedAmount" type="CurrencyType" />
-                                  <!-- Section 4.4.3.2.10.1 Interest Element -->
+                                  <!-- Section 4.4.3.2.9.1 Interest Element -->
                                   <xs:element name="Interest" minOccurs="0">
                                     <xs:complexType>
                                       <xs:sequence>
-                                        <xs:element name="Rate">
-                                          <xs:simpleType>
-                                            <xs:restriction base="xs:decimal">
-                                              <xs:minInclusive value="0" />
-                                              <xs:maxInclusive value="100" />
-                                              <xs:fractionDigits value="3" />
-                                            </xs:restriction>
-                                          </xs:simpleType>
-                                        </xs:element>
+                                        <xs:element name="Rate" type="PercentageType" />
                                         <xs:element name="PaidThroughDate" type="xs:date" />
                                       </xs:sequence>
                                     </xs:complexType>
@@ -591,6 +583,7 @@
                                   <xs:element name="CheckNumber" minOccurs="0">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="100" />
                                       </xs:restriction>
                                     </xs:simpleType>
@@ -603,9 +596,11 @@
                             <xs:element name="Bond">
                               <xs:complexType >
                                 <xs:sequence>
+                                  <xs:element name="Interest" type="PercentageType" />
                                   <xs:element name="Name">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="100" />
                                       </xs:restriction>
                                     </xs:simpleType>
@@ -613,6 +608,7 @@
                                   <xs:element name="Number" minOccurs="0">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="25" />
                                       </xs:restriction>
                                     </xs:simpleType>
@@ -620,6 +616,7 @@
                                   <xs:element name="CouponNumber" minOccurs="0">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="25" />
                                       </xs:restriction>
                                     </xs:simpleType>
@@ -627,6 +624,7 @@
                                   <xs:element name="PayingAgent" minOccurs="0">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="100" />
                                       </xs:restriction>
                                     </xs:simpleType>
@@ -638,7 +636,7 @@
                             <xs:element name="Security">
                               <xs:complexType>
                                 <xs:sequence>
-                                  <!-- Section 4.4.3.2.12.1 Security TypeCode Element -->
+                                  <!-- Section 4.4.3.2.11.1 Security TypeCode Element -->
                                   <xs:element name="TypeCode">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
@@ -649,11 +647,6 @@
                                         <xs:enumeration value="Closed-End Mutual Fund" />
                                         <xs:enumeration value="Bonds" />
                                         <xs:enumeration value="Options/Warrants" />
-                                        <xs:enumeration value="Rights" />
-                                        <xs:enumeration value="Privately Held" />
-                                        <xs:enumeration value="CVR" />
-                                        <xs:enumeration value="ADR" />
-                                        <xs:enumeration value="Foreign" />
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
@@ -666,13 +659,14 @@
                                   <xs:element name="TransferAgent">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="35" />
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
                                   <xs:element name="ReportedShares" type="SecurityNumberOfSharesType" />
                                   <xs:element name="RemittedShares" type="SecurityNumberOfSharesType" />
-                                  <!-- Section 4.4.3.2.12.2 Original Element -->
+                                  <!-- Section 4.4.3.2.11.2 Original Element -->
                                   <xs:element name="Original" minOccurs="0">
                                     <xs:complexType>
                                       <xs:sequence>
@@ -685,19 +679,25 @@
                                       </xs:sequence>
                                     </xs:complexType>
                                   </xs:element>
-                                  <!-- Section 4.4.3.2.12.3 DividendHandling Element -->
-                                  <xs:element name="DividendHandling">
-                                    <xs:simpleType>
-                                      <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
-                                        <xs:enumeration value="Cash" />
-                                        <xs:enumeration value="Reinvested" />
-                                        <xs:enumeration value="None" />
-                                      </xs:restriction>
-                                    </xs:simpleType>
+                                  <!-- Section 4.4.3.2.11.3 Dividends Element -->
+                                  <xs:element name="Dividends">
+                                    <xs:complexType>
+                                      <xs:sequence>
+                                        <xs:element name="Handling">
+                                          <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                              <xs:maxLength value="50" />
+                                              <xs:enumeration value="Cash" />
+                                              <xs:enumeration value="Reinvested" />
+                                              <xs:enumeration value="None" />
+                                            </xs:restriction>
+                                          </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="PaidThroughDate" type="xs:date" minOccurs="0"/>
+                                      </xs:sequence>
+                                    </xs:complexType>
                                   </xs:element>
-                                  <xs:element name="DividendsPaidThroughDate" type="xs:date" />
-                                  <!-- Section 4.4.3.2.12.4 DeliveryMethod Element -->
+                                  <!-- Section 4.4.3.2.11.4 DeliveryMethod Element -->
                                   <xs:element name="DeliveryMethod">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
@@ -716,18 +716,20 @@
                                   <xs:element name="StateAccountNumber">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
+                                        <xs:minLength value="1" />
+                                        <xs:maxLength value="70" />
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
                                   <xs:element name="DTCDeliveryReferenceNumber">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="20" />
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
-                                  <!-- Section 4.4.3.2.12.5 Market Element -->
+                                  <!-- Section 4.4.3.2.11.5 Market Element -->
                                   <xs:element name="Market">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
@@ -736,11 +738,12 @@
                                         <xs:enumeration value="AMEX" />
                                         <xs:enumeration value="NASDAQ" />
                                         <xs:enumeration value="Private" />
+                                        <xs:enumeration value="Foreign" />
                                         <xs:enumeration value="Other" />
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
-                                  <!-- Section 4.4.3.2.12.6 Status Element -->
+                                  <!-- Section 4.4.3.2.11.6 Status Element -->
                                   <xs:element name="Status">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
@@ -757,11 +760,11 @@
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
-                                  <!-- Section 4.4.3.2.12.7 Security Adjustment Element -->
+                                  <!-- Section 4.4.3.2.11.7 Security Adjustment Element -->
                                   <xs:element name="Adjustment" minOccurs="0">
                                     <xs:complexType>
                                       <xs:sequence>
-                                        <!-- Section 4.4.3.2.12.7.1 Security Adjustment TypeCode Element -->
+                                        <!-- Section 4.4.3.2.11.7.1 Security Adjustment TypeCode Element -->
                                         <xs:element name="TypeCode">
                                           <xs:simpleType>
                                             <xs:restriction base="xs:string">
@@ -774,8 +777,8 @@
                                       </xs:sequence>
                                     </xs:complexType>
                                   </xs:element>
-                                  <!-- Section 4.4.3.2.12.8 CostBasis Element -->
-                                  <xs:element name="CostBasis" minOccurs="0">
+                                  <!-- Section 4.4.3.2.11.9 CostBasis Element -->
+                                  <xs:element name="CostBasis">
                                     <xs:complexType>
                                       <xs:sequence>
                                         <xs:element name="Name" type="SecurityNameType" minOccurs="1" />
@@ -800,17 +803,18 @@
                                   <xs:element name="BoxCaseNumber">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="25" />
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
                                   <xs:element name="BoxOpenDate" type="xs:date" />
                                   <xs:element name="LeaseExpiredDate" type="xs:date" />
-                                  <!-- Section 4.4.3.2.13.1 Fee Element -->
+                                  <!-- Section 4.4.3.2.12.1 Fee Element -->
                                   <xs:element name="Fee" minOccurs="0" maxOccurs="unbounded">
                                     <xs:complexType>
                                       <xs:sequence>
-                                        <!-- Section 4.4.3.2.13.1.1 Fee TypeCode Element -->
+                                        <!-- Section 4.4.3.2.12.1.1 Fee TypeCode Element -->
                                         <xs:element name="TypeCode">
                                           <xs:simpleType>
                                             <xs:restriction base="xs:string">
@@ -824,11 +828,11 @@
                                       </xs:sequence>
                                     </xs:complexType>
                                   </xs:element>
-                                  <!-- Section 4.4.3.2.13.2 Inventory Element -->
+                                  <!-- Section 4.4.3.2.12.2 Inventory Element -->
                                   <xs:element name="Inventory" maxOccurs="unbounded">
                                     <xs:complexType>
                                       <xs:sequence>
-                                        <!-- Section 4.4.3.2.13.2.1 ItemCode Element -->
+                                        <!-- Section 4.4.3.2.12.2.1 ItemCode Element -->
                                         <xs:element name="ItemCode">
                                           <xs:simpleType>
                                             <xs:restriction base="xs:string">
@@ -843,36 +847,39 @@
                                               <xs:enumeration value="Savings Bonds" />
                                               <xs:enumeration value="Stock Certificates" />
                                               <xs:enumeration value="Weapons" />
+                                              <xs:enumeration value="Foreign Currency" />
                                             </xs:restriction>
                                           </xs:simpleType>
                                         </xs:element>
                                         <xs:element name="Description">
                                           <xs:simpleType>
                                             <xs:restriction base="xs:string">
+                                              <xs:minLength value="1" />
                                               <xs:maxLength value="2000" />
                                             </xs:restriction>
                                           </xs:simpleType>
                                         </xs:element>
-                                        <xs:element name="EstimatedValue" type="CurrencyType" minOccurs="0"/>
-                                        <!-- Section 4.4.3.2.13.2.2 SavingsBond Element -->
+                                        <!-- Section 4.4.3.2.12.2.2 SavingsBond Element -->
                                         <xs:element name="SavingsBond" minOccurs="0">
                                           <xs:complexType >
                                             <xs:sequence>
                                               <xs:element name="BondNumber">
                                                 <xs:simpleType>
                                                   <xs:restriction base="xs:string">
+                                                    <xs:minLength value="1" />
                                                     <xs:maxLength value="250" />
                                                   </xs:restriction>
                                                 </xs:simpleType>
                                               </xs:element>
                                               <xs:element name="FaceValue" type="CurrencyType" />
-                                              <!-- Section 4.4.3.2.13.2.2.1 SavingsBond Owner Element -->
+                                              <!-- Section 4.4.3.2.12.2.2.1 SavingsBond Owner Element -->
                                               <xs:element name="Owner">
                                                 <xs:complexType>
                                                   <xs:sequence>
                                                     <xs:element name="Name">
                                                       <xs:simpleType>
-                                                       <xs:restriction base="xs:string">
+                                                        <xs:restriction base="xs:string">
+                                                          <xs:minLength value="1" />
                                                           <xs:maxLength value="250" />
                                                         </xs:restriction>
                                                       </xs:simpleType>
@@ -888,6 +895,7 @@
                                             </xs:sequence>
                                           </xs:complexType>
                                         </xs:element>
+                                        <xs:element name="EstimatedValue" type="CurrencyType" minOccurs="0"/>
                                       </xs:sequence>
                                     </xs:complexType>
                                   </xs:element>
