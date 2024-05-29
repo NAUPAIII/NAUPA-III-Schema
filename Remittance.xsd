@@ -198,6 +198,7 @@
                                   <xs:enumeration value="CS005" />
                                   <xs:enumeration value="CS006" />
                                   <xs:enumeration value="CS007" />
+                                  <xs:enumeration value="CS010" />
                                   <xs:enumeration value="CT001" />
                                   <xs:enumeration value="CT002" />
                                   <xs:enumeration value="CT003" />
@@ -211,6 +212,8 @@
                                   <xs:enumeration value="CT011" />
                                   <xs:enumeration value="HS001" />
                                   <xs:enumeration value="HS002" />
+                                  <xs:enumeration value="HS003" />
+                                  <xs:enumeration value="HS004" />
                                   <xs:enumeration value="IN001" />
                                   <xs:enumeration value="IN002" />
                                   <xs:enumeration value="IN003" />
@@ -220,6 +223,7 @@
                                   <xs:enumeration value="IN007" />
                                   <xs:enumeration value="IN008" />
                                   <xs:enumeration value="IN009" />
+                                  <xs:enumeration value="IN010" />
                                   <xs:enumeration value="IR001" />
                                   <xs:enumeration value="IR002" />
                                   <xs:enumeration value="IR003" />
@@ -1020,6 +1024,7 @@
                                           <xs:element name="Name">
                                             <xs:simpleType>
                                               <xs:restriction base="xs:string">
+                                                <xs:minLength value="1" />
                                                 <xs:maxLength value="50" />
                                               </xs:restriction>
                                             </xs:simpleType>
@@ -1027,6 +1032,7 @@
                                           <xs:element name="Number">
                                             <xs:simpleType>
                                               <xs:restriction base="xs:string">
+                                                <xs:minLength value="1" />
                                                 <xs:maxLength value="50" />
                                               </xs:restriction>
                                             </xs:simpleType>
@@ -1048,6 +1054,13 @@
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
+                                    <xs:element name="HashID" minOccurs="0">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="64" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
                                     <xs:element name="StateAccountNumber" maxOccurs="unbounded">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
@@ -1063,6 +1076,13 @@
                                       </xs:simpleType>
                                     </xs:element>
                                     <xs:element name="ReportNotRemit" type="IndicatorType" minOccurs="0" />
+                                    <xs:element name="Exchange" minOccurs="0">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="70" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
                                   </xs:sequence>
                                 </xs:complexType>
                               </xs:element> <!-- Cryptocurrency -->
@@ -1077,10 +1097,11 @@
                                       <xs:restriction base="xs:string">
                                         <xs:maxLength value="50" />
                                         <xs:enumeration value="DC" />
-                                        <xs:enumeration value="SC" />
-                                        <xs:enumeration value="TW" />
+                                        <xs:enumeration value="FW" />
+                                        <xs:enumeration value="SW" />
                                         <xs:enumeration value="PW" />
                                         <xs:enumeration value="BW" />
+                                        <xs:enumeration value="SC" />
                                         <xs:enumeration value="IE" />
                                         <xs:enumeration value="DE" />
                                       </xs:restriction>

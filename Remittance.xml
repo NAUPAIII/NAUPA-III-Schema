@@ -144,12 +144,12 @@
         </ReturnedByPostOffice>
         <PayableOrDistributableDate>2015-01-15</PayableOrDistributableDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
-        <!-- Section 4.4.3.2.4 Transaction Element -->
+        <!-- Section 4.4.3.2.4 PeriodicPaymentDates Element -->
         <!--
-        <Transaction>
+        <PeriodicPaymentDates>
           <StartDate>2015-01-15</StartDate>
           <EndDate>2015-01-15</EndDate>
-        </Transaction>
+        </PeriodicPaymentDates>
         -->
         <NonRemitIndicator>X</NonRemitIndicator>
         <Taxable>X</Taxable>
@@ -237,7 +237,7 @@
             <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
             <AlternateEMailAddress>jbesitzer999@somecompay.com</AlternateEMailAddress>
           </Contact>
-          <Description>Snooty</Description>
+          <Description>Owner Description Text</Description>
           <DateOfBirth>1954-06-08</DateOfBirth>
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
@@ -358,7 +358,6 @@
         </Owner>
         <!-- Section 4.4.3.2.10 Bond Element -->
         <Bond>
-          <Interest>5.0</Interest>
           <Name>Bondy McBondface</Name>
           <Number>123456789</Number>
           <PayingAgent>Bonds R Us</PayingAgent>
@@ -677,15 +676,25 @@
           <Symbol>BTC</Symbol>
           <AccountNumber>1234567890</AccountNumber>
           <!-- Section 4.4.3.2.15.1 AlternativeID Element -->
+          <Address>This is an address.</Address>
           <AlternativeID>
             <!-- Section 4.4.3.2.15.1.1 AlternativeID TypeCode Element -->
-            <TypeCode>TBD</TypeCode>
-            <Identifier>ABC123</Identifier>
+            <Name>TBD</Name>
+            <Number>ABC123</Number>
           </AlternativeID>
           <ReportedUnits>100</ReportedUnits>
           <RemittedUnits>100</RemittedUnits>
           <ProceedsReported>5033090.00</ProceedsReported>
           <ProceedsRemitted>5033070.00</ProceedsRemitted>
+          <DateSold>2021-12-31</DateSold>
+          <UnitsSold>100</UnitsSold>
+          <DateAcquired>2005-05-01</DateAcquired>
+          <DeliveryMethod>State Wallet</DeliveryMethod>
+          <HashID>123sadf45654sdf16546sadf</HashID>
+          <StateAccountNumber>123456789</StateAccountNumber>
+          <StateAddressNumber>2165446132dfa5646sadef</StateAddressNumber>
+          <ReportNotRemit>X</ReportNotRemit>
+          <Exchange>CoinBase</Exchange>
         </Cryptocurrency>
         <!-- Section 4.4.3.2.15 Property Adjustment Element -->
         <Adjustment>
