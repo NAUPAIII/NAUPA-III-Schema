@@ -15,6 +15,7 @@
               <xs:element name="Version">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
+                    <xs:minLength value="1" />
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
@@ -24,11 +25,11 @@
           </xs:complexType>
         </xs:element> <!-- SoftwareInformation -->
         <!-- Section 4.2 Payment Element -->
-        <xs:element name="Payment">
+        <xs:element name="Payment" minOccurs="0" maxOccurs="1">
           <xs:complexType>
             <xs:sequence>
               <!-- Section 4.2.1 Payment TypeCode -->
-              <xs:element name="TypeCode" minOccurs="0">
+              <xs:element name="TypeCode" maxOccurs="unbounded">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -37,16 +38,17 @@
                     <xs:enumeration value="Wire" />
                     <xs:enumeration value="ACH Credit" />
                     <xs:enumeration value="ACH Debit" />
-                    <xs:enumeration value="Interagency" />
+                    <xs:enumeration value="InterAgency" />
                     <xs:enumeration value="ECheck" />
                     <xs:enumeration value="Other" />
-                    <xs:enumeration value="None" /> <!-- ??? Leave out Payment element if there is no payment -->
+                    <xs:enumeration value="None" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="ConfirmationNumber">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
+                    <xs:minLength value="1" />
                     <xs:maxLength value="50"/>
                   </xs:restriction>
                 </xs:simpleType>
@@ -110,7 +112,7 @@
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="State" type="StateCodeType" />
-                    <xs:element name="Date" type="xs:date" />
+                    <xs:element name="Date" type="xs:date" minOccurs="0" />
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -147,7 +149,7 @@
                         <xs:simpleType>
                           <xs:restriction base="xs:string">
                             <xs:maxLength value="50" />
-                            <xs:enumeration value="Advertising/No Remittance" />
+                            <xs:enumeration value="Advertisement/No Remittance" />
                             <xs:enumeration value="Remittance/Annual" />
                             <xs:enumeration value="Test" />
                             <xs:enumeration value="Audit" />
@@ -198,7 +200,6 @@
                                   <xs:enumeration value="CS005" />
                                   <xs:enumeration value="CS006" />
                                   <xs:enumeration value="CS007" />
-                                  <xs:enumeration value="CS010" />
                                   <xs:enumeration value="CT001" />
                                   <xs:enumeration value="CT002" />
                                   <xs:enumeration value="CT003" />
@@ -251,6 +252,7 @@
                                   <xs:enumeration value="MS008" />
                                   <xs:enumeration value="MS010" />
                                   <xs:enumeration value="MS011" />
+                                  <xs:enumeration value="MS012" />
                                   <xs:enumeration value="SC001" />
                                   <xs:enumeration value="SC002" />
                                   <xs:enumeration value="SC003" />
@@ -271,6 +273,8 @@
                                   <xs:enumeration value="SD001" />
                                   <xs:enumeration value="SD002" />
                                   <xs:enumeration value="SD003" />
+                                  <xs:enumeration value="SD004" />
+                                  <xs:enumeration value="SD005" />
                                   <xs:enumeration value="TR001" />
                                   <xs:enumeration value="TR002" />
                                   <xs:enumeration value="TR003" />
@@ -282,12 +286,14 @@
                                   <xs:enumeration value="UT002" />
                                   <xs:enumeration value="VC001" />
                                   <xs:enumeration value="VC002" />
+                                  <xs:enumeration value="VC003" />
                                 </xs:restriction>
                               </xs:simpleType>
                             </xs:element>
-                            <xs:element name="AccountNumber">
+                            <xs:element name="AccountNumber" minOccurs="0">
                               <xs:simpleType>
                                 <xs:restriction base="xs:string">
+                                  <xs:minLength value="1" />
                                   <xs:maxLength value="100" />
                                 </xs:restriction>
                               </xs:simpleType>
@@ -331,7 +337,8 @@
                             <xs:element name="Description" minOccurs="0">
                               <xs:simpleType>
                                 <xs:restriction base="xs:string">
-                                  <xs:maxLength value="500" />
+                                  <xs:minLength value="1" />
+                                  <xs:maxLength value="250" />
                                 </xs:restriction>
                               </xs:simpleType>
                             </xs:element>
@@ -342,6 +349,7 @@
                                   <xs:element name="Identifier" minOccurs="0">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="20" />
                                       </xs:restriction>
                                     </xs:simpleType>
@@ -358,9 +366,10 @@
                               <xs:complexType>
                                 <xs:sequence>
                                   <xs:element name="DateOfBlocking" type="xs:date" minOccurs="0" />
-                                  <xs:element name="LegalAuthority" minOccurs="0">
+                                  <xs:element name="LegalAuthority">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="100" />
                                       </xs:restriction>
                                     </xs:simpleType>
@@ -368,6 +377,7 @@
                                   <xs:element name="SanctionsTarget">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="100" />
                                       </xs:restriction>
                                     </xs:simpleType>
@@ -390,7 +400,7 @@
                             </xs:element>
                             <xs:element name="HIPAAIndicator" type="IndicatorType" minOccurs="0" />
                             <!-- Section 4.4.3.2.7 Owner Element -->
-                            <xs:element name="Owner" minOccurs ="1" maxOccurs="unbounded">
+                            <xs:element name="Owner" maxOccurs="unbounded">
                               <xs:complexType>
                                 <xs:sequence>
                                   <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
@@ -399,8 +409,8 @@
                                       <xs:restriction base="xs:string">
                                         <xs:maxLength value="15" />
                                         <xs:enumeration value="Aggregate" />
-                                        <xs:enumeration value="NamedOwner" />
                                         <xs:enumeration value="Unknown" />
+                                        <xs:enumeration value="NamedOwner" />
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
@@ -410,7 +420,7 @@
                                       <xs:sequence>
                                         <xs:choice>
                                           <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
-                                          <xs:element name="USTaxID" minOccurs="0">
+                                          <xs:element name="USTaxID">
                                             <xs:complexType>
                                               <xs:sequence>
                                                 <!-- Section 4.4.3.2.7.2.1.1 USTaxID TypeCode Element -->
@@ -434,23 +444,25 @@
                                               </xs:sequence>
                                             </xs:complexType>
                                           </xs:element>
-                                          <xs:element name="AlienID" minOccurs="0">
+                                          <xs:element name="AlienID">
                                             <xs:simpleType>
                                               <xs:restriction base="xs:string">
+                                                <xs:minLength value="1" />
                                                 <xs:maxLength value="20" />
                                               </xs:restriction>
                                             </xs:simpleType>
                                           </xs:element>
                                         </xs:choice>
                                         <!-- Section 4.4.3.2.7.2.2 DriversLicense Element -->
-                                        <xs:element name="DriversLicense" minOccurs="0">
+                                        <xs:element name="DriversLicense">
                                           <xs:complexType>
                                             <xs:sequence>
                                               <xs:element name="State" type="StateCodeType" />
                                               <xs:element name="Identifier">
                                                 <xs:simpleType>
                                                   <xs:restriction base="xs:string">
-                                                    <xs:maxLength value="15" />
+                                                <xs:minLength value="1" />
+                                                <xs:maxLength value="20" />
                                                   </xs:restriction>
                                                 </xs:simpleType>
                                               </xs:element>
@@ -464,6 +476,7 @@
                                   <xs:element name="Description" minOccurs="0">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="255" />
                                       </xs:restriction>
                                     </xs:simpleType>
@@ -511,6 +524,7 @@
                                   <xs:element name="CompleteAccountRegistrationName" minOccurs="0">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
+                                        <xs:minLength value="1" />
                                         <xs:maxLength value="255" />
                                       </xs:restriction>
                                     </xs:simpleType>
@@ -569,15 +583,7 @@
                                     <xs:element name="Interest" minOccurs="0">
                                       <xs:complexType>
                                         <xs:sequence>
-                                          <xs:element name="Rate">
-                                            <xs:simpleType>
-                                              <xs:restriction base="xs:decimal">
-                                                <xs:minInclusive value="0" />
-                                                <xs:maxInclusive value="100" />
-                                                <xs:fractionDigits value="3" />
-                                              </xs:restriction>
-                                            </xs:simpleType>
-                                          </xs:element>
+                                          <xs:element name="Rate" type="PercentageType" />
                                           <xs:element name="PaidThroughDate" type="xs:date" />
                                         </xs:sequence>
                                       </xs:complexType>
@@ -585,6 +591,7 @@
                                     <xs:element name="CheckNumber" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="100" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -597,9 +604,11 @@
                               <xs:element name="Bond">
                                 <xs:complexType >
                                   <xs:sequence>
+                                    <xs:element name="Interest" type="PercentageType" />
                                     <xs:element name="Name">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="100" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -607,6 +616,7 @@
                                     <xs:element name="Number" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="25" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -614,6 +624,7 @@
                                     <xs:element name="CouponNumber" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="25" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -621,6 +632,7 @@
                                     <xs:element name="PayingAgent" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="100" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -660,6 +672,7 @@
                                     <xs:element name="TransferAgent">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="35" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -694,12 +707,12 @@
                                               </xs:restriction>
                                             </xs:simpleType>
                                           </xs:element>
-                                          <xs:element name="PaidThroughDate" type="xs:date" />
+                                          <xs:element name="PaidThroughDate" minOccurs="0" type="xs:date" />
                                         </xs:sequence>
                                       </xs:complexType>
                                     </xs:element>
                                     <!-- Section 4.4.3.2.11.4 DeliveryMethod Element -->
-                                      <xs:element name="DeliveryMethod">
+                                      <xs:element name="DeliveryMethod" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
                                           <xs:maxLength value="50" />
@@ -714,16 +727,18 @@
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="StateAccountNumber">
+                                    <xs:element name="StateAccountNumber" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="50" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="DTCDeliveryReferenceNumber">
+                                    <xs:element name="DTCDeliveryReferenceNumber" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="20" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -759,7 +774,7 @@
                                       </xs:simpleType>
                                     </xs:element>
                                     <!-- Section 4.4.3.2.11.7 Security Adjustment Element -->
-                                    <xs:element name="Adjustment" minOccurs="0">
+                                    <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
                                       <xs:complexType>
                                         <xs:sequence>
                                           <!-- Section 4.4.3.2.11.7.1 Security Adjustment TypeCode Element -->
@@ -780,8 +795,8 @@
                                     <xs:element name="CostBasis" minOccurs="0">
                                       <xs:complexType>
                                         <xs:sequence>
-                                          <xs:element name="Name" type="SecurityNameType" minOccurs="1" />
-                                          <xs:element name="Symbol" type="SecuritySymbolType" minOccurs="0" />
+                                          <xs:element name="Name" type="SecurityNameType" />
+                                          <xs:element name="Symbol" type="SecuritySymbolType" />
                                           <xs:choice>
                                             <xs:element name="CUSIP" type="SecurityCUSIPType" />
                                             <xs:element name="AlternativeID" type="AlternativeSecurityIDType" />
@@ -802,6 +817,7 @@
                                     <xs:element name="BoxCaseNumber">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="25" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -839,23 +855,24 @@
                                                 <xs:enumeration value="Paper Currency" />
                                                 <xs:enumeration value="Empty Box" />
                                                 <xs:enumeration value="Jewelry" />
-                                                <xs:enumeration value="Legal or Misc Papers" />
+                                                <xs:enumeration value="Legal or Misc. Papers" />
                                                 <xs:enumeration value="Military Medals" />
                                                 <xs:enumeration value="Miscellaneous Items" />
                                                 <xs:enumeration value="Savings Bonds" />
                                                 <xs:enumeration value="Stock Certificates" />
                                                 <xs:enumeration value="Weapons" />
+                                                <xs:enumeration value="Foreign Currency" />
                                               </xs:restriction>
                                             </xs:simpleType>
                                           </xs:element>
                                           <xs:element name="Description">
                                             <xs:simpleType>
                                               <xs:restriction base="xs:string">
+                                                <xs:minLength value="1" />
                                                 <xs:maxLength value="2000" />
                                               </xs:restriction>
                                             </xs:simpleType>
                                           </xs:element>
-                                          <xs:element name="EstimatedValue" type="CurrencyType" minOccurs="0"/>
                                           <!-- Section 4.4.3.2.13.2.2 SavingsBond Element -->
                                           <xs:element name="SavingsBond" minOccurs="0">
                                             <xs:complexType >
@@ -863,6 +880,7 @@
                                                 <xs:element name="BondNumber">
                                                   <xs:simpleType>
                                                     <xs:restriction base="xs:string">
+                                                      <xs:minLength value="1" />
                                                       <xs:maxLength value="250" />
                                                     </xs:restriction>
                                                   </xs:simpleType>
@@ -875,6 +893,7 @@
                                                       <xs:element name="Name">
                                                         <xs:simpleType>
                                                           <xs:restriction base="xs:string">
+                                                            <xs:minLength value="1" />
                                                             <xs:maxLength value="250" />
                                                           </xs:restriction>
                                                         </xs:simpleType>
@@ -883,13 +902,14 @@
                                                         <xs:element name="USAddress" type="USAddressType" />
                                                         <xs:element name="ForeignAddress" type="ForeignAddressType" />
                                                       </xs:choice>
-                                                      <xs:element name="SocialSecurityNumber" type="SSNType" />
+                                                      <xs:element name="SocialSecurityNumber" type="SSNType" minOccurs="0" />
                                                     </xs:sequence>
                                                   </xs:complexType>
                                                 </xs:element>
                                               </xs:sequence>
                                             </xs:complexType>
                                           </xs:element>
+                                          <xs:element name="EstimatedValue" type="CurrencyType" minOccurs="0"/>
                                         </xs:sequence>
                                       </xs:complexType>
                                     </xs:element>
@@ -904,85 +924,77 @@
                                     <xs:element name="CountyName">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="20" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="Section">
+                                    <xs:element name="Section" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="2" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="Township">
+                                    <xs:element name="Township" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="3" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="Range">
+                                    <xs:element name="Range" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="3" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="SupplementalDescription">
+                                    <xs:element name="SupplementalDescription" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="20" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="PoolingOrder">
+                                    <xs:element name="PoolingOrder" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="6" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="PoolingDate" type="xs:date" />
-                                    <xs:element name="WellName">
+                                    <xs:element name="PoolingDate" type="xs:date" minOccurs="0"/>
+                                    <xs:element name="WellName" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="30" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="WellNumber">
+                                    <xs:element name="WellNumber" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="20" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="LeaseName">
+                                    <xs:element name="LeaseNumber" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <!-- From FieldDescriptions in spreadsheet -->
-                                          <xs:maxLength value="30" />
-                                        </xs:restriction>
-                                      </xs:simpleType>
-                                    </xs:element>
-                                    <xs:element name="LeaseNumber">
-                                      <xs:simpleType>
-                                        <xs:restriction base="xs:string">
-                                          <!-- From FieldDescriptions in spreadsheet -->
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="20" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="OwnershipPercentage" type="PercentageType" />
+                                    <xs:element name="OwnershipPercentage" type="PercentageType" minOccurs="0" />
                                   </xs:sequence>
                                 </xs:complexType>
                               </xs:element> <!-- MineralInterests -->
@@ -1097,20 +1109,23 @@
                                       <xs:restriction base="xs:string">
                                         <xs:maxLength value="50" />
                                         <xs:enumeration value="DC" />
+                                        <xs:enumeration value="SC" />
                                         <xs:enumeration value="FW" />
                                         <xs:enumeration value="SW" />
                                         <xs:enumeration value="PW" />
                                         <xs:enumeration value="BW" />
-                                        <xs:enumeration value="SC" />
                                         <xs:enumeration value="IE" />
                                         <xs:enumeration value="DE" />
+                                        <xs:enumeration value="PR" />
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
                                   <xs:element name="Amount" type="CurrencyType" />
+                                  <xs:element name="CostBasis" type="CurrencyType" minOccurs="0" />
                                 </xs:sequence>
                               </xs:complexType>
                             </xs:element>
+                            <xs:element name="ContactHolderBeforePaying" type="IndicatorType" minOccurs="0" />
                           </xs:sequence>
                         </xs:complexType>
                       </xs:element> <!-- Property -->
@@ -1125,6 +1140,8 @@
                                   <xs:maxLength value="50" />
                                   <xs:enumeration value="Audit Fees" />
                                   <xs:enumeration value="Estimate or Prepayment" />
+                                  <xs:enumeration value="Interest" />
+                                  <xs:enumeration value="Penalty" />
                                 </xs:restriction>
                               </xs:simpleType>
                             </xs:element>
@@ -1140,7 +1157,7 @@
                 <xs:element name="NegativeReport">
                   <xs:complexType>
                     <xs:sequence>
-                      <xs:element name="Contact" type="ContactType" />
+                      <xs:element name="Contact" type="ContactType" maxOccurs="unbounded"/>
                       <xs:element name="AsOfDate" type="xs:date" />
                     </xs:sequence>
                   </xs:complexType>
@@ -1151,7 +1168,7 @@
         </xs:element> <!-- Holder -->
       </xs:sequence>
       <!-- Section 4.5 Remittance Attributes -->
-      <xs:attribute name="version" type="xs:string" use="required" fixed="0.1" />
+      <xs:attribute name="version" type="xs:string" use="required" fixed="1.0" />
     </xs:complexType>
   </xs:element> <!-- Remittance -->
 
@@ -1168,13 +1185,14 @@
             <xs:enumeration value="SEDOL" />
             <xs:enumeration value="ISIN" />
             <xs:enumeration value="VALOREN" />
-            <xs:enumeration value="OTHER" />
+            <xs:enumeration value="Other" />
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
       <xs:element name="Identifier">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="20" />
           </xs:restriction>
         </xs:simpleType>
@@ -1185,6 +1203,7 @@
   <!-- Section 5.2 Security Data Element Types-->
   <xs:simpleType name="SecurityNameType">
     <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
       <xs:maxLength value="100" />
     </xs:restriction>
   </xs:simpleType>
@@ -1197,7 +1216,6 @@
 
   <xs:simpleType name="SecurityCUSIPType">
     <xs:restriction base="xs:string">
-      <xs:maxLength value="9" />
       <xs:pattern value="[A-Za-z0-9]{8}[0-9]{1}" />
     </xs:restriction>
   </xs:simpleType>
@@ -1213,8 +1231,8 @@
   <!-- Section 6.1 Cryptocurrency Data Element Types -->
   <xs:simpleType name="CryptocurrencyUnits">
     <xs:restriction base="xs:decimal">
-      <xs:totalDigits value="14" />
-    <xs:fractionDigits value="6" />
+      <xs:totalDigits value="33" />
+    <xs:fractionDigits value="18" />
     </xs:restriction>
   </xs:simpleType>
 
@@ -1244,6 +1262,7 @@
         <xs:element name="CompanyName" type="CompanyNameType" />
         <xs:element name="PersonName" type="PersonNameType" />
       </xs:choice>
+      <!-- Section 7.1.1.2 PrimaryAddress -->
       <xs:element name="PrimaryAddress" minOccurs="0">
         <xs:complexType>
           <xs:choice>
@@ -1252,18 +1271,18 @@
           </xs:choice>
         </xs:complexType>
       </xs:element>
-      <!-- Section 7.1.1.2 AlternateAddress -->
-      <xs:element name="AlternateAddress" minOccurs="0" >
+      <!-- Section 7.1.1.3 AlternateAddress -->
+      <xs:element name="AlternateAddress" minOccurs="0" maxOccurs="unbounded">
         <xs:complexType>
           <xs:sequence>
-            <!-- Section 7.1.1.2.1 AlternateAddress TypeCode -->
+            <!-- Section 7.1.1.3.1 AlternateAddress TypeCode -->
             <xs:element name="TypeCode">
               <xs:simpleType>
                 <xs:restriction base="xs:string">
                   <xs:maxLength value="50" />
                   <xs:enumeration value="Seasonal" />
                   <xs:enumeration value="Obsolete/Prior" />
-                  <xs:enumeration value="Forwarding/Non-Permanent" />
+                  <xs:enumeration value="Forwarding/non-permanent" />
                   <xs:enumeration value="Billing" />
                   <xs:enumeration value="Service" />
                   <xs:enumeration value="Owned but not occupied" />
@@ -1290,6 +1309,7 @@
       <xs:element name="Address1">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="255" />
           </xs:restriction>
         </xs:simpleType>
@@ -1297,6 +1317,7 @@
       <xs:element name="Address2" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="255" />
           </xs:restriction>
         </xs:simpleType>
@@ -1304,6 +1325,7 @@
       <xs:element name="Address3" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="100" />
           </xs:restriction>
         </xs:simpleType>
@@ -1311,13 +1333,15 @@
       <xs:element name="City">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="100" />
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-      <xs:element name="ProvinceOrState" minOccurs="0">
+      <xs:element name="ProvinceOrState">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="100" />
           </xs:restriction>
         </xs:simpleType>
@@ -1325,6 +1349,7 @@
       <xs:element name="ForeignPostalCode" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="10" />
           </xs:restriction>
         </xs:simpleType>
@@ -1347,6 +1372,7 @@
       <xs:element name="Prefix" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="10" />
           </xs:restriction>
         </xs:simpleType>
@@ -1354,6 +1380,7 @@
       <xs:element name="FirstName">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="100" />
           </xs:restriction>
         </xs:simpleType>
@@ -1361,6 +1388,7 @@
       <xs:element name="MiddleName" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="100" />
           </xs:restriction>
         </xs:simpleType>
@@ -1376,6 +1404,7 @@
       <xs:element name="Suffix" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="10" />
           </xs:restriction>
         </xs:simpleType>
@@ -1389,6 +1418,7 @@
       <xs:element name="Type" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="50" />
           </xs:restriction>
         </xs:simpleType>
@@ -1407,6 +1437,7 @@
       <xs:element name="Address1">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="255" />
           </xs:restriction>
         </xs:simpleType>
@@ -1414,6 +1445,7 @@
       <xs:element name="Address2" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="255" />
           </xs:restriction>
         </xs:simpleType>
@@ -1421,6 +1453,7 @@
       <xs:element name="Address3" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="100" />
           </xs:restriction>
         </xs:simpleType>
@@ -1428,6 +1461,7 @@
       <xs:element name="City">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
             <xs:maxLength value="100" />
           </xs:restriction>
         </xs:simpleType>
@@ -1484,6 +1518,7 @@
 
   <xs:simpleType name="ForeignTaxIDType">
     <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
       <xs:maxLength value="15" />
     </xs:restriction>
   </xs:simpleType>
@@ -1848,7 +1883,7 @@
       <xs:enumeration value="FM" /> <!-- Micronesia -->
       <xs:enumeration value="MP" /> <!-- Northern Marianas -->
       <xs:enumeration value="PW" /> <!-- Palau -->
-      <xs:enumeration value="PR" /> <!-- Puerto Rico-->
+      <xs:enumeration value="PR" /> <!-- Puerto Rico -->
       <xs:enumeration value="VI" /> <!-- Virgin Islands -->
       <!-- Armed Forces codes -->
       <xs:enumeration value="AA" /> <!-- Armed Forces Americas -->
