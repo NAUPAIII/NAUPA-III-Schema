@@ -693,7 +693,7 @@
                                       </xs:complexType>
                                     </xs:element>
                                     <!-- Section 4.4.3.2.11.3 Dividends Element -->
-                                    <xs:element name="Dividends">
+                                    <xs:element name="Dividends" minOccurs="0">
                                       <xs:complexType>
                                         <xs:sequence>
                                           <xs:element name="Handling">
