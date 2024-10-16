@@ -334,7 +334,7 @@
                             <xs:element name="NonRemitIndicator" type ="IndicatorType" minOccurs="0" />
                             <xs:element name="Taxable" type ="IndicatorType" minOccurs="0" />
                             <xs:element name="TaxForm1099IssuedDate" type="xs:date" minOccurs="0" />
-                            <xs:element name="Description" minOccurs="0">
+                            <xs:element name="DescriptionOrAdditionalInformation" minOccurs="0">
                               <xs:simpleType>
                                 <xs:restriction base="xs:string">
                                   <xs:minLength value="1" />
