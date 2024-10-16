@@ -38,7 +38,6 @@
       <ForeignAddress>
         <Address1>8 Canada Square</Address1>
         <City>London</City>
-        <ProvinceOrState>GB</ProvinceOrState>
         <ForeignPostalCode>E14 5HQ</ForeignPostalCode>
         <CountryCode>GBR</CountryCode>
       </ForeignAddress>
@@ -192,12 +191,12 @@
             <!--
             <AlienID>999999999</AlienID>
             -->
-            <!-- Section 4.4.3.2.7.2.2 DriversLicense Element -->
-            <DriversLicense>
-              <State>CO</State>
-              <Identifier>24-457-1234</Identifier>
-            </DriversLicense>
           </Identity>
+          <!-- Section 4.4.3.2.7.2.2 DriversLicense Element -->
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>24-457-1234</Identifier>
+          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -222,7 +221,6 @@
               <ForeignAddress>
                 <Address1>Bahrenfelder Chaussee 55</Address1>
                 <City>Hamburg</City>
-                <ProvinceOrState>ES</ProvinceOrState>
                 <ForeignPostalCode>22761</ForeignPostalCode>
                 <CountryCode>DEU</CountryCode>
               </ForeignAddress>
@@ -335,11 +333,11 @@
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
-            <DriversLicense>
-              <State>CO</State>
-              <Identifier>12345678</Identifier>
-            </DriversLicense>
           </Identity>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>12345678</Identifier>
+          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -396,11 +394,11 @@
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
-            <DriversLicense>
-              <State>CO</State>
-              <Identifier>12345678</Identifier>
-            </DriversLicense>
           </Identity>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>12345678</Identifier>
+          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -503,11 +501,11 @@
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
-            <DriversLicense>
-              <State>CO</State>
-              <Identifier>12345678</Identifier>
-            </DriversLicense>
           </Identity>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>12345678</Identifier>
+          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -598,11 +596,11 @@
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
-            <DriversLicense>
-              <State>CO</State>
-              <Identifier>12345678</Identifier>
-            </DriversLicense>
           </Identity>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>12345678</Identifier>
+          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -666,11 +664,11 @@
               <TypeCode>SSN</TypeCode>
               <Number>555551234</Number>
             </USTaxID>
-            <DriversLicense>
-              <State>CO</State>
-              <Identifier>12345678</Identifier>
-            </DriversLicense>
           </Identity>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>12345678</Identifier>
+          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -848,11 +846,11 @@
             <!--
             <AlienID>999999999</AlienID>
             -->
-            <DriversLicense>
-              <State>CO</State>
-              <Identifier>24-457-1234</Identifier>
-            </DriversLicense>
           </Identity>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>24-457-1234</Identifier>
+          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -877,7 +875,6 @@
               <ForeignAddress>
                 <Address1>Bahrenfelder Chaussee 55</Address1>
                 <City>Hamburg</City>
-                <ProvinceOrState>ES</ProvinceOrState>
                 <ForeignPostalCode>22761</ForeignPostalCode>
                 <CountryCode>DEU</CountryCode>
               </ForeignAddress>

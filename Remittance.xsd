@@ -453,21 +453,21 @@
                                             </xs:simpleType>
                                           </xs:element>
                                         </xs:choice>
-                                        <!-- Section 4.4.3.2.7.2.2 DriversLicense Element -->
-                                        <xs:element name="DriversLicense">
-                                          <xs:complexType>
-                                            <xs:sequence>
-                                              <xs:element name="State" type="StateCodeType" />
-                                              <xs:element name="Identifier">
-                                                <xs:simpleType>
-                                                  <xs:restriction base="xs:string">
-                                                <xs:minLength value="1" />
-                                                <xs:maxLength value="20" />
-                                                  </xs:restriction>
-                                                </xs:simpleType>
-                                              </xs:element>
-                                            </xs:sequence>
-                                          </xs:complexType>
+                                      </xs:sequence>
+                                    </xs:complexType>
+                                  </xs:element>
+                                  <!-- Section 4.4.3.2.7.2.2 DriversLicense Element -->
+                                  <xs:element name="DriversLicense" minOccurs="0">
+                                    <xs:complexType>
+                                      <xs:sequence>
+                                        <xs:element name="State" type="StateCodeType" />
+                                        <xs:element name="Identifier">
+                                          <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                              <xs:minLength value="1" />
+                                              <xs:maxLength value="20" />
+                                            </xs:restriction>
+                                          </xs:simpleType>
                                         </xs:element>
                                       </xs:sequence>
                                     </xs:complexType>
@@ -1338,7 +1338,7 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-      <xs:element name="ProvinceOrState">
+      <xs:element name="ProvinceOrState" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:minLength value="1" />
