@@ -623,7 +623,7 @@
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
-        <!-- Section 4.4.3.2.14 MineralInterests Element -->
+        <!-- Section 4.4.3.2.13 MineralInterests Element -->
         <MineralInterests>
           <StateCode>OK</StateCode>
           <CountyName>WASHINGTON</CountyName>
@@ -691,14 +691,15 @@
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
         </Owner>
+        <!-- Section 4.4.3.2.14 Cryptocurrency Elememt -->
         <Cryptocurrency>
           <Name>Bitcoin</Name>
           <Symbol>BTC</Symbol>
           <AccountNumber>1234567890</AccountNumber>
-          <!-- Section 4.4.3.2.15.1 AlternativeID Element -->
+          <!-- Section 4.4.3.2.14.1 AlternativeID Element -->
           <Address>This is an address.</Address>
           <AlternativeID>
-            <!-- Section 4.4.3.2.15.1.1 AlternativeID TypeCode Element -->
+            <!-- Section 4.4.3.2.14.1.1 AlternativeID TypeCode Element -->
             <Name>TBD</Name>
             <Number>ABC123</Number>
           </AlternativeID>

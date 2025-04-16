@@ -36,17 +36,11 @@
               "RelativeDocumentMoniker": "Remittance.xsd",
               "ToolTip": "C:\\UCP\\NAUPA\\GitHub\\Remittance.xsd",
               "RelativeToolTip": "Remittance.xsd",
-              "ViewState": "AgIAABcFAAAAAAAAAAAiwDwFAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAAoDAAAAAAAAAAAAAFADAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
               "WhenOpened": "2024-10-16T20:40:23.376Z",
               "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -55,7 +49,7 @@
               "RelativeDocumentMoniker": "Remittance.xml",
               "ToolTip": "C:\\UCP\\NAUPA\\GitHub\\Remittance.xml",
               "RelativeToolTip": "Remittance.xml",
-              "ViewState": "AgIAAC0DAAAAAAAAAAAkwFYDAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAK0BAAAAAAAAAAAkwOUAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
               "WhenOpened": "2024-10-16T20:40:39.596Z",
               "EditorCaption": ""
