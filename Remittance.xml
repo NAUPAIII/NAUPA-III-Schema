@@ -18,11 +18,39 @@
           <ZIPCode>80302-1234</ZIPCode>
         </USAddress>
       </PrimaryAddress>
+      <AlternateAddress>
+        <TypeCode>Seasonal</TypeCode>
+        <USAddress>
+          <Address1>7229 S Alton Way</Address1>
+          <City>Centennial</City>
+          <StateCode>CO</StateCode>
+          <ZIPCode>80112</ZIPCode>
+        </USAddress>
+      </AlternateAddress>
+      <AlternateAddress>
+        <TypeCode>Service</TypeCode>
+        <ForeignAddress>
+          <Address1>Queens House</Address1>
+          <Address2>180 Tottenham Court Road</Address2>
+          <City>London</City>
+          <ForeignPostalCode>W1T 7PD</ForeignPostalCode>
+          <CountryCode>GBR</CountryCode>
+        </ForeignAddress>
+      </AlternateAddress>
       <TelephoneNumber>
         <USTelephoneNumber>3035551111</USTelephoneNumber>
       </TelephoneNumber>
-      <EMailAddress>support@softwareapp.com</EMailAddress>
+      <AlternateTelephoneNumber>
+        <USTelephoneNumber>3035551112</USTelephoneNumber>
+      </AlternateTelephoneNumber>
+      <AlternateTelephoneNumber>
+        <ForeignTelephoneNumber>14402076362100</ForeignTelephoneNumber>
+      </AlternateTelephoneNumber>
+      <EMailAddress>info@softwareapp.com</EMailAddress>
+      <AlternateEMailAddress>support@softwareapp.com</AlternateEMailAddress>
+      <AlternateEMailAddress>support2@softwareapp.com</AlternateEMailAddress>
     </Contact>
+    <Jurisdiction>CO</Jurisdiction>
   </SoftwareInformation>
   <!-- Section 4.2 Payment Element -->
   <Payment>
@@ -69,6 +97,7 @@
     <Contact>
       <TypeCode>Report</TypeCode>
       <PersonName>
+        <Prefix>Dr.</Prefix>
         <FirstName>Fred</FirstName>
         <LastName>Smith</LastName>
       </PersonName>
@@ -81,10 +110,24 @@
           <ZIPCode>80302-1234</ZIPCode>
         </USAddress>
       </PrimaryAddress>
+      <AlternateAddress>
+        <TypeCode>Forwarding/non-permanent</TypeCode>
+        <ForeignAddress>
+          <Address1>180 St Kilda Rd</Address1>
+          <City>Melbourne</City>
+          <ProvinceOrState>VIC</ProvinceOrState>
+          <ForeignPostalCode>3006</ForeignPostalCode>
+          <CountryCode>AUS</CountryCode>
+        </ForeignAddress>
+      </AlternateAddress>
       <TelephoneNumber>
         <USTelephoneNumber>3035551235</USTelephoneNumber>
       </TelephoneNumber>
+      <AlternateTelephoneNumber>
+        <USTelephoneNumber>3035551237</USTelephoneNumber>
+      </AlternateTelephoneNumber>
       <EMailAddress>fred.smith@testbank.com</EMailAddress>
+      <AlternateEMailAddress>fred.smith2@testbank.com</AlternateEMailAddress>
     </Contact>
     <NAICSCode>120001</NAICSCode>
     <TaxIDExtension>0123</TaxIDExtension>
@@ -128,7 +171,7 @@
       <!-- Section 4.4.3.2 Property Element -->
       <Property>
         <!-- Section 4.4.3.2.1 Property TypeCode Element -->
-        <TypeCode>AC001</TypeCode>
+        <TypeCode>AC01</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <!-- Section 4.4.3.2.2 DueDiligencePerformed Element -->
@@ -280,6 +323,7 @@
           </Contact>
           <DateOfBirth>1975-04-27</DateOfBirth>
           <SSN>111111111</SSN>
+          <IfPaid>X</IfPaid>
         </Beneficiary>
         <!-- Section 4.4.3.2.9 Cash Element -->
         <Cash>
@@ -309,7 +353,7 @@
       <!-- Section 4.4.3.2 Property Element -->
       <Property>
         <!-- Section 4.4.3.2.1 Property TypeCode Element -->
-        <TypeCode>SC002</TypeCode>
+        <TypeCode>SC02</TypeCode>
         <AccountNumber>123-4567-001</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <!--
@@ -377,7 +421,7 @@
       <!-- Section 4.4.3.2 Property Element -->
       <Property>
         <!-- Section 4.4.3.2.1 Property TypeCode Element -->
-        <TypeCode>SC006</TypeCode>
+        <TypeCode>SC06</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
@@ -485,7 +529,7 @@
       <!-- Section 4.4.3.2 Property Element -->
       <Property>
         <!-- Section 4.4.3.2.1 Property TypeCode Element -->
-        <TypeCode>SD001</TypeCode>
+        <TypeCode>SD01</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
@@ -579,7 +623,7 @@
       <!-- Section 4.4.3.2 Property Element -->
       <Property>
         <!-- Section 4.4.3.2.1 Property TypeCode Element -->
-        <TypeCode>MI001</TypeCode>
+        <TypeCode>MI01</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
@@ -648,7 +692,7 @@
       <!-- Section 4.4.3.2 Property Element -->
       <Property>
         <!-- Section 4.4.3.2.1 Property TypeCode Element -->
-        <TypeCode>VC002</TypeCode>
+        <TypeCode>VC02</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
@@ -697,7 +741,6 @@
           <Symbol>BTC</Symbol>
           <AccountNumber>1234567890</AccountNumber>
           <!-- Section 4.4.3.2.14.1 AlternativeID Element -->
-          <Address>This is an address.</Address>
           <AlternativeID>
             <!-- Section 4.4.3.2.14.1.1 AlternativeID TypeCode Element -->
             <Name>TBD</Name>
@@ -752,15 +795,25 @@
         <LastName>Johnson</LastName>
       </PersonName>
       <PrimaryAddress>
-        <USAddress>
-          <Address1>1234 Pearl St</Address1>
-          <City>Boulder</City>
-          <StateCode>CO</StateCode>
-          <ZIPCode>80302-1234</ZIPCode>
-        </USAddress>
+        <ForeignAddress>
+          <Address1>Bennelong Point</Address1>
+          <City>Sydney</City>
+          <ProvinceOrState>NSW</ProvinceOrState>
+          <ForeignPostalCode>2000</ForeignPostalCode>
+          <CountryCode>AUS</CountryCode>
+        </ForeignAddress>
       </PrimaryAddress>
+      <AlternateAddress>
+        <TypeCode>Billing</TypeCode>
+        <USAddress>
+          <Address1>101 Acoma St</Address1>
+          <City>Denver</City>
+          <StateCode>CO</StateCode>
+          <ZIPCode>80202</ZIPCode>
+        </USAddress>
+      </AlternateAddress>
       <TelephoneNumber>
-        <USTelephoneNumber>3035551235</USTelephoneNumber>
+        <USTelephoneNumber>3035551236</USTelephoneNumber>
       </TelephoneNumber>
       <EMailAddress>joe.johnson@testcompany.com</EMailAddress>
     </Contact>
@@ -792,7 +845,7 @@
       <!-- Section 4.4.3.2 Property Element -->
       <Property>
         <!-- Section 4.4.3.2.1 Property TypeCode Element -->
-        <TypeCode>AC001</TypeCode>
+        <TypeCode>AC01</TypeCode>
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <!-- Section 4.4.3.2.2 DueDiligencePerformed Element -->
