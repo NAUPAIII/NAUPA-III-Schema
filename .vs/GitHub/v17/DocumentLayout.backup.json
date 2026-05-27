@@ -29,39 +29,9 @@
               "Name": "ST:0:0:{dd1ddd20-d59b-11da-a94d-0800200c9a66}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Remittance.xsd",
-              "DocumentMoniker": "C:\\UCP\\NAUPA\\GitHub\\Remittance.xsd",
-              "RelativeDocumentMoniker": "Remittance.xsd",
-              "ToolTip": "C:\\UCP\\NAUPA\\GitHub\\Remittance.xsd",
-              "RelativeToolTip": "Remittance.xsd",
-              "ViewState": "AgIAAHoEAAAAAAAAAAAAAOgDAABQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
-              "WhenOpened": "2024-10-16T20:40:23.376Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "3154bf3e-b992-43f5-8c94-096a0936127f",
-        "Display": 0,
-        "X": 727,
-        "Y": 54,
-        "Width": 980,
-        "Height": 1219,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -70,9 +40,22 @@
               "RelativeDocumentMoniker": "Remittance.xml",
               "ToolTip": "C:\\UCP\\NAUPA\\GitHub\\Remittance.xml",
               "RelativeToolTip": "Remittance.xml",
-              "ViewState": "AgIAAJwDAAAAAAAAAAAAAL0CAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
-              "WhenOpened": "2024-10-16T20:40:39.596Z",
+              "WhenOpened": "2026-05-27T21:20:33.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Remittance.xsd",
+              "DocumentMoniker": "C:\\UCP\\NAUPA\\GitHub\\Remittance.xsd",
+              "RelativeDocumentMoniker": "Remittance.xsd",
+              "ToolTip": "C:\\UCP\\NAUPA\\GitHub\\Remittance.xsd",
+              "RelativeToolTip": "Remittance.xsd",
+              "ViewState": "AgIAANAEAAAAAAAAAIAwwNgEAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
+              "WhenOpened": "2026-05-27T21:20:08.46Z",
               "EditorCaption": ""
             }
           ]
