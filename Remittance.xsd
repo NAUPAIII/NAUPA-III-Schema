@@ -30,7 +30,7 @@
           <xs:complexType>
             <xs:sequence>
               <!-- Section 4.2.1 Payment TypeCode Element Values -->
-              <xs:element name="TypeCode" maxOccurs="unbounded">
+              <xs:element name="TypeCode">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -1238,7 +1238,7 @@
         </xs:element> <!-- Holder -->
       </xs:sequence>
       <!-- Section 4.5 Remittance Attributes -->
-      <xs:attribute name="version" type="xs:string" use="required" fixed="1.0" />
+      <xs:attribute name="version" type="xs:string" use="required" fixed="1.4" />
     </xs:complexType>
   </xs:element> <!-- Remittance -->
 
