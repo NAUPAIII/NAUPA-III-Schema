@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.4" encoding="UTF-8"?>
 <!-- Section 4 Remittance Element -->
 <Remittance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.unclaimed.org/NAUPA-III Remittance.xsd"
       xmlns="http://www.unclaimed.org/NAUPA-III"
-      version="1.0">
+      version="1.4">
   <!-- Section 4.1 SoftwareInformation Element -->
   <SoftwareInformation>
     <Version>0.1</Version>
