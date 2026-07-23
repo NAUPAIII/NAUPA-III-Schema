@@ -4,6 +4,163 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   elementFormDefault="qualified">
 
+  <!--
+    CHANGE LOG
+    ==========
+    Original : Remittance.xsd  (NAUPA-III, version 1.0)
+    Corrected: Remittance_Corrected.xsd
+    Enhanced : Remittance_Corrected.xsd + ReportSummary section
+    Version  : Remittance @version attribute set to fixed="1.5"
+               to match the NAUPA-III 1.5 (July 2026) documentation.
+
+    CORRECTIONS TO ORIGINAL XSD
+    ===========================
+
+    Fix 1  (line ~390) OFAC OwnerType enumeration typo:
+           "Individal" corrected to "Individual".
+
+    Fix 5  (line ~1001) Cryptocurrency section heading comment:
+           "Elememt" corrected to "Element".
+
+    ENHANCEMENTS
+    ============
+
+    NEW 1  (after Property/Adjustment elements in Report) ReportSummary:
+           Added optional ReportSummary element within each Report to
+           provide aggregate statistics on the report's contents.
+
+           Fields included in ReportSummary:
+           - PropertyCount: Total count of Property elements
+           - CashReportedAmountTotal: Sum of Cash/ReportedAmount
+           - CashRemittedAmountTotal: Sum of Cash/RemittedAmount
+           - SecurityReportedSharesTotal: Sum of Security/ReportedShares
+           - SecurityRemittedSharesTotal: Sum of Security/RemittedShares
+           - CryptocurrencyReportedUnitsTotal: Sum of Cryptocurrency/ReportedUnits
+           - CryptocurrencyRemittedUnitsTotal: Sum of Cryptocurrency/RemittedUnits
+
+           All fields are optional (minOccurs="0") except PropertyCount,
+           allowing reports with no cash, securities, or cryptocurrencies
+           to omit zero-valued totals while still reporting the property count.
+
+    NEW 2  (Cryptocurrency, Section 4.4.3.2.14.2) CryptoCostBasis:
+           Added optional CryptoCostBasis element within Cryptocurrency,
+           modeled on the Security CostBasis element. Placed at the end
+           of the Cryptocurrency sequence (after Exchange).
+
+           Fields:
+           - Name        (CryptocurrencyNameType,  maxLength 16)
+           - Symbol      (CryptocurrencySymbolType, maxLength 7)
+           - Amount      (CurrencyType,             decimal 12,2)
+           - Units       (CryptocurrencyUnits,      decimal 33,18)
+           - PurchaseDate (xs:date)
+
+           Name/Symbol use two new named simpleTypes,
+           CryptocurrencyNameType (16) and CryptocurrencySymbolType (7),
+           added in Section 6.1. The main Cryptocurrency element's
+           Name/Symbol (previously inline anonymous types with the same
+           16/7 limits) were refactored to reference these named types,
+           giving a single source of truth. This refactor does not change
+           validation behavior or the XML structure.
+           Database tables were intentionally NOT updated for this change.
+
+
+    CHANGE #1 (Property TypeCode, Section 4.4.3.2.1) Reverted to NAUPA II
+             four-character property type codes. The prior five-character
+             codes (AC001..VC003) were replaced with the four-character
+             code set from the NAUPA Standard Electronic File Format
+             (Property Type Codes appendix, rev. 1/29/25): 123 codes
+             across AC, CK, CS, CT, HS, IN, IR, MI, MS, SC, SD, TR, UT,
+             and the ZZZZ catch-all. The field definition remains
+             maxLength=5 for future expansion.
+
+    CHANGE #3 — Removed the non-standard GER country code; DEU (the correct ISO 3166-1 
+	        alpha-3 for Germany) remains.
+
+    CHANGE #4 — Converted all 224 enumeration values that had trailing XML comment
+	        descriptions into proper <xs:annotation> <xs:documentation>
+		    blocks, so the descriptions are now visible to schema-aware tooling, 
+			not just readers of the raw file.
+
+    CHANGE #5 — Extracted the Property TypeCode enumeration into a new named type, 
+	        PropertyTypeCodeType, defined once in a new "Section 7.3.3" alongside 
+			StateCodeType and CountryCodeType. The Property/TypeCode element now 
+			just references it (type="PropertyTypeCodeType"), consistent with
+			how the rest of the schema handles reusable code lists.
+		
+    CHANGE #6 — Loosened the NAICSCode pattern from [1-9][1-9][0-9]{0,4} to [1-9][0-9]{1,5}, 
+	        so it no longer silently rejects a valid code with a second digit of 0.
+			
+	CHANGE #8 — Fixed the leftover style inconsistencies: type ="IndicatorType" → type="IndicatorType" 
+	        (2 spots), and <xs:complexType > <xs:complexType>	(3 spots).
+
+	CHANGE #9 — Tightened 19 redundant maxLength facets down to the actual longest enumerated 
+	        value in each case (e.g., Owner/TypeCode went from 15 → 3, RelationshipCode from 50 → 2). 
+			Left PropertyTypeCodeType's maxLength="5" untouched, since that's intentional headroom 
+			for future 5-character codes, not redundancy.
+
+    CHANGE #10 — Normalized the 5 stray curly apostrophes (’) in property descriptions to 
+	        straight ones ('), matching the rest of the file.
+
+	CHANGE #11 — IndicatorType reverted from boolean "True"/"False" (change A1 below)
+	        to enumerated { "X", "" }, where "X" means true and empty string means
+	        false. maxLength=1, minLength removed. Affects all indicator fields
+	        (NonProductionReport, NonRemitIndicator, Taxable, HIPAAIndicator,
+	        Spouse, IfPaid, ReportNotRemit, ContactHolderBeforePaying). This
+	        supersedes A1 below.
+			
+
+				ALIGNMENT WITH NAUPA-III 1.5 (July 2026)
+				=========================================
+				Applied per gap analysis (NAUPA-III_1.4_Gap_Analysis.md):
+
+				A1 IndicatorType: changed from single value "X" to boolean
+				"True"/"False" (string minLength 4, maxLength 5). Affects all
+				indicator fields (NonProductionReport, NonRemitIndicator,
+				Taxable, HIPAAIndicator, Spouse, IfPaid, ReportNotRemit,
+				ContactHolderBeforePaying).
+
+				A2 Owner TypeCode: values changed from Aggregate/Unknown/NamedOwner
+				to AGG (Aggregate Property), UNK (Unknown), IND (Individual),
+				BUS (Non-Individual). BUS is new in 1.5.
+
+				A3 Owner element ordering: DriversLicense moved to follow
+				RelationshipCode (was after Identity) to match 1.5 sequence.
+
+				A5 Added elements defined in 1.5:
+				- SoftwareInformation/Jurisdiction (StateCodeType, optional)
+				- Beneficiary/IfPaid (IndicatorType, mandatory)
+				- Cryptocurrency/Blockchain (string 1..30, optional)
+				- Cryptocurrency/ContractAddress (string 1..100, optional;
+				  element name has no space per XML naming rules)
+				- MineralInterests/CountyCode (string 0..5, optional)
+				- MineralInterests/PropertyDescription (string 0..250, optional)
+				- MineralInterests/LegalDescription (string 0..500, optional)
+
+				A7 Enumeration additions:
+				- Report TypeCode: "Illicit Property"
+				- Beneficiary TypeCode: "Representative" (Texas only)
+				- Inventory ItemCode: "Knives", "Watches"
+
+				A9 Cardinality aligned to NAUPA-III 1.5 (documentation):
+				- Cryptocurrency/StateAddressNumber -> mandatory, repeating
+				  (minOccurs=1, maxOccurs=unbounded; string 1..70).
+				- ReturnedByPostOffice/ReturnCount -> mandatory, integer 0-99
+				  (xs:nonNegativeInteger, minInclusive 0, maxInclusive 99;
+				  was optional xs:short).
+
+				REMOVALS
+				========
+
+				REMOVE 1 (Cryptocurrency) ProceedsReported and ProceedsRemitted:
+				Both elements have been removed from the Cryptocurrency
+				element. They are no longer part of the standard.
+				Corresponding DB columns ProceedsReported and
+				ProceedsRemitted must be dropped from any Cryptocurrency
+				table (they were not present in the originally generated
+				DB schema, so no DB migration is required unless they
+				were added manually).
+				-->
+
   <!-- Section 4 Remittance Element -->
   <xs:element name="Remittance">
     <xs:complexType>
@@ -21,7 +178,8 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Contact" type="ContactType" />
-              <xs:element name="Jurisdiction" type="StateCodeType" />
+              <!-- Jurisdiction the report was created for (Section 7.3.2 StateCodeType) -->
+              <xs:element name="Jurisdiction" type="StateCodeType" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element> <!-- SoftwareInformation -->
@@ -33,7 +191,7 @@
               <xs:element name="TypeCode" maxOccurs="unbounded">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
+                    <xs:maxLength value="11" />
                     <xs:enumeration value="Online" />
                     <xs:enumeration value="Check" />
                     <xs:enumeration value="Wire" />
@@ -85,8 +243,10 @@
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="CompanyName" type="CompanyNameType" />
-                      <xs:element name="FEIN" type="FEINType" minOccurs="0"/>
-                      <xs:element name="ForeignTaxID" type="ForeignTaxIDType" minOccurs="0"/>
+                    <xs:choice>
+                      <xs:element name="FEIN" type="FEINType" />
+                      <xs:element name="ForeignTaxID" type="ForeignTaxIDType" />
+                    </xs:choice>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -94,7 +254,7 @@
               <xs:element name="NAICSCode">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:pattern value="[1-9][1-9][0-9]{0,4}" />
+                    <xs:pattern value="[1-9][0-9]{1,5}" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -147,7 +307,7 @@
                       <xs:element name="TypeCode">
                         <xs:simpleType>
                           <xs:restriction base="xs:string">
-                            <xs:maxLength value="50" />
+                            <xs:maxLength value="30" />
                             <xs:enumeration value="Advertisement/No Remittance" />
                             <xs:enumeration value="Remittance/Annual" />
                             <xs:enumeration value="Test" />
@@ -157,6 +317,7 @@
                             <xs:enumeration value="Voluntary Disclosure Agreement" />
                             <xs:enumeration value="Final Remittance" />
                             <xs:enumeration value="Initial Remittance" />
+                            <xs:enumeration value="Illicit Property" />
                           </xs:restriction>
                         </xs:simpleType>
                       </xs:element>
@@ -167,156 +328,8 @@
                         <xs:complexType>
                           <xs:sequence>
                             <!-- Section 4.4.3.2.1 Property TypeCode Element Values -->
-                            <xs:element name="TypeCode">
-                              <xs:simpleType>
-                                <xs:restriction base="xs:string">
-                                  <xs:maxLength value="5" />
-                                  <xs:enumeration value="AC01" />
-                                  <xs:enumeration value="AC02" />
-                                  <xs:enumeration value="AC03" />
-                                  <xs:enumeration value="AC04" />
-                                  <xs:enumeration value="AC05" />
-                                  <xs:enumeration value="AC06" />
-                                  <xs:enumeration value="AC07" />
-                                  <xs:enumeration value="AC08" />
-                                  <xs:enumeration value="AC09" />
-                                  <xs:enumeration value="AC99" />
-                                  <xs:enumeration value="CK01" />
-                                  <xs:enumeration value="CK02" />
-                                  <xs:enumeration value="CK03" />
-                                  <xs:enumeration value="CK04" />
-                                  <xs:enumeration value="CK05" />
-                                  <xs:enumeration value="CK06" />
-                                  <xs:enumeration value="CK07" />
-                                  <xs:enumeration value="CK08" />
-                                  <xs:enumeration value="CK09" />
-                                  <xs:enumeration value="CK10" />
-                                  <xs:enumeration value="CK11" />
-                                  <xs:enumeration value="CK12" />
-                                  <xs:enumeration value="CK13" />
-                                  <xs:enumeration value="CK14" />
-                                  <xs:enumeration value="CK15" />
-                                  <xs:enumeration value="CK16" />
-                                  <xs:enumeration value="CK99" />
-                                  <xs:enumeration value="CS01" />
-                                  <xs:enumeration value="CS02" />
-                                  <xs:enumeration value="CS03" />
-                                  <xs:enumeration value="CS04" />
-                                  <xs:enumeration value="CS05" />
-                                  <xs:enumeration value="CS06" />
-                                  <xs:enumeration value="CS07" />
-                                  <xs:enumeration value="CT01" />
-                                  <xs:enumeration value="CT02" />
-                                  <xs:enumeration value="CT03" />
-                                  <xs:enumeration value="CT04" />
-                                  <xs:enumeration value="CT05" />
-                                  <xs:enumeration value="CT99" />
-                                  <xs:enumeration value="DC01" />
-                                  <xs:enumeration value="DC02" />
-                                  <xs:enumeration value="DC03" />
-                                  <xs:enumeration value="DC04" />
-                                  <xs:enumeration value="DC05" />
-                                  <xs:enumeration value="DC06" />
-                                  <xs:enumeration value="DC07" />
-                                  <xs:enumeration value="DC08" />
-                                  <xs:enumeration value="DC09" />
-                                  <xs:enumeration value="DC10" />
-                                  <xs:enumeration value="DC11" />
-                                  <xs:enumeration value="DC12" />
-                                  <xs:enumeration value="DC13" />
-                                  <xs:enumeration value="HS01" />
-                                  <xs:enumeration value="HS02" />
-                                  <xs:enumeration value="HS03" />
-                                  <xs:enumeration value="IN01" />
-                                  <xs:enumeration value="IN02" />
-                                  <xs:enumeration value="IN03" />
-                                  <xs:enumeration value="IN04" />
-                                  <xs:enumeration value="IN05" />
-                                  <xs:enumeration value="IN06" />
-                                  <xs:enumeration value="IN07" />
-                                  <xs:enumeration value="IN08" />
-                                  <xs:enumeration value="IN99" />
-                                  <xs:enumeration value="IR01" />
-                                  <xs:enumeration value="IR02" />
-                                  <xs:enumeration value="IR03" />
-                                  <xs:enumeration value="IR04" />
-                                  <xs:enumeration value="IR05" />
-                                  <xs:enumeration value="IR06" />
-                                  <xs:enumeration value="IR07" />
-                                  <xs:enumeration value="IR08" />
-                                  <xs:enumeration value="IR09" />
-                                  <xs:enumeration value="IR10" />
-                                  <xs:enumeration value="MI01" />
-                                  <xs:enumeration value="MI02" />
-                                  <xs:enumeration value="MI03" />
-                                  <xs:enumeration value="MI04" />
-                                  <xs:enumeration value="MI05" />
-                                  <xs:enumeration value="MI06" />
-                                  <xs:enumeration value="MI07" />
-                                  <xs:enumeration value="MI08" />
-                                  <xs:enumeration value="MI09" />
-                                  <xs:enumeration value="MI99" />
-                                  <xs:enumeration value="MS01" />
-                                  <xs:enumeration value="MS02" />
-                                  <xs:enumeration value="MS03" />
-                                  <xs:enumeration value="MS04" />
-                                  <xs:enumeration value="MS05" />
-                                  <xs:enumeration value="MS06" />
-                                  <xs:enumeration value="MS07" />
-                                  <xs:enumeration value="MS08" />
-                                  <xs:enumeration value="MS10" />
-                                  <xs:enumeration value="MS11" />
-                                  <xs:enumeration value="MS12" />
-                                  <xs:enumeration value="MS13" />
-                                  <xs:enumeration value="MS14" />
-                                  <xs:enumeration value="MS15" />
-                                  <xs:enumeration value="MS16" />
-                                  <xs:enumeration value="MS17" />
-                                  <xs:enumeration value="MS18" />
-                                  <xs:enumeration value="MS19" />
-                                  <xs:enumeration value="MS99" />
-                                  <xs:enumeration value="SC01" />
-                                  <xs:enumeration value="SC02" />
-                                  <xs:enumeration value="SC03" />
-                                  <xs:enumeration value="SC04" />
-                                  <xs:enumeration value="SC05" />
-                                  <xs:enumeration value="SC06" />
-                                  <xs:enumeration value="SC07" />
-                                  <xs:enumeration value="SC08" />
-                                  <xs:enumeration value="SC09" />
-                                  <xs:enumeration value="SC10" />
-                                  <xs:enumeration value="SC11" />
-                                  <xs:enumeration value="SC12" />
-                                  <xs:enumeration value="SC13" />
-                                  <xs:enumeration value="SC14" />
-                                  <xs:enumeration value="SC15" />
-                                  <xs:enumeration value="SC16" />
-                                  <xs:enumeration value="SC17" />
-                                  <xs:enumeration value="SC18" />
-                                  <xs:enumeration value="SC19" />
-                                  <xs:enumeration value="SC20" />
-                                  <xs:enumeration value="SC99" />
-                                  <xs:enumeration value="SD01" />
-                                  <xs:enumeration value="SD02" />
-                                  <xs:enumeration value="SD03" />
-                                  <xs:enumeration value="TR01" />
-                                  <xs:enumeration value="TR02" />
-                                  <xs:enumeration value="TR03" />
-                                  <xs:enumeration value="TR04" />
-                                  <xs:enumeration value="TR05" />
-                                  <xs:enumeration value="TR99" />
-                                  <xs:enumeration value="UT01" />
-                                  <xs:enumeration value="UT02" />
-                                  <xs:enumeration value="UT03" />
-                                  <xs:enumeration value="UT04" />
-                                  <xs:enumeration value="UT99" />
-                                  <xs:enumeration value="VC01" />
-                                  <xs:enumeration value="VC02" />
-                                  <xs:enumeration value="VC03" />
-                                  <xs:enumeration value="ZZZZ" />
-                                </xs:restriction>
-                              </xs:simpleType>
-                            </xs:element>
+                            <!-- See PropertyTypeCodeType (Section 7.3.3) for the full NAUPA II code list. -->
+                            <xs:element name="TypeCode" type="PropertyTypeCodeType" />
                             <xs:element name="AccountNumber" minOccurs="0">
                               <xs:simpleType>
                                 <xs:restriction base="xs:string">
@@ -340,7 +353,15 @@
                               <xs:complexType>
                                 <xs:sequence>
                                   <xs:element name="MailDate" type="xs:date" />
-                                  <xs:element name="ReturnCount" type="xs:short" minOccurs="0" />
+                                  <!-- ReturnCount: mandatory, integer 0-99 -->
+                                  <xs:element name="ReturnCount">
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:nonNegativeInteger">
+                                        <xs:minInclusive value="0" />
+                                        <xs:maxInclusive value="99" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:element>
                                   <xs:element name="DateAccountCodedRPO" type="xs:date" minOccurs="0" />
                                 </xs:sequence>
                               </xs:complexType>
@@ -358,8 +379,8 @@
                                 </xs:complexType>
                               </xs:element>
                             </xs:choice>
-                            <xs:element name="NonRemitIndicator" type ="IndicatorType" minOccurs="0" />
-                            <xs:element name="Taxable" type ="IndicatorType" minOccurs="0" />
+                            <xs:element name="NonRemitIndicator" type="IndicatorType" minOccurs="0" />
+                            <xs:element name="Taxable" type="IndicatorType" minOccurs="0" />
                             <xs:element name="TaxForm1099IssuedDate" type="xs:date" minOccurs="0" />
                             <xs:element name="DescriptionOrAdditionalInformation" minOccurs="0">
                               <xs:simpleType>
@@ -413,8 +434,8 @@
                                   <xs:element name="OwnerType" minOccurs="0">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
-                                        <xs:enumeration value="Individal" />
+                                        <xs:maxLength value="17" />
+                                        <xs:enumeration value="Individual" />
                                         <xs:enumeration value="U.S. Bank" />
                                         <xs:enumeration value="Non-U.S. Bank" />
                                         <xs:enumeration value="U.S. Non-Bank" />
@@ -434,10 +455,27 @@
                                   <xs:element name="TypeCode">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
-                                        <xs:maxLength value="15" />
-                                        <xs:enumeration value="Aggregate" />
-                                        <xs:enumeration value="Unknown" />
-                                        <xs:enumeration value="NamedOwner" />
+                                        <xs:maxLength value="3" />
+                                        <xs:enumeration value="AGG">
+                                          <xs:annotation>
+                                            <xs:documentation>Aggregate Property</xs:documentation>
+                                          </xs:annotation>
+                                        </xs:enumeration>
+                                        <xs:enumeration value="UNK">
+                                          <xs:annotation>
+                                            <xs:documentation>Unknown</xs:documentation>
+                                          </xs:annotation>
+                                        </xs:enumeration>
+                                        <xs:enumeration value="IND">
+                                          <xs:annotation>
+                                            <xs:documentation>All Individual Owners Except Aggregate and Unknown</xs:documentation>
+                                          </xs:annotation>
+                                        </xs:enumeration>
+                                        <xs:enumeration value="BUS">
+                                          <xs:annotation>
+                                            <xs:documentation>All Non-Individual Owners Except Aggregate and Unknown</xs:documentation>
+                                          </xs:annotation>
+                                        </xs:enumeration>
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
@@ -454,7 +492,7 @@
                                                 <xs:element name="TypeCode">
                                                   <xs:simpleType>
                                                     <xs:restriction base="xs:string">
-                                                      <xs:maxLength value="10" />
+                                                      <xs:maxLength value="4" />
                                                       <xs:enumeration value="SSN" />
                                                       <xs:enumeration value="FEIN" />
                                                       <xs:enumeration value="ITIN" />
@@ -483,22 +521,6 @@
                                       </xs:sequence>
                                     </xs:complexType>
                                   </xs:element>
-                                  <!-- Section 4.4.3.2.7.2.2 DriversLicense Element -->
-                                  <xs:element name="DriversLicense" minOccurs="0">
-                                    <xs:complexType>
-                                      <xs:sequence>
-                                        <xs:element name="State" type="StateCodeType" />
-                                        <xs:element name="Identifier">
-                                          <xs:simpleType>
-                                            <xs:restriction base="xs:string">
-                                              <xs:minLength value="1" />
-                                              <xs:maxLength value="20" />
-                                            </xs:restriction>
-                                          </xs:simpleType>
-                                        </xs:element>
-                                      </xs:sequence>
-                                    </xs:complexType>
-                                  </xs:element>
                                   <xs:element name="Contact" type="ContactType" />
                                   <xs:element name="Description" minOccurs="0">
                                     <xs:simpleType>
@@ -513,7 +535,7 @@
                                   <xs:element name="RelationshipCode">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
+                                        <xs:maxLength value="2" />
                                         <xs:enumeration value="AD" />
                                         <xs:enumeration value="AG" />
                                         <xs:enumeration value="AF" />
@@ -547,6 +569,22 @@
                                         <xs:enumeration value="LA" />
                                       </xs:restriction>
                                     </xs:simpleType>
+                                  </xs:element>
+                                  <!-- Section 4.4.3.2.7.2.2 DriversLicense Element -->
+                                  <xs:element name="DriversLicense" minOccurs="0">
+                                    <xs:complexType>
+                                      <xs:sequence>
+                                        <xs:element name="State" type="StateCodeType" />
+                                        <xs:element name="Identifier">
+                                          <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                              <xs:minLength value="1" />
+                                              <xs:maxLength value="20" />
+                                            </xs:restriction>
+                                          </xs:simpleType>
+                                        </xs:element>
+                                      </xs:sequence>
+                                    </xs:complexType>
                                   </xs:element>
                                   <xs:element name="CompleteAccountRegistrationName" minOccurs="0">
                                     <xs:simpleType>
@@ -585,9 +623,14 @@
                                   <xs:element name="TypeCode">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
+                                        <xs:maxLength value="14" />
                                         <xs:enumeration value="Primary" />
                                         <xs:enumeration value="Contingent" />
+                                        <xs:enumeration value="Representative">
+                                          <xs:annotation>
+                                            <xs:documentation>Texas only (Sec. 74.1011)</xs:documentation>
+                                          </xs:annotation>
+                                        </xs:enumeration>
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
@@ -595,8 +638,9 @@
                                   <xs:element name="Percentage" type="PercentageType" />
                                   <xs:element name="Contact" type="ContactType" />
                                   <xs:element name="DateOfBirth" type="xs:date" minOccurs="0" />
-                                  <xs:element name="SSN" type="SSNType" minOccurs="0" />
-                                  <xs:element name="IfPaid" type="IndicatorType" minOccurs="0" />
+                                  <xs:element name="SSN" type="SSNType"  minOccurs="0" />
+                                  <!-- Indicate if the beneficiary has been paid -->
+                                  <xs:element name="IfPaid" type="IndicatorType" />
                                 </xs:sequence>
                               </xs:complexType>
                             </xs:element> <!-- Beneficiary -->
@@ -630,7 +674,7 @@
                               </xs:element> <!-- Cash -->
                               <!-- Section 4.4.3.2.10 Bond Element -->
                               <xs:element name="Bond">
-                                <xs:complexType >
+                                <xs:complexType>
                                   <xs:sequence>
                                     <xs:element name="Interest" type="PercentageType" />
                                     <xs:element name="Name">
@@ -676,7 +720,7 @@
                                     <xs:element name="TypeCode">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:maxLength value="50" />
+                                          <xs:maxLength value="22" />
                                           <xs:enumeration value="Common Stock" />
                                           <xs:enumeration value="Preferred Stock" />
                                           <xs:enumeration value="Open-End Mutual Fund" />
@@ -728,7 +772,7 @@
                                           <xs:element name="Handling">
                                             <xs:simpleType>
                                               <xs:restriction base="xs:string">
-                                                <xs:maxLength value="50" />
+                                                <xs:maxLength value="10" />
                                                 <xs:enumeration value="Cash" />
                                                 <xs:enumeration value="Reinvested" />
                                                 <xs:enumeration value="None" />
@@ -740,10 +784,10 @@
                                       </xs:complexType>
                                     </xs:element>
                                     <!-- Section 4.4.3.2.11.4 DeliveryMethod Element Values -->
-                                      <xs:element name="DeliveryMethod" minOccurs="0">
+                                    <xs:element name="DeliveryMethod" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:maxLength value="50" />
+                                          <xs:maxLength value="14" />
                                           <xs:enumeration value="DTC" />
                                           <xs:enumeration value="Physical" />
                                           <xs:enumeration value="Book Entry" />
@@ -780,6 +824,7 @@
                                           <xs:enumeration value="AMEX" />
                                           <xs:enumeration value="NASDAQ" />
                                           <xs:enumeration value="Private" />
+                                          <xs:enumeration value="Foreign" />
                                           <xs:enumeration value="Other" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -788,7 +833,7 @@
                                     <xs:element name="Status">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:maxLength value="50" />
+                                          <xs:maxLength value="31" />
                                           <xs:enumeration value="Transferable" />
                                           <xs:enumeration value="Non-Transferable" />
                                           <xs:enumeration value="Chilled" />
@@ -809,7 +854,7 @@
                                           <xs:element name="TypeCode">
                                             <xs:simpleType>
                                               <xs:restriction base="xs:string">
-                                                <xs:maxLength value="50" />
+                                                <xs:maxLength value="3" />
                                                 <xs:enumeration value="Tax" />
                                               </xs:restriction>
                                             </xs:simpleType>
@@ -860,7 +905,7 @@
                                           <xs:element name="TypeCode">
                                             <xs:simpleType>
                                               <xs:restriction base="xs:string">
-                                                <xs:maxLength value="50" />
+                                                <xs:maxLength value="12" />
                                                 <xs:enumeration value="Drilling Fee" />
                                                 <xs:enumeration value="Unpaid Rent" />
                                               </xs:restriction>
@@ -878,16 +923,18 @@
                                           <xs:element name="ItemCode">
                                             <xs:simpleType>
                                               <xs:restriction base="xs:string">
-                                                <xs:maxLength value="50" />
+                                                <xs:maxLength value="21" />
                                                 <xs:enumeration value="Coins" />
                                                 <xs:enumeration value="Paper Currency" />
                                                 <xs:enumeration value="Empty Box" />
                                                 <xs:enumeration value="Jewelry" />
+                                                <xs:enumeration value="Knives" />
                                                 <xs:enumeration value="Legal or Misc. Papers" />
                                                 <xs:enumeration value="Military Medals" />
                                                 <xs:enumeration value="Miscellaneous Items" />
                                                 <xs:enumeration value="Savings Bonds" />
                                                 <xs:enumeration value="Stock Certificates" />
+                                                <xs:enumeration value="Watches" />
                                                 <xs:enumeration value="Weapons" />
                                                 <xs:enumeration value="Foreign Currency" />
                                               </xs:restriction>
@@ -903,7 +950,7 @@
                                           </xs:element>
                                           <!-- Section 4.4.3.2.12.3 SavingsBond Element -->
                                           <xs:element name="SavingsBond" minOccurs="0">
-                                            <xs:complexType >
+                                            <xs:complexType>
                                               <xs:sequence>
                                                 <xs:element name="BondNumber">
                                                   <xs:simpleType>
@@ -957,10 +1004,10 @@
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
+                                    <!-- County FIPS code (NAUPA-III 1.5) -->
                                     <xs:element name="CountyCode" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:minLength value="1" />
                                           <xs:maxLength value="5" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1031,10 +1078,10 @@
                                       </xs:simpleType>
                                     </xs:element>
                                     <xs:element name="OwnershipPercentage" type="PercentageType" minOccurs="0" />
+                                    <!-- PropertyDescription / LegalDescription (NAUPA-III 1.5) -->
                                     <xs:element name="PropertyDescription" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:minLength value="1" />
                                           <xs:maxLength value="250" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1042,7 +1089,6 @@
                                     <xs:element name="LegalDescription" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:minLength value="1" />
                                           <xs:maxLength value="500" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1050,30 +1096,15 @@
                                   </xs:sequence>
                                 </xs:complexType>
                               </xs:element> <!-- MineralInterests -->
-                              <!-- Section 4.4.3.2.14 Cryptocurrency Elememt -->
+                              <!-- Section 4.4.3.2.14 Cryptocurrency Element -->
                               <xs:element name="Cryptocurrency">
                                 <xs:complexType>
                                   <xs:sequence>
-                                    <xs:element name="Name">
-                                      <xs:simpleType>
-                                        <xs:restriction base="xs:string">
-                                          <xs:minLength value="1" />
-                                          <xs:maxLength value="16" />
-                                        </xs:restriction>
-                                      </xs:simpleType>
-                                    </xs:element>
-                                    <xs:element name="Symbol">
-                                      <xs:simpleType>
-                                        <xs:restriction base="xs:string">
-                                          <xs:minLength value="1" />
-                                          <xs:maxLength value="7" />
-                                        </xs:restriction>
-                                      </xs:simpleType>
-                                    </xs:element>
+                                    <xs:element name="Name" type="CryptocurrencyNameType" />
+                                    <xs:element name="Symbol" type="CryptocurrencySymbolType" />
                                     <xs:element name="AccountNumber" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:minLength value="1" />
                                           <xs:maxLength value="70" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1103,15 +1134,12 @@
                                     </xs:element>
                                     <xs:element name="ReportedUnits" type="CryptocurrencyUnits" />
                                     <xs:element name="RemittedUnits" type="CryptocurrencyUnits" />
-                                    <xs:element name="ProceedsReported" type="CurrencyType" />
-                                    <xs:element name="ProceedsRemitted" type="CurrencyType" />
                                     <xs:element name="DateSold" type="xs:date" minOccurs="0" />
                                     <xs:element name="UnitsSold" type="CryptocurrencyUnits" minOccurs="0" />
                                     <xs:element name="DateAcquired" type="xs:date" minOccurs="0" />
                                     <xs:element name="DeliveryMethod" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:minLength value="1" />
                                           <xs:maxLength value="50" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1119,7 +1147,6 @@
                                     <xs:element name="HashID" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:minLength value="1" />
                                           <xs:maxLength value="64" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1127,12 +1154,12 @@
                                     <xs:element name="StateAccountNumber" maxOccurs="unbounded">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:minLength value="1" />
                                           <xs:maxLength value="70" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="StateAddressNumber" minOccurs="0">
+                                    <!-- StateAddressNumber: mandatory, repeating (M 1..*) per NAUPA-III 1.5 -->
+                                    <xs:element name="StateAddressNumber" maxOccurs="unbounded">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
                                           <xs:minLength value="1" />
@@ -1144,11 +1171,11 @@
                                     <xs:element name="Exchange" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
-                                          <xs:minLength value="1" />
                                           <xs:maxLength value="70" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
+                                    <!-- Section 4.4.3.2.14 Blockchain / Contract Address (NAUPA-III 1.5) -->
                                     <xs:element name="Blockchain" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
@@ -1165,19 +1192,31 @@
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
+                                    <!-- Section 4.4.3.2.14.2 Cryptocurrency CostBasis Element -->
+                                    <xs:element name="CryptoCostBasis" minOccurs="0">
+                                      <xs:complexType>
+                                        <xs:sequence>
+                                          <xs:element name="Name" type="CryptocurrencyNameType" />
+                                          <xs:element name="Symbol" type="CryptocurrencySymbolType" />
+                                          <xs:element name="Amount" type="CurrencyType" />
+                                          <xs:element name="Units" type="CryptocurrencyUnits" />
+                                          <xs:element name="PurchaseDate" type="xs:date" />
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
                                   </xs:sequence>
                                 </xs:complexType>
                               </xs:element> <!-- Cryptocurrency -->
                             </xs:choice>
                             <!-- Section 4.4.3.2.15 Property Adjustment Element -->
                             <xs:element name="Adjustment" minOccurs="0" maxOccurs="unbounded">
-                              <xs:complexType >
+                              <xs:complexType>
                                 <xs:sequence>
                                   <!-- Section 4.4.3.2.15.1 Property Adjustment TypeCode Element Values -->
                                   <xs:element name="TypeCode">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
-                                        <xs:maxLength value="50" />
+                                        <xs:maxLength value="2" />
                                         <xs:enumeration value="DC" />
                                         <xs:enumeration value="SC" />
                                         <xs:enumeration value="FW" />
@@ -1207,7 +1246,7 @@
                             <xs:element name="TypeCode">
                               <xs:simpleType>
                                 <xs:restriction base="xs:string">
-                                  <xs:maxLength value="50" />
+                                  <xs:maxLength value="22" />
                                   <xs:enumeration value="Audit Fees" />
                                   <xs:enumeration value="Estimate or Prepayment" />
                                   <xs:enumeration value="Interest" />
@@ -1219,6 +1258,54 @@
                           </xs:sequence>
                         </xs:complexType>
                       </xs:element> <!-- Adjustment-->
+                      <!-- Section 4.4.3.4 Report Summary Element -->
+                      <xs:element name="ReportSummary" minOccurs="0">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <!-- Total count of Property elements in this Report -->
+                            <xs:element name="PropertyCount">
+                              <xs:simpleType>
+                                <xs:restriction base="xs:nonNegativeInteger">
+                                  <xs:totalDigits value="10" />
+                                </xs:restriction>
+                              </xs:simpleType>
+                            </xs:element>
+                            <!-- Cash totals -->
+                            <xs:element name="CashReportedAmountTotal" type="CurrencyType" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Sum of all Property/Cash/ReportedAmount values in this Report</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="CashRemittedAmountTotal" type="CurrencyType" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Sum of all Property/Cash/RemittedAmount values in this Report</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <!-- Security totals -->
+                            <xs:element name="SecurityReportedSharesTotal" type="SecurityNumberOfSharesType" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Sum of all Property/Security/ReportedShares values in this Report</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="SecurityRemittedSharesTotal" type="SecurityNumberOfSharesType" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Sum of all Property/Security/RemittedShares values in this Report</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <!-- Cryptocurrency totals -->
+                            <xs:element name="CryptocurrencyReportedUnitsTotal" type="CryptocurrencyUnits" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Sum of all Property/Cryptocurrency/ReportedUnits values in this Report</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                            <xs:element name="CryptocurrencyRemittedUnitsTotal" type="CryptocurrencyUnits" minOccurs="0">
+                              <xs:annotation>
+                                <xs:documentation>Sum of all Property/Cryptocurrency/RemittedUnits values in this Report</xs:documentation>
+                              </xs:annotation>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element> <!-- ReportSummary -->
                       <xs:element name="NonProductionReport" type="IndicatorType" minOccurs="0" />
                     </xs:sequence>
                   </xs:complexType>
@@ -1238,7 +1325,7 @@
         </xs:element> <!-- Holder -->
       </xs:sequence>
       <!-- Section 4.5 Remittance Attributes -->
-      <xs:attribute name="version" type="xs:string" use="required" fixed="1.4" />
+      <xs:attribute name="version" type="xs:string" use="required" fixed="1.5" />
     </xs:complexType>
   </xs:element> <!-- Remittance -->
 
@@ -1251,7 +1338,7 @@
       <xs:element name="TypeCode">
         <xs:simpleType>
           <xs:restriction base="xs:string">
-            <xs:maxLength value="10" />
+            <xs:maxLength value="7" />
             <xs:enumeration value="SEDOL" />
             <xs:enumeration value="ISIN" />
             <xs:enumeration value="VALOREN" />
@@ -1273,7 +1360,7 @@
   <!-- Section 5.2 Security Data Element Types-->
   <xs:simpleType name="SecurityNameType">
     <xs:restriction base="xs:string">
-            <xs:minLength value="1" />
+      <xs:minLength value="1" />
       <xs:maxLength value="100" />
     </xs:restriction>
   </xs:simpleType>
@@ -1302,7 +1389,19 @@
   <xs:simpleType name="CryptocurrencyUnits">
     <xs:restriction base="xs:decimal">
       <xs:totalDigits value="33" />
-    <xs:fractionDigits value="18" />
+      <xs:fractionDigits value="18" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CryptocurrencyNameType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="16" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CryptocurrencySymbolType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="7" />
     </xs:restriction>
   </xs:simpleType>
 
@@ -1315,7 +1414,7 @@
       <xs:element name="TypeCode">
         <xs:simpleType>
           <xs:restriction base="xs:string">
-            <xs:maxLength value="50" />
+            <xs:maxLength value="11" />
             <xs:enumeration value="Claims" />
             <xs:enumeration value="Report" />
             <xs:enumeration value="CFO" />
@@ -1349,7 +1448,7 @@
             <xs:element name="TypeCode">
               <xs:simpleType>
                 <xs:restriction base="xs:string">
-                  <xs:maxLength value="50" />
+                  <xs:maxLength value="24" />
                   <xs:enumeration value="Seasonal" />
                   <xs:enumeration value="Obsolete/Prior" />
                   <xs:enumeration value="Forwarding/non-permanent" />
@@ -1595,13 +1694,16 @@
 
   <xs:simpleType name="ForeignTelephoneNumberType">
     <xs:restriction base="xs:string">
-      <xs:pattern value="[0-9]{7,15}" />
+      <xs:pattern value="\+[0-9]{1,15}"/>
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="IndicatorType">
+    <!-- 'X' means true; empty string means false. -->
     <xs:restriction base="xs:string">
+      <xs:maxLength value="1" />
       <xs:enumeration value="X" />
+      <xs:enumeration value="" />
     </xs:restriction>
   </xs:simpleType>
 
@@ -1609,7 +1711,7 @@
     <xs:restriction base="xs:decimal">
       <xs:minInclusive value="0" />
       <xs:maxInclusive value="100" />
-    <xs:totalDigits value="13" />
+      <xs:totalDigits value="13" />
       <xs:fractionDigits value="10" />
     </xs:restriction>
   </xs:simpleType>
@@ -1722,7 +1824,6 @@
       <xs:enumeration value="GMB"/>
       <xs:enumeration value="GEO"/>
       <xs:enumeration value="DEU"/>
-      <xs:enumeration value="GER"/>
       <xs:enumeration value="GHA"/>
       <xs:enumeration value="GIB"/>
       <xs:enumeration value="GRC"/>
@@ -1947,34 +2048,1131 @@
       <xs:enumeration value="WI" />
       <xs:enumeration value="WY" />
       <!-- American territories codes -->
-      <xs:enumeration value="AS" /> <!-- American Samoa -->
-      <xs:enumeration value="GU" /> <!-- Guam -->
-      <xs:enumeration value="MH" /> <!-- Marshall Islands -->
-      <xs:enumeration value="FM" /> <!-- Micronesia -->
-      <xs:enumeration value="MP" /> <!-- Northern Marianas -->
-      <xs:enumeration value="PW" /> <!-- Palau -->
-      <xs:enumeration value="PR" /> <!-- Puerto Rico -->
-      <xs:enumeration value="VI" /> <!-- Virgin Islands -->
+      <xs:enumeration value="AS">
+        <xs:annotation>
+          <xs:documentation>American Samoa</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GU">
+        <xs:annotation>
+          <xs:documentation>Guam</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MH">
+        <xs:annotation>
+          <xs:documentation>Marshall Islands</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FM">
+        <xs:annotation>
+          <xs:documentation>Micronesia</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MP">
+        <xs:annotation>
+          <xs:documentation>Northern Marianas</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PW">
+        <xs:annotation>
+          <xs:documentation>Palau</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PR">
+        <xs:annotation>
+          <xs:documentation>Puerto Rico</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="VI">
+        <xs:annotation>
+          <xs:documentation>Virgin Islands</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
       <!-- Armed Forces codes -->
-      <xs:enumeration value="AA" /> <!-- Armed Forces Americas -->
-      <xs:enumeration value="AE" /> <!-- Armed Forces Europe -->
-      <xs:enumeration value="AP" /> <!-- Armed Forces Pacific -->
-      <xs:enumeration value="FO" /> <!-- Foreign Address -->
-      <xs:enumeration value="NA" /> <!-- Not Available -->
+      <xs:enumeration value="AA">
+        <xs:annotation>
+          <xs:documentation>Armed Forces Americas</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AE">
+        <xs:annotation>
+          <xs:documentation>Armed Forces Europe</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AP">
+        <xs:annotation>
+          <xs:documentation>Armed Forces Pacific</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FO">
+        <xs:annotation>
+          <xs:documentation>Foreign Address</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NA">
+        <xs:annotation>
+          <xs:documentation>Not Available</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
       <!-- Canadian Provinces -->
-      <xs:enumeration value="AB" /> <!-- Alberta -->
-      <xs:enumeration value="BC" /> <!-- British Columbia -->
-      <xs:enumeration value="MB" /> <!-- Manitoba -->
-      <xs:enumeration value="NB" /> <!-- New Brunswick -->
-      <xs:enumeration value="NL" /> <!-- Newfoundland and Labrador -->
-      <xs:enumeration value="NS" /> <!-- Nova Scotia -->
-      <xs:enumeration value="ON" /> <!-- Ontario -->
-      <xs:enumeration value="PE" /> <!-- Prince Edward Island -->
-      <xs:enumeration value="QC" /> <!-- Quebec -->
-      <xs:enumeration value="SK" /> <!-- Saskatchewan -->
-      <xs:enumeration value="YT" /> <!-- Yukon -->
-      <xs:enumeration value="NU" /> <!-- Nunavut -->
-      <xs:enumeration value="NT" /> <!-- Northwest Territories -->
+      <xs:enumeration value="AB">
+        <xs:annotation>
+          <xs:documentation>Alberta</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BC">
+        <xs:annotation>
+          <xs:documentation>British Columbia</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MB">
+        <xs:annotation>
+          <xs:documentation>Manitoba</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NB">
+        <xs:annotation>
+          <xs:documentation>New Brunswick</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NL">
+        <xs:annotation>
+          <xs:documentation>Newfoundland and Labrador</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NS">
+        <xs:annotation>
+          <xs:documentation>Nova Scotia</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ON">
+        <xs:annotation>
+          <xs:documentation>Ontario</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PE">
+        <xs:annotation>
+          <xs:documentation>Prince Edward Island</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="QC">
+        <xs:annotation>
+          <xs:documentation>Quebec</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SK">
+        <xs:annotation>
+          <xs:documentation>Saskatchewan</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="YT">
+        <xs:annotation>
+          <xs:documentation>Yukon</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NU">
+        <xs:annotation>
+          <xs:documentation>Nunavut</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NT">
+        <xs:annotation>
+          <xs:documentation>Northwest Territories</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Section 7.3.3 PropertyTypeCodeType Values -->
+  <!-- NAUPA II four-character property type codes.                    -->
+  <!-- Source: NAUPA Standard Electronic File Format                    -->
+  <!--         (Property Type Codes appendix, rev. 1/29/25).            -->
+  <!-- maxLength remains 5 (rather than the current 4-char max) to allow -->
+  <!-- future expansion without a breaking schema change.                -->
+  <xs:simpleType name="PropertyTypeCodeType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="5" />
+      <!-- Accounts -->
+      <xs:enumeration value="AC01">
+        <xs:annotation>
+          <xs:documentation>Demand deposit account with unrestricted transactions.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC02">
+        <xs:annotation>
+          <xs:documentation>Demand deposit account with restricted transactions.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC03">
+        <xs:annotation>
+          <xs:documentation>Timed deposit account with a fixed term and generally a fixed rate.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC04">
+        <xs:annotation>
+          <xs:documentation>Christmas Club Funds</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC05">
+        <xs:annotation>
+          <xs:documentation>Money on deposit to secure fund</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC06">
+        <xs:annotation>
+          <xs:documentation>Renters' deposit that is held by the proprietor for security of an agreement.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC07">
+        <xs:annotation>
+          <xs:documentation>Deposited Funds where there is insufficient information to credit the funds directly into a customer's account.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC08">
+        <xs:annotation>
+          <xs:documentation>Suspense Accounts</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC10">
+        <xs:annotation>
+          <xs:documentation>Electronic/wire payments and credit cards that are not received by the payee and are held in the bank's accounts. Check with your state for specifics.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC11">
+        <xs:annotation>
+          <xs:documentation>Property deposit on account to secure a loan.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC12">
+        <xs:annotation>
+          <xs:documentation>Achieving a Better Life Experience (ABLE) tax favored account, available to individuals with significant disabilities.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC13">
+        <xs:annotation>
+          <xs:documentation>Account where an employee's wages are electronically deposited onto a card instead of traditional bank accounts.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC14">
+        <xs:annotation>
+          <xs:documentation>Reloadable card not marketed to the general public and not labeled "Gift Card" (Example: Comdata trucker fuel card).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC15">
+        <xs:annotation>
+          <xs:documentation>Reloadable benefit card; EBT card.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC17">
+        <xs:annotation>
+          <xs:documentation>Interest earned on Lawyer Trust Accounts (does not include Lawyer trust client funds reported by law offices).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC18">
+        <xs:annotation>
+          <xs:documentation>Lawyer Trust accounts or Interest on Lawyer Trust accounts that should not be reported to your home state.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AC99">
+        <xs:annotation>
+          <xs:documentation>Aggregate Account Balances</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Checks -->
+      <xs:enumeration value="CK01">
+        <xs:annotation>
+          <xs:documentation>Check written by a financial institution where the bank is directly liable for payment, for the amount paid to the bank by the purchaser with a named payee. This includes Cashier's, Certified, and Registered Checks. Does not include Traveler's Checks, money Orders, and similar instruments, as covered by the rule enacted by Congress in 12 U.S.C. Sections 2501 et seq. It is encouraged to include any remitter information that is available.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK02">
+        <xs:annotation>
+          <xs:documentation>Certified Checks</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK03">
+        <xs:annotation>
+          <xs:documentation>Registered Checks</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK04">
+        <xs:annotation>
+          <xs:documentation>Treasurer's Checks</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK05">
+        <xs:annotation>
+          <xs:documentation>Drafts</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK06">
+        <xs:annotation>
+          <xs:documentation>Order issued by a governmental entity that serves as authorization, especially a voucher authorizing payment or receipt of money. A warrant draws funds from a government treasury and is not an order to pay.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK07">
+        <xs:annotation>
+          <xs:documentation>Payment order for a specified amount of money. Includes both express money orders and personal orders, on which the remitter is in the purchaser. Does not include Cashier's, Certified, and Registered Checks (Money orders are covered under the rule enacted by Congress in 12 U.S.C. Sections 2501 et seq.).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK08">
+        <xs:annotation>
+          <xs:documentation>Internationally redeemable draft issued by a major financial services company in various denominations and payable only upon the purchaser's endorsement against the original signature on the draft. Does not include Cashier's, Certified, and Registered Checks (Travelers checks are covered under Section 306 which states the rule enacted by Congress in 12 U.S.C. Sections 2501 et seq.).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK09">
+        <xs:annotation>
+          <xs:documentation>Foreign Exchange Checks</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK10">
+        <xs:annotation>
+          <xs:documentation>Expense Checks</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK11">
+        <xs:annotation>
+          <xs:documentation>Pension Checks</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK12">
+        <xs:annotation>
+          <xs:documentation>Credit Checks or Memos</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK13">
+        <xs:annotation>
+          <xs:documentation>Funds owed to a vendor for the amount due. May include refund, overpayment, reimbursement, discounts due, etc. order to pay.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK14">
+        <xs:annotation>
+          <xs:documentation>Checks Written off to Income</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK15">
+        <xs:annotation>
+          <xs:documentation>Other Outstanding Official Checks</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK16">
+        <xs:annotation>
+          <xs:documentation>Check issued for interest payable to an owner of a certificate of deposit.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK19">
+        <xs:annotation>
+          <xs:documentation>Funds owed to Non-Retail Customers for the amount due. May include refund, overpayment, reimbursement, discounts due, etc.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK20">
+        <xs:annotation>
+          <xs:documentation>Funds owed to Retail Customers for the amount due. May include refund, overpayment, rebate, reimbursement, discounts due, etc.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CK99">
+        <xs:annotation>
+          <xs:documentation>Aggregate Uncashed Checks</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Educational Savings Accounts -->
+      <xs:enumeration value="CS01">
+        <xs:annotation>
+          <xs:documentation>Cash or cash-equivalent (e.g., money markets) balances in a 529 Education Account.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CS02">
+        <xs:annotation>
+          <xs:documentation>Mutual funds, including money market funds and separate accounts held in a 529 Education Account.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CS03">
+        <xs:annotation>
+          <xs:documentation>Securities (other than mutual funds) held in a 529 Education Account.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CS04">
+        <xs:annotation>
+          <xs:documentation>Reserved for Educational Savings Accounts (Code reserved for future use)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CS05">
+        <xs:annotation>
+          <xs:documentation>Cash or cash-equivalent (e.g., money markets) balances in a Coverdell Education Savings Account.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CS06">
+        <xs:annotation>
+          <xs:documentation>Mutual funds, including money market funds and separate accounts held in a Coverdell Education Savings Account.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CS07">
+        <xs:annotation>
+          <xs:documentation>Securities (other than mutual funds) held in a Coverdell Education Savings Account.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CS08">
+        <xs:annotation>
+          <xs:documentation>Check or similar distribution of assets from an education savings acct.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Court -->
+      <xs:enumeration value="CT01">
+        <xs:annotation>
+          <xs:documentation>Court Funds held on behalf of another party or parties, or deposits held by the court or attorney on behalf of an individual(s).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT02">
+        <xs:annotation>
+          <xs:documentation>Payment in money or replacement property that is received for property condemned by a government authority.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT03">
+        <xs:annotation>
+          <xs:documentation>Funds related to a decedent, or testator of a will, but whose residence, domicile, or address is not known.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT04">
+        <xs:annotation>
+          <xs:documentation>Suspense Accounts</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT05">
+        <xs:annotation>
+          <xs:documentation>Money paid to court that is owed.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT20">
+        <xs:annotation>
+          <xs:documentation>Payment that a noncustodial parent makes as a contribution to the costs of raising her or his child.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT21">
+        <xs:annotation>
+          <xs:documentation>Funds awarded to class members of a court action that are owed.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT22">
+        <xs:annotation>
+          <xs:documentation>Bail paid an individual where the legal action is complete and the bond can now be refunded.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT23">
+        <xs:annotation>
+          <xs:documentation>Transfer of property from a court order subject to a decision in a lawsuit.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT24">
+        <xs:annotation>
+          <xs:documentation>Fund consisting of assets belonging to a trust, held by the trustees for the beneficiaries.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT25">
+        <xs:annotation>
+          <xs:documentation>Proceeds from the sale of a vehicle that has been left unattended on public property.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT26">
+        <xs:annotation>
+          <xs:documentation>Proceeds from the sale of a real estate transaction.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT27">
+        <xs:annotation>
+          <xs:documentation>Payment ordered by the courts for reparation.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CT99">
+        <xs:annotation>
+          <xs:documentation>Aggregate Court Deposit</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Defined Contribution / Retirement Distributions -->
+      <xs:enumeration value="DC01">
+        <xs:annotation>
+          <xs:documentation>Funds from a pension plan paid as required distributions under the Internal Revenue Code or pension plan.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC02">
+        <xs:annotation>
+          <xs:documentation>Funds from a pension plan paid at the request of a separating employee/participant.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC03">
+        <xs:annotation>
+          <xs:documentation>Funds from a pension plan paid out by the plan due to separation from employment.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC04">
+        <xs:annotation>
+          <xs:documentation>Funds from a pension plan intended for transfer to another eligible retirement account.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC05">
+        <xs:annotation>
+          <xs:documentation>Funds borrowed from a from a pension plan by a participant</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC06">
+        <xs:annotation>
+          <xs:documentation>Funds from a pension plan received due to overpayment on a plan loan.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC07">
+        <xs:annotation>
+          <xs:documentation>Funds from a pension plan returned to a participant due to exceeding the annual contribution limit.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC08">
+        <xs:annotation>
+          <xs:documentation>Funds from a pension plan returned to as a participant as reimbursement for account fees.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC09">
+        <xs:annotation>
+          <xs:documentation>Investment earnings from a pension plan received after a participant terminates their account.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC10">
+        <xs:annotation>
+          <xs:documentation>Funds from a pension plan and paid to a participant or specific financial hardships.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC11">
+        <xs:annotation>
+          <xs:documentation>Funds from a pension plan withdrawn by a participant with penalty before required age.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC12">
+        <xs:annotation>
+          <xs:documentation>Funds from a pension plan terminated by the plan sponsor or otherwise.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DC13">
+        <xs:annotation>
+          <xs:documentation>Payment of a participant's entire balance in a pension plain, paid as an alternative to required minimum distributions.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Health Savings Accounts -->
+      <xs:enumeration value="HS01">
+        <xs:annotation>
+          <xs:documentation>Tax-advantaged account established to pay for qualified medical expenses.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="HS02">
+        <xs:annotation>
+          <xs:documentation>Health Savings Account Investment</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="HS03">
+        <xs:annotation>
+          <xs:documentation>Reserved for Health Savings Account (code reserved for future use)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="HS04">
+        <xs:annotation>
+          <xs:documentation>Unclaimed cash distributions or unapplied contributions from a Health Savings Accounts (HSA)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="HS05">
+        <xs:annotation>
+          <xs:documentation>Unclaimed mutual fund distributions or unapplied contributions from a Health Savings Account (HSA).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="HS06">
+        <xs:annotation>
+          <xs:documentation>Unclaimed securities distributions or unapplied contributions from a Health Savings Account (HSA).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Insurance -->
+      <xs:enumeration value="IN01">
+        <xs:annotation>
+          <xs:documentation>Amount due under the terms of an insurance policy other than a life insurance policy.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IN02">
+        <xs:annotation>
+          <xs:documentation>Group Policy Benefits or Claim Payments</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IN03">
+        <xs:annotation>
+          <xs:documentation>Policy proceeds on a life insurance policy, payable for reason of death of the insured.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IN04">
+        <xs:annotation>
+          <xs:documentation>Policy proceeds that are payable at a certain date specified in the policy or contract or due to the limiting age having been reached.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IN05">
+        <xs:annotation>
+          <xs:documentation>Premium refunds including overpayments.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IN06">
+        <xs:annotation>
+          <xs:documentation>Funds received where there is insufficient information to credit to an insured's account.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IN07">
+        <xs:annotation>
+          <xs:documentation>Amounts due under a policy that is not covered by another property code.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IN08">
+        <xs:annotation>
+          <xs:documentation>Amount due to an insurance agent.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IN20">
+        <xs:annotation>
+          <xs:documentation>Policy benefits distributed to beneficiaries by holding a spending account the beneficiaries can draw on in increments.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IN21">
+        <xs:annotation>
+          <xs:documentation>Benefits to workers who become injured or disabled.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IN22">
+        <xs:annotation>
+          <xs:documentation>Periodic payments derived from investment in an annuity contract.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IN99">
+        <xs:annotation>
+          <xs:documentation>Aggregate Insurance Property</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Individual Retirement Accounts -->
+      <xs:enumeration value="IR01">
+        <xs:annotation>
+          <xs:documentation>Balances in a traditional, self-directed, SIMPLE or SEP IRA.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IR02">
+        <xs:annotation>
+          <xs:documentation>Mutual funds, including money market funds held in a traditional, self-directed, SIMPLE or SEP IRA. If the IRA contains multiple, different mutual funds, report each mutual fund/share balance separately.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IR03">
+        <xs:annotation>
+          <xs:documentation>Securities (other than mutual funds) held in a traditional, self-directed, SIMPLE and SEP IRA. If the IRA contains multiple, different securities, report each CUSIP/share balance separately.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IR04">
+        <xs:annotation>
+          <xs:documentation>Alternative investments held in a Self-Directed IRA. -If the Self-Directed IRA contains multiple, different types of alternative assets, Cash balances in a Roth IRA, including a self-directed Roth IRA.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IR05">
+        <xs:annotation>
+          <xs:documentation>Cash balances in a Roth IRA, including a self-directed Roth IRA.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IR06">
+        <xs:annotation>
+          <xs:documentation>Mutual funds, including money market funds, held in a Roth IRA, including a self-directed Roth IRA. If the Roth IRA contains multiple, different mutual funds, report each mutual fund/share balance separately.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IR07">
+        <xs:annotation>
+          <xs:documentation>Securities held in a Roth, including a self-directed Roth IRA. If the Roth IRA contains multiple, different securities, report each CUSIP/share balance separately.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IR08">
+        <xs:annotation>
+          <xs:documentation>Alternative investments held in a self-directed Roth IRA. If the self-directed Roth IRA contains multiple, different types of alternative assets, report each asset separately.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IR09">
+        <xs:annotation>
+          <xs:documentation>IRA Other - Reserved 1 (code reserved for future use_)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="IR10">
+        <xs:annotation>
+          <xs:documentation>IRA Other - Reserved 2 (code reserved for future use_)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Mineral Interests -->
+      <xs:enumeration value="MI01">
+        <xs:annotation>
+          <xs:documentation>Investment in oil and gas drilling operations in which the investor is directly liable for a portion of the ongoing costs associated with exploration, drilling, and production.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MI02">
+        <xs:annotation>
+          <xs:documentation>Royalty interests retained in the output of a property when the owner of mineral rights enters into a lease agreement. A royalty interest entitles the mineral rights owner to receive a portion of the minerals produced or a portion of the gross revenue from sold production.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MI03">
+        <xs:annotation>
+          <xs:documentation>Interests in and royalty on the oil, gas, or minerals extracted from another's land that is carved out of the producer's working interest and is not tied to production costs.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MI04">
+        <xs:annotation>
+          <xs:documentation>Economic interests in oil, gas or mineral reserves which (i) entitles the holder thereof to a specified share of future production from such reserves, free of the costs and expenses of such production, and (ii) terminates when a specified quantity of such share of future production from such reserves has been delivered or a specified sum has been realized from the sale of such share of future production from such reserves.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MI05">
+        <xs:annotation>
+          <xs:documentation>Working Interest</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MI06">
+        <xs:annotation>
+          <xs:documentation>Lease Bonus paid by the lessee for the execution of an oil and gas lease by a landowner. It is usually a cash consideration based on a per acre payment.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MI07">
+        <xs:annotation>
+          <xs:documentation>Yearly payment made to the lessor by the lessee during the primary term of the lease to compensate for drilling that is delayed.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MI08">
+        <xs:annotation>
+          <xs:documentation>Payment stipulated in an oil and gas lease, which royalty owners receive in lieu of actual production, when a gas well is shut-in due to lack of a suitable market, a lack of facilities to produce the product, or other cases defined within the shut-in provisions contained in the oil and gas lease.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MI09">
+        <xs:annotation>
+          <xs:documentation>Minimum Royalties</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MI10">
+        <xs:annotation>
+          <xs:documentation>Additional amounts that accrue in subsequent years after you have remitted money on behalf of an owner must also be reported. You must hold monthly checks and include them on your annual report.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MI12">
+        <xs:annotation>
+          <xs:documentation>Other production type payments not specified in other property type codes.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MI99">
+        <xs:annotation>
+          <xs:documentation>Aggregate Mineral Proceeds</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Miscellaneous -->
+      <xs:enumeration value="MS01">
+        <xs:annotation>
+          <xs:documentation>Income earned from employment or contractual work and paid via check or direct deposit.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS02">
+        <xs:annotation>
+          <xs:documentation>Commission earned, including those not related to employment or contractual work.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS03">
+        <xs:annotation>
+          <xs:documentation>Workers Compensation Benefits</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS04">
+        <xs:annotation>
+          <xs:documentation>Payments for Goods &amp; Services</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS05">
+        <xs:annotation>
+          <xs:documentation>Customer Overpayments</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS06">
+        <xs:annotation>
+          <xs:documentation>Unidentified Remittances</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS07">
+        <xs:annotation>
+          <xs:documentation>Unrefunded Overcharges</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS08">
+        <xs:annotation>
+          <xs:documentation>Accounts Payable</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS09">
+        <xs:annotation>
+          <xs:documentation>Credit Balances - Accounts Receivable</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS10">
+        <xs:annotation>
+          <xs:documentation>Discounts Due</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS11">
+        <xs:annotation>
+          <xs:documentation>Refunds Due</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS12">
+        <xs:annotation>
+          <xs:documentation>Unredeemed Gift Certificates</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS13">
+        <xs:annotation>
+          <xs:documentation>Unclaimed Loan Collateral</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS14">
+        <xs:annotation>
+          <xs:documentation>Pension &amp; Profit Sharing</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS15">
+        <xs:annotation>
+          <xs:documentation>Dissolution or Liquidation</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS16">
+        <xs:annotation>
+          <xs:documentation>Miscellaneous Outstanding Checks</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS17">
+        <xs:annotation>
+          <xs:documentation>Miscellaneous Intangible Property</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS18">
+        <xs:annotation>
+          <xs:documentation>Suspense Liabilities</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS30">
+        <xs:annotation>
+          <xs:documentation>Funds owed to a vendor for the amount due. May include refund, overpayment, reimbursement, discounts due, etc. Check or other payment has not been issued.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS31">
+        <xs:annotation>
+          <xs:documentation>Funds owed to Non-Retail Customers for the amount due. May include refund, overpayment, reimbursement, discounts due, etc. Check or other payment has not been issued.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS32">
+        <xs:annotation>
+          <xs:documentation>Funds owed to Retail Customers for the amount due. May include refund, overpayment, rebate, reimbursement, discounts due, etc. Check or other payment has not been issued.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS33">
+        <xs:annotation>
+          <xs:documentation>Credits in the amount of the payment upon return of the goods and allowing future purchase of goods from the merchant.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS34">
+        <xs:annotation>
+          <xs:documentation>Electronic bank debit card with a specific dollar value preloaded on the card.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS35">
+        <xs:annotation>
+          <xs:documentation>Payment Card that is redeemable at multiple, unaffiliated merchants or service providers, or automated teller machines.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS36">
+        <xs:annotation>
+          <xs:documentation>Card given to a customer by a business that provides rewards to the customer for purchases. The card records information regarding the customer's buying habits.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS37">
+        <xs:annotation>
+          <xs:documentation>Card containing pre-paid credit/minutes that enables the bearer to make telephone calls.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS38">
+        <xs:annotation>
+          <xs:documentation>Tangible, intangible, or virtual card of value containing a unique code (or other unique mark) corresponding to a fixed amount (such as game points) within a game platform.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS39">
+        <xs:annotation>
+          <xs:documentation>Money, virtual currency, or credit balance from an online betting account, where transactions and bet placements related to various sports occur.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS40">
+        <xs:annotation>
+          <xs:documentation>Money paid to a composer or author for the use of their work or to a patentee for the use of a patent.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MS99">
+        <xs:annotation>
+          <xs:documentation>Aggregate Misc Property</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Securities -->
+      <xs:enumeration value="SC01">
+        <xs:annotation>
+          <xs:documentation>Cash distribution of earnings to shareholders.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC02">
+        <xs:annotation>
+          <xs:documentation>Interest earned on Bonds (all types of Bonds) prior to the redemption or maturity date.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC03">
+        <xs:annotation>
+          <xs:documentation>The amount of money the bond issuer borrowing and will repay to the bondholder in full upon the bond's redemption or maturity.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC04">
+        <xs:annotation>
+          <xs:documentation>Equity Payments</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC05">
+        <xs:annotation>
+          <xs:documentation>Profits</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC06">
+        <xs:annotation>
+          <xs:documentation>Funds Paid to Purchase Shares</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC07">
+        <xs:annotation>
+          <xs:documentation>Distribution of assets in the form of a dividend from a corporation that is going out of business. Liquidation may occur when a firm goes bankrupt or when management decides to sell off a company's assets and pass the proceeds on to shareholders.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC08">
+        <xs:annotation>
+          <xs:documentation>Shares of Stock (Returned by Post Office)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC09">
+        <xs:annotation>
+          <xs:documentation>Conversion of fractional shares to cash.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC10">
+        <xs:annotation>
+          <xs:documentation>Unexchanged Stock of Successor Corp</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC11">
+        <xs:annotation>
+          <xs:documentation>Other Cert of Ownership</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC12">
+        <xs:annotation>
+          <xs:documentation>Underlying Shares or other Outstanding Certificates</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC13">
+        <xs:annotation>
+          <xs:documentation>Funds for Liquidation/Redemption of Un-surrendered Stock or Bonds</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC14">
+        <xs:annotation>
+          <xs:documentation>General debt obligation- unsecured bonds.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC15">
+        <xs:annotation>
+          <xs:documentation>Debt obligations issued by the US Government.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC16">
+        <xs:annotation>
+          <xs:documentation>Shares from funds operated by an investment company - including but not limited to: Open End funds, Closed End funds, Index funds, ETF and UIT.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC17">
+        <xs:annotation>
+          <xs:documentation>Securities identified as warrants/rights/options, which have not expired. Expiration date must be specified in the property description.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC18">
+        <xs:annotation>
+          <xs:documentation>Mature Bond Principal</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC19">
+        <xs:annotation>
+          <xs:documentation>Securities held in accounts enrolled in Dividend Reinvestment Plan.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC20">
+        <xs:annotation>
+          <xs:documentation>Unapplied cash balance in a security account. For interest/dividends use SC01, for cash in lieu use SC09.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC30">
+        <xs:annotation>
+          <xs:documentation>Securities that cannot be delivered to the State by DTC or similar custodian of securities providing post-trade clearing and settlement services to financial markets or cannot be delivered because there is no agent to effect the transfer and the security is determined to be worthless.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC31">
+        <xs:annotation>
+          <xs:documentation>Securities that are not transferable or contain a restriction that cannot be lifted without an opinion from legal counsel.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC32">
+        <xs:annotation>
+          <xs:documentation>Cash resulting from the liquidation of shares (accelerated reporting) at the direction of the state prior to reporting.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC33">
+        <xs:annotation>
+          <xs:documentation>Share entitlement resulting from the failure to exchange of predecessor entity shares to new successor shares (shares drawn on prior company name). Certificates remitted in the original owner name.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC34">
+        <xs:annotation>
+          <xs:documentation>Shares of the successor entity remitted without shareholders' action. Original owner name. No certificate received by program.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC35">
+        <xs:annotation>
+          <xs:documentation>Equity Securities, including Certificated shares, book entry shares, stock dividends and distributions. For Dividend Reinvestment Plan Shares use SC19.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SC99">
+        <xs:annotation>
+          <xs:documentation>Aggregate Security Related Cash</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Safe Deposit / Tangible -->
+      <xs:enumeration value="SD01">
+        <xs:annotation>
+          <xs:documentation>Coins, jewelry, documents, and other tangible contents of safe deposit boxes.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SD02">
+        <xs:annotation>
+          <xs:documentation>Bailments/Other Safekeeping (Property held in trust for a specific purpose that will be returned to the owner).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SD03">
+        <xs:annotation>
+          <xs:documentation>Other reportable tangible property not from safe deposit boxes.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SD04">
+        <xs:annotation>
+          <xs:documentation>Other reportable tangible property not held in trust. Check with each state for specifics; e.g. lost and found at hospitality or other industry.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SD05">
+        <xs:annotation>
+          <xs:documentation>Cash resulting from the sale of tangible property prior to reporting.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Trust -->
+      <xs:enumeration value="TR01">
+        <xs:annotation>
+          <xs:documentation>Paying Agent Account</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TR02">
+        <xs:annotation>
+          <xs:documentation>Undelivered or Uncashed Dividends</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TR03">
+        <xs:annotation>
+          <xs:documentation>Accounts held that are not escrow, for example a trust voucher.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TR04">
+        <xs:annotation>
+          <xs:documentation>Accounts that fall under other course of business for escrows, such as escrow refund checks.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TR05">
+        <xs:annotation>
+          <xs:documentation>Trust Vouchers</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TR06">
+        <xs:annotation>
+          <xs:documentation>Net funds for an unutilized preneed contract.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TR10">
+        <xs:annotation>
+          <xs:documentation>Trust payments due beneficiaries or vendors.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TR11">
+        <xs:annotation>
+          <xs:documentation>Funds escrowed for payment of property taxes.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TR12">
+        <xs:annotation>
+          <xs:documentation>Disputed escrow money between multiple parties.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TR13">
+        <xs:annotation>
+          <xs:documentation>Funds related to cemetery costs.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TR99">
+        <xs:annotation>
+          <xs:documentation>Aggregate Trust Property</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Utilities -->
+      <xs:enumeration value="UT01">
+        <xs:annotation>
+          <xs:documentation>Deposits placed on account with utility providers.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UT02">
+        <xs:annotation>
+          <xs:documentation>Membership Fees</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UT03">
+        <xs:annotation>
+          <xs:documentation>Overpayments, rebates, or other funds (other than those from utility deposits) to the account of the utility subscriber.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UT04">
+        <xs:annotation>
+          <xs:documentation>Distributions of net margins by a cooperative or any redemption of payment based on indebtedness, capital stock of the cooperative, or other equity interest.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UT99">
+        <xs:annotation>
+          <xs:documentation>Aggregate Utilities</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Virtual Currency -->
+      <xs:enumeration value="VC01">
+        <xs:annotation>
+          <xs:documentation>Virtual currency, as a digital representation of value that functions as a medium of exchange, a unit of account, and/or a store of value.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="VC02">
+        <xs:annotation>
+          <xs:documentation>Virtual currency that has been converted or liquidated for cash.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="VC03">
+        <xs:annotation>
+          <xs:documentation>Fiat cash (government-issued currency) balance held by an exchange.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <!-- Catch-all -->
+      <xs:enumeration value="ZZZZ">
+        <xs:annotation>
+          <xs:documentation>Properties Not Identified Above</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
 
