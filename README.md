@@ -80,3 +80,21 @@ The specific type of data to be contained between defined tags can be specified
 in the XSD file referenced above.  This makes it possible to ensure that data 
 transmitted by XML is of the correct data type, thereby making it easier for 
 the recipient to import the transmitted data to a database or application.
+
+## Clarification Request
+
+While implementing NAUPA III v1.4 XML reporting, I noticed a possible discrepancy between the handbook and Remittance.xsd regarding Owner TypeCode values.
+
+Handbook values appear to include:
+- IND (Individual Owner)
+- BUS (Business Owner)
+- UNK (Unknown Owner)
+- AGG (Aggregate Owner)
+
+Remittance.xsd currently restricts Owner TypeCode to:
+- NamedOwner
+- Unknown
+- Aggregate
+
+Could the maintainers please clarify which values should be used for NAUPA III v1.4 reporting?
+No functional changes are being proposed. This request is intended solely to obtain clarification because Issues are unavailable for this repository.
