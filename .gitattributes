@@ -1,0 +1,3 @@
+# Preserve line endings as committed; do not let git convert them.
+*.xml -text
+*.xsd -text
