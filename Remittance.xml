@@ -3,7 +3,7 @@
 <Remittance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.unclaimed.org/NAUPA-III Remittance.xsd"
       xmlns="http://www.unclaimed.org/NAUPA-III"
-      version="1.4">
+      version="1.5">
   <!-- Section 4.1 SoftwareInformation Element -->
   <SoftwareInformation>
     <Version>0.1</Version>
@@ -44,7 +44,7 @@
         <USTelephoneNumber>3035551112</USTelephoneNumber>
       </AlternateTelephoneNumber>
       <AlternateTelephoneNumber>
-        <ForeignTelephoneNumber>14402076362100</ForeignTelephoneNumber>
+        <ForeignTelephoneNumber>+14402076362100</ForeignTelephoneNumber>
       </AlternateTelephoneNumber>
       <EMailAddress>info@softwareapp.com</EMailAddress>
       <AlternateEMailAddress>support@softwareapp.com</AlternateEMailAddress>
@@ -222,7 +222,7 @@
         <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
           <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
-          <TypeCode>Aggregate</TypeCode>
+          <TypeCode>IND</TypeCode>
           <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
             <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
@@ -235,11 +235,6 @@
             <AlienID>999999999</AlienID>
             -->
           </Identity>
-          <!-- Section 4.4.3.2.7.2.2 DriversLicense Element -->
-          <DriversLicense>
-            <State>CO</State>
-            <Identifier>24-457-1234</Identifier>
-          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -275,7 +270,7 @@
             </TelephoneNumber>
             <AlternateTelephoneNumber>
               <Type>Home</Type>
-              <ForeignTelephoneNumber>498004353666</ForeignTelephoneNumber>
+              <ForeignTelephoneNumber>+498004353666</ForeignTelephoneNumber>
             </AlternateTelephoneNumber>
             <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
             <AlternateEMailAddress>jbesitzer999@somecompay.com</AlternateEMailAddress>
@@ -284,6 +279,10 @@
           <DateOfBirth>1954-06-08</DateOfBirth>
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>24-457-1234</Identifier>
+          </DriversLicense>
           <CompleteAccountRegistrationName>ROBERT JAMES ANDERSON</CompleteAccountRegistrationName>
           <DateOfTrust>2000-01-01</DateOfTrust>
           <MinorDateOfMajority>2000-01-01</MinorDateOfMajority>
@@ -368,7 +367,7 @@
         <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
           <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
-          <TypeCode>Aggregate</TypeCode>
+          <TypeCode>IND</TypeCode>
           <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
             <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
@@ -378,10 +377,6 @@
               <Number>555551234</Number>
             </USTaxID>
           </Identity>
-          <DriversLicense>
-            <State>CO</State>
-            <Identifier>12345678</Identifier>
-          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -403,6 +398,10 @@
           </Contact>
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>12345678</Identifier>
+          </DriversLicense>
         </Owner>
         <!-- Section 4.4.3.2.10 Bond Element -->
         <Bond>
@@ -429,7 +428,7 @@
         <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
           <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
-          <TypeCode>Aggregate</TypeCode>
+          <TypeCode>IND</TypeCode>
           <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
             <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
@@ -439,10 +438,6 @@
               <Number>555551234</Number>
             </USTaxID>
           </Identity>
-          <DriversLicense>
-            <State>CO</State>
-            <Identifier>12345678</Identifier>
-          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -464,6 +459,10 @@
           </Contact>
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>12345678</Identifier>
+          </DriversLicense>
         </Owner>
         <!-- Section 4.4.3.2.11 Security Element -->
         <Security>
@@ -536,7 +535,7 @@
         <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
           <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
-          <TypeCode>Aggregate</TypeCode>
+          <TypeCode>IND</TypeCode>
           <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
             <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
@@ -546,10 +545,6 @@
               <Number>555551234</Number>
             </USTaxID>
           </Identity>
-          <DriversLicense>
-            <State>CO</State>
-            <Identifier>12345678</Identifier>
-          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -571,6 +566,10 @@
           </Contact>
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>12345678</Identifier>
+          </DriversLicense>
         </Owner>
         <!-- Section 4.4.3.2.12 Safekeeping Element -->
         <Safekeeping>
@@ -631,7 +630,7 @@
         <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
           <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
-          <TypeCode>Aggregate</TypeCode>
+          <TypeCode>IND</TypeCode>
           <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
             <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
@@ -641,10 +640,6 @@
               <Number>555551234</Number>
             </USTaxID>
           </Identity>
-          <DriversLicense>
-            <State>CO</State>
-            <Identifier>12345678</Identifier>
-          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -666,6 +661,10 @@
           </Contact>
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>12345678</Identifier>
+          </DriversLicense>
         </Owner>
         <!-- Section 4.4.3.2.13 MineralInterests Element -->
         <MineralInterests>
@@ -699,7 +698,7 @@
         <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
           <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
-          <TypeCode>Aggregate</TypeCode>
+          <TypeCode>IND</TypeCode>
           <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
             <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
@@ -709,10 +708,6 @@
               <Number>555551234</Number>
             </USTaxID>
           </Identity>
-          <DriversLicense>
-            <State>CO</State>
-            <Identifier>12345678</Identifier>
-          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -734,6 +729,10 @@
           </Contact>
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>12345678</Identifier>
+          </DriversLicense>
         </Owner>
         <!-- Section 4.4.3.2.14 Cryptocurrency Elememt -->
         <Cryptocurrency>
@@ -748,8 +747,6 @@
           </AlternativeID>
           <ReportedUnits>100</ReportedUnits>
           <RemittedUnits>100</RemittedUnits>
-          <ProceedsReported>5033090.00</ProceedsReported>
-          <ProceedsRemitted>5033070.00</ProceedsRemitted>
           <DateSold>2021-12-31</DateSold>
           <UnitsSold>100</UnitsSold>
           <DateAcquired>2005-05-01</DateAcquired>
@@ -888,7 +885,7 @@
         <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
           <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
-          <TypeCode>Aggregate</TypeCode>
+          <TypeCode>IND</TypeCode>
           <!-- Section 4.4.3.2.7.2 Identity Element -->
           <Identity>
             <!-- Section 4.4.3.2.7.2.1 USTaxID Element -->
@@ -901,10 +898,6 @@
             <AlienID>999999999</AlienID>
             -->
           </Identity>
-          <DriversLicense>
-            <State>CO</State>
-            <Identifier>24-457-1234</Identifier>
-          </DriversLicense>
           <Contact>
             <TypeCode>Owner</TypeCode>
             <PersonName>
@@ -939,7 +932,7 @@
             </TelephoneNumber>
             <AlternateTelephoneNumber>
               <Type>Home</Type>
-              <ForeignTelephoneNumber>498004353666</ForeignTelephoneNumber>
+              <ForeignTelephoneNumber>+498004353666</ForeignTelephoneNumber>
             </AlternateTelephoneNumber>
             <EMailAddress>jbesitzer999@gmail.com</EMailAddress>
             <AlternateEMailAddress>jbesitzer999@somecompay.com</AlternateEMailAddress>
@@ -948,6 +941,10 @@
           <DateOfBirth>1954-06-08</DateOfBirth>
           <!-- Section 4.4.3.2.7.3 RelationshipCode Element -->
           <RelationshipCode>AD</RelationshipCode>
+          <DriversLicense>
+            <State>CO</State>
+            <Identifier>24-457-1234</Identifier>
+          </DriversLicense>
           <CompleteAccountRegistrationName>ROBERT JAMES ANDERSON</CompleteAccountRegistrationName>
           <DateOfTrust>2000-01-01</DateOfTrust>
           <MinorDateOfMajority>2010-01-01</MinorDateOfMajority>
@@ -987,6 +984,7 @@
           </Contact>
           <DateOfBirth>1975-04-27</DateOfBirth>
           <SSN>111111111</SSN>
+		  <IfPaid>X</IfPaid>
         </Beneficiary>
         <!-- Section 4.4.3.2.9 Cash Element -->
         <Cash>
