@@ -10,8 +10,8 @@
     Original : Remittance.xsd  (NAUPA-III, version 1.0)
     Corrected: Remittance_Corrected.xsd
     Enhanced : Remittance_Corrected.xsd + ReportSummary section
-    Version  : Remittance @version attribute set to fixed="1.5"
-               to match the NAUPA-III 1.5 (July 2026) documentation.
+    Version  : Remittance @version attribute set to fixed="1.6"
+               to match the NAUPA-III 1.6 (September 2026) documentation.
 
     CORRECTIONS TO ORIGINAL XSD
     ===========================
@@ -1325,7 +1325,7 @@
         </xs:element> <!-- Holder -->
       </xs:sequence>
       <!-- Section 4.5 Remittance Attributes -->
-      <xs:attribute name="version" type="xs:string" use="required" fixed="1.5" />
+      <xs:attribute name="version" type="xs:string" use="required" fixed="1.6" />
     </xs:complexType>
   </xs:element> <!-- Remittance -->
 
