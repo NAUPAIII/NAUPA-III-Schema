@@ -363,6 +363,7 @@
           <StartDate>2015-01-15</StartDate>
           <EndDate>2015-01-15</EndDate>
         </PeriodicPaymentDates>
+		<NonRemitIndicator>X</NonRemitIndicator>
         <Taxable>X</Taxable>
         <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
@@ -424,6 +425,7 @@
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
+		<NonRemitIndicator>X</NonRemitIndicator>
         <Taxable>X</Taxable>
         <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
@@ -532,7 +534,9 @@
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
-        <!-- Section 4.4.3.2.7 Owner Element -->
+		<NonRemitIndicator>X</NonRemitIndicator>
+		<Taxable>X</Taxable>
+		  <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
           <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
           <TypeCode>IND</TypeCode>
@@ -627,6 +631,7 @@
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
         <NonRemitIndicator>X</NonRemitIndicator>
+		<Taxable>X</Taxable>
         <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
           <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
@@ -695,7 +700,9 @@
         <AccountNumber>1234567890</AccountNumber>
         <PresumedAbandonedDate>2015-01-15</PresumedAbandonedDate>
         <LastActivityDate>2015-01-15</LastActivityDate>
-        <!-- Section 4.4.3.2.7 Owner Element -->
+		<NonRemitIndicator>X</NonRemitIndicator>
+		<Taxable>X</Taxable>
+		  <!-- Section 4.4.3.2.7 Owner Element -->
         <Owner>
           <!-- Section 4.4.3.2.7.1 Owner TypeCode Element -->
           <TypeCode>IND</TypeCode>

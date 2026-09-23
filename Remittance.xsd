@@ -161,7 +161,34 @@
 				were added manually).
 				-->
 
-  <!-- Section 4 Remittance Element -->
+	<!-- TODO(NAUPA-1.6-K1): 9 elements marked "K" (If Known) in the NAUPA-III 1.6
+       documentation are mandatory in this schema. Search TODO(NAUPA-1.6-K1).
+
+       This is NOT a notation ambiguity. The 1.6 doc legend defines the terms:
+         M (Mandatory) - "The absence of the element will trigger a schema
+                          validation error."
+         K (If Known)  - "The element is optional within the XML structure...
+                          its absence does not trigger a schema validation error."
+       So K = minOccurs="0". The Repeat column governs count only; "K | 1"
+       means optional and non-repeating.
+
+       Affected: Payment/ConfirmationNumber; USAddressType Address1, City,
+       StateCode, ZIPCode; ForeignAddressType Address1, City, CountryCode;
+       PersonNameType/FirstName.
+
+       IMPACT IF CORRECTED: every child of USAddressType and ForeignAddressType
+       becomes optional, so a bare <USAddress/> or <ForeignAddress/> would
+       validate. PersonNameType would require only LastName. Confirm this is the
+       working group's intent before shipping 1.6.
+
+       PRECEDENT: ForeignAddressType/ProvinceOrState is also "K | 1" and already
+       has minOccurs="0" - the only one of the ten implemented per the legend.
+
+       NOT AFFECTED: MineralInterests/StateCode is "M | 1" and correctly
+       mandatory. Do not sweep it with a find-all on StateCode.
+  -->
+
+	<!-- Section 4 Remittance Element -->
   <xs:element name="Remittance">
     <xs:complexType>
       <xs:sequence>
@@ -179,6 +206,10 @@
               </xs:element>
               <xs:element name="Contact" type="ContactType" />
               <!-- Jurisdiction the report was created for (Section 7.3.2 StateCodeType) -->
+				<!-- TODO(NAUPA-1.6-JUR): doc 1.6 row is self-contradictory - "M" (absence = validation
+                   error) paired with Repeat "0..1" (may be absent). XSD is currently optional, matching
+                   the Repeat column. Git shows this was deliberately relaxed from mandatory in 1.5.
+                   Needs Group decision. -->
               <xs:element name="Jurisdiction" type="StateCodeType" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
@@ -204,6 +235,8 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+			  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
+			  <!--<xs:element name="ConfirmationNumber" minOccurs="0">-->
               <xs:element name="ConfirmationNumber">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -254,6 +287,8 @@
               <xs:element name="NAICSCode">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
+					  <!-- TODO(NAUPA-1.6-NAICS): reverting CHANGE #6 - its premise (valid NAICS with 2nd digit 0) is false. Confirm with WG. -->
+					  <!--<xs:pattern value="[1-9][1-9][0-9]{0,4}" />-->
                     <xs:pattern value="[1-9][0-9]{1,5}" />
                   </xs:restriction>
                 </xs:simpleType>
@@ -379,8 +414,8 @@
                                 </xs:complexType>
                               </xs:element>
                             </xs:choice>
-                            <xs:element name="NonRemitIndicator" type="IndicatorType" minOccurs="0" />
-                            <xs:element name="Taxable" type="IndicatorType" minOccurs="0" />
+                            <xs:element name="NonRemitIndicator" type="IndicatorType" />
+                            <xs:element name="Taxable" type="IndicatorType" />
                             <xs:element name="TaxForm1099IssuedDate" type="xs:date" minOccurs="0" />
                             <xs:element name="DescriptionOrAdditionalInformation" minOccurs="0">
                               <xs:simpleType>
@@ -394,7 +429,7 @@
                             <xs:element name="AlternateLocation" minOccurs="0">
                               <xs:complexType>
                                 <xs:sequence>
-                                  <xs:element name="Identifier" minOccurs="0">
+                                  <xs:element name="Identifier">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
                                         <xs:minLength value="1" />
@@ -422,7 +457,7 @@
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
-                                  <xs:element name="SanctionsTarget">
+                                  <xs:element name="SanctionsTarget" minOccurs="0">
                                     <xs:simpleType>
                                       <xs:restriction base="xs:string">
                                         <xs:minLength value="1" />
@@ -492,7 +527,7 @@
                                                 <xs:element name="TypeCode">
                                                   <xs:simpleType>
                                                     <xs:restriction base="xs:string">
-                                                      <xs:maxLength value="4" />
+                                                      <xs:maxLength value="4"/>
                                                       <xs:enumeration value="SSN" />
                                                       <xs:enumeration value="FEIN" />
                                                       <xs:enumeration value="ITIN" />
@@ -634,7 +669,7 @@
                                       </xs:restriction>
                                     </xs:simpleType>
                                   </xs:element>
-                                  <xs:element name="Spouse" type="IndicatorType" minOccurs="0" />
+                                  <xs:element name="Spouse" type="IndicatorType" />
                                   <xs:element name="Percentage" type="PercentageType" />
                                   <xs:element name="Contact" type="ContactType" />
                                   <xs:element name="DateOfBirth" type="xs:date" minOccurs="0" />
@@ -765,7 +800,7 @@
                                       </xs:complexType>
                                     </xs:element>
                                     <!-- Section 4.4.3.2.11.3 Dividends Element -->
-                                    <xs:element name="Dividends" minOccurs="0">
+                                    <xs:element name="Dividends">
                                       <xs:complexType>
                                         <xs:sequence>
                                           <!-- Section 4.4.3.2.11.3.1 Handling Element Values -->
@@ -803,7 +838,7 @@
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
                                           <xs:minLength value="1" />
-                                          <xs:maxLength value="50" />
+                                          <xs:maxLength value="70" />
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
@@ -829,6 +864,7 @@
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
+									<!-- TODO(NAUPA-1.6-DOCFIX): doc lists NonTransferable, NoTicker, Prohibited/SanctionedCountries. XSD has Non-Transferable, No ticker, Prohibited/Sanctioned Countries. Fix the Word doc. -->
                                     <!-- Section 4.4.3.2.11.6 Status Element Values -->
                                     <xs:element name="Status">
                                       <xs:simpleType>
@@ -1005,6 +1041,7 @@
                                       </xs:simpleType>
                                     </xs:element>
                                     <!-- County FIPS code (NAUPA-III 1.5) -->
+									<!-- TODO(NAUPA-1.6-DOCFIX): MineralInterests table shows "County Code" with a space. Element names cannot contain spaces; XSD CountyCode is correct. Fix the Word doc. -->
                                     <xs:element name="CountyCode" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
@@ -1151,9 +1188,10 @@
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="StateAccountNumber" maxOccurs="unbounded">
+                                    <xs:element name="StateAccountNumber" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+										  <xs:minLength value="1" />
                                           <xs:maxLength value="70" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1167,7 +1205,7 @@
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-                                    <xs:element name="ReportNotRemit" type="IndicatorType" minOccurs="0" />
+                                    <xs:element name="ReportNotRemit" type="IndicatorType" />
                                     <xs:element name="Exchange" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
@@ -1184,6 +1222,7 @@
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
+									<!-- TODO(NAUPA-1.6-DOCFIX): Cryptocurrency table shows "Contract Address" with a space. Element names cannot contain spaces; XSD ContractAddress is correct. Fix the Word doc. -->
                                     <xs:element name="ContractAddress" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
@@ -1230,6 +1269,7 @@
                                     </xs:simpleType>
                                   </xs:element>
                                   <xs:element name="Amount" type="CurrencyType" />
+								  <!-- TODO(NAUPA-1.6-DOCFIX): Property Adjustment table shows "Cost Basis" with a space. Element names cannot contain spaces; XSD CostBasis is correct. Note doc spells it CostBasis correctly under Security. Fix the Word doc. -->
                                   <xs:element name="CostBasis" type="CurrencyType" minOccurs="0" />
                                 </xs:sequence>
                               </xs:complexType>
@@ -1475,6 +1515,8 @@
   <!-- Section 7.1.2 ForeignAddressType -->
   <xs:complexType name="ForeignAddressType">
     <xs:sequence>
+	  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
+      <!--<xs:element name="Address1" minOccurs="0">-->
       <xs:element name="Address1">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -1499,6 +1541,8 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
+      <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
+	  <!--<xs:element name="City" minOccurs="0">-->
       <xs:element name="City">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -1523,6 +1567,8 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
+	  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
+	  <!--<xs:element name="CountryCode" type="CountryCodeType" minOccurs="0" />-->
       <xs:element name="CountryCode" type="CountryCodeType" />
     </xs:sequence>
   </xs:complexType>
@@ -1546,6 +1592,8 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
+	  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
+	  <!--<xs:element name="FirstName" minOccurs="0">-->
       <xs:element name="FirstName">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -1581,6 +1629,7 @@
     </xs:sequence>
   </xs:complexType>
 
+  <!-- TODO(NAUPA-1.6-TEL-TYPE): doc 7.1.5.1 restricts to Mobile/Home/Office/Other; XSD accepts any 1-50 char string. BREAKING if tightened. Doc self-contradicts: row says "(e.g. mobile, home, work)" - lowercase, and "work" is not in 7.1.5.1's list ("Office"). Confirm casing + value set with WG. -->
   <!-- Section 7.1.5 TelephoneNumberType -->
   <xs:complexType name="TelephoneNumberType">
     <xs:sequence>
@@ -1603,6 +1652,8 @@
   <!-- Section 7.1.6 USAddressType -->
   <xs:complexType name="USAddressType">
     <xs:sequence>
+	  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
+	  <!--<xs:element name="Address1" minOccurs="0">-->
       <xs:element name="Address1">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -1627,6 +1678,8 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
+	  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
+      <!--<xs:element name="City" minOccurs="0">-->
       <xs:element name="City">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -1635,8 +1688,12 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-      <xs:element name="StateCode" type="StateCodeType" />
-      <xs:element name="ZIPCode">
+	<!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
+	<!--<xs:element name="StateCode" type="StateCodeType" minOccurs="0" />-->
+	 <xs:element name="StateCode" type="StateCodeType" />
+	<!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. --> 
+	<!--<xs:element name="ZIPCode" minOccurs="0">-->
+     <xs:element name="ZIPCode">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:pattern value="[0-9]{5}(-[0-9]{4})?" />
@@ -1698,6 +1755,7 @@
     </xs:restriction>
   </xs:simpleType>
 
+	<!-- TODO(NAUPA-1.6-DOCFIX): doc lists IndicatorType as string(4..5) - stale from when values were True/False. XSD is correct (maxLength 1, enum "X"/""). Fix the Word doc; no schema change. -->
   <xs:simpleType name="IndicatorType">
     <!-- 'X' means true; empty string means false. -->
     <xs:restriction base="xs:string">
@@ -1730,8 +1788,10 @@
   
   <xs:simpleType name="TelephoneExtensionType">
     <xs:restriction base="xs:string">
-      <xs:maxLength value="4" />
-    </xs:restriction>
+		<!-- TODO(NAUPA-1.6-TEL-EXT): doc says "Four-digit telephone extension", string(4). maxLength alone lets "", "ab", "#1" pass. Precedent: TaxIDExtension uses [0-9]{4}. -->
+		<xs:maxLength value="4"/>
+		<!--<xs:pattern value="[0-9]{4}" />-->
+	</xs:restriction>
   </xs:simpleType>
 
 
