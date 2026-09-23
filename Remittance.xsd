@@ -181,8 +181,20 @@
        validate. PersonNameType would require only LastName. Confirm this is the
        working group's intent before shipping 1.6.
 
-       PRECEDENT: ForeignAddressType/ProvinceOrState is also "K | 1" and already
-       has minOccurs="0" - the only one of the ten implemented per the legend.
+       PRECEDENT: the doc has 18 rows marked "K | 1". This schema already
+       implements 9 of them correctly as minOccurs="0": Incorporated/Date,
+       Property/HIPAAIndicator, Cryptocurrency Exchange, Blockchain and
+       ContractAddress, Property Adjustment/CostBasis, Property/
+       ContactHolderBeforePaying, ContactType/PrimaryAddress, and
+       ForeignAddressType/ProvinceOrState. So the 9 flagged here are the
+       other half of the same set - inconsistency, not policy.
+
+       TWO CLEAREST PAIRS:
+         - ForeignAddressType: ProvinceOrState (1554) is "K | 1" and optional,
+           while City (1546) is "K | 1" and mandatory - same type, 8 lines apart.
+         - Incorporated: State is "M | 1" and mandatory; Date is "K | 1" and
+           optional - correctly distinguished, 1 line apart. The M/K column was
+           read and acted on here, just not everywhere.
 
        NOT AFFECTED: MineralInterests/StateCode is "M | 1" and correctly
        mandatory. Do not sweep it with a find-all on StateCode.
@@ -210,6 +222,7 @@
                    error) paired with Repeat "0..1" (may be absent). XSD is currently optional, matching
                    the Repeat column. Git shows this was deliberately relaxed from mandatory in 1.5.
                    Needs Group decision. -->
+				<!--<xs:element name="Jurisdiction" type="StateCodeType" /> -->
               <xs:element name="Jurisdiction" type="StateCodeType" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
@@ -865,7 +878,12 @@
                                       </xs:simpleType>
                                     </xs:element>
 									<!-- TODO(NAUPA-1.6-DOCFIX): doc lists NonTransferable, NoTicker, Prohibited/SanctionedCountries. XSD has Non-Transferable, No ticker, Prohibited/Sanctioned Countries. Fix the Word doc. -->
-                                    <!-- Section 4.4.3.2.11.6 Status Element Values -->
+									  <!-- If the WG decides the doc's Code column wins instead (BREAKING - invalidates existing 1.5 files):
+                                         <xs:enumeration value="NonTransferable"/>              
+                                         <xs:enumeration value="NoTicker"/>                     
+                                         <xs:enumeration value="Prohibited/SanctionedCountries"/> 
+                                         Note: "Below Min Lot Size" (line 880) keeps its spaces in BOTH columns - do not change. -->
+									  <!-- Section 4.4.3.2.11.6 Status Element Values -->
                                     <xs:element name="Status">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
@@ -1630,7 +1648,18 @@
   </xs:complexType>
 
   <!-- TODO(NAUPA-1.6-TEL-TYPE): doc 7.1.5.1 restricts to Mobile/Home/Office/Other; XSD accepts any 1-50 char string. BREAKING if tightened. Doc self-contradicts: row says "(e.g. mobile, home, work)" - lowercase, and "work" is not in 7.1.5.1's list ("Office"). Confirm casing + value set with WG. -->
-  <!-- Section 7.1.5 TelephoneNumberType -->
+  <!--Drops minLength`/`maxLength — an enumeration makes them redundant.-->
+	<!--<xs:element name="Type" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Mobile" />
+            <xs:enumeration value="Home" />
+            <xs:enumeration value="Office" />
+            <xs:enumeration value="Other" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>-->
+	<!-- Section 7.1.5 TelephoneNumberType -->
   <xs:complexType name="TelephoneNumberType">
     <xs:sequence>
       <xs:element name="Type" minOccurs="0">
