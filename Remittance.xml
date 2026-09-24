@@ -777,6 +777,16 @@
         <TypeCode>Audit Fees</TypeCode>
         <Amount>-125.00</Amount>
       </Adjustment>
+      <!-- Section 4.4.3.4 ReportSummary Element -->
+      <ReportSummary>
+        <PropertyCount>6</PropertyCount>
+        <CashReportedAmountTotal>543.21</CashReportedAmountTotal>
+        <CashRemittedAmountTotal>394.76</CashRemittedAmountTotal>
+        <SecurityReportedSharesTotal>1234.123</SecurityReportedSharesTotal>
+        <SecurityRemittedSharesTotal>1234</SecurityRemittedSharesTotal>
+        <CryptocurrencyReportedUnitsTotal>100</CryptocurrencyReportedUnitsTotal>
+        <CryptocurrencyRemittedUnitsTotal>100</CryptocurrencyRemittedUnitsTotal>
+      </ReportSummary>
       <NonProductionReport>X</NonProductionReport>
     </Report>
   </Holder>
@@ -1024,6 +1034,12 @@
         <TypeCode>Audit Fees</TypeCode>
         <Amount>-125.00</Amount>
       </Adjustment>
+      <!-- Section 4.4.3.4 ReportSummary Element -->
+      <ReportSummary>
+        <PropertyCount>1</PropertyCount>
+        <CashReportedAmountTotal>543.21</CashReportedAmountTotal>
+        <CashRemittedAmountTotal>394.76</CashRemittedAmountTotal>
+      </ReportSummary>
     </Report>
   </Holder>
 </Remittance>

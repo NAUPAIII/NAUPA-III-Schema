@@ -13,6 +13,30 @@
     Version  : Remittance @version attribute set to fixed="1.6"
                to match the NAUPA-III 1.6 (September 2026) documentation.
 
+    HOW TO READ THIS LOG
+    ====================
+    Entries are numbered CHANGE #1 .. CHANGE #31 and are grouped by the
+    release that introduced them. Numbers are never reused.
+
+    There is no CHANGE #2 and no CHANGE #7. Those numbers were skipped when
+    the log was first written and have never appeared in any published
+    version of this file.
+
+    Entries CHANGE #12 .. CHANGE #18 were previously labelled A1, A2, A3,
+    A5, A7, A9 and "REMOVE 1". They were renumbered into the single CHANGE
+    sequence for 1.6. The old labels map as follows:
+
+        A1       -> CHANGE #12          A7       -> CHANGE #16
+        A2       -> CHANGE #13          A9       -> CHANGE #17
+        A3       -> CHANGE #14          REMOVE 1 -> CHANGE #18
+        A5       -> CHANGE #15
+
+    There were never any items numbered A4, A6 or A8.
+
+    A change marked BREAKING will cause files that validated against the
+    previous release to fail validation against this one.
+
+
     CORRECTIONS TO ORIGINAL XSD
     ===========================
 
@@ -21,6 +45,7 @@
 
     Fix 5  (line ~1001) Cryptocurrency section heading comment:
            "Elememt" corrected to "Element".
+
 
     ENHANCEMENTS
     ============
@@ -48,10 +73,10 @@
            of the Cryptocurrency sequence (after Exchange).
 
            Fields:
-           - Name        (CryptocurrencyNameType,  maxLength 16)
-           - Symbol      (CryptocurrencySymbolType, maxLength 7)
-           - Amount      (CurrencyType,             decimal 12,2)
-           - Units       (CryptocurrencyUnits,      decimal 33,18)
+           - Name         (CryptocurrencyNameType,   maxLength 16)
+           - Symbol       (CryptocurrencySymbolType, maxLength 7)
+           - Amount       (CurrencyType,             decimal 12,2)
+           - Units        (CryptocurrencyUnits,      decimal 33,18)
            - PurchaseDate (xs:date)
 
            Name/Symbol use two new named simpleTypes,
@@ -64,140 +89,287 @@
            Database tables were intentionally NOT updated for this change.
 
 
-    CHANGE #1 (Property TypeCode, Section 4.4.3.2.1) Reverted to NAUPA II
-             four-character property type codes. The prior five-character
-             codes (AC001..VC003) were replaced with the four-character
-             code set from the NAUPA Standard Electronic File Format
-             (Property Type Codes appendix, rev. 1/29/25): 123 codes
-             across AC, CK, CS, CT, HS, IN, IR, MI, MS, SC, SD, TR, UT,
-             and the ZZZZ catch-all. The field definition remains
-             maxLength=5 for future expansion.
+    ============================================================
+    SCHEMA CLEANUP AND CODE-SET WORK
+    ============================================================
 
-    CHANGE #3 — Removed the non-standard GER country code; DEU (the correct ISO 3166-1 
-	        alpha-3 for Germany) remains.
+    CHANGE #1  (Property TypeCode, Section 4.4.3.2.1) Reverted to NAUPA II
+               four-character property type codes. The prior five-character
+               codes (AC001..VC003) were replaced with the four-character
+               code set from the NAUPA Standard Electronic File Format
+               (Property Type Codes appendix, rev. 1/29/25): 123 codes
+               across AC, CK, CS, CT, HS, IN, IR, MI, MS, SC, SD, TR, UT,
+               and the ZZZZ catch-all. The field definition remains
+               maxLength=5 for future expansion.
 
-    CHANGE #4 — Converted all 224 enumeration values that had trailing XML comment
-	        descriptions into proper <xs:annotation> <xs:documentation>
-		    blocks, so the descriptions are now visible to schema-aware tooling, 
-			not just readers of the raw file.
+               Note: the code set contains intentional gaps (for example
+               AC09, AC16, CK17, CK18, MI11, TR07-TR09 are absent, and the
+               runs CT06-CT19, IN09-IN19, MS19-MS29 and SC21-SC29 are
+               reserved). The XSD matches the published appendix exactly.
 
-    CHANGE #5 — Extracted the Property TypeCode enumeration into a new named type, 
-	        PropertyTypeCodeType, defined once in a new "Section 7.3.3" alongside 
-			StateCodeType and CountryCodeType. The Property/TypeCode element now 
-			just references it (type="PropertyTypeCodeType"), consistent with
-			how the rest of the schema handles reusable code lists.
-		
-    CHANGE #6 — Loosened the NAICSCode pattern from [1-9][1-9][0-9]{0,4} to [1-9][0-9]{1,5}, 
-	        so it no longer silently rejects a valid code with a second digit of 0.
-			
-	CHANGE #8 — Fixed the leftover style inconsistencies: type ="IndicatorType" → type="IndicatorType" 
-	        (2 spots), and <xs:complexType > <xs:complexType>	(3 spots).
+    CHANGE #3  Removed the non-standard GER country code; DEU (the correct
+               ISO 3166-1 alpha-3 for Germany) remains.
 
-	CHANGE #9 — Tightened 19 redundant maxLength facets down to the actual longest enumerated 
-	        value in each case (e.g., Owner/TypeCode went from 15 → 3, RelationshipCode from 50 → 2). 
-			Left PropertyTypeCodeType's maxLength="5" untouched, since that's intentional headroom 
-			for future 5-character codes, not redundancy.
+    CHANGE #4  Converted all 224 enumeration values that had trailing XML
+               comment descriptions into proper <xs:annotation>
+               <xs:documentation> blocks, so the descriptions are now
+               visible to schema-aware tooling, not just to readers of the
+               raw file.
 
-    CHANGE #10 — Normalized the 5 stray curly apostrophes (’) in property descriptions to 
-	        straight ones ('), matching the rest of the file.
+    CHANGE #5  Extracted the Property TypeCode enumeration into a new named
+               type, PropertyTypeCodeType, defined in a new "Section 7.3.3"
+               alongside StateCodeType and CountryCodeType. The
+               Property/TypeCode element now just references it
+               (type="PropertyTypeCodeType"), consistent with how the rest
+               of the schema handles reusable code lists.
 
-	CHANGE #11 — IndicatorType reverted from boolean "True"/"False" (change A1 below)
-	        to enumerated { "X", "" }, where "X" means true and empty string means
-	        false. maxLength=1, minLength removed. Affects all indicator fields
-	        (NonProductionReport, NonRemitIndicator, Taxable, HIPAAIndicator,
-	        Spouse, IfPaid, ReportNotRemit, ContactHolderBeforePaying). This
-	        supersedes A1 below.
-			
+    CHANGE #6  Loosened the NAICSCode pattern from [1-9][1-9][0-9]{0,4} to
+               [1-9][0-9]{1,5}, on the stated grounds that the original
+               pattern would silently reject a valid code whose second digit
+               is 0.
+               *** SUPERSEDED BY CHANGE #31. This change has been reverted;
+               its premise was incorrect. ***
 
-				ALIGNMENT WITH NAUPA-III 1.5 (July 2026)
-				=========================================
-				Applied per gap analysis (NAUPA-III_1.4_Gap_Analysis.md):
+    CHANGE #8  Fixed leftover style inconsistencies: type ="IndicatorType"
+               corrected to type="IndicatorType" (2 spots), and
+               <xs:complexType > corrected to <xs:complexType> (3 spots).
 
-				A1 IndicatorType: changed from single value "X" to boolean
-				"True"/"False" (string minLength 4, maxLength 5). Affects all
-				indicator fields (NonProductionReport, NonRemitIndicator,
-				Taxable, HIPAAIndicator, Spouse, IfPaid, ReportNotRemit,
-				ContactHolderBeforePaying).
+    CHANGE #9  Tightened 19 redundant maxLength facets down to the actual
+               longest enumerated value in each case (for example,
+               Owner/TypeCode went from 15 to 3, and RelationshipCode from
+               50 to 2). PropertyTypeCodeType's maxLength="5" was left
+               untouched, since that is intentional headroom for future
+               five-character codes rather than redundancy.
 
-				A2 Owner TypeCode: values changed from Aggregate/Unknown/NamedOwner
-				to AGG (Aggregate Property), UNK (Unknown), IND (Individual),
-				BUS (Non-Individual). BUS is new in 1.5.
+    CHANGE #10 Normalized the 5 stray curly apostrophes in property
+               descriptions to straight ones, matching the rest of the file.
 
-				A3 Owner element ordering: DriversLicense moved to follow
-				RelationshipCode (was after Identity) to match 1.5 sequence.
+    CHANGE #11 IndicatorType reverted from the boolean "True"/"False" form
+               introduced by CHANGE #12 back to the enumerated set
+               { "X", "" }, where "X" means true and the empty string means
+               false. maxLength=1; minLength removed. Affects all indicator
+               fields (NonProductionReport, NonRemitIndicator, Taxable,
+               HIPAAIndicator, Spouse, IfPaid, ReportNotRemit,
+               ContactHolderBeforePaying).
+               Supersedes CHANGE #12.
 
-				A5 Added elements defined in 1.5:
-				- SoftwareInformation/Jurisdiction (StateCodeType, optional)
-				- Beneficiary/IfPaid (IndicatorType, mandatory)
-				- Cryptocurrency/Blockchain (string 1..30, optional)
-				- Cryptocurrency/ContractAddress (string 1..100, optional;
-				  element name has no space per XML naming rules)
-				- MineralInterests/CountyCode (string 0..5, optional)
-				- MineralInterests/PropertyDescription (string 0..250, optional)
-				- MineralInterests/LegalDescription (string 0..500, optional)
 
-				A7 Enumeration additions:
-				- Report TypeCode: "Illicit Property"
-				- Beneficiary TypeCode: "Representative" (Texas only)
-				- Inventory ItemCode: "Knives", "Watches"
+    ============================================================
+    ALIGNMENT WITH NAUPA-III 1.5 (July 2026)
+    ============================================================
+    Applied per gap analysis (NAUPA-III_1.4_Gap_Analysis.md).
+    Previously numbered A1..A9 and REMOVE 1; see the mapping table above.
 
-				A9 Cardinality aligned to NAUPA-III 1.5 (documentation):
-				- Cryptocurrency/StateAddressNumber -> mandatory, repeating
-				  (minOccurs=1, maxOccurs=unbounded; string 1..70).
-				- ReturnedByPostOffice/ReturnCount -> mandatory, integer 0-99
-				  (xs:nonNegativeInteger, minInclusive 0, maxInclusive 99;
-				  was optional xs:short).
+    CHANGE #12 IndicatorType: changed from the single value "X" to boolean
+               "True"/"False" (string, minLength 4, maxLength 5). Affects
+               all indicator fields (NonProductionReport, NonRemitIndicator,
+               Taxable, HIPAAIndicator, Spouse, IfPaid, ReportNotRemit,
+               ContactHolderBeforePaying).
+               *** SUPERSEDED BY CHANGE #11. This change has been reverted. ***
+               (Formerly A1.)
 
-				REMOVALS
-				========
+    CHANGE #13 Owner TypeCode: values changed from Aggregate / Unknown /
+               NamedOwner to AGG (Aggregate Property), UNK (Unknown),
+               IND (Individual) and BUS (Non-Individual). BUS is new in 1.5.
+               BREAKING: the 1.4 values no longer validate.
+               (Formerly A2.)
 
-				REMOVE 1 (Cryptocurrency) ProceedsReported and ProceedsRemitted:
-				Both elements have been removed from the Cryptocurrency
-				element. They are no longer part of the standard.
-				Corresponding DB columns ProceedsReported and
-				ProceedsRemitted must be dropped from any Cryptocurrency
-				table (they were not present in the originally generated
-				DB schema, so no DB migration is required unless they
-				were added manually).
-				-->
+    CHANGE #14 Owner element ordering: DriversLicense moved to follow
+               RelationshipCode (previously after Identity) to match the
+               1.5 sequence.
+               BREAKING: 1.4 files with the old element order no longer
+               validate, because xs:sequence is order-sensitive.
+               (Formerly A3.)
 
-	<!-- TODO(NAUPA-1.6-K1): 9 elements marked "K" (If Known) in the NAUPA-III 1.6
-       documentation are mandatory in this schema. Search TODO(NAUPA-1.6-K1).
+    CHANGE #15 Added elements defined in 1.5:
+               - SoftwareInformation/Jurisdiction (StateCodeType, optional)
+               - Beneficiary/IfPaid (IndicatorType, mandatory)
+               - Cryptocurrency/Blockchain (string 1..30, optional)
+               - Cryptocurrency/ContractAddress (string 1..100, optional;
+                 the element name has no space, per XML naming rules)
+               - MineralInterests/CountyCode (string 0..5, optional)
+               - MineralInterests/PropertyDescription (string 0..250, optional)
+               - MineralInterests/LegalDescription (string 0..500, optional)
 
-       This is NOT a notation ambiguity. The 1.6 doc legend defines the terms:
-         M (Mandatory) - "The absence of the element will trigger a schema
-                          validation error."
-         K (If Known)  - "The element is optional within the XML structure...
-                          its absence does not trigger a schema validation error."
-       So K = minOccurs="0". The Repeat column governs count only; "K | 1"
-       means optional and non-repeating.
+               The three MineralInterests additions permit an empty value.
+               This is intentional and matches the documentation, which
+               specifies a minimum length of 0 for each of them. They are
+               the only three elements in the schema for which the
+               documentation does so.
+               (Formerly A5.)
 
-       Affected: Payment/ConfirmationNumber; USAddressType Address1, City,
-       StateCode, ZIPCode; ForeignAddressType Address1, City, CountryCode;
-       PersonNameType/FirstName.
+    CHANGE #16 Enumeration additions:
+               - Report TypeCode: "Illicit Property"
+               - Beneficiary TypeCode: "Representative" (Texas only)
+               - Inventory ItemCode: "Knives", "Watches"
+               (Formerly A7.)
 
-       IMPACT IF CORRECTED: every child of USAddressType and ForeignAddressType
-       becomes optional, so a bare <USAddress/> or <ForeignAddress/> would
-       validate. PersonNameType would require only LastName. Confirm this is the
-       working group's intent before shipping 1.6.
+    CHANGE #17 Cardinality aligned to the NAUPA-III 1.5 documentation:
+               - Cryptocurrency/StateAddressNumber -> mandatory, repeating
+                 (minOccurs=1, maxOccurs=unbounded; string 1..70).
+               - ReturnedByPostOffice/ReturnCount -> mandatory, integer
+                 0-99 (xs:nonNegativeInteger, minInclusive 0,
+                 maxInclusive 99; previously optional xs:short).
 
-       PRECEDENT: the doc has 18 rows marked "K | 1". This schema already
-       implements 9 of them correctly as minOccurs="0": Incorporated/Date,
-       Property/HIPAAIndicator, Cryptocurrency Exchange, Blockchain and
-       ContractAddress, Property Adjustment/CostBasis, Property/
-       ContactHolderBeforePaying, ContactType/PrimaryAddress, and
-       ForeignAddressType/ProvinceOrState. So the 9 flagged here are the
-       other half of the same set - inconsistency, not policy.
+               Implementer note: StateAddressNumber (this entry) and
+               StateAccountNumber (CHANGE #26) are adjacent in the
+               Cryptocurrency sequence, are similarly named, and have
+               deliberately opposite cardinality. StateAddressNumber is
+               mandatory and repeating; StateAccountNumber is optional and
+               non-repeating. Both are correct as written.
+               (Formerly A9.)
 
-       TWO CLEAREST PAIRS:
-         - ForeignAddressType: ProvinceOrState (1554) is "K | 1" and optional,
-           while City (1546) is "K | 1" and mandatory - same type, 8 lines apart.
-         - Incorporated: State is "M | 1" and mandatory; Date is "K | 1" and
-           optional - correctly distinguished, 1 line apart. The M/K column was
-           read and acted on here, just not everywhere.
+    CHANGE #18 Removed Cryptocurrency/ProceedsReported and
+               Cryptocurrency/ProceedsRemitted. Both elements are no longer
+               part of the standard.
+               BREAKING: 1.4 files containing either element no longer
+               validate.
+               Database note: the corresponding ProceedsReported and
+               ProceedsRemitted columns must be dropped from any
+               Cryptocurrency table. They were not present in the
+               originally generated DB schema, so no migration is required
+               unless they were added manually.
+               (Formerly REMOVE 1.)
 
-       NOT AFFECTED: MineralInterests/StateCode is "M | 1" and correctly
-       mandatory. Do not sweep it with a find-all on StateCode.
+
+    ============================================================
+    ALIGNMENT WITH NAUPA-III 1.6 (September 2026)
+    ============================================================
+    Applied by comparing this schema element by element against the
+    NAUPA-III 1.6 draft documentation (September 2026). The documentation
+    was treated as the source of truth throughout.
+
+    The documentation's M/K/E column governs whether an element may be
+    absent; the Repeat column governs how many times it may appear. The
+    1.6 legend defines the notations as:
+        M   (Mandatory) - "The absence of the element will trigger a
+                           schema validation error."
+        K   (If Known)  - "The element is optional within the XML
+                           structure ... its absence does not trigger a
+                           schema validation error."
+        E/M (Either)    - "Either the named element may appear, OR another
+                           adjacent 'E' element may appear. One of the
+                           elements must appear."
+    In schema terms: M is minOccurs="1" (the default), K is minOccurs="0",
+    and E/M is an xs:choice at default cardinality.
+
+    CHANGE #19 Property/NonRemitIndicator -> mandatory (was optional).
+               Documentation row is "M | 1".
+               BREAKING.
+
+    CHANGE #20 Property/Taxable -> mandatory (was optional).
+               Documentation row is "M | 1".
+               BREAKING.
+
+    CHANGE #21 AlternateLocation/Identifier -> mandatory (was optional).
+               Documentation row is "M | 1".
+               BREAKING.
+
+    CHANGE #22 OFAC/SanctionsTarget -> optional (was mandatory).
+               Documentation row is "K | 0..1".
+               Not breaking; relaxes validation only.
+
+    CHANGE #23 Beneficiary/Spouse -> mandatory (was optional).
+               Documentation row is "M | 1".
+               BREAKING.
+
+    CHANGE #24 Security/Dividends -> mandatory (was optional).
+               Documentation row is "M | 1".
+               BREAKING.
+
+    CHANGE #25 Security/StateAccountNumber maxLength raised from 50 to 70.
+               Documentation type is string(1..70).
+               Not breaking; widens the accepted range.
+
+    CHANGE #26 Cryptocurrency/StateAccountNumber -> optional and
+               non-repeating, with minLength 1 added (previously mandatory
+               and repeating, with maxOccurs="unbounded" and no minimum
+               length). Documentation row is "K | 0..1", type string(1..70).
+
+               The previous definition appears to have been copied from the
+               adjacent StateAddressNumber element, which genuinely is
+               "M | 1..*". See the implementer note on CHANGE #17.
+               Not breaking for files that supply a single value.
+
+    CHANGE #27 Cryptocurrency/ReportNotRemit -> mandatory (was optional).
+               Documentation row is "M | 1".
+               BREAKING.
+
+    CHANGE #28 Cardinality corrected for 9 elements that the 1.6
+               documentation marks "K" (If Known) but that this schema
+               required. Per the legend above, K is minOccurs="0".
+
+               Affected:
+               - Payment/ConfirmationNumber
+               - USAddressType: Address1, City, StateCode, ZIPCode
+               - ForeignAddressType: Address1, City, CountryCode
+               - PersonNameType: FirstName
+
+               Not breaking; relaxes validation only.
+
+               CONSEQUENCE, stated explicitly: every child of USAddressType
+               and of ForeignAddressType is now optional, so a bare
+               <USAddress/> or <ForeignAddress/> element will validate, and
+               PersonNameType now requires only LastName. An address is
+               still required wherever the documentation marks the address
+               elements "E/M", because that is enforced by an xs:choice
+               rather than by the child elements.
+
+               Consistency note: the 1.6 documentation contains 18 rows
+               marked "K | 1". Before this change the schema implemented 9
+               of them as optional (Incorporated/Date,
+               Property/HIPAAIndicator, Cryptocurrency/Exchange,
+               Cryptocurrency/Blockchain, Cryptocurrency/ContractAddress,
+               Property Adjustment/CostBasis,
+               Property/ContactHolderBeforePaying,
+               ContactType/PrimaryAddress and
+               ForeignAddressType/ProvinceOrState) and the other 9 as
+               mandatory. This change makes the treatment uniform.
+
+               Not affected: MineralInterests/StateCode is "M | 1" and
+               remains mandatory. It is textually identical to
+               USAddressType/StateCode; do not change it with a global
+               find-and-replace.
+
+    CHANGE #29 TelephoneNumberType/Type restricted to the value set defined
+               in documentation Section 7.1.5.1: Mobile, Home, Office,
+               Other. Previously any string of 1 to 50 characters was
+               accepted. The minLength and maxLength facets were removed,
+               since the enumeration makes them redundant.
+               BREAKING: free-text values accepted in 1.5 are now rejected.
+
+               The values are case-sensitive. "Mobile", "Home", "Office"
+               and "Other" validate; "mobile", "home", "office" and any
+               form of "work" do not.
+
+               Documentation note: the row describing this element gives
+               the example text "(e.g. mobile, home, work)", which is
+               lowercase and uses "work" rather than "Office". None of
+               those three values validate against Section 7.1.5.1. The
+               example text needs correcting in the documentation; the
+               schema follows Section 7.1.5.1, which is the normative
+               value list.
+
+    CHANGE #30 TelephoneExtensionType now enforces pattern [0-9]{4},
+               matching the documentation's "Four-digit telephone
+               extension" and its declared type of string(4).
+               Precedent: Holder/TaxIDExtension uses the same [0-9]{4}
+               pattern.
+               BREAKING: the empty string and values such as "ab", "#1"
+               and "280" validated previously and no longer do.
+
+    CHANGE #31 Reverts CHANGE #6. The NAICSCode pattern is restored to
+               [1-9][1-9][0-9]{0,4}.
+
+               CHANGE #6 was justified on the grounds that the original
+               pattern would silently reject a valid NAICS code whose
+               second digit is 0. That premise is incorrect. All 24 NAICS
+               sectors are 11, 21, 22, 23, 31, 32, 33, 42, 44, 45, 48, 49,
+               51, 52, 53, 54, 55, 56, 61, 62, 71, 72, 81 and 92; none has
+               0 as its second digit, and every longer code begins with its
+               sector prefix, so the described failure cannot occur. The
+               loosened pattern instead admitted invalid codes such as 10,
+               205 and 900000.
   -->
 
 	<!-- Section 4 Remittance Element -->
@@ -248,9 +420,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-			  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
-			  <!--<xs:element name="ConfirmationNumber" minOccurs="0">-->
-              <xs:element name="ConfirmationNumber">
+			  <xs:element name="ConfirmationNumber" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:minLength value="1" />
@@ -300,9 +470,7 @@
               <xs:element name="NAICSCode">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-					  <!-- TODO(NAUPA-1.6-NAICS): reverting CHANGE #6 - its premise (valid NAICS with 2nd digit 0) is false. Confirm with WG. -->
-					  <!--<xs:pattern value="[1-9][1-9][0-9]{0,4}" />-->
-                    <xs:pattern value="[1-9][0-9]{1,5}" />
+					  <xs:pattern value="[1-9][1-9][0-9]{0,4}" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -879,10 +1047,10 @@
                                     </xs:element>
 									<!-- TODO(NAUPA-1.6-DOCFIX): doc lists NonTransferable, NoTicker, Prohibited/SanctionedCountries. XSD has Non-Transferable, No ticker, Prohibited/Sanctioned Countries. Fix the Word doc. -->
 									  <!-- If the WG decides the doc's Code column wins instead (BREAKING - invalidates existing 1.5 files):
-                                         <xs:enumeration value="NonTransferable"/>              
-                                         <xs:enumeration value="NoTicker"/>                     
-                                         <xs:enumeration value="Prohibited/SanctionedCountries"/> 
-                                         Note: "Below Min Lot Size" (line 880) keeps its spaces in BOTH columns - do not change. -->
+                                         <xs:enumeration value="NonTransferable"/>
+                                         <xs:enumeration value="NoTicker"/>
+                                         <xs:enumeration value="Prohibited/SanctionedCountries"/>
+                                         Note: "Below Min Lot Size" keeps its spaces in BOTH columns - do not change. -->
 									  <!-- Section 4.4.3.2.11.6 Status Element Values -->
                                     <xs:element name="Status">
                                       <xs:simpleType>
@@ -1533,9 +1701,7 @@
   <!-- Section 7.1.2 ForeignAddressType -->
   <xs:complexType name="ForeignAddressType">
     <xs:sequence>
-	  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
-      <!--<xs:element name="Address1" minOccurs="0">-->
-      <xs:element name="Address1">
+      <xs:element name="Address1" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:minLength value="1" />
@@ -1559,9 +1725,7 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-      <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
-	  <!--<xs:element name="City" minOccurs="0">-->
-      <xs:element name="City">
+      <xs:element name="City" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:minLength value="1" />
@@ -1585,9 +1749,7 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-	  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
-	  <!--<xs:element name="CountryCode" type="CountryCodeType" minOccurs="0" />-->
-      <xs:element name="CountryCode" type="CountryCodeType" />
+      <xs:element name="CountryCode" type="CountryCodeType" minOccurs="0" />
     </xs:sequence>
   </xs:complexType>
 
@@ -1610,9 +1772,7 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-	  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
-	  <!--<xs:element name="FirstName" minOccurs="0">-->
-      <xs:element name="FirstName">
+      <xs:element name="FirstName" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:minLength value="1" />
@@ -1647,29 +1807,19 @@
     </xs:sequence>
   </xs:complexType>
 
-  <!-- TODO(NAUPA-1.6-TEL-TYPE): doc 7.1.5.1 restricts to Mobile/Home/Office/Other; XSD accepts any 1-50 char string. BREAKING if tightened. Doc self-contradicts: row says "(e.g. mobile, home, work)" - lowercase, and "work" is not in 7.1.5.1's list ("Office"). Confirm casing + value set with WG. -->
-  <!--Drops minLength`/`maxLength — an enumeration makes them redundant.-->
-	<!--<xs:element name="Type" minOccurs="0">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="Mobile" />
-            <xs:enumeration value="Home" />
-            <xs:enumeration value="Office" />
-            <xs:enumeration value="Other" />
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>-->
 	<!-- Section 7.1.5 TelephoneNumberType -->
   <xs:complexType name="TelephoneNumberType">
     <xs:sequence>
       <xs:element name="Type" minOccurs="0">
         <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:minLength value="1" />
-            <xs:maxLength value="50" />
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Mobile" />
+					<xs:enumeration value="Home" />
+					<xs:enumeration value="Office" />
+					<xs:enumeration value="Other" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
       <xs:choice>
         <xs:element name="USTelephoneNumber" type="USTelephoneNumberType" />
         <xs:element name="ForeignTelephoneNumber" type="ForeignTelephoneNumberType" />
@@ -1681,9 +1831,7 @@
   <!-- Section 7.1.6 USAddressType -->
   <xs:complexType name="USAddressType">
     <xs:sequence>
-	  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
-	  <!--<xs:element name="Address1" minOccurs="0">-->
-      <xs:element name="Address1">
+      <xs:element name="Address1" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:minLength value="1" />
@@ -1707,9 +1855,7 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-	  <!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
-      <!--<xs:element name="City" minOccurs="0">-->
-      <xs:element name="City">
+      <xs:element name="City" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:minLength value="1" />
@@ -1717,12 +1863,8 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-	<!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. -->
-	<!--<xs:element name="StateCode" type="StateCodeType" minOccurs="0" />-->
-	 <xs:element name="StateCode" type="StateCodeType" />
-	<!-- TODO(NAUPA-1.6-K1): doc 1.6 says "K | 1" = optional; XSD requires it. See header TODO. --> 
-	<!--<xs:element name="ZIPCode" minOccurs="0">-->
-     <xs:element name="ZIPCode">
+      <xs:element name="StateCode" type="StateCodeType" minOccurs="0" />
+      <xs:element name="ZIPCode" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:pattern value="[0-9]{5}(-[0-9]{4})?" />
@@ -1814,13 +1956,12 @@
       <xs:pattern value="[0-9]{10}" />
     </xs:restriction>
   </xs:simpleType>
-  
+
   <xs:simpleType name="TelephoneExtensionType">
     <xs:restriction base="xs:string">
-		<!-- TODO(NAUPA-1.6-TEL-EXT): doc says "Four-digit telephone extension", string(4). maxLength alone lets "", "ab", "#1" pass. Precedent: TaxIDExtension uses [0-9]{4}. -->
-		<xs:maxLength value="4"/>
-		<!--<xs:pattern value="[0-9]{4}" />-->
-	</xs:restriction>
+      <xs:maxLength value="4"/>
+      <xs:pattern value="[0-9]{4}" />
+    </xs:restriction>
   </xs:simpleType>
 
 
