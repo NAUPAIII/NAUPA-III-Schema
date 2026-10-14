@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.6" encoding="UTF-8"?>
 <xs:schema targetNamespace="http://www.unclaimed.org/NAUPA-III"
   xmlns="http://www.unclaimed.org/NAUPA-III"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -2230,6 +2230,7 @@
       <xs:enumeration value="AL" />
       <xs:enumeration value="AK" />
       <xs:enumeration value="AZ" />
+	  <xs:enumeration value="AR" />
       <xs:enumeration value="CA" />
       <xs:enumeration value="CO" />
       <xs:enumeration value="CT" />
