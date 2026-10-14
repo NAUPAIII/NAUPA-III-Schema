@@ -2000,6 +2000,7 @@
       <xs:enumeration value="AL" />
       <xs:enumeration value="AK" />
       <xs:enumeration value="AZ" />
+	  <xs:enumeration value="AR" />
       <xs:enumeration value="CA" />
       <xs:enumeration value="CO" />
       <xs:enumeration value="CT" />
