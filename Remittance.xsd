@@ -191,11 +191,9 @@
                - MineralInterests/PropertyDescription (string 0..250, optional)
                - MineralInterests/LegalDescription (string 0..500, optional)
 
-               The three MineralInterests additions permit an empty value.
-               This is intentional and matches the documentation, which
-               specifies a minimum length of 0 for each of them. They are
-               the only three elements in the schema for which the
-               documentation does so.
+               The three MineralInterests additions originally permitted an
+               empty value (minimum length 0). That was unintentional and is
+               corrected by CHANGE #33.
                (Formerly A5.)
 
     CHANGE #16 Enumeration additions:
@@ -370,6 +368,31 @@
                sector prefix, so the described failure cannot occur. The
                loosened pattern instead admitted invalid codes such as 10,
                205 and 900000.
+
+    CHANGE #32 SoftwareInformation/Jurisdiction -> mandatory (was optional).
+               The 1.6 documentation row read "M | 0..1", which is
+               self-contradictory. By Group decision (Option B) the row is
+               corrected to "M | 1" and the schema is tightened to match.
+               Supersedes the "optional" cardinality recorded for this
+               element in CHANGE #15.
+               BREAKING: 1.5-era files that omit Jurisdiction no longer
+               validate. Call this out prominently in the release notes.
+
+    CHANGE #33 minLength 1 added to string elements that previously
+               accepted an empty value. By Group decision, empty values were
+               unintentional; the documented minimum lengths of 0 are
+               corrected to 1.
+
+               Affected:
+               - MineralInterests: CountyCode, PropertyDescription,
+                 LegalDescription
+               - Cryptocurrency: AccountNumber, DeliveryMethod, HashID,
+                 Exchange
+               - CryptocurrencyNameType and CryptocurrencySymbolType (used by
+                 Name and Symbol in Cryptocurrency and CryptoCostBasis)
+               BREAKING: files containing an empty value for any of these
+               elements no longer validate. Omit the element instead where
+               it is optional.
   -->
 
 	<!-- Section 4 Remittance Element -->
@@ -390,12 +413,8 @@
               </xs:element>
               <xs:element name="Contact" type="ContactType" />
               <!-- Jurisdiction the report was created for (Section 7.3.2 StateCodeType) -->
-				<!-- TODO(NAUPA-1.6-JUR): doc 1.6 row is self-contradictory - "M" (absence = validation
-                   error) paired with Repeat "0..1" (may be absent). XSD is currently optional, matching
-                   the Repeat column. Git shows this was deliberately relaxed from mandatory in 1.5.
-                   Needs Group decision. -->
-				<!--<xs:element name="Jurisdiction" type="StateCodeType" /> -->
-              <xs:element name="Jurisdiction" type="StateCodeType" minOccurs="0" />
+				<!-- Jurisdiction: mandatory (M | 1) per Group decision, CHANGE #32 -->
+				<xs:element name="Jurisdiction" type="StateCodeType" />
             </xs:sequence>
           </xs:complexType>
         </xs:element> <!-- SoftwareInformation -->
@@ -1045,24 +1064,18 @@
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-									<!-- TODO(NAUPA-1.6-DOCFIX): doc lists NonTransferable, NoTicker, Prohibited/SanctionedCountries. XSD has Non-Transferable, No ticker, Prohibited/Sanctioned Countries. Fix the Word doc. -->
-									  <!-- If the WG decides the doc's Code column wins instead (BREAKING - invalidates existing 1.5 files):
-                                         <xs:enumeration value="NonTransferable"/>
-                                         <xs:enumeration value="NoTicker"/>
-                                         <xs:enumeration value="Prohibited/SanctionedCountries"/>
-                                         Note: "Below Min Lot Size" keeps its spaces in BOTH columns - do not change. -->
-									  <!-- Section 4.4.3.2.11.6 Status Element Values -->
+									                  <!-- Section 4.4.3.2.11.6 Status Element Values -->
                                     <xs:element name="Status">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
                                           <xs:maxLength value="31" />
                                           <xs:enumeration value="Transferable" />
-                                          <xs:enumeration value="Non-Transferable" />
+                                          <xs:enumeration value="NonTransferable" />
                                           <xs:enumeration value="Chilled" />
                                           <xs:enumeration value="Delisted" />
                                           <xs:enumeration value="Restricted" />
                                           <xs:enumeration value="Worthless" />
-                                          <xs:enumeration value="No ticker" />
+                                          <xs:enumeration value="NoTicker" />
                                           <xs:enumeration value="Below Min Lot Size" />
                                           <xs:enumeration value="Prohibited/Sanctioned Countries" />
                                         </xs:restriction>
@@ -1227,10 +1240,10 @@
                                       </xs:simpleType>
                                     </xs:element>
                                     <!-- County FIPS code (NAUPA-III 1.5) -->
-									<!-- TODO(NAUPA-1.6-DOCFIX): MineralInterests table shows "County Code" with a space. Element names cannot contain spaces; XSD CountyCode is correct. Fix the Word doc. -->
                                     <xs:element name="CountyCode" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="5" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1305,6 +1318,7 @@
                                     <xs:element name="PropertyDescription" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="250" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1312,6 +1326,7 @@
                                     <xs:element name="LegalDescription" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="500" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1328,6 +1343,7 @@
                                     <xs:element name="AccountNumber" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="70" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1363,6 +1379,7 @@
                                     <xs:element name="DeliveryMethod" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="50" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1370,6 +1387,7 @@
                                     <xs:element name="HashID" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="64" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1395,6 +1413,7 @@
                                     <xs:element name="Exchange" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
+                                          <xs:minLength value="1" />
                                           <xs:maxLength value="70" />
                                         </xs:restriction>
                                       </xs:simpleType>
@@ -1408,7 +1427,6 @@
                                         </xs:restriction>
                                       </xs:simpleType>
                                     </xs:element>
-									<!-- TODO(NAUPA-1.6-DOCFIX): Cryptocurrency table shows "Contract Address" with a space. Element names cannot contain spaces; XSD ContractAddress is correct. Fix the Word doc. -->
                                     <xs:element name="ContractAddress" minOccurs="0">
                                       <xs:simpleType>
                                         <xs:restriction base="xs:string">
@@ -1455,7 +1473,6 @@
                                     </xs:simpleType>
                                   </xs:element>
                                   <xs:element name="Amount" type="CurrencyType" />
-								  <!-- TODO(NAUPA-1.6-DOCFIX): Property Adjustment table shows "Cost Basis" with a space. Element names cannot contain spaces; XSD CostBasis is correct. Note doc spells it CostBasis correctly under Security. Fix the Word doc. -->
                                   <xs:element name="CostBasis" type="CurrencyType" minOccurs="0" />
                                 </xs:sequence>
                               </xs:complexType>
@@ -1621,12 +1638,14 @@
 
   <xs:simpleType name="CryptocurrencyNameType">
     <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
       <xs:maxLength value="16" />
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="CryptocurrencySymbolType">
     <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
       <xs:maxLength value="7" />
     </xs:restriction>
   </xs:simpleType>
@@ -1926,7 +1945,6 @@
     </xs:restriction>
   </xs:simpleType>
 
-	<!-- TODO(NAUPA-1.6-DOCFIX): doc lists IndicatorType as string(4..5) - stale from when values were True/False. XSD is correct (maxLength 1, enum "X"/""). Fix the Word doc; no schema change. -->
   <xs:simpleType name="IndicatorType">
     <!-- 'X' means true; empty string means false. -->
     <xs:restriction base="xs:string">
